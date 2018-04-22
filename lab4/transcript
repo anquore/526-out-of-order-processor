@@ -1,0 +1,1706 @@
+# Reading C:/altera/14.0/modelsim_ase/tcl/vsim/pref.tcl 
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 
+# Loading sv_std.std
+# Loading work.pipelinedProcessor_testbench
+# Loading work.pipelinedProcessor
+# Loading work.completeDataPathPipelined
+# Loading work.instructionFetch
+# Loading work.instructmem
+# Loading work.individualReg64
+# Loading work.signExtend19
+# Loading work.signExtend26
+# Loading work.mux2x64
+# Loading work.shiftLeft2
+# Loading work.adder64
+# Loading work.fullAdder
+# Loading work.wallOfDFFs
+# Loading work.regReadAndWriteStage
+# Loading work.mux2x5
+# Loading work.regfile
+# Loading work.decoder5x32
+# Loading work.decoder1x2
+# Loading work.decoder4x16
+# Loading work.decoder2x4
+# Loading work.fullReg32x64
+# Loading work.mux32x64
+# Loading work.forwardingUnit
+# Loading work.orGate16
+# Loading work.ALUStage
+# Loading work.signExtend9
+# Loading work.signExtend12
+# Loading work.alu
+# Loading work.bitSlice
+# Loading work.mux2_1
+# Loading work.mux8x1
+# Loading work.mux4x1
+# Loading work.enableD_FF
+# Loading work.D_FF
+# Loading work.memStage
+# Loading work.datamem
+# Loading work.control
+# Loading work.mux32x1
+# Loading work.mux16x1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Richard  Hostname: RICHARDS_LAPTOP  ProcessID: 213608
+# 
+#           Attempting to use alternate WLF file "./wlft0vysfg".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft0vysfg
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Running benchmark: ../benchmarks/testing.arm
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 
+# Loading sv_std.std
+# Loading work.pipelinedProcessor_testbench
+# Loading work.pipelinedProcessor
+# Loading work.completeDataPathPipelined
+# Loading work.instructionFetch
+# Loading work.instructmem
+# Loading work.individualReg64
+# Loading work.signExtend19
+# Loading work.signExtend26
+# Loading work.mux2x64
+# Loading work.shiftLeft2
+# Loading work.adder64
+# Loading work.fullAdder
+# Loading work.wallOfDFFs
+# Loading work.regReadAndWriteStage
+# Loading work.mux2x5
+# Loading work.regfile
+# Loading work.decoder5x32
+# Loading work.decoder1x2
+# Loading work.decoder4x16
+# Loading work.decoder2x4
+# Loading work.fullReg32x64
+# Loading work.mux32x64
+# Loading work.forwardingUnit
+# Loading work.orGate16
+# Loading work.ALUStage
+# Loading work.signExtend9
+# Loading work.signExtend12
+# Loading work.alu
+# Loading work.bitSlice
+# Loading work.mux2_1
+# Loading work.mux8x1
+# Loading work.mux4x1
+# Loading work.enableD_FF
+# Loading work.D_FF
+# Loading work.memStage
+# Loading work.datamem
+# Loading work.control
+# Loading work.mux32x1
+# Loading work.mux16x1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Richard  Hostname: RICHARDS_LAPTOP  ProcessID: 213608
+# 
+#           Attempting to use alternate WLF file "./wlft94aw5r".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft94aw5r
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Running benchmark: ../benchmarks/testing.arm
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 
+# Loading sv_std.std
+# Loading work.pipelinedProcessor_testbench
+# Loading work.pipelinedProcessor
+# Loading work.completeDataPathPipelined
+# Loading work.instructionFetch
+# Loading work.instructmem
+# Loading work.individualReg64
+# Loading work.signExtend19
+# Loading work.signExtend26
+# Loading work.mux2x64
+# Loading work.shiftLeft2
+# Loading work.adder64
+# Loading work.fullAdder
+# Loading work.wallOfDFFs
+# Loading work.regReadAndWriteStage
+# Loading work.mux2x5
+# Loading work.regfile
+# Loading work.decoder5x32
+# Loading work.decoder1x2
+# Loading work.decoder4x16
+# Loading work.decoder2x4
+# Loading work.fullReg32x64
+# Loading work.mux32x64
+# Loading work.forwardingUnit
+# Loading work.orGate16
+# Loading work.ALUStage
+# Loading work.signExtend9
+# Loading work.signExtend12
+# Loading work.alu
+# Loading work.bitSlice
+# Loading work.mux2_1
+# Loading work.mux8x1
+# Loading work.mux4x1
+# Loading work.enableD_FF
+# Loading work.D_FF
+# Loading work.memStage
+# Loading work.datamem
+# Loading work.control
+# Loading work.mux32x1
+# Loading work.mux16x1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Richard  Hostname: RICHARDS_LAPTOP  ProcessID: 213608
+# 
+#           Attempting to use alternate WLF file "./wlftgcwv9k".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftgcwv9k
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Running benchmark: ../benchmarks/testing.arm
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 
+# Loading sv_std.std
+# Loading work.pipelinedProcessor_testbench
+# Loading work.pipelinedProcessor
+# Loading work.completeDataPathPipelined
+# Loading work.instructionFetch
+# Loading work.instructmem
+# Loading work.individualReg64
+# Loading work.signExtend19
+# Loading work.signExtend26
+# Loading work.mux2x64
+# Loading work.shiftLeft2
+# Loading work.adder64
+# Loading work.fullAdder
+# Loading work.wallOfDFFs
+# Loading work.regReadAndWriteStage
+# Loading work.mux2x5
+# Loading work.regfile
+# Loading work.decoder5x32
+# Loading work.decoder1x2
+# Loading work.decoder4x16
+# Loading work.decoder2x4
+# Loading work.fullReg32x64
+# Loading work.mux32x64
+# Loading work.forwardingUnit
+# Loading work.orGate16
+# Loading work.ALUStage
+# Loading work.signExtend9
+# Loading work.signExtend12
+# Loading work.alu
+# Loading work.bitSlice
+# Loading work.mux2_1
+# Loading work.mux8x1
+# Loading work.mux4x1
+# Loading work.enableD_FF
+# Loading work.D_FF
+# Loading work.memStage
+# Loading work.datamem
+# Loading work.control
+# Loading work.mux32x1
+# Loading work.mux16x1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Richard  Hostname: RICHARDS_LAPTOP  ProcessID: 213608
+# 
+#           Attempting to use alternate WLF file "./wlft2ceqk4".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlft2ceqk4
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Running benchmark: ../benchmarks/testing.arm
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 
+# Loading sv_std.std
+# Loading work.pipelinedProcessor_testbench
+# Loading work.pipelinedProcessor
+# Loading work.completeDataPathPipelined
+# Loading work.instructionFetch
+# Loading work.instructmem
+# Loading work.individualReg64
+# Loading work.signExtend19
+# Loading work.signExtend26
+# Loading work.mux2x64
+# Loading work.shiftLeft2
+# Loading work.adder64
+# Loading work.fullAdder
+# Loading work.wallOfDFFs
+# Loading work.regReadAndWriteStage
+# Loading work.mux2x5
+# Loading work.regfile
+# Loading work.decoder5x32
+# Loading work.decoder1x2
+# Loading work.decoder4x16
+# Loading work.decoder2x4
+# Loading work.fullReg32x64
+# Loading work.mux32x64
+# Loading work.forwardingUnit
+# Loading work.orGate16
+# Loading work.ALUStage
+# Loading work.signExtend9
+# Loading work.signExtend12
+# Loading work.alu
+# Loading work.bitSlice
+# Loading work.mux2_1
+# Loading work.mux8x1
+# Loading work.mux4x1
+# Loading work.enableD_FF
+# Loading work.D_FF
+# Loading work.memStage
+# Loading work.datamem
+# Loading work.control
+# Loading work.mux32x1
+# Loading work.mux16x1
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Richard  Hostname: RICHARDS_LAPTOP  ProcessID: 213608
+# 
+#           Attempting to use alternate WLF file "./wlftdny58f".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftdny58f
+# 
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# Running benchmark: ../benchmarks/test10_forwarding.arm
+do runlab.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# 
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2_1
+# -- Compiling module mux2_1_testbench
+# 
+# Top level modules:
+# 	mux2_1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module D_FF
+# -- Compiling module D_FF_testbench
+# 
+# Top level modules:
+# 	D_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module enableD_FF
+# -- Compiling module enableD_FF_testbench
+# 
+# Top level modules:
+# 	enableD_FF_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module individualReg64
+# -- Compiling module individualReg64_testbench
+# 
+# Top level modules:
+# 	individualReg64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullReg32x64
+# -- Compiling module fullReg32x64_testbench
+# 
+# Top level modules:
+# 	fullReg32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder2x4
+# -- Compiling module decoder2x4_testbench
+# 
+# Top level modules:
+# 	decoder2x4_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder1x2
+# -- Compiling module decoder1x2_testbench
+# 
+# Top level modules:
+# 	decoder1x2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder4x16
+# -- Compiling module decoder4x16_testbench
+# 
+# Top level modules:
+# 	decoder4x16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module decoder5x32
+# -- Compiling module decoder5x32_testbench
+# 
+# Top level modules:
+# 	decoder5x32_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux4x1
+# -- Compiling module mux4x1_testbench
+# 
+# Top level modules:
+# 	mux4x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux8x1
+# -- Compiling module mux8x1_testbench
+# 
+# Top level modules:
+# 	mux8x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux16x1
+# -- Compiling module mux16x1_testbench
+# 
+# Top level modules:
+# 	mux16x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x1
+# -- Compiling module mux32x1_testbench
+# 
+# Top level modules:
+# 	mux32x1_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux32x64
+# -- Compiling module mux32x64_testbench
+# 
+# Top level modules:
+# 	mux32x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regfile
+# -- Compiling module regstim
+# 
+# Top level modules:
+# 	regstim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module fullAdder
+# -- Compiling module fullAdder_testbench
+# 
+# Top level modules:
+# 	fullAdder_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module bitSlice
+# -- Compiling module bitSlice_testbench
+# 
+# Top level modules:
+# 	bitSlice_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module orGate16
+# -- Compiling module orGate16_testbench
+# 
+# Top level modules:
+# 	orGate16_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module alu
+# -- Compiling module alustim
+# 
+# Top level modules:
+# 	alustim
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend19
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend26
+# -- Compiling module signExtend26_testbench
+# 
+# Top level modules:
+# 	signExtend26_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x64
+# -- Compiling module mux2x64_testbench
+# 
+# Top level modules:
+# 	mux2x64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module shiftLeft2
+# -- Compiling module shiftLeft2_testbench
+# 
+# Top level modules:
+# 	shiftLeft2_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module adder64
+# -- Compiling module adder64_testbench
+# 
+# Top level modules:
+# 	adder64_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructionFetch
+# -- Compiling module instructionFetch_testbench
+# 
+# Top level modules:
+# 	instructionFetch_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module instructmem
+# -- Compiling module instructmem_testbench
+# 
+# Top level modules:
+# 	instructmem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module mux2x5
+# -- Compiling module mux2x5_testbench
+# 
+# Top level modules:
+# 	mux2x5_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend9
+# -- Compiling module signExtend9_testbench
+# 
+# Top level modules:
+# 	signExtend9_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module datamem
+# -- Compiling module datamem_testbench
+# 
+# Top level modules:
+# 	datamem_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module dataMovement
+# -- Compiling module dataMovement_testbench
+# 
+# Top level modules:
+# 	dataMovement_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPath
+# -- Compiling module completeDataPath_testbench
+# 
+# Top level modules:
+# 	completeDataPath_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module signExtend12
+# -- Compiling module signExtend19_testbench
+# 
+# Top level modules:
+# 	signExtend19_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module control
+# -- Compiling module control_testbench
+# 
+# Top level modules:
+# 	control_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module wallOfDFFs
+# -- Compiling module wallOfDFFs_testbench
+# 
+# Top level modules:
+# 	wallOfDFFs_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module completeDataPathPipelined
+# -- Compiling module completeDataPathPipelined_testbench
+# 
+# Top level modules:
+# 	completeDataPathPipelined_testbench
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module forwardingUnit
+# 
+# Top level modules:
+# 	forwardingUnit
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module regReadAndWriteStage
+# 
+# Top level modules:
+# 	regReadAndWriteStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module ALUStage
+# 
+# Top level modules:
+# 	ALUStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module memStage
+# 
+# Top level modules:
+# 	memStage
+# Model Technology ModelSim ALTERA vlog 10.1e Compiler 2013.06 Jun 12 2013
+# -- Compiling module pipelinedProcessor
+# -- Compiling module pipelinedProcessor_testbench
+# 
+# Top level modules:
+# 	pipelinedProcessor_testbench
+# vsim -lib work -voptargs=\"+acc\" -t 1ps pipelinedProcessor_testbench 

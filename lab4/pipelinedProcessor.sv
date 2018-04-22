@@ -7,18 +7,18 @@ module pipelinedProcessor(clk, reset);
 					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward;
 	logic [2:0] ALUOp;
 	logic [4:0] regRD;
-	logic [11:0] instr;
+	logic [17:0] instr;
 	logic [3:0] flags;
-	logic commandZero, negative, overflow, whichFlags;
+	logic commandZero, negative, overflow, whichFlags, zero, carry_out;
 	completeDataPathPipelined theDataPath (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, 
-								.read_enable, .needToForward, .negative, .overflow, .whichFlags);
+								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out);
 								
 	//the control
 	control theControl (.instr, .flags, .commandZero, .uncondBr, .brTaken, .memWrite, .memToReg,
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
-								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags);
+								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out);
 endmodule
 
 module pipelinedProcessor_testbench();

@@ -1,9 +1,9 @@
 module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 								ALUOp, ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, 
-								BRMI, saveCond, regRD, read_enable, needToForward, negative, overflow, whichFlags);
-	input logic [11:0] instr;
+								BRMI, saveCond, regRD, read_enable, needToForward, negative, overflow, whichFlags, zero, carry_out);
+	input logic [17:0] instr;
 	input logic [3:0] flags;
-	input logic commandZero, negative, overflow, whichFlags;
+	input logic commandZero, negative, overflow, whichFlags, zero, carry_out;
 	output logic uncondBr, brTaken, memWrite, memToReg, 
 					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward;
 	output logic [2:0] ALUOp;
@@ -12,7 +12,7 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 	//the control logic
 	always_comb begin
 		//ADDI
-		if(instr[5:0] == 6'b100100) begin //addi
+		if(instr[10:1] == 10'b1001000100) begin //addi
 			reg2Loc = 1'bx;
 			regWrite = 1;
 			dOrImm = 1;
@@ -25,11 +25,11 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 0;
 			BRMI = 0;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 1;
 		end
-		else if (instr[5:0] == 6'b111010) begin //subs
+		else if (instr[10:0] == 11'b11101011000) begin //subs
 			reg2Loc = 1;
 			regWrite = 1;
 			dOrImm = 0;
@@ -42,11 +42,28 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 0;
 			BRMI = 0;
 			saveCond = 1;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 1;
 		end
-		else if (instr[5:0] == 6'b101010) begin //adds
+    else if (instr[10:0] == 11'b11001011000) begin //sub
+			reg2Loc = 1;
+			regWrite = 1;
+			dOrImm = 0;
+			ALUSrc = 0;
+			ALUOp = 3;
+			memWrite = 0;
+			memToReg = 0;
+			valueToStore = 0; 
+			uncondBr = 1'bx; 
+			brTaken = 0;
+			BRMI = 0;
+			saveCond = 0;
+			regRD = instr[17:12];
+			read_enable = 0;
+			needToForward = 1;
+		end
+		else if (instr[10:0] == 11'b10101011000) begin //adds
 			reg2Loc = 1;
 			regWrite = 1;
 			dOrImm = 0;
@@ -59,11 +76,79 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 0;
 			BRMI = 0;
 			saveCond = 1;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 1;
 		end
-		else if (instr[5:0] == 6'b000101) begin //branch
+    else if (instr[10:0] == 11'b10001011000) begin //add
+			reg2Loc = 1;
+			regWrite = 1;
+			dOrImm = 0;
+			ALUSrc = 0;
+			ALUOp = 2;
+			memWrite = 0;
+			memToReg = 0;
+			valueToStore = 0; 
+			uncondBr = 1'bx; 
+			brTaken = 0;
+			BRMI = 0;
+			saveCond = 0;
+			regRD = instr[17:12];
+			read_enable = 0;
+			needToForward = 1;
+		end
+    else if (instr[10:0] == 11'b10001010000) begin //and
+			reg2Loc = 1;
+			regWrite = 1;
+			dOrImm = 0;
+			ALUSrc = 0;
+			ALUOp = 4;
+			memWrite = 0;
+			memToReg = 0;
+			valueToStore = 0; 
+			uncondBr = 1'bx; 
+			brTaken = 0;
+			BRMI = 0;
+			saveCond = 0;
+			regRD = instr[17:12];
+			read_enable = 0;
+			needToForward = 1;
+		end
+    else if (instr[10:0] == 11'b10101010000) begin //orr
+			reg2Loc = 1;
+			regWrite = 1;
+			dOrImm = 0;
+			ALUSrc = 0;
+			ALUOp = 5;
+			memWrite = 0;
+			memToReg = 0;
+			valueToStore = 0; 
+			uncondBr = 1'bx; 
+			brTaken = 0;
+			BRMI = 0;
+			saveCond = 0;
+			regRD = instr[17:12];
+			read_enable = 0;
+			needToForward = 1;
+		end
+    else if (instr[10:0] == 11'b11001010000) begin //eor
+			reg2Loc = 1;
+			regWrite = 1;
+			dOrImm = 0;
+			ALUSrc = 0;
+			ALUOp = 6;
+			memWrite = 0;
+			memToReg = 0;
+			valueToStore = 0; 
+			uncondBr = 1'bx; 
+			brTaken = 0;
+			BRMI = 0;
+			saveCond = 0;
+			regRD = instr[17:12];
+			read_enable = 0;
+			needToForward = 1;
+		end
+		else if (instr[10:5] == 6'b000101) begin //branch
 			reg2Loc = 1'bx;
 			regWrite = 0;
 			dOrImm = 1'bx;
@@ -76,11 +161,11 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 1;
 			BRMI = 0;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 0;
 		end
-		else if (instr[5:0] == 6'b101101) begin //cbz
+		else if (instr[10:3] == 8'b10110100) begin //cbz
 			reg2Loc = 0;
 			regWrite = 0;
 			dOrImm = 1'bx;
@@ -93,11 +178,11 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = commandZero;
 			BRMI = 0;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 0;
 		end
-		else if (instr[5:0] == 6'b010101) begin //B.LT
+		else if (instr[10:3] == 8'b01010100) begin //B.COND
 			reg2Loc = 1'bx;
 			regWrite = 0;
 			dOrImm = 1'bx;
@@ -107,53 +192,83 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			memToReg = 1'bx;
 			valueToStore = 0; 
 			uncondBr = 0;
-			if(whichFlags == 1)
-				brTaken = (negative ^ overflow);
-			else
-				brTaken = (flags[0] ^ flags[2]);//(negative ^ overflow);
+      if(instr[17:12] == 5'b0000) begin //B.EQ
+        if(whichFlags == 1)
+          brTaken = (zero);
+        else
+          brTaken = (flags[1]);
+      end 
+      else if(instr[17:12] == 5'b0001) begin //B.NE
+        if(whichFlags == 1)
+          brTaken = (~zero);
+        else
+          brTaken = (~flags[1]);
+      end 
+      else if(instr[17:12] == 5'b01010) begin //B.GE
+        if(whichFlags == 1)
+          brTaken = (~(negative ^ overflow));
+        else
+          brTaken = (~(flags[0] ^ flags[2]));
+      end 
+      else if(instr[17:12] == 5'b01011) begin//B.LT
+        if(whichFlags == 1)
+          brTaken = (negative ^ overflow);
+        else
+          brTaken = (flags[0] ^ flags[2]);
+      end 
+      else if(instr[17:12] == 5'b01100) begin //B.GT
+        if(whichFlags == 1)
+          brTaken = (~zero & ~(negative ^ overflow));
+        else
+          brTaken = (~flags[1] & ~(flags[0] ^ flags[2]));
+      end 
+      else begin
+        if(whichFlags == 1)
+          brTaken = (zero | (negative ^ overflow));
+        else
+          brTaken = (flags[1] | (flags[0] ^ flags[2]));
+      end
 			BRMI = 0;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 0;
 		end
-		else if (instr[5:0] == 6'b111110) begin //memory management
-			if(instr[6] == 1'b0) begin //STUR
-				reg2Loc = 0;
-				regWrite = 0;
-				dOrImm = 0;
-				ALUSrc = 1;
-				ALUOp = 2;
-				memWrite = 1;
-				memToReg = 1'bx;
-				valueToStore = 0; 
-				uncondBr = 1'bx; 
-				brTaken = 0;
-				BRMI = 0;
-				saveCond = 0;
-				regRD = instr[11:7];
-				read_enable = 0;
-				needToForward = 0;
-			end
-			else begin //LDUR
-				reg2Loc = 1'bx;
-				regWrite = 1;
-				dOrImm = 0;
-				ALUSrc = 1;
-				ALUOp = 2;
-				memWrite = 0;
-				memToReg = 1;
-				valueToStore = 0; 
-				uncondBr = 1'bx; 
-				brTaken = 0;
-				BRMI = 0;
-				saveCond = 0;
-				regRD = instr[11:7];
-				read_enable = 1;
-				needToForward = 1;
-			end
+		else if (instr[10:0] == 11'b11111000000) begin //memory management
+      reg2Loc = 0;
+      regWrite = 0;
+      dOrImm = 0;
+      ALUSrc = 1;
+      ALUOp = 2;
+      memWrite = 1;
+      memToReg = 1'bx;
+      valueToStore = 0; 
+      uncondBr = 1'bx; 
+      brTaken = 0;
+      BRMI = 0;
+      saveCond = 0;
+      regRD = instr[17:12];
+      read_enable = 0;
+      needToForward = 0;
 		end
-		else if (instr[5:0] == 6'b100101) begin //BL
+		else if (instr[10:0] == 11'b11111000010) begin //LDUR
+      reg2Loc = 1'bx;
+      regWrite = 1;
+      dOrImm = 0;
+      ALUSrc = 1;
+      ALUOp = 2;
+      memWrite = 0;
+      memToReg = 1;
+      valueToStore = 0; 
+      uncondBr = 1'bx; 
+      brTaken = 0;
+      BRMI = 0;
+      saveCond = 0;
+      regRD = instr[17:12];
+      read_enable = 1;
+      needToForward = 1;
+		end
+		else if (instr[10:5] == 6'b100101) begin //BL
 			reg2Loc = 1'bx;
 			regWrite = 1;
 			dOrImm = 1'bx;
@@ -170,7 +285,7 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			read_enable = 0;
 			needToForward = 1;
 		end
-		else if (instr[5:0] == 6'b110101) begin //BR
+		else if (instr[10:0] == 11'b11010110000) begin //BR
 			reg2Loc = 0;
 			regWrite = 0;
 			dOrImm = 1'bx;
@@ -183,7 +298,7 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 1'bx;
 			BRMI = 1;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 0;
 		end
@@ -200,7 +315,7 @@ module control(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 			brTaken = 0;
 			BRMI = 0;
 			saveCond = 0;
-			regRD = instr[11:7];
+			regRD = instr[17:12];
 			read_enable = 0;
 			needToForward = 0;
 		end
