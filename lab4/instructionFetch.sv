@@ -1,6 +1,6 @@
 `timescale 1ns/10ps
-module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address);
-	input logic clk, reset, uncondBr, brTaken, BRMI;
+module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC);
+	input logic clk, reset, uncondBr, brTaken, BRMI, enablePC;
 	input logic [63:0] regPC;
 	input logic [31:0] instrToRead;
 	output logic [31:0] instruction;
@@ -12,7 +12,7 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 	instructmem instrMem(.address, .instruction, .clk);
 	
 	//PC value
-	individualReg64 PC(.q(address), .d(newAddress), .reset, .enable(1'b1), .clk);
+	individualReg64 PC(.q(address), .d(newAddress), .reset, .enable(enablePC), .clk);
 	
 	//sign extenders
 	signExtend19 extend19(.valueIn(instrToRead[23:5]), .extendedOut(value19Extend));

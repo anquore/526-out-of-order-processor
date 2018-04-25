@@ -10,6 +10,7 @@ entity instructionFetch is
         regPC           : in     vl_logic_vector(63 downto 0);
         instrToRead     : in     vl_logic_vector(31 downto 0);
         instruction     : out    vl_logic_vector(31 downto 0);
-        address         : out    vl_logic_vector(63 downto 0)
+        address         : out    vl_logic_vector(63 downto 0);
+        enablePC        : in     vl_logic
     );
 end instructionFetch;

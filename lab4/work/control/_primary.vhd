@@ -24,6 +24,10 @@ entity control is
         overflow        : in     vl_logic;
         whichFlags      : in     vl_logic;
         zero            : in     vl_logic;
-        carry_out       : in     vl_logic
+        carry_out       : in     vl_logic;
+        whichMath       : out    vl_logic_vector(1 downto 0);
+        leftShift       : out    vl_logic;
+        mult            : out    vl_logic;
+        div             : out    vl_logic
     );
 end control;

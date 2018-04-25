@@ -10,6 +10,8 @@ SUBS = '111_0101_1000'
 OR = '101_0101_0000'
 XOR = '110_0101_0000'
 BR = '110_1011_0000'
+MULT = '100_1101_1000'
+DIV = '100_1101_0110'
 
 #conditional branching opcodes
 BCOND = '010_1010_0'
@@ -31,6 +33,10 @@ STUR = '111_1100_0000'
 
 #immediate commands
 ADDI = '100_1000_100'
+
+#shift commands
+LSL = '110_1001_1011'
+LSR = '110_1001_1010'
 
 def main():
   #clear the file
@@ -166,6 +172,42 @@ def main():
   condBranchCommand('NE', BCOND, -3, NE, theFile)
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
+  #testing shifts
+  shiftCommand('LSL', LSL, 10, 3, 1, theFile)
+  shiftCommand('LSR', LSR, 11, 3, 10, theFile)
+  
+  #testing multiply
+  #send one multiply then an add
+  mathCommand('MULT', MULT, 20, 7, 6, theFile)
+  mathCommand('ADD', ADD, 21, 5, 4, theFile)
+  
+  #send two multiples then a subs
+  mathCommand('MULT', MULT, 22, 7, 6, theFile)
+  mathCommand('MULT', MULT, 23, 5, 4, theFile)
+  mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
+  
+  #do a multiply then a branch
+  mathCommand('MULT', MULT, 24, 5, 6, theFile)
+  condBranchCommand('EQ', BCOND, 4, EQ, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #do an add to check branch happened
+  mathCommand('ADD', ADD, 25, 5, 4, theFile)
+  
+  #check some forwarding
+  mathCommand('MULT', MULT, 20, 5, 4, theFile)
+  mathCommand('ADD', ADD, 21, 20, 4, theFile)
+  mathCommand('ADD', ADD, 22, 5, 20, theFile)
+  
+  mathCommand('ADD', ADD, 23, 2, 1, theFile)
+  mathCommand('MULT', MULT, 24, 23, 4, theFile)
+  mathCommand('MULT', MULT, 26, 5, 23, theFile)
+  mathCommand('DIV', DIV, 27, 23, 24, theFile)
+  
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
@@ -205,6 +247,45 @@ def mathCommand(name, opcode, RD, RM, RN, theFile):
   
   #combine for full command
   cmd = opcode + '_' + RMcorrect + '_' + SHAMT + '_' + RNcorrect + '_' + RDcorrect
+  
+  #write to file
+  theFile.write('//' + name + '\n')
+  theFile.write(cmd + '\n')
+  
+def shiftCommand(name, opcode, RD, SHAMT, RN, theFile):
+  #generate the opcode
+  #opcode = '100_0101_0000'
+  
+  #convert the inputs to binary
+  zeroString = '00000'
+  shiftString = '000000'
+  SHAMTinBinary = "{0:b}".format(SHAMT)
+  RNinBinary = "{0:b}".format(RN)
+  RDinBinary = "{0:b}".format(RD)
+  
+  #merge the string
+  SHAMTinBinary1 = shiftString + SHAMTinBinary
+  RNinBinary1 = zeroString + RNinBinary
+  RDinBinary1 = zeroString + RDinBinary
+  
+  #get the lengths
+  numSHAMT = len(SHAMTinBinary1)
+  numRN = len(RNinBinary1)
+  numRD = len(RDinBinary1)
+   
+  #strip them to the correct length
+  numSHAMT1 = numSHAMT - 6
+  numRN1 = numRN - 5
+  numRD1 = numRD - 5
+  SHAMTcorrect = SHAMTinBinary1[numSHAMT1:]
+  RNcorrect = RNinBinary1[numRN1:]
+  RDcorrect = RDinBinary1[numRD1:]
+  
+  #assign RM
+  RM = '00000'
+  
+  #combine for full command
+  cmd = opcode + '_' + RM + '_' + SHAMTcorrect + '_' + RNcorrect + '_' + RDcorrect
   
   #write to file
   theFile.write('//' + name + '\n')

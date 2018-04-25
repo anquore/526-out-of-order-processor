@@ -44,6 +44,15 @@ vlog "./regReadAndWriteStage.sv"
 vlog "./ALUstage.sv"
 vlog "./memStage.sv"
 vlog "./pipelinedProcessor.sv"
+vlog "./shifter.sv"
+vlog "./NAND_MUX_4x1.sv"
+vlog "./NAND_MUX_2x1.sv"
+vlog "./multiplier.sv"
+vlog "./andifier.sv"
+vlog "./full_adder.sv"
+vlog "./fullAdderArray63.sv"
+vlog "./registerX64.sv"
+vlog "./divider.sv"
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the

@@ -26,6 +26,10 @@ entity completeDataPathPipelined is
         overflow        : out    vl_logic;
         whichFlags      : out    vl_logic;
         zero            : out    vl_logic;
-        carry_out       : out    vl_logic
+        carry_out       : out    vl_logic;
+        whichMath       : in     vl_logic_vector(1 downto 0);
+        leftShift       : in     vl_logic;
+        mult            : in     vl_logic;
+        div             : in     vl_logic
     );
 end completeDataPathPipelined;
