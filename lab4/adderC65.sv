@@ -17,8 +17,8 @@ module adderC65 (val1, val2, Cin, valOut);
 endmodule
 
 module adderC64_testbench();
-	logic[63:0] val1, val2;
-	logic [63:0] valOut; 
+	logic[64:0] val1, val2;
+	logic [64:0] valOut; 
 	logic Cin;
 
 	adderC65 dut (.val1, .val2, .Cin, .valOut);

@@ -84,7 +84,7 @@ module instructionFetch_testbench();
 	logic [31:0] instruction;
 	logic [63:0] basicAddress;
 
-	instructionFetch dut (.clk, .reset, .uncondBr, .brTaken, .BRMI, .regPC, .instruction, .basicAddress);
+	instructionFetch dut (.clk, .reset, .uncondBr, .brTaken, .BRMI, .regPC, .instrToRead(32'h0), .instruction, .address(basicAddress), .enablePC(1'b1)); //fake inputs added to match port, fix later
 
 	// Set up the clock
 	parameter ClockDelay = 1000;

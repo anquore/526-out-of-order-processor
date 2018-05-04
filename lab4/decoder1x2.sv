@@ -1,5 +1,5 @@
 `timescale 1ns/10ps
-/*module decoder1x2 (decoded, addr, enable);
+module decoder1x2 (decoded, addr, enable);
 	output logic [1:0] decoded;
 	input logic addr, enable;
 	
@@ -27,5 +27,5 @@ module decoder1x2_testbench();
 			allInputs[1:0] = i; #100;
 		end
 	end
-endmodule*/
+endmodule
 

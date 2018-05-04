@@ -101,7 +101,7 @@ module dataMovement_testbench();
 
 	dataMovement dut (.clk, .memWrite, .memToReg, .ALUSrc, .regWrite, .reg2Loc, .ALUOp, .valueToStore, .dOrImm,
 							.readAddr1, .readAddr2, .writeAddr, .dAddr9, .imm12, .basicAddress, .negative, 
-							.zero, .overflow, .carry_out, .WriteData);
+							.zero, .overflow, .carry_out, .WriteData, .read_enable(1'b1)); //read_enable assigned fake input value to make ports match, fix later
 
 	// Set up the clock
 	parameter ClockDelay = 1000;

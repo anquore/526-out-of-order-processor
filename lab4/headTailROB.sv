@@ -93,13 +93,13 @@ module headTailROB_testbench();
   
   //the module
   headTailROB #(.ROBsize(8)) dut 
-  (clk_i
-  ,reset_i
-  ,updateHead_i
-  ,updateTail_i
-  ,stall_o
-  ,head_o
-  ,tail_o);
+  (.clk_i
+  ,.reset_i
+  ,.updateHead_i
+  ,.updateTail_i
+  ,.stall_o
+  ,.head_o
+  ,.tail_o, .tailReset_o(1'b0)); //tailReset assigned fake value to match ports, fix later
   
   parameter ClockDelay = 5000;
   initial begin // Set up the clock

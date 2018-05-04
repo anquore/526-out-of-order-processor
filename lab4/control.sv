@@ -482,7 +482,8 @@ module control_testbench();
 
 	control dut (.instr, .flags, .commandZero, .uncondBr, .brTaken, .memWrite, .memToReg,
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
-								.BRMI, .saveCond, .regRD, .needToForward);
+								.BRMI, .saveCond, .regRD, .read_enable(1'b1), .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath(2'h0), .leftShift(1'b0), .mult(1'b0), .div(1'b0)); //fake inputs and outputs to make ports match, fix later
+wire negative, overflow, whichFlags, zero, carry_out; //dead wires for port match, fix later
 
 	
 	initial begin

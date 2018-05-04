@@ -13,8 +13,7 @@ module completeDataPath(clk, uncondBr, brTaken, memWrite, memToReg, reset,
 	//instruction fetch
 	logic [63:0] regPC, basicAddress;
 	logic [31:0] instruction;
-	instructionFetch instructionGetter (.clk, .reset, .uncondBr, .brTaken, .BRMI, 
-													.regPC, .instruction, .basicAddress);
+	instructionFetch instructionGetter (.clk, .reset, .uncondBr, .brTaken, .BRMI, .regPC, .instrToRead(32'h0), .instruction, .address(basicAddress), .enablePC(1'b1)); //problems with ports, fake inputs added to match module, fix later
 	assign instr[5:0] = instruction[31:26];
 	assign instr[6] = instruction[22];
 	assign instr[11:7] = instruction[4:0];
@@ -46,7 +45,7 @@ module completeDataPath_testbench();
 
 	completeDataPath dut (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm,
-								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero);
+								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, .read_enable(1'b1)); //read_enable not specified in text bench, assigned fake value to match ports, fix later
 	assign regRD = instr[4:0]; 
 
 	// Set up the clock
