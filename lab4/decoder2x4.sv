@@ -7,12 +7,12 @@ module decoder2x4 (decoded, addr, enable);
 	logic [1:0] notAddr;
 	
 	//when enable is true, set the correct output wire high based on the address
-	not #5 flipAddr0 (notAddr[0], addr[0]);
-	not #5 flipAddr1 (notAddr[1], addr[1]);	
-	and #5 d3(decoded[3], enable, addr[1], addr[0]);
-	and #5 d2(decoded[2], enable, addr[1], notAddr[0]);
-	and #5 d1(decoded[1], enable, notAddr[1], addr[0]);
-	and #5 d0(decoded[0], enable, notAddr[1], notAddr[0]);
+	not flipAddr0 (notAddr[0], addr[0]);
+	not flipAddr1 (notAddr[1], addr[1]);	
+	and d3(decoded[3], enable, addr[1], addr[0]);
+	and d2(decoded[2], enable, addr[1], notAddr[0]);
+	and d1(decoded[1], enable, notAddr[1], addr[0]);
+	and d0(decoded[0], enable, notAddr[1], notAddr[0]);
 endmodule
 
 module decoder2x4_testbench();

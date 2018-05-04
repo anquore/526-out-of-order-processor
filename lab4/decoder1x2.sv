@@ -1,14 +1,14 @@
 `timescale 1ns/10ps
-module decoder1x2 (decoded, addr, enable);
+/*module decoder1x2 (decoded, addr, enable);
 	output logic [1:0] decoded;
 	input logic addr, enable;
 	
 	logic notAddr;
 	
 	//when enable is true, set the correct output wire high based on the address
-	not #5 flipAddr0 (notAddr, addr);
-	and #5 d1(decoded[1], enable, addr);
-	and #5 d0(decoded[0], enable, notAddr);
+	not flipAddr0 (notAddr, addr);
+	and d1(decoded[1], enable, addr);
+	and d0(decoded[0], enable, notAddr);
 endmodule
 
 module decoder1x2_testbench();
@@ -27,4 +27,5 @@ module decoder1x2_testbench();
 			allInputs[1:0] = i; #100;
 		end
 	end
-endmodule
+endmodule*/
+

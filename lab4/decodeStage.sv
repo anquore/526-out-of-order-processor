@@ -24,7 +24,6 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,saveCond_i
 ,read_enable_i
 ,whichMath_i
-,regWrite_i
 ,needToForward_i
 ,leftShift_i
 
@@ -74,6 +73,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 );
 
   //inputs and outputs
+  input clk_i, reset_i;
   input logic [4:0] RDvalue_i, RMvalue_i, RNvalue_i;
   input logic [2:0] commandType_i;
   input logic [63:0] PCaddress_i;
@@ -90,7 +90,6 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   input logic saveCond_i;
   input logic read_enable_i;
   input logic whichMath_i;
-  input logic regWrite_i;
   input logic needToForward_i;
   input logic leftShift_i;
   
@@ -113,11 +112,12 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   output logic [3:0][63:0] RSROBval1_o, RSROBval2_o;
 	output logic [3:0] RSWriteEn_o;
   input logic [3:0] RSstall_i;
-  output logic {3:0][9:0] RSCommands_o;
+  output logic [3:0][9:0] RSCommands_o;
   
   //regfile
   output logic	[4:0] 	regfileReadRegister1_o, regfileReadRegister2_o;
 	input logic [63:0]	regfileReadData1_i, regfileReadData2_i;
+  output logic decodeStall_o;
   
   //pick between RM and RD for the true RM value
   logic [4:0] trueRM;
@@ -145,8 +145,8 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign robReadAddr2_o = mapReadData2_i;
   
   //assembly the rob write values 
-  assign [7:5]robWriteData_o = commandType_i;
-  assign [4:0]robWriteData_o = RDvalue_i;
+  assign robWriteData_o[7:5] = commandType_i;
+  assign robWriteData_o[4:0] = RDvalue_i;
   assign robUpdateTail_o = 1;
   
   //determine if a stall in needed
@@ -185,6 +185,8 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //determine the tag to associate with the RN RS data
   logic [ROBsizeLog - 1:0] 	RSRNTag;
+	logic doingABranch_i; //this was never declared as an input, declared and assigned here to move forward with tool flow, fix later
+	assign doingABranch_i=0;
   always_comb begin
     if (doingABranch_i | RNvalueInReg | robReadData1_i[64])
       RSRNTag = 0;
@@ -198,7 +200,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign decisionAddressOrDataRM[1] = PCaddress_i;
 
   logic [64:0] preImmRSRMdata;
-  assign preImmRSRMdata[doingABranch_i];
+  assign preImmRSRMdata[doingABranch_i]=0; //assign statment never completed, fix later
   
   //choose between sending an immediate and sending the data
   logic [63:0] dAddrExtended, RSRMdata, immExtended, dOrImmData;
@@ -267,3 +269,5 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign RSWriteEn_o[1] = (whichMath_i == 1);
   assign RSWriteEn_o[2] = (whichMath_i == 2);
   assign RSWriteEn_o[3] = (whichMath_i == 3);
+endmodule
+

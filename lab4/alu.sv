@@ -24,7 +24,7 @@ module alu(A, B, cntrl, result, negative, zero, overflow, carry_out);
 	
 	//link up the remaining flags
 	assign negative = result[63];
-	xor #5 (overflow, cinToCout[62], carry_out);
+	xor (overflow, cinToCout[62], carry_out);
 	
 	logic [3:0] norIns;
 	
@@ -33,7 +33,7 @@ module alu(A, B, cntrl, result, negative, zero, overflow, carry_out);
 	orGate16 bigOr1 (.inVals(result[31:16]), .outVal(norIns[1]));
 	orGate16 bigOr2 (.inVals(result[47:32]), .outVal(norIns[2]));
 	orGate16 bigOr3 (.inVals(result[63:48]), .outVal(norIns[3]));
-	nor #5 aNor (zero, norIns[3], norIns[2], norIns[1], norIns[0]);
+	nor aNor (zero, norIns[3], norIns[2], norIns[1], norIns[0]);
 endmodule
 
 // Test bench for ALU

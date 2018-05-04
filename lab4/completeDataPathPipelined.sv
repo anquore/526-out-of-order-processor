@@ -57,7 +57,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	orGate16 bigOr1 (.inVals(regB[31:16]), .outVal(norIns[1]));
 	orGate16 bigOr2 (.inVals(regB[47:32]), .outVal(norIns[2]));
 	orGate16 bigOr3 (.inVals(regB[63:48]), .outVal(norIns[3]));
-	nor #5 aNor (commandZero, norIns[3], norIns[2], norIns[1], norIns[0]);
+	nor aNor (commandZero, norIns[3], norIns[2], norIns[1], norIns[0]);
 	assign regPC = regB;
 
 	//gather up the commands to be moved along
@@ -152,7 +152,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   multiplier theMultiplier 
   (.out(multiResult)
   ,.valid_out(valid_outMult)
-  ,.reset
+  ,.rst(reset)
   ,.A(secondWallOut[73:10])
   ,.B(secondWallOut[137:74])
   ,.valid_in(valid_inMult)
@@ -205,11 +205,11 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   //the divider module
   logic [63:0] divResult;
   divider theDivider 
-  (.out(divResult)
+  (.quotient(divResult)
   ,.valid_out(valid_outDiv)
-  ,.reset
-  ,.A(secondWallOut[73:10])
-  ,.B(secondWallOut[137:74])
+  ,.rst(reset)
+  ,.dividend(secondWallOut[73:10])
+  ,.divisor(secondWallOut[137:74])
   ,.valid_in(valid_inDiv)
   ,.clk);
   

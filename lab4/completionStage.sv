@@ -16,9 +16,10 @@ module completionStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1),
 ,ROBWriteAddr_o
 ,ROBWriteEn_o
 ,ROBWriteData_o
-)
+);
 
   //ins and outs
+  input logic clk_i, reset_i;
   input logic [63:0] dataFromMem_i;
   input logic [3:0] flagsFromMem_i;
   input logic [ROBsizeLog - 1:0] ROBTagFromMem_i;

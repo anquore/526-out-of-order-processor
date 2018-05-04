@@ -24,7 +24,7 @@ module regReadAndWriteStage (clk, regWrite, reg2Loc, valueToStore, readAddr1, re
 	
 	//negedge the clk
 	logic notClk;
-	not #5 (notClk, clk);
+	not (notClk, clk);
 	
 	//the regfile
 	logic [63:0] mightSendToALU;

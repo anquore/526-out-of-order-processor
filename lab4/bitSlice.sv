@@ -7,16 +7,16 @@ module bitSlice(a, b, cin, addr, cout, bitVal);
 	logic flipB, sendToFullAdder, fAdderToMux, andToMux, orToMux, xorToMux; 
 	
 	//create a mux to control subtract vs add
-	not #5 aNot (flipB, b);
+	not aNot (flipB, b);
 	mux2_1 addSub (.out(sendToFullAdder), .i0(b), .i1(flipB), .sel(addr[0]));
 	
 	//plug values into the full adder
 	fullAdder theAdder(.a, .b(sendToFullAdder), .cin, .cout, .sum(fAdderToMux));
 	
 	//do the three gate values
-	and #5 theAnd (andToMux, a, b);
-	or #5 theOr(orToMux, a, b);
-	xor #5 theXor(xorToMux, a, b);
+	and theAnd (andToMux, a, b);
+	or theOr(orToMux, a, b);
+	xor theXor(xorToMux, a, b);
 	
 	logic [7:0] muxIns;
 	

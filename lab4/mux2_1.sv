@@ -6,10 +6,10 @@ module mux2_1(out, i0, i1, sel);
 	logic [2:0] inBetween;
 
 	//assign out = (i1 & sel) | (i0 & ~sel);
-	not #5 flipSel (inBetween[0], sel);
-	and #5 input0 (inBetween[1], i0, inBetween[0]);
-	and #5 input1 (inBetween[2], i1, sel);
-	or #5 theOutput (out, inBetween[1], inBetween[2]);
+	not flipSel (inBetween[0], sel);
+	and input0 (inBetween[1], i0, inBetween[0]);
+	and input1 (inBetween[2], i1, sel);
+	or theOutput (out, inBetween[1], inBetween[2]);
 endmodule
 
 module mux2_1_testbench();

@@ -15,7 +15,7 @@ module signExtend12(valueIn, extendedOut);
 	end
 endmodule
 
-module signExtend19_testbench();
+module signExtend12_testbench();
 	logic [11:0] valueIn;
 	logic [63:0] extendedOut;
 

@@ -6,13 +6,13 @@ module fullAdder(a, b, cin, cout, sum);
 	logic inBetween[2:0];
 	
 	//calculate the sum
-	xor #5 findSum(sum, a, b, cin);
+	xor findSum(sum, a, b, cin);
 	
 	//calculate the carry out
-	and #5 input0(inBetween[0], a, b);
-	and #5 input1(inBetween[1], a, cin);
-	and #5 input2(inBetween[2], b, cin);
-	or #5 theOutput(cout, inBetween[0], inBetween[1], inBetween[2]);
+	and input0(inBetween[0], a, b);
+	and input1(inBetween[1], a, cin);
+	and input2(inBetween[2], b, cin);
+	or theOutput(cout, inBetween[0], inBetween[1], inBetween[2]);
 endmodule
 
 module fullAdder_testbench();
