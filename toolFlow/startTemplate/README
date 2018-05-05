@@ -1,0 +1,35 @@
+/***************** README file of EE477 Cad0 Tutorial package *****************/ 
+/** Property of UWEE	Created by: Alexa Yao	Last Edit: Dec 31, 2014 **/
+
+// source folder for all user created files
+src:
+- verilog
+	//verilog code of the basic FSM, needs some modifications
+	BasicFsm.v 
+	//testbench for the verilog behvioral simulation in SystemVeriog 
+	tb.v
+
+- syn
+	//synthesis Tcl script
+	fsm.tcl
+
+- apr
+	//auto-pace&route Tcl script
+	fsm_apr.tcl
+
+// work directories to run synthesis and auto-place&route
+sapr:
+- syn
+
+- apr
+
+// work directories to run simulations
+sim:
+- behavioral
+
+- synthesis
+	//example make file for running simulation
+	Makefile
+
+- post-layout
+

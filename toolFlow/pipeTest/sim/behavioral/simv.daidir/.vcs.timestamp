@@ -1,0 +1,185 @@
+0 
+35
++cli+1
++define+SIM=1+EXTERNAL_DATA=1+DEBUG=1+BEHAV=1
++itf+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcsdp.tab
++lint=IRIMW,NCEID,GCWM,IGSFPG,TFIPC,IPDP,PCWM
++memcbk
++plusarg_save
++testname=default_test
++v2k
++vcsd
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -O -I/home/lab.apps/vlsiapps/vcs/current/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=
+-Mobjects= /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl -lm
+-Mvcsaceobjs=
+-Xcbug=0x1
+-debug=1
+-f pipelined.include
+-full64
+-gen_obj
+-l
+-pp_used
+-sverilog
+-timescale=1ns/10ps
+/home/lab.apps/vlsiapps/vcs/current/amd64/bin/vcs1
+pipelined.log
+71
+sysc_uni_pwd=/home/projects/ee526.2018spr/cjgooch/toolFlow/pipeTest/sim/behavioral
+installdir=/homes/lab.apps/vlsiapps/hspice/current/hspice
+XILINXD_LICENSE_FILE=5280@payne.ee.washington.edu
+XDG_SESSION_ID=8571
+XDG_RUNTIME_DIR=/run/user/616181
+VMR_MODE_FLAG=64
+VENDOR=unknown
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=pipelined.log
+VCS_HOME=/home/lab.apps/vlsiapps/vcs/current
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=amd64
+VCO=aoi
+USE_CALIBRE_VCO=1
+UNAME=/bin/uname
+TOOL_HOME=/home/lab.apps/vlsiapps/vcs/current/amd64
+SYNOPSYS=/homes/lab.apps/vlsiapps/design_compiler/current
+SSH_TTY=/dev/pts/0
+SSH_CONNECTION=97.113.220.116 53315 128.95.3.84 22
+SSH_CLIENT=97.113.220.116 53315 22
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SPECTRE_DEFAULTS=-E
+SNPSLMD_LICENSE_FILE=27020@payne.ee.washington.edu:/home/lab.apps/vlsiapps/vcs/current/flexlm//license.dat
+SKIP_OS_CHECKS=1
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+REMOTEHOST=97-113-220-116.tukw.qwest.net
+QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+QT_GRAPHICSSYSTEM_CHECKED=1
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+PSF_WRITE_CHUNK_MODE_ON=true
+OVA_UUM=0
+OSTYPE=linux
+OA_UNSUPPORTED_PLAT=linux_rhel50_gcc44x
+MSI2LMP_LIBRARY=/usr/share/lammps/frc_files
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+MGLS_LICENSE_FILE=50836@persephone.engr.washington.edu
+MGC_HOME=/homes/lab.apps/vlsiapps/calibre/current
+MFLAGS=
+MAKEOVERRIDES=${-*-command-variables-*-}
+MAKELEVEL=1
+MAKEFLAGS=DESIGN=pipelined
+LOADEDMODULES=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+LAMMPS_POTENTIALS=/usr/share/lammps/potentials
+KRB5CCNAME=KEYRING:persistent:616181
+KDEDIRS=/usr
+HSP_HOME=/homes/lab.apps/vlsiapps/hspice/current/hspice
+HOSTTYPE=x86_64-linux
+GROUP=nonee_spring
+DESIGN=pipelined
+CVS_RSH=ssh
+CLS_CDSD_COMPATIBILITY_LOCKING=NO
+CDS_Netlisting_Mode=Analog
+CDS_LOG_PATH=.
+CDS_LOAD_ENV=CWDElseHome
+CDS_LIC_FILE=5280@persephone.engr.washington.edu
+CDS_INST_DIR=/homes/lab.apps/vlsiapps/virtuoso/current
+CDS_AUTO_64BIT=ALL
+CDSHOME=/homes/lab.apps/vlsiapps/virtuoso/current
+CDSDIR=/homes/lab.apps/vlsiapps/virtuoso/current/tools/dfII
+CDS=/homes/lab.apps/vlsiapps/virtuoso/current
+ASSURAHOME=/home/lab.apps/vlsiapps/assura/current
+ARCH=linux
+AGILEESOFD_LICENSE_FILE=27020@payne.ee.washington.edu
+ADS_LICENSE_FILE=27020@payne.ee.washington.edu
+0
+68
+1525555302 ../../src/verilog/xnorifier.sv
+1525469717 ../../src/verilog/wallOfDFFs.sv
+1525555323 ../../src/verilog/signExtend9.sv
+1525555336 ../../src/verilog/signExtend26.sv
+1525555350 ../../src/verilog/signExtend19.sv
+1525555372 ../../src/verilog/signExtend12.sv
+1525555437 ../../src/verilog/shifter.sv
+1525555454 ../../src/verilog/shiftLeft2.sv
+1525469672 ../../src/verilog/reservationStationx2.sv
+1525469651 ../../src/verilog/reservationStation.sv
+1525423601 ../../src/verilog/registerX65.sv
+1525433952 ../../src/verilog/registerX64.sv
+1525423601 ../../src/verilog/registerX16.sv
+1525469616 ../../src/verilog/regfile.sv
+1525468392 ../../src/verilog/regReadAndWriteStage.sv
+1525469578 ../../src/verilog/pipelinedProcessor.sv
+1525553824 ../../src/verilog/orGate16.sv
+1525553845 ../../src/verilog/norifier.sv
+1525423601 ../../src/verilog/mux_4x1_X65.sv
+1525423601 ../../src/verilog/mux_4x1_X64.sv
+1525423601 ../../src/verilog/mux_2x1_X65.sv
+1525423601 ../../src/verilog/mux_2x1_X64.sv
+1525553461 ../../src/verilog/mux8x1.sv
+1525553434 ../../src/verilog/mux4x1.sv
+1525468213 ../../src/verilog/mux32xY.sv
+1525553525 ../../src/verilog/mux32x64.sv
+1525553546 ../../src/verilog/mux32x1.sv
+1525553564 ../../src/verilog/mux2x64.sv
+1525553577 ../../src/verilog/mux2x5.sv
+1525553604 ../../src/verilog/mux2_1.sv
+1525553624 ../../src/verilog/mux16x1.sv
+1525556845 ../../src/verilog/multiplier.sv
+1525423601 ../../src/verilog/memStage.sv
+1525469554 ../../src/verilog/mapTable.sv
+1525469524 ../../src/verilog/instructmem.sv
+1525469480 ../../src/verilog/instructionFetch.sv
+1525469448 ../../src/verilog/individualReg64.sv
+1525553295 ../../src/verilog/full_adder.sv
+1525469422 ../../src/verilog/fullReg32x64.sv
+1525423601 ../../src/verilog/fullAdderArray63.sv
+1525553322 ../../src/verilog/fullAdder.sv
+1525423601 ../../src/verilog/forwardingUnit.sv
+1525469397 ../../src/verilog/enableD_FF.sv
+1525553017 ../../src/verilog/divider.sv
+1525553033 ../../src/verilog/decoder5x32.sv
+1525553049 ../../src/verilog/decoder4x16.sv
+1525553065 ../../src/verilog/decoder2x4.sv
+1525553087 ../../src/verilog/decoder1x2.sv
+1525553111 ../../src/verilog/datamem.sv
+1525469331 ../../src/verilog/dataMovement.sv
+1525552710 ../../src/verilog/control.sv
+1525552692 ../../src/verilog/completeDataPathPipelined.sv
+1525557623 ../../src/verilog/completeDataPath.sv
+1525423601 ../../src/verilog/bsg_scan.v
+1525423601 ../../src/verilog/bsg_priority_encode_one_hot_out.v
+1525552745 ../../src/verilog/bitSlice.sv
+1525552953 ../../src/verilog/andifier.sv
+1525557639 ../../src/verilog/alu.sv
+1525552636 ../../src/verilog/adderC65.sv
+1525552615 ../../src/verilog/adder64.sv
+1525552507 ../../src/verilog/NAND_MUX_4x1.sv
+1525552488 ../../src/verilog/NAND_MUX_2x1.sv
+1525458863 ../../src/verilog/FF_en.sv
+1525469022 ../../src/verilog/D_FF.sv
+1525423601 ../../src/verilog/ALUStage.sv
+1525552166 ../../src/verilog/tb.v
+1525466449 pipelined.include
+1369979133 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcsdp.tab
+4
+0 
+1369979665 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so
+1369979419 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so
+1369979224 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so
+1525561197 simv.daidir

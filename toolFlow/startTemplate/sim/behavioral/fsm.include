@@ -1,0 +1,4 @@
+//List of files required to run VCS simulation
+../../src/verilog/fsm.v
+../../src/verilog/tb.v
+

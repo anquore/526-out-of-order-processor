@@ -1,0 +1,153 @@
+Command: vcs -f pipelined.include +v2k -debug_pp +lint=IRIMW,NCEID,GCWM,IGSFPG,TFIPC,IPDP,PCWM \
+-sverilog -full64 +plusarg_save -timescale=1ns/10ps -l pipelined.log +testname=default_test \
++define+SIM=1+EXTERNAL_DATA=1+DEBUG=1+BEHAV=1
+                         Chronologic VCS (TM)
+         Version H-2013.06_Full64 -- Sat May  5 15:59:54 2018
+               Copyright (c) 1991-2013 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file '../../src/verilog/tb.v'
+Parsing design file '../../src/verilog/ALUStage.sv'
+Parsing design file '../../src/verilog/D_FF.sv'
+Parsing design file '../../src/verilog/FF_en.sv'
+Parsing design file '../../src/verilog/NAND_MUX_2x1.sv'
+Parsing design file '../../src/verilog/NAND_MUX_4x1.sv'
+Parsing design file '../../src/verilog/adder64.sv'
+Parsing design file '../../src/verilog/adderC65.sv'
+Parsing design file '../../src/verilog/alu.sv'
+Parsing design file '../../src/verilog/andifier.sv'
+Parsing design file '../../src/verilog/bitSlice.sv'
+Parsing design file '../../src/verilog/bsg_priority_encode_one_hot_out.v'
+Parsing design file '../../src/verilog/bsg_scan.v'
+Parsing design file '../../src/verilog/completeDataPath.sv'
+Parsing design file '../../src/verilog/completeDataPathPipelined.sv'
+Parsing design file '../../src/verilog/control.sv'
+Parsing design file '../../src/verilog/dataMovement.sv'
+Parsing design file '../../src/verilog/datamem.sv'
+Parsing design file '../../src/verilog/decoder1x2.sv'
+Parsing design file '../../src/verilog/decoder2x4.sv'
+Parsing design file '../../src/verilog/decoder4x16.sv'
+Parsing design file '../../src/verilog/decoder5x32.sv'
+Parsing design file '../../src/verilog/divider.sv'
+Parsing design file '../../src/verilog/enableD_FF.sv'
+Parsing design file '../../src/verilog/forwardingUnit.sv'
+Parsing design file '../../src/verilog/fullAdder.sv'
+Parsing design file '../../src/verilog/fullAdderArray63.sv'
+Parsing design file '../../src/verilog/fullReg32x64.sv'
+Parsing design file '../../src/verilog/full_adder.sv'
+Parsing design file '../../src/verilog/individualReg64.sv'
+Parsing design file '../../src/verilog/instructionFetch.sv'
+Parsing design file '../../src/verilog/instructmem.sv'
+Parsing design file '../../src/verilog/mapTable.sv'
+Parsing design file '../../src/verilog/memStage.sv'
+Parsing design file '../../src/verilog/multiplier.sv'
+
+Warning-[CIWC] Ignored /* within /* */ comment
+  Nested comments is found. Ignoring nested '/*'. 
+  /*#5;	valid_in=1;	#5;	clk=1;	#5;	clk=0; 
+  //testing valid_out (using the clock)
+  ^
+  "../../src/verilog/multiplier.sv", 178
+
+Parsing design file '../../src/verilog/mux16x1.sv'
+Parsing design file '../../src/verilog/mux2_1.sv'
+Parsing design file '../../src/verilog/mux2x5.sv'
+Parsing design file '../../src/verilog/mux2x64.sv'
+Parsing design file '../../src/verilog/mux32x1.sv'
+Parsing design file '../../src/verilog/mux32x64.sv'
+Parsing design file '../../src/verilog/mux32xY.sv'
+Parsing design file '../../src/verilog/mux4x1.sv'
+Parsing design file '../../src/verilog/mux8x1.sv'
+Parsing design file '../../src/verilog/mux_2x1_X64.sv'
+Parsing design file '../../src/verilog/mux_2x1_X65.sv'
+Parsing design file '../../src/verilog/mux_4x1_X64.sv'
+Parsing design file '../../src/verilog/mux_4x1_X65.sv'
+Parsing design file '../../src/verilog/norifier.sv'
+Parsing design file '../../src/verilog/orGate16.sv'
+Parsing design file '../../src/verilog/pipelinedProcessor.sv'
+Parsing design file '../../src/verilog/regReadAndWriteStage.sv'
+Parsing design file '../../src/verilog/regfile.sv'
+Parsing design file '../../src/verilog/registerX16.sv'
+Parsing design file '../../src/verilog/registerX64.sv'
+Parsing design file '../../src/verilog/registerX65.sv'
+Parsing design file '../../src/verilog/reservationStation.sv'
+Parsing design file '../../src/verilog/reservationStationx2.sv'
+Parsing design file '../../src/verilog/shiftLeft2.sv'
+Parsing design file '../../src/verilog/shifter.sv'
+Parsing design file '../../src/verilog/signExtend12.sv'
+Parsing design file '../../src/verilog/signExtend19.sv'
+Parsing design file '../../src/verilog/signExtend26.sv'
+Parsing design file '../../src/verilog/signExtend9.sv'
+Parsing design file '../../src/verilog/wallOfDFFs.sv'
+Parsing design file '../../src/verilog/xnorifier.sv'
+Top Level Modules:
+       tb
+       completeDataPath
+       mapTable
+       mux_4x1_X64
+       reservationStationx2
+TimeScale is 1 ns / 10 ps
+Notice: Ports coerced to inout, use -notice for details
+Starting vcs inline pass...
+43 modules and 0 UDP read.
+recompiling module tb
+recompiling module FF_en
+recompiling module NAND_MUX_2x1
+recompiling module NAND_MUX_4x1
+recompiling module adder64
+recompiling module alu
+recompiling module andifier
+recompiling module bitSlice
+recompiling module bsg_priority_encode_one_hot_out
+recompiling module completeDataPath
+recompiling module control
+recompiling module datamem
+recompiling module decoder2x4
+recompiling module decoder5x32
+recompiling module divider
+recompiling module enableD_FF
+recompiling module fullAdder
+recompiling module fullAdderArray63
+recompiling module full_adder
+recompiling module individualReg64
+recompiling module instructionFetch
+recompiling module mapTable
+recompiling module memStage
+recompiling module multiplier
+recompiling module mux2_1
+recompiling module mux2x64
+recompiling module mux32x1
+recompiling module mux32x64
+recompiling module mux4x1
+recompiling module mux_2x1_X64
+recompiling module mux_4x1_X64
+recompiling module mux_4x1_X65
+recompiling module norifier
+recompiling module orGate16
+recompiling module regfile
+recompiling module registerX16
+recompiling module registerX64
+recompiling module registerX65
+recompiling module reservationStation
+recompiling module reservationStationx2
+recompiling module wallOfDFFs
+recompiling module xnorifier
+All of 43 modules done
+make[1]: Entering directory `/home/projects/ee526.2018spr/cjgooch/toolFlow/pipeTest/sim/behavioral/csrc' \
+
+if [ -x ../simv ]; then chmod -x ../simv; fi
+g++  -o ../simv     -Wl,-whole-archive    -Wl,-no-whole-archive  _vcsobj_1_1.o  5NrI_d.o \
+5NrIB_d.o SIM_l.o     rmapats_mop.o rmapats.o       /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libzerosoft_rt_stubs.so \
+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so \
+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so     /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvcsnew.so \
+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvcsucli.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libuclinative.so \
+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcs_save_restore_new.o -ldl -lm  -lc \
+-lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory `/home/projects/ee526.2018spr/cjgooch/toolFlow/pipeTest/sim/behavioral/csrc' \
+
+CPU time: .970 seconds to compile + .337 seconds to elab + .150 seconds to link
