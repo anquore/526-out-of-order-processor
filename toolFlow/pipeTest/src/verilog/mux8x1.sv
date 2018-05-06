@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux8x1(out, addr, muxIns);
 	output logic out;
 	input logic [2:0] addr;
@@ -12,6 +11,7 @@ module mux8x1(out, addr, muxIns);
 	mux2_1 muxFinal(.out, .i0(midVal[0]), .i1(midVal[1]), .sel(addr[2]));
 endmodule
 
+/*
 module mux8x1_testbench();
 	logic [7:0] muxIns;
 	logic [2:0] addr;
@@ -25,4 +25,5 @@ module mux8x1_testbench();
 			{muxIns, addr} = i; #1000;
 		end
 	end
-endmodule 
+endmodule */
+

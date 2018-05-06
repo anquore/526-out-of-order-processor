@@ -69,6 +69,7 @@ module xnorifier(outs, ins1, ins0);
 	
 endmodule
 
+/*
 module xnorifier_testbench;
 	reg [63:0] ins1, ins0;
 	wire [63:0] outs;
@@ -90,4 +91,5 @@ module xnorifier_testbench;
 	#250;
 	ins0 = 64'h 00_00__00_00__00_00__00_00;
 	end
-endmodule
+endmodule */
+

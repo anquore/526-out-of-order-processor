@@ -15,6 +15,7 @@ module full_adder(S, Cout, A, B, Cin);
 	nand abc(Cout, AB, AC, BC);
 endmodule
 
+/*
 module full_adder_testbench;
 	wire S, Cout;
 	reg A, B, Cin;
@@ -38,4 +39,5 @@ module full_adder_testbench;
 		A = 1;
 		#250;
 	end
-endmodule
+endmodule */
+

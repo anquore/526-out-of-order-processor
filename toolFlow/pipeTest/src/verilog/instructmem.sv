@@ -15,8 +15,6 @@
 `define BENCHMARK "../../src/verilog/benchmarks/testing.arm"
 
 
-`timescale 1ns/10ps
-
 // How many bytes are in our memory?  Must be a power of two.
 `define INSTRUCT_MEM_SIZE		1024
 	
@@ -60,6 +58,7 @@ module instructmem (
 		
 endmodule
 
+/*
 module instructmem_testbench ();
 
 	parameter ClockDelay = 5000;
@@ -85,4 +84,5 @@ module instructmem_testbench ();
 		$stop;
 		
 	end
-endmodule
+endmodule */
+

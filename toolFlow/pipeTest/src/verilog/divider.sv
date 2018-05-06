@@ -237,6 +237,7 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	assign valid_out = (state==DONE);
 endmodule
 
+/*
 module divider_testbench();
 	wire [63:0] quotient;
 	wire valid_out;
@@ -261,4 +262,5 @@ module divider_testbench();
 			clk=1;
 		end
 	end
-endmodule
+endmodule */
+

@@ -15,6 +15,7 @@ module signExtend19(valueIn, extendedOut);
 	end
 endmodule
 
+/*
 module signExtend19_testbench();
 	logic [18:0] valueIn;
 	logic [63:0] extendedOut;
@@ -26,5 +27,5 @@ module signExtend19_testbench();
 		valueIn = -14736; #10;
 		valueIn = 0; #10;
 	end
-endmodule 
+endmodule */
 

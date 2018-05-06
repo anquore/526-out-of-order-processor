@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module decoder2x4 (decoded, addr, enable);
 	output logic [3:0] decoded;
 	input logic [1:0] addr;
@@ -15,6 +14,7 @@ module decoder2x4 (decoded, addr, enable);
 	and d0(decoded[0], enable, notAddr[1], notAddr[0]);
 endmodule
 
+/*
 module decoder2x4_testbench();
 	logic [3:0] decoded;
 	//logic [1:0] addr;
@@ -31,4 +31,5 @@ module decoder2x4_testbench();
 			allInputs[2:0] = i; #100;
 		end
 	end
-endmodule
+endmodule */
+

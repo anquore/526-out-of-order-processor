@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module bitSlice(a, b, cin, addr, cout, bitVal);
 	input logic a, b, cin;
 	input logic [2:0] addr;
@@ -36,6 +35,7 @@ module bitSlice(a, b, cin, addr, cout, bitVal);
 	mux8x1 outputMux (.out(bitVal), .addr, .muxIns);
 endmodule
 
+/*
 module bitSlice_testbench();
 	logic a, b, cin;
 	logic [2:0] addr;
@@ -49,4 +49,5 @@ module bitSlice_testbench();
 			{addr, a, b, cin} = i; #1000;
 		end
 	end
-endmodule 
+endmodule */
+

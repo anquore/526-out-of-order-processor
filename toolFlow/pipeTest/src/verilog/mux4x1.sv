@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux4x1(out, addr, muxIns);
 	output logic out;
 	input logic [1:0] addr;
@@ -12,6 +11,7 @@ module mux4x1(out, addr, muxIns);
 	mux2_1 m (.out, .i0(midVal[0]), .i1(midVal[1]), .sel(addr[1]));
 endmodule
 
+/*
 module mux4x1_testbench();
 	logic [3:0] muxIns;
 	logic [1:0] addr;
@@ -25,4 +25,5 @@ module mux4x1_testbench();
 			{muxIns, addr} = i; #100;
 		end
 	end
-endmodule 
+endmodule */
+

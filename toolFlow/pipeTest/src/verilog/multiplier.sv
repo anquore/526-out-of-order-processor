@@ -107,6 +107,7 @@ module multiplier(out, valid_out, A, B, valid_in, rst, clk);
 	registerX64 carrys(.outs(regCar[63:0]), .ins({1'b0, carries[15][62:0]}), .en(1'b1), .rst, .clk);
 endmodule
 
+/*
 module multiplier_testbench;
 	wire [63:0] out;
 	wire valid_out;
@@ -195,7 +196,7 @@ module multiplier_testbench;
 	#5;	clk=1;	#5;	clk=0;
 	#5;	clk=1;	#5;	clk=0;
 	#5;	clk=1;	#5;	clk=0;
-	#5;	clk=1;	#5;	clk=0;*/
+	#5;	clk=1;	#5;	clk=0;
 	end
-endmodule
+endmodule */
 

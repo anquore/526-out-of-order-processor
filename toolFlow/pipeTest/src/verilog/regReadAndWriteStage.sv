@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module regReadAndWriteStage (clk, regWrite, reg2Loc, valueToStore, readAddr1, readAddr2, writeAddr, branchReadAddr, address, 
 										WriteData, ReadData1, ReadData2, addr2);
 	input logic clk, regWrite, reg2Loc, valueToStore;

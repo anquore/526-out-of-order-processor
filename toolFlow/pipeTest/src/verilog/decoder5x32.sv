@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module decoder5x32 (decoded, addr, enable);
 	output logic [31:0] decoded;
 	input logic [4:0] addr;
@@ -12,6 +11,7 @@ module decoder5x32 (decoded, addr, enable);
 	decoder4x16 lines0to15(.decoded(decoded[15:0]), .addr(addr[3:0]), .enable(middleEn[0]));
 endmodule
 
+/*
 module decoder5x32_testbench();
 	logic [31:0] decoded;
 	//logic [1:0] addr;
@@ -28,4 +28,5 @@ module decoder5x32_testbench();
 			allInputs[5:0] = i; #1000;
 		end
 	end
-endmodule
+endmodule */
+

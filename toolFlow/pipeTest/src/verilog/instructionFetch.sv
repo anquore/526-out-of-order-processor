@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC);
 	input logic clk, reset, uncondBr, brTaken, BRMI, enablePC;
 	input logic [63:0] regPC;
@@ -78,6 +77,7 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 	mux2x64 finalChoiceMux (.out(newAddress), .addr(BRMI), .muxIns(finalNewAddressToDo));	
 endmodule
 
+/*
 module instructionFetch_testbench();
 	logic clk, reset, uncondBr, brTaken, BRMI;
 	logic [63:0] regPC;
@@ -107,4 +107,5 @@ module instructionFetch_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

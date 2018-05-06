@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module headTailROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
@@ -85,6 +84,7 @@ module headTailROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
   assign tailReset_o = tailReset;
 endmodule
 
+/*
 module headTailROB_testbench();
   //ROBsize = 8
   logic reset_i, clk_i, updateHead_i, updateTail_i;
@@ -146,4 +146,5 @@ module headTailROB_testbench();
     $stop;
   end
 
-endmodule
+endmodule */
+

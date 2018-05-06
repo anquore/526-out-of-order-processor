@@ -15,6 +15,7 @@ module signExtend26(valueIn, extendedOut);
 	end
 endmodule
 
+/*
 module signExtend26_testbench();
 	logic [25:0] valueIn;
 	logic [63:0] extendedOut;
@@ -26,4 +27,5 @@ module signExtend26_testbench();
 		valueIn = -514736; #10;
 		valueIn = 0; #10;
 	end
-endmodule 
+endmodule */
+

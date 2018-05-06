@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux2_1(out, i0, i1, sel);
 	output logic out;
 	input logic i0, i1, sel;
@@ -12,6 +11,7 @@ module mux2_1(out, i0, i1, sel);
 	or theOutput (out, inBetween[1], inBetween[2]);
 endmodule
 
+/*
 module mux2_1_testbench();
 	logic i0, i1, sel;
 	logic out;
@@ -28,4 +28,5 @@ module mux2_1_testbench();
 		 sel=1; i0=1; i1=0; #100;
 		 sel=1; i0=1; i1=1; #100;
 	 end
-endmodule 
+endmodule */
+

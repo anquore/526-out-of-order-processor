@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mapTable #(parameter ROBsize = 32, mapValueSize = $clog2(ROBsize+1)) 
 (clk
 ,reset
@@ -71,7 +70,7 @@ module mapTable #(parameter ROBsize = 32, mapValueSize = $clog2(ROBsize+1))
 endmodule
 
 // Test bench for Register file
-
+/*
 module mapTable_testbench(); 		
 
 	parameter ClockDelay = 5000;
@@ -193,4 +192,5 @@ module mapTable_testbench();
     
 		$stop;
 	end
-endmodule
+endmodule */
+

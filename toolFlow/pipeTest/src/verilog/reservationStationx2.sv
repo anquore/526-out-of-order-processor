@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
@@ -116,6 +115,7 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
 	
 endmodule
 
+/*
 module reservationStationx2_testbench();
   //ROBsize = 8
   logic	[3:0] 	decodeROBTag1_i, decodeROBTag2_i, decodeROBTag_i, issueROBTag_i;
@@ -233,4 +233,5 @@ module reservationStationx2_testbench();
     $stop;
   end
 
-endmodule
+endmodule */
+

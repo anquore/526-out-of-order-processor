@@ -53,6 +53,7 @@ endmodule
 // 101:			result = bitwise A | B		value of overflow and carry_out unimportant
 // 110:			result = bitwise A XOR B	value of overflow and carry_out unimportant
 
+/*
 module alustim();
 
 	parameter delay = 100000;
@@ -210,4 +211,5 @@ module alustim();
 		assert(result == (A^B) && negative == result[63] && zero == (result == '0));
 		
 	end
-endmodule
+endmodule */
+

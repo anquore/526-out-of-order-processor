@@ -375,6 +375,7 @@ module shifter(out, shamt, left, sign, in);
 	NAND_MUX_2x1 mux3_56(.out(out[56]), .select(left), .invSelect(invLeft), .in({stage3[-7], stage3[56]}));
 endmodule
 
+/*
 module shifter_testbench;
 	wire [63:0] out;
 	reg [5:0] shamt;
@@ -406,4 +407,5 @@ module shifter_testbench;
 	left=0;
 	#10;
 	end
-endmodule
+endmodule */
+

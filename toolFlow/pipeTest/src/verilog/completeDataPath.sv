@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module completeDataPath(clk, uncondBr, brTaken, memWrite, memToReg, reset, 
 								ALUOp, ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, 
 								BRMI, saveCond, regRD, instr, flags, commandZero, read_enable);
@@ -34,6 +33,7 @@ module completeDataPath(clk, uncondBr, brTaken, memWrite, memToReg, reset,
 	
 endmodule
 
+/*
 module completeDataPath_testbench();
 	logic clk, uncondBr, brTaken, memWrite, memToReg, reset, 
 					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond;
@@ -70,4 +70,5 @@ module completeDataPath_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

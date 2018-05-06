@@ -69,6 +69,7 @@ module norifier(outs, ins1, ins0);
 	
 endmodule
 
+/*
 module norifier_testbench;
 	reg [63:0] ins1, ins0;
 	wire [63:0] outs;
@@ -90,4 +91,5 @@ module norifier_testbench;
 	#250;
 	ins0 = 64'h 00_00__00_00__00_00__00_00;
 	end
-endmodule
+endmodule */
+

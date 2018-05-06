@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module decoder4x16 (decoded, addr, enable);
 	output logic [15:0] decoded;
 	input logic [3:0] addr;
@@ -14,6 +13,7 @@ module decoder4x16 (decoded, addr, enable);
 	decoder2x4 lines0to(.decoded(decoded[3:0]), .addr(addr[1:0]), .enable(middleEn[0]));
 endmodule
 
+/*
 module decoder4x16_testbench();
 	logic [15:0] decoded;
 	//logic [1:0] addr;
@@ -30,4 +30,5 @@ module decoder4x16_testbench();
 			allInputs[4:0] = i; #1000;
 		end
 	end
-endmodule
+endmodule */
+

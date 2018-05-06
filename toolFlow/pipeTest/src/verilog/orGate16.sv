@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module orGate16 (inVals, outVal);
 	input logic [15:0] inVals;
 	output logic outVal;
@@ -13,6 +12,7 @@ module orGate16 (inVals, outVal);
 	or or4 (outVal, inBetween[3], inBetween[2], inBetween[1], inBetween[0]);
 endmodule
 
+/*
 module orGate16_testbench();
 	logic [15:0] inVals;
 	logic outVal;
@@ -25,4 +25,5 @@ module orGate16_testbench();
 			{inVals} = i; #1000;
 		end
 	end
-endmodule 
+endmodule */
+

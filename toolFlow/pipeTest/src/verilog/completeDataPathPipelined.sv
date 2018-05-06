@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, reset, 
 								ALUOp, ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, 
 								BRMI, saveCond, regRD, instr, flags, commandZero, read_enable, 
@@ -276,6 +275,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	wallOfDFFs #(.LENGTH(71)) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
 	
 endmodule
+
 /*
 module completeDataPathPipelined_testbench();
 	logic clk, uncondBr, brTaken, memWrite, memToReg, reset, 

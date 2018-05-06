@@ -7,6 +7,7 @@ module shiftLeft2 (unShifted, shifted);
 	assign shifted[1:0] = 2'b00;
 endmodule
 
+/*
 module shiftLeft2_testbench();
 	logic [63:0] unShifted;
 	logic [63:0] shifted;
@@ -17,4 +18,5 @@ module shiftLeft2_testbench();
 	initial begin
 		unShifted = 64'h34ce589123be64ac; #10;
 	end
-endmodule 
+endmodule */
+

@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module dataMovement(clk, memWrite, memToReg, ALUSrc, regWrite, reg2Loc, ALUOp, valueToStore, dOrImm,
 							readAddr1, readAddr2, writeAddr, dAddr9, imm12, basicAddress, negative, 
 							zero, overflow, carry_out, WriteData, read_enable);
@@ -89,6 +88,7 @@ module dataMovement(clk, memWrite, memToReg, ALUSrc, regWrite, reg2Loc, ALUOp, v
 	
 endmodule
 
+/*
 module dataMovement_testbench();
 	logic clk, memWrite, memToReg, ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm;
 	logic [4:0] readAddr1, readAddr2, writeAddr;
@@ -124,4 +124,5 @@ module dataMovement_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

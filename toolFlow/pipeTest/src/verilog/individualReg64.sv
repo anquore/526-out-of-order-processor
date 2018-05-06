@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module individualReg64(q, d, reset, enable, clk);
 	output logic [63:0] q;
 	input logic [63:0] d;
@@ -14,6 +13,7 @@ module individualReg64(q, d, reset, enable, clk);
 	endgenerate 
 endmodule
 
+/*
 module individualReg64_testbench();
 	logic [63:0] q, d;
 	logic clk, reset, enable;
@@ -44,4 +44,5 @@ module individualReg64_testbench();
 									@(posedge clk);				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

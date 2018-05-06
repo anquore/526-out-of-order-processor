@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux32x64(out, addr, muxIns);
 	output logic [63:0] out;
 	input logic [63:0][31:0] muxIns;
@@ -14,6 +13,7 @@ module mux32x64(out, addr, muxIns);
 	endgenerate 
 endmodule
 
+/*
 module mux32x64_testbench();
 	logic [63:0][31:0] muxIns;
 	logic [4:0] addr;
@@ -36,4 +36,5 @@ module mux32x64_testbench();
 		addr = 31; #1000;
 		#10;
 	end
-endmodule 
+endmodule */
+

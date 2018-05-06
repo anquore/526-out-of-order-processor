@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module fullAdder(a, b, cin, cout, sum);
 	input logic a, b, cin;
 	output logic cout, sum;
@@ -15,6 +14,7 @@ module fullAdder(a, b, cin, cout, sum);
 	or theOutput(cout, inBetween[0], inBetween[1], inBetween[2]);
 endmodule
 
+/*
 module fullAdder_testbench();
 	logic a, b, cin;
 	logic cout, sum;
@@ -27,4 +27,5 @@ module fullAdder_testbench();
 			{a, b, cin} = i; #1000;
 		end
 	end
-endmodule 
+endmodule */
+

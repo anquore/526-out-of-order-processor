@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module fullReg32x64(dataOut, dataIn, reset, enable, clk);
 	output logic [31:0][63:0] dataOut;
 	input logic [63:0] dataIn;
@@ -19,6 +18,7 @@ module fullReg32x64(dataOut, dataIn, reset, enable, clk);
 	individualReg64 special (.q(dataOut[31][63:0]), .d(dataIn[63:0]), .reset(1'b1), .enable(enable[31]), .clk);
 endmodule
 
+/*
 module fullReg32x64_testbench();
 	logic [31:0][63:0] dataOut; 
 	logic [63:0] dataIn;
@@ -58,4 +58,5 @@ module fullReg32x64_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

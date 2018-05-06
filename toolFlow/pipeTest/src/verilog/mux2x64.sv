@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux2x64(out, addr, muxIns);
 	output logic [63:0] out;
 	input logic [63:0][1:0] muxIns;
@@ -14,6 +13,7 @@ module mux2x64(out, addr, muxIns);
 	endgenerate 
 endmodule
 
+/*
 module mux2x64_testbench();
 	logic [63:0][1:0] muxIns;
 	logic addr;
@@ -33,4 +33,5 @@ module mux2x64_testbench();
 		addr = 1; #1000;
 		#10;
 	end
-endmodule 
+endmodule */
+

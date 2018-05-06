@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module pipelined(clk, reset);
 	input clk, reset;
 	

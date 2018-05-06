@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module mux32xY #(parameter Y = 64) (out, addr, muxIns);
 	output logic [Y-1:0] out;
 	input logic [Y-1:0][31:0] muxIns;

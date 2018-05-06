@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module regfile (ReadData1, ReadData2, WriteData, 
 					ReadRegister1, ReadRegister2, WriteRegister, 
 					RegWrite, clk);
@@ -34,7 +33,7 @@ module regfile (ReadData1, ReadData2, WriteData,
 endmodule
 
 // Test bench for Register file
-
+/*
 module regstim(); 		
 
 	parameter ClockDelay = 5000;
@@ -164,4 +163,5 @@ module regstim();
 		#5000;
 		$stop;
 	end
-endmodule
+endmodule */
+

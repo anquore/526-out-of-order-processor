@@ -4,7 +4,6 @@
 // Size is the number of bytes to transfer, and memory supports any power of 2 access size up to double-word.
 // However, all accesses must be aligned.  So, the address of any access of size S must be a multiple of S.
 
-`timescale 1ns/10ps
 
 // How many bytes are in our memory?  Must be a power of two.
 `define DATA_MEM_SIZE		1024
@@ -67,6 +66,7 @@ module datamem (
 	end
 endmodule
 
+/*
 module datamem_testbench ();
 
 	parameter ClockDelay = 5000;
@@ -122,4 +122,5 @@ module datamem_testbench ();
 		end
 		$stop;
 	end
-endmodule
+endmodule */
+

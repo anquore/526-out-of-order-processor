@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module enableD_FF (q, d, reset, enable, clk);
 	output logic q;
 	input logic d, reset, enable, clk;
@@ -12,6 +11,7 @@ module enableD_FF (q, d, reset, enable, clk);
 	D_FF theFlop (.q, .d(valueToDFF), .reset, .clk);
 endmodule
 
+/*
 module enableD_FF_testbench();
 	logic clk, reset, d, enable, q;
 	
@@ -48,4 +48,5 @@ module enableD_FF_testbench();
 									@(posedge clk);
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+
