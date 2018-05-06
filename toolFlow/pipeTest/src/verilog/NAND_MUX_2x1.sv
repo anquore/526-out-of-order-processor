@@ -12,6 +12,7 @@ module NAND_MUX_2x1(out, select, invSelect, in);
 	nand sumNand(out, one, zero);
 endmodule
 
+/*
 module NAND_MUX_2x1_testbench;
 	wire out;
 	reg select;
@@ -33,4 +34,5 @@ module NAND_MUX_2x1_testbench;
 	select=0;
 	#200;
 	end
-endmodule
+endmodule */
+

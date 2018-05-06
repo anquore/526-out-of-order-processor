@@ -16,6 +16,7 @@ module adderC65 (val1, val2, Cin, valOut);
 	full_adder startAdder(.S(valOut[0]), .Cout(cinToCout[0]), .A(val1[0]), .B(val2[0]), .Cin);
 endmodule
 
+/*
 module adderC64_testbench();
 	logic[64:0] val1, val2;
 	logic [64:0] valOut; 
@@ -50,4 +51,5 @@ module adderC64_testbench();
 		#(1000);
 		assert(valOut == (val1+val2));
 	end
-endmodule 
+endmodule */
+

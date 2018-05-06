@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module D_FF (q, d, reset, clk);
 	output logic q;
 	input logic d, reset, clk;
@@ -10,6 +9,7 @@ module D_FF (q, d, reset, clk);
 			q <= d; // Otherwise out = d
 endmodule
 
+/*
 module D_FF_testbench();
 	logic clk, reset, d, q;
 	
@@ -31,4 +31,5 @@ module D_FF_testbench();
 									@(posedge clk);
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule */
+

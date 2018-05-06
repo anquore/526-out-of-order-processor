@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module adder64 (val1, val2, valOut);
 	input logic [63:0] val1, val2;
 	output logic [63:0] valOut; 
@@ -16,6 +15,7 @@ module adder64 (val1, val2, valOut);
 	fullAdder startAdder (.a(val1[0]), .b(val2[0]), .cin(1'b0), .cout(cinToCout[0]), .sum(valOut[0]));
 endmodule
 
+/*
 module adder64_testbench();
 	logic[63:0] val1, val2;
 	logic [63:0] valOut; 
@@ -48,4 +48,5 @@ module adder64_testbench();
 		#(1000);
 		assert(valOut == (val1+val2));
 	end
-endmodule 
+endmodule */
+

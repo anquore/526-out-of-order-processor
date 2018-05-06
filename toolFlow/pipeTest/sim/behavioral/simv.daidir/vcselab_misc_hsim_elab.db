@@ -1,5 +1,5 @@
 psSimBaseName                      	simv
-pDaiDir                            	/home/projects/ee526.2018spr/cjgooch/toolFlow/pipeTest/sim/behavioral/simv.daidir
+pDaiDir                            	/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral/simv.daidir
 destPath                           	csrc/
 hsMainFileCount                    	0
 hsMainFileName                     	dummy

@@ -54,7 +54,7 @@
 ../../src/verilog/mux_4x1_X65.sv
 ../../src/verilog/norifier.sv
 ../../src/verilog/orGate16.sv
-../../src/verilog/pipelinedProcessor.sv
+../../src/verilog/pipelined.sv
 ../../src/verilog/regReadAndWriteStage.sv
 ../../src/verilog/regfile.sv
 ../../src/verilog/registerX16.sv

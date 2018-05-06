@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,resets_i
@@ -97,6 +96,7 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 	
 endmodule
 
+/*
 module ROBregs_testbench();
   //ROBsize = 8
   logic	[2:0] 	decodeReadAddr1_i, decodeReadAddr2_i, decodeWriteAddr_i, completionWriteAddr_i, commitReadAddr_i;
@@ -207,5 +207,5 @@ module ROBregs_testbench();
     $stop;
   end
 
-endmodule
-	
+endmodule */
+

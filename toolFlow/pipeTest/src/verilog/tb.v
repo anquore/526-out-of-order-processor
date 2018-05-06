@@ -1,7 +1,7 @@
 module tb();
 	logic clk, reset;
 
-	pipelinedProcessor dut (.clk, .reset);
+	pipelined dut (.clk, .reset);
 
 	// Set up the clock
 	parameter ClockDelay = 2000;

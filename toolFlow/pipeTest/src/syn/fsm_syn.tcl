@@ -11,8 +11,8 @@ set link_path {"*" tcbn65gpluswc0d72_ccs.db tcbn65gplusbc0d88_ccs.db tcbn65gplus
 set mw_techfile_path $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/techfiles
 set mw_tech_file $mw_techfile_path/tsmcn65_9lmT2.tf
 set mw_reference_library $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus
-create_mw_lib -technology $mw_tech_file -mw_reference_library $mw_reference_library fsm_design      
-open_mw_lib fsm_design
+create_mw_lib -technology $mw_tech_file -mw_reference_library $mw_reference_library pipelined_design      
+open_mw_lib pipelined_design
 
 set_tlu_plus_files \
 -max_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcbest_top2.tluplus \
@@ -20,10 +20,10 @@ set_tlu_plus_files \
 -tech2itf_map $mw_techfile_path/tluplus/star.map_9M
 
 
-#################################### fsm #####################################
+#################################### pipelined #####################################
 # Read Design
 # read_file will analyze (read,check) and elaborate(GTech map, DW map) the design in one shot.
-read_file fsm.v
+read_file pipelined.v
 
 #Define environment
 set_operating_conditions -analysis_type bc_wc  -min BC0D88COM -max WC0D72COM  -max_library tcbn65gpluswc0d72_ccs -min_library tcbn65gplusbc0d88_ccs
@@ -43,8 +43,8 @@ set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output2]
 link
 
 #Define design constraints
-set_max_transition 0.1 [get_designs fsm]
-set_max_fanout 6 fsm
+set_max_transition 0.1 [get_designs pipelined]
+set_max_fanout 6 pipelined
 create_clock -name "clk" -period 2 -waveform {0 1} [get_ports Clock]
 set_clock_uncertainty -setup 0.05 clk
 set_clock_uncertainty -hold 0.01 clk
@@ -59,14 +59,14 @@ check_design
 
 #write out design files
 file mkdir reports
-report_power > reports/fsm.power
-report_constraint -verbose > reports/fsm.constraint
-report_constraint -all_violators > reports/fsm.violation
-write_sdc  reports/fsm.sdc
+report_power > reports/pipelined.power
+report_constraint -verbose > reports/pipelined.constraint
+report_constraint -all_violators > reports/pipelined.violation
+write_sdc  reports/pipelined.sdc
 file mkdir db
-write -h fsm -output ./db/fsm.db
-write_sdf -context verilog -version 1.0 reports/fsm.sdf
+write -h pipelined -output ./db/pipelined.db
+write_sdf -context verilog -version 1.0 reports/pipelined.sdf
 file mkdir netlist
-write -h -f verilog fsm -output netlist/fsm.v -pg
+write -h -f verilog pipelined -output netlist/pipelined.v -pg
 file mkdir ddc
 write_file -format ddc -hierarchy -output ddc/DIG_TOP.ddc

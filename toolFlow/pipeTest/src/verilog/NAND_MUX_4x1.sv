@@ -14,6 +14,7 @@ module NAND_MUX_4x1(out, select, invSelect, in);
 	nand sumNand(out, three, two, one, zero);
 endmodule
 
+/*
 module NAND_MUX_4x1_testbench;
 	wire out;
 	reg [1:0] selects;
@@ -35,4 +36,5 @@ module NAND_MUX_4x1_testbench;
 	ins[3:0] = 4'b1010;
 	#200;
 	end
-endmodule
+endmodule */
+

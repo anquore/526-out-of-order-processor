@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
@@ -99,6 +98,7 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
   assign stall_o = stall;
 endmodule
 
+/*
 module ROB_testbench();
   //ROBsize = 8
   logic	[3:0] 	decodeReadAddr1_i, decodeReadAddr2_i, completionWriteAddr_i;
@@ -219,4 +219,5 @@ module ROB_testbench();
     $stop;
   end
 
-endmodule
+endmodule */
+
