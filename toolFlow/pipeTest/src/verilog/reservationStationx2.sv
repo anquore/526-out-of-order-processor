@@ -8,16 +8,16 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
 ,decodeROBval1_i
 ,decodeROBval2_i
 ,decodeCommands_i
+,stall_o
 
 ,issueROBTag_i
 ,issueROBval_i
-,stall_i
 
+,stall_i
 ,reservationStationVal1_o
 ,reservationStationVal2_o
 ,reservationStationCommands_o
 ,reservationStationTag_o
-,stall_o
 ,ready_o);
 
 

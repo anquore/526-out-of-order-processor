@@ -17,15 +17,16 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 ,completionWriteData_i
 
 ,updateHead_i
+,head_o
 ,commitReadData_o);
 
   input logic	[addrSize:0] 	decodeReadAddr1_i, decodeReadAddr2_i, completionWriteAddr_i;
-	input logic [6:0]	decodeWriteData_i;
+	input logic [7:0]	decodeWriteData_i;
   input logic [69:0] completionWriteData_i;
 	input logic 			reset_i, clk_i, completionWriteEn_i, updateHead_i, updateTail_i;
 	output logic [64:0]	decodeReadData1_o, decodeReadData2_o;
-  output logic [76:0] commitReadData_o;
-  output logic [addrSize:0] nextTail_o;
+  output logic [77:0] commitReadData_o;
+  output logic [addrSize:0] nextTail_o, head_o;
   output logic stall_o;
   
   //set up some logic
@@ -95,6 +96,7 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
   assign decodeReadData1_o = decodeReadData1[64:0];
   assign decodeReadData2_o = decodeReadData2[64:0];
   assign nextTail_o = tailNext + 1;
+  assign head_o = head + 1;
   assign stall_o = stall;
 endmodule
 

@@ -130,7 +130,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       regWrite = 0;
     end
     else if (commandType == 2 | commandType == 3) begin
-      //this is either a CBZ or a regular B
+      //this is either a B.COND
       //if the branches don't match we need to restore
       needToRestore = correctBranch ^ commandType[0];
       restorePoint = theData;
