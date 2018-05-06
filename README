@@ -1,0 +1,10 @@
+tool flow notes:
+
+testbench files must be named tb.v
+test bench can include extra commands for reading from text file
+make help for info from each Makefile before running actual makes
+$DESIGN parameter must be passed to make design and make link commands (ex. make DESIGN=fsm design)
+link commands does all softlinks not asked for by make help
+
+for each Makefile, run 'make help' to see what to do, run 'make DESIGN=<name> link' for automatic softlinks, run 'make DESIGN=<name> design to run mainsapr/simulation
+
