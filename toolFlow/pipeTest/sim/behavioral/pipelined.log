@@ -2,7 +2,7 @@ Command: vcs -f pipelined.include +v2k -debug_pp +lint=IRIMW,NCEID,GCWM,IGSFPG,T
 -sverilog -full64 +plusarg_save -timescale=1ns/10ps -l pipelined.log +testname=default_test \
 +define+SIM=1+EXTERNAL_DATA=1+DEBUG=1+BEHAV=1
                          Chronologic VCS (TM)
-         Version H-2013.06_Full64 -- Sun May  6 06:11:27 2018
+         Version H-2013.06_Full64 -- Sun May  6 06:57:20 2018
                Copyright (c) 1991-2013 by Synopsys Inc.
                          ALL RIGHTS RESERVED
 
@@ -45,6 +45,14 @@ Parsing design file '../../src/verilog/instructmem.sv'
 Parsing design file '../../src/verilog/mapTable.sv'
 Parsing design file '../../src/verilog/memStage.sv'
 Parsing design file '../../src/verilog/multiplier.sv'
+
+Warning-[CIWC] Ignored /* within /* */ comment
+  Nested comments is found. Ignoring nested '/*'. 
+  /*#5;	valid_in=1;	#5;	clk=1;	#5;	clk=0; 
+  //testing valid_out (using the clock)
+  ^
+  "../../src/verilog/multiplier.sv", 178
+
 Parsing design file '../../src/verilog/mux16x1.sv'
 Parsing design file '../../src/verilog/mux2_1.sv'
 Parsing design file '../../src/verilog/mux2x5.sv'
@@ -78,147 +86,57 @@ Parsing design file '../../src/verilog/wallOfDFFs.sv'
 Parsing design file '../../src/verilog/xnorifier.sv'
 Top Level Modules:
        tb
-       NAND_MUX_2x1_testbench
-       NAND_MUX_4x1_testbench
-       adder64_testbench
-       adderC64_testbench
-       alustim
-       andifier_testbench
-       bitSlice_testbench
-       completeDataPath_testbench
-       dataMovement_testbench
-       datamem_testbench
-       decoder1x2_testbench
-       decoder2x4_testbench
-       decoder4x16_testbench
-       decoder5x32_testbench
-       divider_testbench
-       enableD_FF_testbench
-       fullAdder_testbench
-       fullReg32x64_testbench
-       full_adder_testbench
-       individualReg64_testbench
-       instructionFetch_testbench
-       instructmem_testbench
-       mapTable_testbench
-       multiplier_testbench
-       mux16x1_testbench
-       mux2_1_testbench
-       mux2x5_testbench
-       mux2x64_testbench
-       mux32x1_testbench
-       mux32x64_testbench
-       mux4x1_testbench
-       mux8x1_testbench
+       completeDataPath
+       mapTable
        mux_4x1_X64
-       norifier_testbench
-       orGate16_testbench
-       regstim
-       reservationStation_testbench
-       reservationStationx2_testbench
-       shiftLeft2_testbench
-       shifter_testbench
-       signExtend12_testbench
-       signExtend19_testbench
-       signExtend26_testbench
-       signExtend9_testbench
-       wallOfDFFs_testbench
-       xnorifier_testbench
+       reservationStationx2
 TimeScale is 1 ns / 10 ps
 Notice: Ports coerced to inout, use -notice for details
 Starting vcs inline pass...
-90 modules and 0 UDP read.
+43 modules and 0 UDP read.
 recompiling module tb
 recompiling module FF_en
 recompiling module NAND_MUX_2x1
-recompiling module NAND_MUX_2x1_testbench
 recompiling module NAND_MUX_4x1
-recompiling module NAND_MUX_4x1_testbench
 recompiling module adder64
-recompiling module adder64_testbench
-recompiling module adderC65
-recompiling module adderC64_testbench
 recompiling module alu
-recompiling module alustim
 recompiling module andifier
-recompiling module andifier_testbench
 recompiling module bitSlice
-recompiling module bitSlice_testbench
 recompiling module bsg_priority_encode_one_hot_out
-recompiling module completeDataPath_testbench
+recompiling module completeDataPath
 recompiling module control
-recompiling module dataMovement
-recompiling module dataMovement_testbench
 recompiling module datamem
-recompiling module datamem_testbench
-recompiling module decoder1x2_testbench
 recompiling module decoder2x4
-recompiling module decoder2x4_testbench
-recompiling module decoder4x16_testbench
 recompiling module decoder5x32
-recompiling module decoder5x32_testbench
 recompiling module divider
-recompiling module divider_testbench
 recompiling module enableD_FF
-recompiling module enableD_FF_testbench
 recompiling module fullAdder
-recompiling module fullAdder_testbench
 recompiling module fullAdderArray63
-recompiling module fullReg32x64
-recompiling module fullReg32x64_testbench
 recompiling module full_adder
-recompiling module full_adder_testbench
 recompiling module individualReg64
-recompiling module individualReg64_testbench
 recompiling module instructionFetch
-recompiling module instructionFetch_testbench
-recompiling module instructmem
-recompiling module instructmem_testbench
-recompiling module mapTable_testbench
+recompiling module mapTable
 recompiling module memStage
 recompiling module multiplier
-50 of 90 modules done
-recompiling module multiplier_testbench
-recompiling module mux16x1_testbench
 recompiling module mux2_1
-recompiling module mux2_1_testbench
-recompiling module mux2x5_testbench
 recompiling module mux2x64
-recompiling module mux2x64_testbench
 recompiling module mux32x1
-recompiling module mux32x1_testbench
 recompiling module mux32x64
-recompiling module mux32x64_testbench
 recompiling module mux4x1
-recompiling module mux4x1_testbench
-recompiling module mux8x1_testbench
 recompiling module mux_2x1_X64
 recompiling module mux_4x1_X64
 recompiling module mux_4x1_X65
 recompiling module norifier
-recompiling module norifier_testbench
 recompiling module orGate16
-recompiling module orGate16_testbench
 recompiling module regfile
-recompiling module regstim
 recompiling module registerX16
 recompiling module registerX64
 recompiling module registerX65
 recompiling module reservationStation
-recompiling module reservationStation_testbench
-recompiling module reservationStationx2_testbench
-recompiling module shiftLeft2_testbench
-recompiling module shifter
-recompiling module shifter_testbench
-recompiling module signExtend12_testbench
-recompiling module signExtend19_testbench
-recompiling module signExtend26_testbench
-recompiling module signExtend9_testbench
+recompiling module reservationStationx2
 recompiling module wallOfDFFs
-recompiling module wallOfDFFs_testbench
 recompiling module xnorifier
-recompiling module xnorifier_testbench
-All of 90 modules done
+All of 43 modules done
 make[1]: Entering directory `/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral/csrc' \
 
 if [ -x ../simv ]; then chmod -x ../simv; fi
@@ -232,4 +150,4 @@ g++  -o ../simv     -Wl,-whole-archive    -Wl,-no-whole-archive  _vcsobj_1_1.o  
 ../simv up to date
 make[1]: Leaving directory `/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral/csrc' \
 
-CPU time: 1.263 seconds to compile + .449 seconds to elab + .163 seconds to link
+CPU time: .966 seconds to compile + .339 seconds to elab + .150 seconds to link

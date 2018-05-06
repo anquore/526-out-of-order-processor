@@ -23,7 +23,7 @@ set_tlu_plus_files \
 #################################### pipelined #####################################
 # Read Design
 # read_file will analyze (read,check) and elaborate(GTech map, DW map) the design in one shot.
-read_file pipelined.v
+read_file pipelined.sv
 
 #Define environment
 set_operating_conditions -analysis_type bc_wc  -min BC0D88COM -max WC0D72COM  -max_library tcbn65gpluswc0d72_ccs -min_library tcbn65gplusbc0d88_ccs

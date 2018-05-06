@@ -1,2 +1,12 @@
-Error: Current design is not defined. (UID-4)
-0
+ 
+****************************************
+Report : constraint
+        -verbose
+Design : pipelined
+Version: H-2013.03-SP4
+Date   : Sun May  6 07:17:07 2018
+****************************************
+
+This design has no constraints.
+
+1
