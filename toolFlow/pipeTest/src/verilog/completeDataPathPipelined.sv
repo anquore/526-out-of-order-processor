@@ -115,7 +115,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   always_comb begin
     unique case (state_rMult)
       eWaitingMult: state_nMult = secondWallOut[175] ? eStallingMult : eWaitingMult;
-      eStallingMult: state_nMult = valid_outMult ? eStallingMult : eDoneMult;
+      eStallingMult: state_nMult = valid_outMult ?  eDoneMult : eStallingMult;
       eDoneMult: state_nMult = eWaitingMult;
     endcase
   end
@@ -170,7 +170,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   always_comb begin
     unique case (state_rDiv)
       eWaitingDiv: state_nDiv = secondWallOut[176] ? eStallingDiv : eWaitingDiv;
-      eStallingDiv: state_nDiv = valid_outDiv ? eStallingDiv : eDoneDiv;
+      eStallingDiv: state_nDiv = valid_outDiv ?  eDoneDiv : eStallingDiv;
       eDoneDiv: state_nDiv = eWaitingDiv;
     endcase
   end
