@@ -4,6 +4,7 @@ link:
 	ln -s ../syn/$(DESIGN)_design/$(DESIGN).sdc .
 
 design:
+	make link
 	icc_shell -gui -f $(DESIGN)_apr.tcl
 	rm -r $(DESIGN)_design/*
 	mv $(DESIGN)_apr.v $(DESIGN)_design/$(DESIGN).apr.v

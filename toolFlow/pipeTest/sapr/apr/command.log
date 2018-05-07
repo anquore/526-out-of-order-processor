@@ -1,0 +1,3366 @@
+#@ # 
+#@ # Running icc_shell Version J-2014.09-SP1 for amd64 -- Oct 14, 2014
+#@ # Date:   Sun May  6 17:06:14 2018
+#@ # Run by: cjgooch@linux-lab-040.ee.washington.edu
+#@ 
+
+gui_start 
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/iwidgets4.0.2/lib/iwidgets/iwidgets.tcl
+
+#@ #
+#@ # iwidgets.tcl
+#@ # ----------------------------------------------------------------------
+#@ # Invoked automatically by [incr Tk] upon startup to initialize
+#@ # the [incr Widgets] package.
+#@ # ----------------------------------------------------------------------
+#@ #  AUTHOR: Mark L. Ulferts               EMAIL: mulferts@spd.dsccc.com
+#@ #
+#@ #  @(#) $Id: iwidgets.tcl.in,v 1.5 2007/06/10 19:28:16 hobbs Exp $
+#@ # ----------------------------------------------------------------------
+#@ #                Copyright (c) 1995  Mark L. Ulferts
+#@ # ======================================================================
+#@ # See the file "license.terms" for information on usage and
+#@ # redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#@ 
+#@ package require Tcl 8.0
+#@ package require Tk 8.0
+#@ package require Itcl 3.2
+#@ package require Itk 3.2
+#@ 
+#@ namespace eval ::iwidgets {
+#@     namespace export *
+#@ 
+#@     variable library [file dirname [info script]]
+#@     variable version 4.0.2
+#@ 
+#@     lappend auto_path $iwidgets::library
+#@     variable subdir
+#@     foreach subdir {generic scripts} {
+#@ 	if {[file isdirectory [file join $iwidgets::library $subdir]]} {
+#@ 	    lappend auto_path [file join $iwidgets::library $subdir]
+#@ 	}
+#@     }
+#@     unset subdir
+#@ }
+#@ 
+#@ package provide Iwidgets $iwidgets::version
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/iwidgets4.0.2/lib/iwidgets/iwidgets.tcl
+
+source -echo -verbose /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sapr/apr/pipelined_apr.tcl
+#@ # -- Starting source /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sapr/apr/pipelined_apr.tcl
+
+#@ # set search path, target lib, link path.
+#@ set TSMCPATH /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital
+#@ set TARGETCELLLIB $TSMCPATH/Front_End/timing_power_noise/CCS/tcbn65gplus_200a
+#@ set search_path   [concat  $search_path $TARGETCELLLIB ./db  $synopsys_root/libraries/syn]
+#@ lappend search_path [glob $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/cell_frame/tcbn65gplus/LM/*]
+#@ set target_library "tcbn65gpluswc0d72_ccs.db tcbn65gplusbc0d88_ccs.db tcbn65gplustc0d8_ccs.db"
+#@ set symbol_library tcbn65gplustc0d8_ccs.db
+#@ set link_path {"*" tcbn65gpluswc0d72_ccs.db tcbn65gplusbc0d88_ccs.db tcbn65gplustc0d8_ccs.db }
+#@ 
+#@ #Create a MW design lib map to techfile, reference library (of stdcell for example)
+#@ #Milky way variable settings. Same as topo for the most part.
+#@ set mw_techfile_path /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Back_End/milkyway/tcbn65gplus_200a/techfiles
+#@ set mw_tech_file $mw_techfile_path/tsmcn65_9lmT2.tf
+#@ set mw_reference_library $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus
+#@ create_mw_lib -technology $mw_tech_file -mw_reference_library $mw_reference_library pipelined_design      
+#@ open_mw_lib pipelined_design
+#@ 
+#@ #Read in the verilog, uniquify and save the CEL view.
+#@ import_designs pipelined.syn.v -format verilog -top pipelined
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/pkgIndex.tcl
+
+#@ if {[catch {package require Tcl}]} return
+#@ package ifneeded BWidget 1.9.2 "    package require Tk 8.1.1;    [list tclPkgSetup $dir BWidget 1.9.2 {
+#@ {arrow.tcl source {ArrowButton ArrowButton::create ArrowButton::use}}
+#@ {labelframe.tcl source {LabelFrame LabelFrame::create LabelFrame::use}}
+#@ {labelentry.tcl source {LabelEntry LabelEntry::create LabelEntry::use}}
+#@ {bitmap.tcl source {Bitmap::get Bitmap::use}}
+#@ {button.tcl source {Button Button::create Button::use}}
+#@ {buttonbox.tcl source {ButtonBox ButtonBox::create ButtonBox::use}}
+#@ {combobox.tcl source {ComboBox ComboBox::create ComboBox::use}}
+#@ {label.tcl source {Label Label::create Label::use}}
+#@ {entry.tcl source {Entry Entry::create Entry::use}}
+#@ {pagesmgr.tcl source {PagesManager PagesManager::create PagesManager::use}}
+#@ {notebook.tcl source {NoteBook NoteBook::create NoteBook::use}}
+#@ {panedw.tcl source {PanedWindow PanedWindow::create PanedWindow::use}}
+#@ {scrollw.tcl source {ScrolledWindow ScrolledWindow::create ScrolledWindow::use}}
+#@ {scrollview.tcl source {ScrollView ScrollView::create ScrollView::use}}
+#@ {scrollframe.tcl source {ScrollableFrame ScrollableFrame::create ScrollableFrame::use}}
+#@ {panelframe.tcl source {PanelFrame PanelFrame::create PanelFrame::use}}
+#@ {progressbar.tcl source {ProgressBar ProgressBar::create ProgressBar::use}}
+#@ {progressdlg.tcl source {ProgressDlg ProgressDlg::create ProgressDlg::use}}
+#@ {passwddlg.tcl source {PasswdDlg PasswdDlg::create PasswdDlg::use}}
+#@ {dragsite.tcl source {DragSite::register DragSite::include DragSite::use}}
+#@ {dropsite.tcl source {DropSite::register DropSite::include DropSite::use}}
+#@ {separator.tcl source {Separator Separator::create Separator::use}}
+#@ {spinbox.tcl source {SpinBox SpinBox::create SpinBox::use}}
+#@ {statusbar.tcl source {StatusBar StatusBar::create StatusBar::use}}
+#@ {titleframe.tcl source {TitleFrame TitleFrame::create TitleFrame::use}}
+#@ {mainframe.tcl source {MainFrame MainFrame::create MainFrame::use}}
+#@ {listbox.tcl source {ListBox ListBox::create ListBox::use}}
+#@ {tree.tcl source {Tree Tree::create Tree::use}}
+#@ {color.tcl source {SelectColor SelectColor::menu SelectColor::dialog SelectColor::setcolor}}
+#@ {dynhelp.tcl source {DynamicHelp::configure DynamicHelp::use DynamicHelp::register DynamicHelp::include DynamicHelp::add DynamicHelp::delete}}
+#@ {dialog.tcl source {Dialog Dialog::create Dialog::use}}
+#@ {messagedlg.tcl source {MessageDlg MessageDlg::create MessageDlg::use}}
+#@ {font.tcl source {SelectFont SelectFont::create SelectFont::use SelectFont::loadfont}}
+#@ {widgetdoc.tcl source {Widget::generate-doc Widget::generate-widget-doc}}
+#@ {wizard.tcl source {Wizard Wizard::create Wizard::use SimpleWizard ClassicWizard}}
+#@ {xpm2image.tcl source {xpm-to-image}}
+#@ }]; 	[list namespace eval ::BWIDGET {}]; 	[list set ::BWIDGET::LIBRARY $dir];     [list source [file join $dir widget.tcl]];     [list source [file join $dir init.tcl]];     [list source [file join $dir utils.tcl]]; "
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/iwidgets4.0.2/lib/iwidgets/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.0
+#@ 
+#@ package ifneeded Iwidgets 4.0.2 [list source [file join $dir iwidgets.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/iwidgets4.0.2/lib/iwidgets/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tix8.4.3/pref/pkgIndex.tcl
+
+#@ # -*-mode: tcl; fill-column: 75; tab-width: 8; coding: iso-latin-1-unix -*-
+#@ #
+#@ # Tcl package index file, version 1.0
+#@ #
+#@ # $Id: pkgIndex.tcl,v 1.2 2002/01/24 09:17:02 idiscovery Exp $
+#@ #
+#@ 
+#@ package ifneeded wm_default 1.0 [list source [file join $dir WmDefault.tcl]]
+#@ 
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tix8.4.3/pref/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/syn/layout/pkgIndex.tcl
+
+#@ ###
+#@ ### This layout package is originally a snapshot of icc/layout 6/20/07.
+#@ ### The version is bumped from 1.0 to 1.2 
+#@ ### Subsequently merged with ICC on July 2007 and became the only version
+#@ ### available 
+#@ ### The migration of the package is to facilitate code sharing between
+#@ ### applications which need layout view customizations.
+#@ ###
+#@ ### Updates:
+#@ ###        added package snpsPathsSlackVM
+#@ ###        added package snpsCellSlackVM 
+#@ ###        added package snpsNetCapacitanceVM
+#@ ###        added package snpsScanChainVM 
+#@ 
+#@ package ifneeded snpsVMDialogPathsSlack     1.2 [list source -direct [file join $dir DialogVMPathsSlack.tcl]]
+#@ package ifneeded snpsVMDialogCellSlack      1.2 [list source -direct [file join $dir DialogVMCellSlack.tcl]]
+#@ package ifneeded snpsVMDialogNetCapacitance 1.2 [list source -direct [file join $dir DialogVMNetCapacitance.tcl]]
+#@ package ifneeded snpsVMDialogClockLT 1.2 [list source -direct [file join $dir DialogVMClockLT.tcl]]
+#@ 
+#@ package ifneeded snpsImportedPathPinsVM     1.2 [list source -direct [file join $dir snpsImportedPathPinsVM.tcl]]
+#@ package ifneeded snpsPathsSlackVM     1.2 [list source -direct [file join $dir snpsPathsSlackVM.tcl]]
+#@ package ifneeded snpsCellSlackVM      1.2 [list source -direct [file join $dir snpsCellSlackVM.tcl]]
+#@ package ifneeded snpsIllegalCellPlacementVM      1.2 [list source -direct [file join $dir snpsIllegalCellPlacementVM.tcl]]
+#@ package ifneeded snpsVoltageAreaVM      1.2 [list source -direct [file join $dir snpsVoltageAreaVM.tcl]]
+#@ package ifneeded snpsXTalkVM      1.2 [list source -direct [file join $dir snpsXTalkVM.tcl]]
+#@ package ifneeded snpsDeltaDelayVM      1.2 [list source -direct [file join $dir snpsDeltaDelayVM.tcl]]
+#@ package ifneeded snpsNoiseVM      1.2 [list source -direct [file join $dir snpsNoiseVM.tcl]]
+#@ package ifneeded snpsCellDisplacementVM      1.2 [list source -direct [file join $dir snpsCellDisplacementVM.tcl]]
+#@ package ifneeded snpsAreaNetConnectionVM      1.2 [list source -direct [file join $dir snpsAreaNetConnectionVM.tcl]]
+#@ package ifneeded snpsNetCapacitanceVM 1.2 [list source -direct [file join $dir snpsNetCapacitanceVM.tcl]]
+#@ package ifneeded snpsClockLTVM 1.2 [list source -direct [file join $dir snpsClockLTVM.tcl]]
+#@ package ifneeded snpsScanChainVM 1.2 [list source -direct [file join $dir snpsScanChainVM.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/syn/layout/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/opdlg/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsOpDlg 1.0 [list source -direct [file join $dir base.tcl]]\n[list source -direct [file join $dir data.tcl]]\n[list source -direct [file join $dir frame1.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/opdlg/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/select/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsSelectDialogFanInOut 1.0 [list source -direct [file join $dir DialogSelectFanInOut.tcl]]
+#@ package ifneeded snpsSelection 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsSelectionInternal 1.0 [list source -direct [file join $dir baseInternal.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/select/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/palettegroup/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsPaletteGroup 1.0 [list source -direct [file join $dir palettegroup.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/palettegroup/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/highlight/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded Highlight 1.0 [list source -direct [file join $dir highlight.tcl]]
+#@ package ifneeded snpsHighlight 1.0 [list source -direct [file join $dir highlight.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/highlight/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tcl-dp/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded EkkiInterProcessSelect 1.0 [list source -direct [file join $dir ekkiCrossSelect.tcl]]
+#@ package ifneeded snpsInterProcessCommunication 1.0 [list source -direct [file join $dir serv.tcl]]
+#@ package ifneeded snpsUpdateTimer 1.0 [list source -direct [file join $dir timer.tcl]]
+#@ package ifneeded tcl-dp 1.0 [list source -direct [file join $dir acl.tcl]]\n[list source -direct [file join $dir distribObj.tcl]]\n[list source -direct [file join $dir dp_atclose.tcl]]\n[list source -direct [file join $dir dp_atexit.tcl]]\n[list source -direct [file join $dir ldelete.tcl]]\n[list source -direct [file join $dir oo.tcl]]\n[list source -direct [file join $dir rpc.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tcl-dp/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/mrupalette/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsMRUPalette 1.0 [list source -direct [file join $dir mrupalette.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/mrupalette/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/menus/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsMenus 1.0 [list source -direct [file join $dir base.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/menus/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/profiler/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsProfiler 1.0 [list source -direct [file join $dir base.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/profiler/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tiledview/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTiledView 1.0 [list source -direct [file join $dir tiledview.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tiledview/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/layout/pkgIndex.tcl
+
+#@ package ifneeded snpsLayout                 1.2 [list source -direct [file join $dir layout.tcl]]
+#@ package ifneeded snpsLayoutTools            1.2 [list source -direct [file join $dir snpsLayoutTools.tcl]]
+#@ package ifneeded snpsLayoutLayers           1.2 [list source -direct [file join $dir layout_layers.tcl]]
+#@ package ifneeded snpsLayoutTest             1.2 [list source -direct [file join $dir layout_test.tcl]]
+#@ 
+#@ package ifneeded colSrv                    1.2 [list source -direct [file join $dir colSrv.tcl]]
+#@ package ifneeded snpsVM                     1.2 [list source -direct [file join $dir snpsVM.tcl]]
+#@ package ifneeded snpsMM                     1.2 [list source -direct [file join $dir snpsMM.tcl]]
+#@ 
+#@ package ifneeded snpsLayoutPreferences      1.0 [list source -direct [file join $dir preferences.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/layout/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/schematic/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsSchematic 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsSchematicDialogPathSchematicAddFanInOut 1.0 [list source -direct [file join $dir DialogPathSchematicFanInOut.tcl]]
+#@ package ifneeded snpsSchematicDialogPathSchematicAddPaths 1.0 [list source -direct [file join $dir DialogPathSchematicAddPaths.tcl]]
+#@ package ifneeded snpsSchematicDialogSchematicSizeCell 1.0 [list source -direct [file join $dir DialogSchematicWhatIf.tcl]]
+#@ package ifneeded snpsSchematicEnable 1.0 [list source -direct [file join $dir enable.tcl]]
+#@ package ifneeded snpsSchematicMethod 1.0 [list source -direct [file join $dir method.tcl]]
+#@ package ifneeded snpsSchematicNetlist 1.0 [list source -direct [file join $dir netlist.tcl]]
+#@ package ifneeded snpsSchematicNetlistInternal 1.0 [list source -direct [file join $dir schematicNetlistInternal.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/schematic/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/qtcl/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsQtcl 1.0           [list source -direct [file join $dir .synopsys_qtcl.tcl]]
+#@ package ifneeded snpsQtclExtensions 1.0 [list source -direct [file join $dir qtcl_extensions.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/qtcl/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/commandform/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsCommandForm 1.0 [list source -direct [file join $dir commandform.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/commandform/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/acg/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsAcg 1.0 [list source -direct [file join $dir base.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/acg/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/docBrowser/pkgIndex.tcl
+
+#@ 
+#@ package ifneeded snpsDocBrowser 1.0 [list source -direct [file join $dir docBrowser.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/docBrowser/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/histogram/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsHistogram 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsHistogramDialogBottleneck 1.0 [list source -direct [file join $dir DialogBottleneck.tcl]]
+#@ package ifneeded snpsHistogramDialogTable 1.0 [list source -direct [file join $dir DialogTable.tcl]]
+#@ package ifneeded snpsHistogramDialogBumpNoise 1.0 [list source -direct [file join $dir DialogBumpNoise.tcl]]
+#@ package ifneeded snpsHistogramDialogBumpVoltage 1.0 [list source -direct [file join $dir DialogBumpVoltage.tcl]]
+#@ package ifneeded snpsHistogramDialogDRC 1.0 [list source -direct [file join $dir DialogDRC.tcl]]
+#@ package ifneeded snpsHistogramDialogDeltaDelay 1.0 [list source -direct [file join $dir DialogDeltaDelay.tcl]]
+#@ package ifneeded snpsHistogramDialogEndpointSlack 1.0 [list source -direct [file join $dir DialogEndpointSlack.tcl]]
+#@ package ifneeded snpsHistogramDialogNetCapacitance 1.0 [list source -direct [file join $dir DialogNetCapacitance.tcl]]
+#@ package ifneeded snpsHistogramDialogPathsSlack 1.0 [list source -direct [file join $dir DialogPathsSlack.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/histogram/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/fanoutviewer/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsCTB 1.0 [list source -direct [file join $dir ctb.tcl]]
+#@ package ifneeded snpsCTBInternal 1.0 [list source -direct [file join $dir ctbInternal.tcl]]
+#@ package ifneeded snpsFanoutViewer 1.0 [list source -direct [file join $dir base.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/fanoutviewer/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/table/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTable 1.0 [list source -direct [file join $dir table.tcl]]
+#@ package ifneeded snpsTableInternal 1.0 [list source -direct [file join $dir table_internal.tcl]]
+#@ package ifneeded snpsTableCustomize 1.0 [list source -direct [file join $dir table_customize.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/table/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/misc/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsCalculateWindowGeometry 1.0 [list source -direct [file join $dir calculateWindowGeometry.tcl]]
+#@ package ifneeded snpsCommonViewMenu 1.0 [list source -direct [file join $dir viewmenu.tcl]]
+#@ package ifneeded snpsCopyPaste 1.0 [list source -direct [file join $dir copyPaste.tcl]]
+#@ package ifneeded snpsCreateViewType 1.0 [list source -direct [file join $dir createViewType.tcl]]
+#@ package ifneeded snpsCurrInst 1.0 [list source -direct [file join $dir snpsCurrInst.tcl]]
+#@ package ifneeded snpsDebug 1.0 [list source -direct [file join $dir debug.tcl]]
+#@ package ifneeded snpsDemo 1.0 [list source -direct [file join $dir demo.tcl]]
+#@ package ifneeded snpsFile 1.0 [list source -direct [file join $dir file.tcl]]
+#@ package ifneeded snpsFollowNlFactory 1.0 [list source -direct [file join $dir followNlFactory.tcl]]
+#@ package ifneeded snpsGuiMenuEnable 1.0 [list source -direct [file join $dir GuiMenuEnable.tcl]]
+#@ package ifneeded snpsInfotips 1.0 [list source -direct [file join $dir infotip.tcl]]
+#@ package ifneeded snpsLoadsDrivers 1.0 [list source -direct [file join $dir loadsDrivers.tcl]]
+#@ package ifneeded snpsMisc 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsMiscAnchorPoint 1.0 [list source -direct [file join $dir anchor.tcl]]
+#@ package ifneeded snpsMiscDialogObjectChooser 1.0 [list source -direct [file join $dir DialogObjectChooser.tcl]]
+#@ package ifneeded snpsMiscEditMovebounds 1.0 [list source -direct [file join $dir EditMovebounds.tcl]]
+#@ package ifneeded snpsMiscSetting 1.0 [list source -direct [file join $dir setting.tcl]]
+#@ package ifneeded snpsMiscTiming 1.0 [list source -direct [file join $dir timing.tcl]]
+#@ package ifneeded snpsMiscViewportHistory 1.0 [list source -direct [file join $dir viewporthistory.tcl]]
+#@ package ifneeded snpsOutput 1.0 [list source -direct [file join $dir output.tcl]]
+#@ package ifneeded snpsQObjectViewer 1.0 [list source -direct [file join $dir qobjectviewer.tcl]]
+#@ package ifneeded snpsStack 1.0 [list source -direct [file join $dir stack.tcl]]
+#@ package ifneeded snpsTypedText 1.0 [list source -direct [file join $dir typedText.tcl]]
+#@ package ifneeded snpsViewMgr 1.0 [list source -direct [file join $dir viewmgr.tcl]]
+#@ package ifneeded snpsMiscPreset 1.0 [list source -direct [file join $dir preset.tcl]]
+#@ package ifneeded snpsTaskAssistant 1.0 [list source -direct [file join $dir taskassistant.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/misc/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/hierarchy/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsDesignObjectBrowser 1.0 [list source -direct [file join $dir DesignObjectBrowser.tcl]]
+#@ package ifneeded snpsHier 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsHier::children 1.0 [list source -direct [file join $dir children.tcl]]
+#@ package ifneeded snpsHier::columns 1.0 [list source -direct [file join $dir columns.tcl]]
+#@ package ifneeded snpsHier::dialogs 1.0 [list source -direct [file join $dir dialogs.tcl]]
+#@ package ifneeded snpsHier::hierarchies 1.0 [list source -direct [file join $dir hierarchies.tcl]]
+#@ package ifneeded snpsHier::rootFcts 1.0 [list source -direct [file join $dir rootFcts.tcl]]
+#@ package ifneeded snpsHierExample1 1.0 [list source -direct [file join $dir Example1.tcl]]
+#@ package ifneeded snpsHierExample2 1.0 [list source -direct [file join $dir Example2.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/hierarchy/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tq/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTkStyle 1.0 [list source -direct [file join $dir snpsTkStyle.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/tq/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/timing/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTimingGUI 1.0 [list source -direct [file join $dir base.tcl]]
+#@ 
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/timing/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/WindowFrameWork/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsWindowFrameWork 1.0 [list source -direct [file join $dir windowFrameWork.tcl]]
+#@ package ifneeded snpsBusyCursorSkipList 1.0 [list source -direct [file join $dir skipBusyCursorCmdList.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/WindowFrameWork/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/dialogs/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsDialogsBinsOnlyInformation 1.0 [list source -direct [file join $dir BinsOnlyInformation.tcl]]
+#@ package ifneeded snpsDialogsCompileLinkDesign 1.0 [list source -direct [file join $dir CompileLinkDesign.tcl]]
+#@ package ifneeded snpsDialogsFanInOutInfo 1.0 [list source -direct [file join $dir FanInOutInfo.tcl]]
+#@ package ifneeded snpsDialogsFileChooser 1.0 [list source -direct [file join $dir FileChooser.tcl]]
+#@ package ifneeded snpsDialogsHistBin1Information 1.0 [list source -direct [file join $dir HistBin1Information.tcl]]
+#@ package ifneeded snpsDialogsHistBinInformation 1.0 [list source -direct [file join $dir HistBinInformation.tcl]]
+#@ package ifneeded snpsDialogsHistBumpNoise 1.0 [list source -direct [file join $dir HistBumpNoise.tcl]]
+#@ package ifneeded snpsDialogsHistBumpVoltage 1.0 [list source -direct [file join $dir HistBumpVoltage.tcl]]
+#@ package ifneeded snpsDialogsHistDeltaDelay 1.0 [list source -direct [file join $dir HistDeltaDelay.tcl]]
+#@ package ifneeded snpsDialogsClockMapInformation 1.0 [list source -direct [file join $dir ClockMapInformation.tcl]]
+#@ package ifneeded snpsDialogsNumberOfLevelsChooser 1.0 [list source -direct [file join $dir NumberOfLevelsChooser.tcl]]
+#@ package ifneeded snpsDialogsObjectChooser 1.0 [list source -direct [file join $dir ObjectChooser.tcl]]
+#@ package ifneeded snpsDialogsObjectListInfo 1.0 [list source -direct [file join $dir ObjectListInfo.tcl]]
+#@ package ifneeded snpsDialogsPathPinSimpleInfo 1.0 [list source -direct [file join $dir PathPinSimpleInfo.tcl]]
+#@ package ifneeded snpsDialogsPathsBasicInfo 1.0 [list source -direct [file join $dir PathsBasicInfo.tcl]]
+#@ package ifneeded snpsDialogsPathsBasicSimpleInfo 1.0 [list source -direct [file join $dir PathsBasicSimpleInfo.tcl]]
+#@ package ifneeded snpsDialogsReportOutputOptionInfo 1.0 [list source -direct [file join $dir ReportOutputOptionInfo.tcl]]
+#@ package ifneeded snpsDialogsSchematicWhatIf 1.0 [list source -direct [file join $dir SchematicWhatIf.tcl]]
+#@ package ifneeded snpsDialogsSlctOperationInfo 1.0 [list source -direct [file join $dir SlctOperationInfo.tcl]]
+#@ package ifneeded snpsDialogsWindowReuseInfo 1.0 [list source -direct [file join $dir WindowReuseInfo.tcl]]
+#@ package ifneeded snpsDialogsPath 1.0 [list source -direct [file join $dir PathDialog.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/dialogs/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/strokes/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded strokes 1.0 [list source -direct [file join $dir stroke_defaults.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/strokes/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/regressionToolkit/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsGUITest 1.0 [list source -direct [file join $dir base.tcl]]
+#@ package ifneeded snpsDialogTest 1.0 [list source -direct [file join $dir dialogTest.tcl]]
+#@ package ifneeded snpsCommandHelpTest 1.0 [list source -direct [file join $dir commandHelpTest.tcl]]
+#@ package ifneeded snpsGUIAppSpecifics 1.0 [list source -direct [file join $dir appSpecifics.tcl]]
+#@ package ifneeded snpsQtclCoreTests 1.0 [list source -direct [file join $dir snpsQtclCoreTests.tcl]]
+#@ package ifneeded snpsTestBinning 1.0 [list source -direct [file join $dir binning.tcl]]
+#@ package ifneeded snpsTestDialogAddFaninFanout 1.0 [list source -direct [file join $dir dialogAddFaninFanout.tcl]]
+#@ package ifneeded snpsTestDialogAddPaths 1.0 [list source -direct [file join $dir dialogAddPaths.tcl]]
+#@ package ifneeded snpsTestDialogEndpointSlackHistogram 1.0 [list source -direct [file join $dir dialogEndpointSlackHistogram.tcl]]
+#@ package ifneeded snpsTestDialogNetCapacitanceHistogram 1.0 [list source -direct [file join $dir dialogNetCapacitanceHistogram.tcl]]
+#@ package ifneeded snpsTestDialogObjectChooser 1.0 [list source -direct [file join $dir dialogObjectChooser.tcl]]
+#@ package ifneeded snpsTestDialogPathsSlackHistogram 1.0 [list source -direct [file join $dir dialogPathsSlackHistogram.tcl]]
+#@ package ifneeded snpsTestDialogs 1.0 [list source -direct [file join $dir dialogs.tcl]]
+#@ package ifneeded snpsTestDialogSelectByName 1.0 [list source -direct [file join $dir dialogSelectByName.tcl]]
+#@ package ifneeded snpsTestHistogram 1.0 [list source -direct [file join $dir histogram.tcl]]
+#@ package ifneeded snpsTestList 1.0 [list source -direct [file join $dir list.tcl]]
+#@ package ifneeded snpsTestListUtils 1.0 [list source -direct [file join $dir listUtils.tcl]]
+#@ package ifneeded snpsTestMenu 1.0 [list source -direct [file join $dir menu.tcl]]
+#@ package ifneeded snpsTestMouse 1.0 [list source -direct [file join $dir mouse.tcl]]
+#@ package ifneeded snpsTestNl 1.0 [list source -direct [file join $dir nl.tcl]]
+#@ package ifneeded snpsWriteXMLNl 1.0 [list source -direct [file join $dir writeXMLNl.tcl]]
+#@ package ifneeded snpsTestObjectAtPoint 1.0 [list source -direct [file join $dir testObjectAtPoint.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/regressionToolkit/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/setup/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsCommonSetup 1.0 [list source -direct [file join $dir snpsCommonSetup.tcl]]
+#@ package ifneeded snpsCustomize 1.0 [list source -direct [file join $dir snpsCustomize.tcl]]
+#@ package ifneeded snpsCollections 1.0 [list source -direct [file join $dir snpsCollections.tcl]]
+#@ package ifneeded snpsProcheck 1.0 [list source -direct [file join $dir snpsProcheck.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/setup/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/pathinspector/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsPathInspector 1.0 [list source -direct [file join $dir base.tcl]]\n[list source -direct [file join $dir create_window_and_menu.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/pathinspector/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/view/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/view/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/libviewer/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsLibViewer 1.0 [list source -direct [file join $dir base.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/common/libviewer/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/gui/dv/pkgIndex.tcl
+
+#@ 
+#@ package ifneeded snpsPathAnalyzer 1.0 [list source -direct [file join $dir dv_path_cat_view.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/gui/dv/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsTest/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex -direct" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTest 1.0 [list source [file join $dir snpsTest.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsTest/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsUtils/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex -direct" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsUtils 1.0 [list source [file join $dir snpsUtils.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsUtils/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsTclPro/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex -direct" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded snpsTclPro 1.0 [list source [file join $dir			snpsTclPro.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/snpsTclPro/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/pkgIndex.tcl
+
+#@ package ifneeded Itcl 3.4 {load {} Itcl}
+#@ package ifneeded tbcload 1.7 {load {} tbcload}
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/snps_tcl/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/http1.0/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.0
+#@ # This file is generated by the "pkg_mkIndex" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ package ifneeded http 1.0 [list tclPkgSetup $dir http 1.0 {{http.tcl source {httpCopyDone httpCopyStart httpEof httpEvent httpFinish httpMapReply httpProxyRequired http_code http_config http_data http_formatQuery http_get http_reset http_size http_status http_wait}}}]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/http1.0/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/tcltest/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex -direct" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ if {![package vsatisfies [package provide Tcl] 8.5]} {return}
+#@ package ifneeded tcltest 2.3.4 [list source [file join $dir tcltest.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/tcltest/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/dde/pkgIndex.tcl
+
+#@ if {![package vsatisfies [package provide Tcl] 8]} return
+#@ if {[info sharedlibextension] != ".dll"} return
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/dde/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/opt/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ # This file is generated by the "pkg_mkIndex -direct" command
+#@ # and sourced either when an application starts up or
+#@ # by a "package unknown" script.  It invokes the
+#@ # "package ifneeded" command to set up package-related
+#@ # information so that packages will be loaded automatically
+#@ # in response to "package require" commands.  When this
+#@ # script is sourced, the variable $dir must contain the
+#@ # full path name of this file's directory.
+#@ 
+#@ if {![package vsatisfies [package provide Tcl] 8.2]} {return}
+#@ package ifneeded opt 0.4.5 [list source [file join $dir optparse.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/opt/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/http/pkgIndex.tcl
+
+#@ # Tcl package index file, version 1.1
+#@ 
+#@ if {![package vsatisfies [package provide Tcl] 8.4]} {return}
+#@ package ifneeded http 2.7.9 [list tclPkgSetup $dir http 2.7.9 {{http.tcl source {::http::config ::http::formatQuery ::http::geturl ::http::reset ::http::wait ::http::register ::http::unregister ::http::mapReply}}}]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/http/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/msgcat/pkgIndex.tcl
+
+#@ if {![package vsatisfies [package provide Tcl] 8.5]} {return}
+#@ package ifneeded msgcat 1.4.5 [list source [file join $dir msgcat.tcl]]
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/msgcat/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/platform/pkgIndex.tcl
+
+#@ package ifneeded platform        1.0.10 [list source [file join $dir platform.tcl]]
+#@ package ifneeded platform::shell 1.1.4 [list source [file join $dir shell.tcl]]
+#@ 
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/platform/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/reg/pkgIndex.tcl
+
+#@ if {![package vsatisfies [package provide Tcl] 8]} return
+#@ if {[info sharedlibextension] != ".dll"} return
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/tcllib/lib/tcl8.5/reg/pkgIndex.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/widget.tcl
+
+#@ # ----------------------------------------------------------------------------
+#@ #  widget.tcl
+#@ #  This file is part of Unifix BWidget Toolkit
+#@ #  $Id: widget.tcl,v 1.35 2009/07/02 16:22:18 oehhar Exp $
+#@ # ----------------------------------------------------------------------------
+#@ #  Index of commands:
+#@ #     - Widget::tkinclude
+#@ #     - Widget::bwinclude
+#@ #     - Widget::declare
+#@ #     - Widget::addmap
+#@ #     - Widget::init
+#@ #     - Widget::destroy
+#@ #     - Widget::setoption
+#@ #     - Widget::configure
+#@ #     - Widget::cget
+#@ #     - Widget::subcget
+#@ #     - Widget::hasChanged
+#@ #     - Widget::options
+#@ #     - Widget::_get_tkwidget_options
+#@ #     - Widget::_test_tkresource
+#@ #     - Widget::_test_bwresource
+#@ #     - Widget::_test_synonym
+#@ #     - Widget::_test_string
+#@ #     - Widget::_test_flag
+#@ #     - Widget::_test_enum
+#@ #     - Widget::_test_int
+#@ #     - Widget::_test_boolean
+#@ # ----------------------------------------------------------------------------
+#@ # Each megawidget gets a namespace of the same name inside the Widget namespace
+#@ # Each of these has an array opt, which contains information about the 
+#@ # megawidget options.  It maps megawidget options to a list with this format:
+#@ #     {optionType defaultValue isReadonly {additionalOptionalInfo}}
+#@ # Option types and their additional optional info are:
+#@ #	TkResource	{genericTkWidget genericTkWidgetOptionName}
+#@ #	BwResource	{nothing}
+#@ #	Enum		{list of enumeration values}
+#@ #	Int		{Boundary information}
+#@ #	Boolean		{nothing}
+#@ #	String		{nothing}
+#@ #	Flag		{string of valid flag characters}
+#@ #	Synonym		{nothing}
+#@ #	Color		{nothing}
+#@ #
+#@ # Next, each namespace has an array map, which maps class options to their
+#@ # component widget options:
+#@ #	map(-foreground) => {.e -foreground .f -foreground}
+#@ #
+#@ # Each has an array ${path}:opt, which contains the value of each megawidget
+#@ # option for a particular instance $path of the megawidget, and an array
+#@ # ${path}:mod, which stores the "changed" status of configuration options.
+#@ 
+#@ # Steps for creating a bwidget megawidget:
+#@ # 1. parse args to extract subwidget spec
+#@ # 2. Create frame with appropriate class and command line options
+#@ # 3. Get initialization options from optionDB, using frame
+#@ # 4. create subwidgets
+#@ 
+#@ # Uses newer string operations
+#@ package require Tcl 8.1.1
+#@ 
+#@ namespace eval Widget {
+#@     variable _optiontype
+#@     variable _class
+#@     variable _tk_widget
+#@ 
+#@     # This controls whether we try to use themed widgets from Tile
+#@     variable _theme 0
+#@ 
+#@     variable _aqua [expr {($::tcl_version >= 8.4) &&
+#@ 			  [string equal [tk windowingsystem] "aqua"]}]
+#@ 
+#@     array set _optiontype {
+#@         TkResource Widget::_test_tkresource
+#@         BwResource Widget::_test_bwresource
+#@         Enum       Widget::_test_enum
+#@         Int        Widget::_test_int
+#@         Boolean    Widget::_test_boolean
+#@         String     Widget::_test_string
+#@         Flag       Widget::_test_flag
+#@         Synonym    Widget::_test_synonym
+#@         Color      Widget::_test_color
+#@         Padding    Widget::_test_padding
+#@     }
+#@ 
+#@     proc use {} {}
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::tkinclude
+#@ #     Includes tk widget resources to BWidget widget.
+#@ #  class      class name of the BWidget
+#@ #  tkwidget   tk widget to include
+#@ #  subpath    subpath to configure
+#@ #  args       additionnal args for included options
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::tkinclude { class tkwidget subpath args } {
+#@     foreach {cmd lopt} $args {
+#@         # cmd can be
+#@         #   include      options to include            lopt = {opt ...}
+#@         #   remove       options to remove             lopt = {opt ...}
+#@         #   rename       options to rename             lopt = {opt newopt ...}
+#@         #   prefix       options to prefix             lopt = {pref opt opt ..}
+#@         #   initialize   set default value for options lopt = {opt value ...}
+#@         #   readonly     set readonly flag for options lopt = {opt flag ...}
+#@         switch -- $cmd {
+#@             remove {
+#@                 foreach option $lopt {
+#@                     set remove($option) 1
+#@                 }
+#@             }
+#@             include {
+#@                 foreach option $lopt {
+#@                     set include($option) 1
+#@                 }
+#@             }
+#@             prefix {
+#@                 set prefix [lindex $lopt 0]
+#@                 foreach option [lrange $lopt 1 end] {
+#@                     set rename($option) "-$prefix[string range $option 1 end]"
+#@                 }
+#@             }
+#@             rename     -
+#@             readonly   -
+#@             initialize {
+#@                 array set $cmd $lopt
+#@             }
+#@             default {
+#@                 return -code error "invalid argument \"$cmd\""
+#@             }
+#@         }
+#@     }
+#@ 
+#@     namespace eval $class {}
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::map classmap
+#@     upvar 0 ${class}::map$subpath submap
+#@     upvar 0 ${class}::optionExports exports
+#@ 
+#@     set foo [$tkwidget ".ericFoo###"]
+#@     # create resources informations from tk widget resources
+#@     foreach optdesc [_get_tkwidget_options $tkwidget] {
+#@         set option [lindex $optdesc 0]
+#@         if { (![info exists include] || [info exists include($option)]) &&
+#@              ![info exists remove($option)] } {
+#@             if { [llength $optdesc] == 3 } {
+#@                 # option is a synonym
+#@                 set syn [lindex $optdesc 1]
+#@                 if { ![info exists remove($syn)] } {
+#@                     # original option is not removed
+#@                     if { [info exists rename($syn)] } {
+#@                         set classopt($option) [list Synonym $rename($syn)]
+#@                     } else {
+#@                         set classopt($option) [list Synonym $syn]
+#@                     }
+#@                 }
+#@             } else {
+#@                 if { [info exists rename($option)] } {
+#@                     set realopt $option
+#@                     set option  $rename($option)
+#@                 } else {
+#@                     set realopt $option
+#@                 }
+#@                 if { [info exists initialize($option)] } {
+#@                     set value $initialize($option)
+#@                 } else {
+#@                     set value [lindex $optdesc 1]
+#@                 }
+#@                 if { [info exists readonly($option)] } {
+#@                     set ro $readonly($option)
+#@                 } else {
+#@                     set ro 0
+#@                 }
+#@                 set classopt($option) 			[list TkResource $value $ro [list $tkwidget $realopt]]
+#@ 
+#@ 		# Add an option database entry for this option
+#@ 		set optionDbName ".[lindex [_configure_option $realopt ""] 0]"
+#@ 		if { ![string equal $subpath ":cmd"] } {
+#@ 		    set optionDbName "$subpath$optionDbName"
+#@ 		}
+#@ 		option add *${class}$optionDbName $value widgetDefault
+#@ 		lappend exports($option) "$optionDbName"
+#@ 
+#@ 		# Store the forward and backward mappings for this
+#@ 		# option <-> realoption pair
+#@                 lappend classmap($option) $subpath "" $realopt
+#@ 		set submap($realopt) $option
+#@             }
+#@         }
+#@     }
+#@     ::destroy $foo
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::bwinclude
+#@ #     Includes BWidget resources to BWidget widget.
+#@ #  class    class name of the BWidget
+#@ #  subclass BWidget class to include
+#@ #  subpath  subpath to configure
+#@ #  args     additionnal args for included options
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::bwinclude { class subclass subpath args } {
+#@     foreach {cmd lopt} $args {
+#@         # cmd can be
+#@         #   include      options to include            lopt = {opt ...}
+#@         #   remove       options to remove             lopt = {opt ...}
+#@         #   rename       options to rename             lopt = {opt newopt ...}
+#@         #   prefix       options to prefix             lopt = {prefix opt opt ...}
+#@         #   initialize   set default value for options lopt = {opt value ...}
+#@         #   readonly     set readonly flag for options lopt = {opt flag ...}
+#@         switch -- $cmd {
+#@             remove {
+#@                 foreach option $lopt {
+#@                     set remove($option) 1
+#@                 }
+#@             }
+#@             include {
+#@                 foreach option $lopt {
+#@                     set include($option) 1
+#@                 }
+#@             }
+#@             prefix {
+#@                 set prefix [lindex $lopt 0]
+#@                 foreach option [lrange $lopt 1 end] {
+#@                     set rename($option) "-$prefix[string range $option 1 end]"
+#@                 }
+#@             }
+#@             rename     -
+#@             readonly   -
+#@             initialize {
+#@                 array set $cmd $lopt
+#@             }
+#@             default {
+#@                 return -code error "invalid argument \"$cmd\""
+#@             }
+#@         }
+#@     }
+#@ 
+#@     namespace eval $class {}
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::map classmap
+#@     upvar 0 ${class}::map$subpath submap
+#@     upvar 0 ${class}::optionExports exports
+#@     upvar 0 ${subclass}::opt subclassopt
+#@     upvar 0 ${subclass}::optionExports subexports
+#@ 
+#@     # create resources informations from BWidget resources
+#@     foreach {option optdesc} [array get subclassopt] {
+#@ 	set subOption $option
+#@         if { (![info exists include] || [info exists include($option)]) &&
+#@              ![info exists remove($option)] } {
+#@             set type [lindex $optdesc 0]
+#@             if { [string equal $type "Synonym"] } {
+#@                 # option is a synonym
+#@                 set syn [lindex $optdesc 1]
+#@                 if { ![info exists remove($syn)] } {
+#@                     if { [info exists rename($syn)] } {
+#@                         set classopt($option) [list Synonym $rename($syn)]
+#@                     } else {
+#@                         set classopt($option) [list Synonym $syn]
+#@                     }
+#@                 }
+#@             } else {
+#@                 if { [info exists rename($option)] } {
+#@                     set realopt $option
+#@                     set option  $rename($option)
+#@                 } else {
+#@                     set realopt $option
+#@                 }
+#@                 if { [info exists initialize($option)] } {
+#@                     set value $initialize($option)
+#@                 } else {
+#@                     set value [lindex $optdesc 1]
+#@                 }
+#@                 if { [info exists readonly($option)] } {
+#@                     set ro $readonly($option)
+#@                 } else {
+#@                     set ro [lindex $optdesc 2]
+#@                 }
+#@                 set classopt($option) 			[list $type $value $ro [lindex $optdesc 3]]
+#@ 
+#@ 		# Add an option database entry for this option
+#@ 		foreach optionDbName $subexports($subOption) {
+#@ 		    if { ![string equal $subpath ":cmd"] } {
+#@ 			set optionDbName "$subpath$optionDbName"
+#@ 		    }
+#@ 		    # Only add the option db entry if we are overriding the
+#@ 		    # normal widget default
+#@ 		    if { [info exists initialize($option)] } {
+#@ 			option add *${class}$optionDbName $value 				widgetDefault
+#@ 		    }
+#@ 		    lappend exports($option) "$optionDbName"
+#@ 		}
+#@ 
+#@ 		# Store the forward and backward mappings for this
+#@ 		# option <-> realoption pair
+#@                 lappend classmap($option) $subpath $subclass $realopt
+#@ 		set submap($realopt) $option
+#@             }
+#@         }
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::declare
+#@ #    Declares new options to BWidget class.
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::declare { class optlist } {
+#@     variable _optiontype
+#@ 
+#@     namespace eval $class {}
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::optionExports exports
+#@     upvar 0 ${class}::optionClass optionClass
+#@ 
+#@     foreach optdesc $optlist {
+#@         set option  [lindex $optdesc 0]
+#@         set optdesc [lrange $optdesc 1 end]
+#@         set type    [lindex $optdesc 0]
+#@ 
+#@         if { ![info exists _optiontype($type)] } {
+#@             # invalid resource type
+#@             return -code error "invalid option type \"$type\""
+#@         }
+#@ 
+#@         if { [string equal $type "Synonym"] } {
+#@             # test existence of synonym option
+#@             set syn [lindex $optdesc 1]
+#@             if { ![info exists classopt($syn)] } {
+#@                 return -code error "unknow option \"$syn\" for Synonym \"$option\""
+#@             }
+#@             set classopt($option) [list Synonym $syn]
+#@             continue
+#@         }
+#@ 
+#@         # all other resource may have default value, readonly flag and
+#@         # optional arg depending on type
+#@         set value [lindex $optdesc 1]
+#@         set ro    [lindex $optdesc 2]
+#@         set arg   [lindex $optdesc 3]
+#@ 
+#@         if { [string equal $type "BwResource"] } {
+#@             # We don't keep BwResource. We simplify to type of sub BWidget
+#@             set subclass    [lindex $arg 0]
+#@             set realopt     [lindex $arg 1]
+#@             if { ![string length $realopt] } {
+#@                 set realopt $option
+#@             }
+#@ 
+#@             upvar 0 ${subclass}::opt subclassopt
+#@             if { ![info exists subclassopt($realopt)] } {
+#@                 return -code error "unknow option \"$realopt\""
+#@             }
+#@             set suboptdesc $subclassopt($realopt)
+#@             if { $value == "" } {
+#@                 # We initialize default value
+#@                 set value [lindex $suboptdesc 1]
+#@             }
+#@             set type [lindex $suboptdesc 0]
+#@             set ro   [lindex $suboptdesc 2]
+#@             set arg  [lindex $suboptdesc 3]
+#@ 	    set optionDbName ".[lindex [_configure_option $option ""] 0]"
+#@ 	    option add *${class}${optionDbName} $value widgetDefault
+#@ 	    set exports($option) $optionDbName
+#@             set classopt($option) [list $type $value $ro $arg]
+#@             continue
+#@         }
+#@ 
+#@         # retreive default value for TkResource
+#@         if { [string equal $type "TkResource"] } {
+#@             set tkwidget [lindex $arg 0]
+#@ 	    set foo [$tkwidget ".ericFoo##"]
+#@             set realopt  [lindex $arg 1]
+#@             if { ![string length $realopt] } {
+#@                 set realopt $option
+#@             }
+#@             set tkoptions [_get_tkwidget_options $tkwidget]
+#@             if { ![string length $value] } {
+#@                 # We initialize default value
+#@ 		set ind [lsearch $tkoptions [list $realopt *]]
+#@                 set value [lindex [lindex $tkoptions $ind] end]
+#@             }
+#@ 	    set optionDbName ".[lindex [_configure_option $option ""] 0]"
+#@ 	    option add *${class}${optionDbName} $value widgetDefault
+#@ 	    set exports($option) $optionDbName
+#@             set classopt($option) [list TkResource $value $ro 		    [list $tkwidget $realopt]]
+#@ 	    set optionClass($option) [lindex [$foo configure $realopt] 1]
+#@ 	    ::destroy $foo
+#@             continue
+#@         }
+#@ 
+#@ 	set optionDbName ".[lindex [_configure_option $option ""] 0]"
+#@ 	option add *${class}${optionDbName} $value widgetDefault
+#@ 	set exports($option) $optionDbName
+#@         # for any other resource type, we keep original optdesc
+#@         set classopt($option) [list $type $value $ro $arg]
+#@     }
+#@ }
+#@ 
+#@ 
+#@ proc Widget::define { class filename args } {
+#@     variable ::BWidget::use
+#@     set use($class)      $args
+#@     set use($class,file) $filename
+#@     lappend use(classes) $class
+#@ 
+#@     if {[set x [lsearch -exact $args "-classonly"]] > -1} {
+#@ 	set args [lreplace $args $x $x]
+#@     } else {
+#@ 	interp alias {} ::${class} {} ${class}::create
+#@ 	proc ::${class}::use {} {}
+#@ 
+#@ 	bind $class <Destroy> [list Widget::destroy %W]
+#@     }
+#@ 
+#@     foreach class $args { ${class}::use }
+#@ }
+#@ 
+#@ 
+#@ proc Widget::create { class path {rename 1} } {
+#@     if {$rename} { rename $path ::$path:cmd }
+#@     proc ::$path { cmd args }     	[subst {return \[eval \[linsert \$args 0 ${class}::\$cmd [list $path]\]\]}]
+#@     return $path
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::addmap
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::addmap { class subclass subpath options } {
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::optionExports exports
+#@     upvar 0 ${class}::optionClass optionClass
+#@     upvar 0 ${class}::map classmap
+#@     upvar 0 ${class}::map$subpath submap
+#@ 
+#@     foreach {option realopt} $options {
+#@         if { ![string length $realopt] } {
+#@             set realopt $option
+#@         }
+#@ 	set val [lindex $classopt($option) 1]
+#@ 	set optDb ".[lindex [_configure_option $realopt ""] 0]"
+#@ 	if { ![string equal $subpath ":cmd"] } {
+#@ 	    set optDb "$subpath$optDb"
+#@ 	}
+#@ 	option add *${class}${optDb} $val widgetDefault
+#@ 	lappend exports($option) $optDb
+#@ 	# Store the forward and backward mappings for this
+#@ 	# option <-> realoption pair
+#@         lappend classmap($option) $subpath $subclass $realopt
+#@ 	set submap($realopt) $option
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::syncoptions
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::syncoptions { class subclass subpath options } {
+#@     upvar 0 ${class}::sync classync
+#@ 
+#@     foreach {option realopt} $options {
+#@         if { ![string length $realopt] } {
+#@             set realopt $option
+#@         }
+#@         set classync($option) [list $subpath $subclass $realopt]
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::init
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::init { class path options } {
+#@     variable _inuse
+#@     variable _class
+#@     variable _optiontype
+#@ 
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::$path:opt  pathopt
+#@     upvar 0 ${class}::$path:mod  pathmod
+#@     upvar 0 ${class}::map classmap
+#@     upvar 0 ${class}::$path:init pathinit
+#@ 
+#@     if { [info exists pathopt] } {
+#@ 	unset pathopt
+#@     }
+#@     if { [info exists pathmod] } {
+#@ 	unset pathmod
+#@     }
+#@     # We prefer to use the actual widget for option db queries, but if it
+#@     # doesn't exist yet, do the next best thing:  create a widget of the
+#@     # same class and use that.
+#@     set fpath $path
+#@     set rdbclass [string map [list :: ""] $class]
+#@     if { ![winfo exists $path] } {
+#@ 	set fpath ".#BWidget.#Class#$class"
+#@ 	# encapsulation frame to not pollute '.' childspace
+#@ 	if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
+#@ 	if { ![winfo exists $fpath] } {
+#@ 	    frame $fpath -class $rdbclass
+#@ 	}
+#@     }
+#@     foreach {option optdesc} [array get classopt] {
+#@         set pathmod($option) 0
+#@ 	if { [info exists classmap($option)] } {
+#@ 	    continue
+#@ 	}
+#@         set type [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@ 	    continue
+#@         }
+#@         if { [string equal $type "TkResource"] } {
+#@             set alt [lindex [lindex $optdesc 3] 1]
+#@         } else {
+#@             set alt ""
+#@         }
+#@         set optdb [lindex [_configure_option $option $alt] 0]
+#@         set def   [option get $fpath $optdb $rdbclass]
+#@         if { [string length $def] } {
+#@             set pathopt($option) $def
+#@         } else {
+#@             set pathopt($option) [lindex $optdesc 1]
+#@         }
+#@     }
+#@ 
+#@     if {![info exists _inuse($class)]} { set _inuse($class) 0 }
+#@     incr _inuse($class)
+#@ 
+#@     set _class($path) $class
+#@     foreach {option value} $options {
+#@         if { ![info exists classopt($option)] } {
+#@             unset pathopt
+#@             unset pathmod
+#@             return -code error "unknown option \"$option\""
+#@         }
+#@         set optdesc $classopt($option)
+#@         set type    [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@             set option  [lindex $optdesc 1]
+#@             set optdesc $classopt($option)
+#@             set type    [lindex $optdesc 0]
+#@         }
+#@         # this may fail if a wrong enum element was used
+#@         if {[catch {
+#@              $_optiontype($type) $option $value [lindex $optdesc 3]
+#@         } msg]} {
+#@             if {[info exists pathopt]} {
+#@                 unset pathopt
+#@             }
+#@             unset pathmod
+#@             return -code error $msg
+#@         }
+#@         set pathopt($option) $msg
+#@ 	set pathinit($option) $pathopt($option)
+#@     }
+#@ }
+#@ 
+#@ # Bastien Chevreux (bach@mwgdna.com)
+#@ #
+#@ # copyinit performs basically the same job as init, but it uses a
+#@ #  existing template to initialize its values. So, first a perferct copy
+#@ #  from the template is made just to be altered by any existing options
+#@ #  afterwards.
+#@ # But this still saves time as the first initialization parsing block is
+#@ #  skipped.
+#@ # As additional bonus, items that differ in just a few options can be
+#@ #  initialized faster by leaving out the options that are equal.
+#@ 
+#@ # This function is currently used only by ListBox::multipleinsert, but other
+#@ #  calls should follow :)
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::copyinit
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::copyinit { class templatepath path options } {
+#@     variable _class
+#@     variable _optiontype
+#@     upvar 0 ${class}::opt classopt 	    ${class}::$path:opt	 pathopt 	    ${class}::$path:mod	 pathmod 	    ${class}::$path:init pathinit 	    ${class}::$templatepath:opt	  templatepathopt 	    ${class}::$templatepath:mod	  templatepathmod 	    ${class}::$templatepath:init  templatepathinit
+#@ 
+#@     if { [info exists pathopt] } {
+#@ 	unset pathopt
+#@     }
+#@     if { [info exists pathmod] } {
+#@ 	unset pathmod
+#@     }
+#@ 
+#@     # We use the template widget for option db copying, but it has to exist!
+#@     array set pathmod  [array get templatepathmod]
+#@     array set pathopt  [array get templatepathopt]
+#@     array set pathinit [array get templatepathinit]
+#@ 
+#@     set _class($path) $class
+#@     foreach {option value} $options {
+#@ 	if { ![info exists classopt($option)] } {
+#@ 	    unset pathopt
+#@ 	    unset pathmod
+#@ 	    return -code error "unknown option \"$option\""
+#@ 	}
+#@ 	set optdesc $classopt($option)
+#@ 	set type    [lindex $optdesc 0]
+#@ 	if { [string equal $type "Synonym"] } {
+#@ 	    set option	[lindex $optdesc 1]
+#@ 	    set optdesc $classopt($option)
+#@ 	    set type	[lindex $optdesc 0]
+#@ 	}
+#@ 	set pathopt($option) [$_optiontype($type) $option $value [lindex $optdesc 3]]
+#@ 	set pathinit($option) $pathopt($option)
+#@     }
+#@ }
+#@ 
+#@ # Widget::parseArgs --
+#@ #
+#@ #	Given a widget class and a command-line spec, cannonize and validate
+#@ #	the given options, and return a keyed list consisting of the 
+#@ #	component widget and its masked portion of the command-line spec, and
+#@ #	one extra entry consisting of the portion corresponding to the 
+#@ #	megawidget itself.
+#@ #
+#@ # Arguments:
+#@ #	class	widget class to parse for.
+#@ #	options	command-line spec
+#@ #
+#@ # Results:
+#@ #	result	keyed list of portions of the megawidget and that segment of
+#@ #		the command line in which that portion is interested.
+#@ 
+#@ proc Widget::parseArgs {class options} {
+#@     variable _optiontype
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::map classmap
+#@     
+#@     foreach {option val} $options {
+#@ 	if { ![info exists classopt($option)] } {
+#@ 	    error "unknown option \"$option\""
+#@ 	}
+#@         set optdesc $classopt($option)
+#@         set type    [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@             set option  [lindex $optdesc 1]
+#@             set optdesc $classopt($option)
+#@             set type    [lindex $optdesc 0]
+#@         }
+#@ 	if { [string equal $type "TkResource"] } {
+#@ 	    # Make sure that the widget used for this TkResource exists
+#@ 	    Widget::_get_tkwidget_options [lindex [lindex $optdesc 3] 0]
+#@ 	}
+#@ 	set val [$_optiontype($type) $option $val [lindex $optdesc 3]]
+#@ 		
+#@ 	if { [info exists classmap($option)] } {
+#@ 	    foreach {subpath subclass realopt} $classmap($option) {
+#@ 		lappend maps($subpath) $realopt $val
+#@ 	    }
+#@ 	} else {
+#@ 	    lappend maps($class) $option $val
+#@ 	}
+#@     }
+#@     return [array get maps]
+#@ }
+#@ 
+#@ # Widget::initFromODB --
+#@ #
+#@ #	Initialize a megawidgets options with information from the option
+#@ #	database and from the command-line arguments given.
+#@ #
+#@ # Arguments:
+#@ #	class	class of the widget.
+#@ #	path	path of the widget -- should already exist.
+#@ #	options	command-line arguments.
+#@ #
+#@ # Results:
+#@ #	None.
+#@ 
+#@ proc Widget::initFromODB {class path options} {
+#@     variable _inuse
+#@     variable _class
+#@ 
+#@     upvar 0 ${class}::$path:opt  pathopt
+#@     upvar 0 ${class}::$path:mod  pathmod
+#@     upvar 0 ${class}::map classmap
+#@ 
+#@     if { [info exists pathopt] } {
+#@ 	unset pathopt
+#@     }
+#@     if { [info exists pathmod] } {
+#@ 	unset pathmod
+#@     }
+#@     # We prefer to use the actual widget for option db queries, but if it
+#@     # doesn't exist yet, do the next best thing:  create a widget of the
+#@     # same class and use that.
+#@     set fpath [_get_window $class $path]
+#@     set rdbclass [string map [list :: ""] $class]
+#@     if { ![winfo exists $path] } {
+#@ 	set fpath ".#BWidget.#Class#$class"
+#@ 	# encapsulation frame to not pollute '.' childspace
+#@ 	if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
+#@ 	if { ![winfo exists $fpath] } {
+#@ 	    frame $fpath -class $rdbclass
+#@ 	}
+#@     }
+#@ 
+#@     foreach {option optdesc} [array get ${class}::opt] {
+#@         set pathmod($option) 0
+#@ 	if { [info exists classmap($option)] } {
+#@ 	    continue
+#@ 	}
+#@         set type [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@ 	    continue
+#@         }
+#@ 	if { [string equal $type "TkResource"] } {
+#@             set alt [lindex [lindex $optdesc 3] 1]
+#@         } else {
+#@             set alt ""
+#@         }
+#@         set optdb [lindex [_configure_option $option $alt] 0]
+#@         set def   [option get $fpath $optdb $rdbclass]
+#@         if { [string length $def] } {
+#@             set pathopt($option) $def
+#@         } else {
+#@             set pathopt($option) [lindex $optdesc 1]
+#@         }
+#@     }
+#@ 
+#@     if {![info exists _inuse($class)]} { set _inuse($class) 0 }
+#@     incr _inuse($class)
+#@ 
+#@     set _class($path) $class
+#@     array set pathopt $options
+#@ }
+#@ 
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::destroy
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::destroy { path } {
+#@     variable _class
+#@     variable _inuse
+#@ 
+#@     if {![info exists _class($path)]} { return }
+#@ 
+#@     set class $_class($path)
+#@     upvar 0 ${class}::$path:opt pathopt
+#@     upvar 0 ${class}::$path:mod pathmod
+#@     upvar 0 ${class}::$path:init pathinit
+#@ 
+#@     if {[info exists _inuse($class)]} { incr _inuse($class) -1 }
+#@ 
+#@     if {[info exists pathopt]} {
+#@         unset pathopt
+#@     }
+#@     if {[info exists pathmod]} {
+#@         unset pathmod
+#@     }
+#@     if {[info exists pathinit]} {
+#@         unset pathinit
+#@     }
+#@ 
+#@     if {![string equal [info commands $path] ""]} { rename $path "" }
+#@ 
+#@     ## Unset any variables used in this widget.
+#@     foreach var [info vars ::${class}::$path:*] { unset $var }
+#@ 
+#@     unset _class($path)
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::configure
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::configure { path options } {
+#@     set len [llength $options]
+#@     if { $len <= 1 } {
+#@         return [_get_configure $path $options]
+#@     } elseif { $len % 2 == 1 } {
+#@         return -code error "incorrect number of arguments"
+#@     }
+#@ 
+#@     variable _class
+#@     variable _optiontype
+#@ 
+#@     set class $_class($path)
+#@     upvar 0 ${class}::opt  classopt
+#@     upvar 0 ${class}::map  classmap
+#@     upvar 0 ${class}::$path:opt pathopt
+#@     upvar 0 ${class}::$path:mod pathmod
+#@ 
+#@     set window [_get_window $class $path]
+#@     foreach {option value} $options {
+#@         if { ![info exists classopt($option)] } {
+#@             return -code error "unknown option \"$option\""
+#@         }
+#@         set optdesc $classopt($option)
+#@         set type    [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@             set option  [lindex $optdesc 1]
+#@             set optdesc $classopt($option)
+#@             set type    [lindex $optdesc 0]
+#@         }
+#@         if { ![lindex $optdesc 2] } {
+#@             set newval [$_optiontype($type) $option $value [lindex $optdesc 3]]
+#@             if { [info exists classmap($option)] } {
+#@ 		set window [_get_window $class $window]
+#@                 foreach {subpath subclass realopt} $classmap($option) {
+#@                     # Interpretation of special pointers:
+#@                     # | subclass | subpath | widget           | path           | class   |
+#@                     # +----------+---------+------------------+----------------+-context-+
+#@                     # | :cmd     | :cmd    | herited widget   | window:cmd     |window   |
+#@                     # | :cmd     | *       | subwidget        | window.subpath | window  |
+#@                     # | ""       | :cmd    | herited widget   | window:cmd     | window  |
+#@                     # | ""       | *       | own              | window         | window  |
+#@                     # | *        | :cmd    | own              | window         | current |
+#@                     # | *        | *       | subwidget        | window.subpath | current |
+#@                     if { [string length $subclass] && ! [string equal $subclass ":cmd"] } {
+#@                         if { [string equal $subpath ":cmd"] } {
+#@                             set subpath ""
+#@                         }
+#@                         set curval [${subclass}::cget $window$subpath $realopt]
+#@                         ${subclass}::configure $window$subpath $realopt $newval
+#@                     } else {
+#@                         set curval [$window$subpath cget $realopt]
+#@                         $window$subpath configure $realopt $newval
+#@                     }
+#@                 }
+#@             } else {
+#@ 		set curval $pathopt($option)
+#@ 		set pathopt($option) $newval
+#@ 	    }
+#@ 	    set pathmod($option) [expr {![string equal $newval $curval]}]
+#@         }
+#@     }
+#@ 
+#@     return {}
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::cget
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::cget { path option } {
+#@     variable _class
+#@     if { ![info exists _class($path)] } {
+#@         return -code error "unknown widget $path"
+#@     }
+#@ 
+#@     set class $_class($path)
+#@     if { ![info exists ${class}::opt($option)] } {
+#@         return -code error "unknown option \"$option\""
+#@     }
+#@ 
+#@     set optdesc [set ${class}::opt($option)]
+#@     set type    [lindex $optdesc 0]
+#@     if {[string equal $type "Synonym"]} {
+#@         set option [lindex $optdesc 1]
+#@     }
+#@ 
+#@     if { [info exists ${class}::map($option)] } {
+#@ 	foreach {subpath subclass realopt} [set ${class}::map($option)] {break}
+#@ 	set path "[_get_window $class $path]$subpath"
+#@ 	return [$path cget $realopt]
+#@     }
+#@     upvar 0 ${class}::$path:opt pathopt
+#@     set pathopt($option)
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::subcget
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::subcget { path subwidget } {
+#@     variable _class
+#@     set class $_class($path)
+#@     upvar 0 ${class}::$path:opt pathopt
+#@     upvar 0 ${class}::map$subwidget submap
+#@     upvar 0 ${class}::$path:init pathinit
+#@ 
+#@     set result {}
+#@     foreach realopt [array names submap] {
+#@ 	if { [info exists pathinit($submap($realopt))] } {
+#@ 	    lappend result $realopt $pathopt($submap($realopt))
+#@ 	}
+#@     }
+#@     return $result
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::hasChanged
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::hasChanged { path option pvalue } {
+#@     variable _class
+#@     upvar $pvalue value
+#@     set class $_class($path)
+#@     upvar 0 ${class}::$path:mod pathmod
+#@ 
+#@     set value   [Widget::cget $path $option]
+#@     set result  $pathmod($option)
+#@     set pathmod($option) 0
+#@ 
+#@     return $result
+#@ }
+#@ 
+#@ proc Widget::hasChangedX { path option args } {
+#@     variable _class
+#@     set class $_class($path)
+#@     upvar 0 ${class}::$path:mod pathmod
+#@ 
+#@     set result  $pathmod($option)
+#@     set pathmod($option) 0
+#@     foreach option $args {
+#@ 	lappend result $pathmod($option)
+#@ 	set pathmod($option) 0
+#@     }
+#@ 
+#@     set result
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::setoption
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::setoption { path option value } {
+#@ #    variable _class
+#@ 
+#@ #    set class $_class($path)
+#@ #    upvar 0 ${class}::$path:opt pathopt
+#@ 
+#@ #    set pathopt($option) $value
+#@     Widget::configure $path [list $option $value]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::getoption
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::getoption { path option } {
+#@ #    set class $::Widget::_class($path)
+#@ #    upvar 0 ${class}::$path:opt pathopt
+#@ 
+#@ #    return $pathopt($option)
+#@     return [Widget::cget $path $option]
+#@ }
+#@ 
+#@ # Widget::getMegawidgetOption --
+#@ #
+#@ #	Bypass the superfluous checks in cget and just directly peer at the
+#@ #	widget's data space.  This is much more fragile than cget, so it 
+#@ #	should only be used with great care, in places where speed is critical.
+#@ #
+#@ # Arguments:
+#@ #	path	widget to lookup options for.
+#@ #	option	option to retrieve.
+#@ #
+#@ # Results:
+#@ #	value	option value.
+#@ 
+#@ proc Widget::getMegawidgetOption {path option} {
+#@     variable _class
+#@     set class $_class($path)
+#@     upvar 0 ${class}::${path}:opt pathopt
+#@     set pathopt($option)
+#@ }
+#@ 
+#@ # Widget::setMegawidgetOption --
+#@ #
+#@ #	Bypass the superfluous checks in cget and just directly poke at the
+#@ #	widget's data space.  This is much more fragile than configure, so it 
+#@ #	should only be used with great care, in places where speed is critical.
+#@ #
+#@ # Arguments:
+#@ #	path	widget to lookup options for.
+#@ #	option	option to retrieve.
+#@ #	value	option value.
+#@ #
+#@ # Results:
+#@ #	value	option value.
+#@ 
+#@ proc Widget::setMegawidgetOption {path option value} {
+#@     variable _class
+#@     set class $_class($path)
+#@     upvar 0 ${class}::${path}:opt pathopt
+#@     set pathopt($option) $value
+#@ }
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_get_window
+#@ #  returns the window corresponding to widget path
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_get_window { class path } {
+#@     set idx [string last "#" $path]
+#@     if { $idx != -1 && [string equal [string range $path [expr {$idx+1}] end] $class] } {
+#@         return [string range $path 0 [expr {$idx-1}]]
+#@     } else {
+#@         return $path
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_get_configure
+#@ #  returns the configuration list of options
+#@ #  (as tk widget do - [$w configure ?option?])
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_get_configure { path options } {
+#@     variable _class
+#@ 
+#@     set class $_class($path)
+#@     upvar 0 ${class}::opt classopt
+#@     upvar 0 ${class}::map classmap
+#@     upvar 0 ${class}::$path:opt pathopt
+#@     upvar 0 ${class}::$path:mod pathmod
+#@ 
+#@     set len [llength $options]
+#@     if { !$len } {
+#@         set result {}
+#@         foreach option [lsort [array names classopt]] {
+#@             set optdesc $classopt($option)
+#@             set type    [lindex $optdesc 0]
+#@             if { [string equal $type "Synonym"] } {
+#@                 set syn     $option
+#@                 set option  [lindex $optdesc 1]
+#@                 set optdesc $classopt($option)
+#@                 set type    [lindex $optdesc 0]
+#@             } else {
+#@                 set syn ""
+#@             }
+#@             if { [string equal $type "TkResource"] } {
+#@                 set alt [lindex [lindex $optdesc 3] 1]
+#@             } else {
+#@                 set alt ""
+#@             }
+#@             set res [_configure_option $option $alt]
+#@             if { $syn == "" } {
+#@                 lappend result [concat $option $res [list [lindex $optdesc 1]] [list [cget $path $option]]]
+#@             } else {
+#@                 lappend result [list $syn [lindex $res 0]]
+#@             }
+#@         }
+#@         return $result
+#@     } elseif { $len == 1 } {
+#@         set option  [lindex $options 0]
+#@         if { ![info exists classopt($option)] } {
+#@             return -code error "unknown option \"$option\""
+#@         }
+#@         set optdesc $classopt($option)
+#@         set type    [lindex $optdesc 0]
+#@         if { [string equal $type "Synonym"] } {
+#@             set option  [lindex $optdesc 1]
+#@             set optdesc $classopt($option)
+#@             set type    [lindex $optdesc 0]
+#@         }
+#@         if { [string equal $type "TkResource"] } {
+#@             set alt [lindex [lindex $optdesc 3] 1]
+#@         } else {
+#@             set alt ""
+#@         }
+#@         set res [_configure_option $option $alt]
+#@         return [concat $option $res [list [lindex $optdesc 1]] [list [cget $path $option]]]
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_configure_option
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_configure_option { option altopt } {
+#@     variable _optiondb
+#@     variable _optionclass
+#@ 
+#@     if { [info exists _optiondb($option)] } {
+#@         set optdb $_optiondb($option)
+#@     } else {
+#@         set optdb [string range $option 1 end]
+#@     }
+#@     if { [info exists _optionclass($option)] } {
+#@         set optclass $_optionclass($option)
+#@     } elseif { [string length $altopt] } {
+#@         if { [info exists _optionclass($altopt)] } {
+#@             set optclass $_optionclass($altopt)
+#@         } else {
+#@             set optclass [string range $altopt 1 end]
+#@         }
+#@     } else {
+#@         set optclass [string range $option 1 end]
+#@     }
+#@     return [list $optdb $optclass]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_get_tkwidget_options
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_get_tkwidget_options { tkwidget } {
+#@     variable _tk_widget
+#@     variable _optiondb
+#@     variable _optionclass
+#@ 
+#@     set widget ".#BWidget.#$tkwidget"
+#@     # encapsulation frame to not pollute '.' childspace
+#@     if {![winfo exists ".#BWidget"]} { frame ".#BWidget" }
+#@     if { ![winfo exists $widget] || ![info exists _tk_widget($tkwidget)] } {
+#@ 	set widget [$tkwidget $widget]
+#@ 	# JDC: Withdraw toplevels, otherwise visible
+#@ 	if {[string equal $tkwidget "toplevel"]} {
+#@ 	    wm withdraw $widget
+#@ 	}
+#@ 	set config [$widget configure]
+#@ 	foreach optlist $config {
+#@ 	    set opt [lindex $optlist 0]
+#@ 	    if { [llength $optlist] == 2 } {
+#@ 		set refsyn [lindex $optlist 1]
+#@ 		# search for class
+#@ 		set idx [lsearch $config [list * $refsyn *]]
+#@ 		if { $idx == -1 } {
+#@ 		    if { [string index $refsyn 0] == "-" } {
+#@ 			# search for option (tk8.1b1 bug)
+#@ 			set idx [lsearch $config [list $refsyn * *]]
+#@ 		    } else {
+#@ 			# last resort
+#@ 			set idx [lsearch $config [list -[string tolower $refsyn] * *]]
+#@ 		    }
+#@ 		    if { $idx == -1 } {
+#@ 			# fed up with "can't read classopt()"
+#@ 			return -code error "can't find option of synonym $opt"
+#@ 		    }
+#@ 		}
+#@ 		set syn [lindex [lindex $config $idx] 0]
+#@ 		# JDC: used 4 (was 3) to get def from optiondb
+#@ 		set def [lindex [lindex $config $idx] 4]
+#@ 		lappend _tk_widget($tkwidget) [list $opt $syn $def]
+#@ 	    } else {
+#@ 		# JDC: used 4 (was 3) to get def from optiondb
+#@ 		set def [lindex $optlist 4]
+#@ 		lappend _tk_widget($tkwidget) [list $opt $def]
+#@ 		set _optiondb($opt)    [lindex $optlist 1]
+#@ 		set _optionclass($opt) [lindex $optlist 2]
+#@ 	    }
+#@ 	}
+#@     }
+#@     return $_tk_widget($tkwidget)
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_tkresource
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_tkresource { option value arg } {
+#@ #    set tkwidget [lindex $arg 0]
+#@ #    set realopt  [lindex $arg 1]
+#@     foreach {tkwidget realopt} $arg break
+#@     set path     ".#BWidget.#$tkwidget"
+#@     set old      [$path cget $realopt]
+#@     $path configure $realopt $value
+#@     set res      [$path cget $realopt]
+#@     $path configure $realopt $old
+#@ 
+#@     return $res
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_bwresource
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_bwresource { option value arg } {
+#@     return -code error "bad option type BwResource in widget"
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_synonym
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_synonym { option value arg } {
+#@     return -code error "bad option type Synonym in widget"
+#@ }
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_color
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_color { option value arg } {
+#@     if {[catch {winfo rgb . $value} color]} {
+#@         return -code error "bad $option value \"$value\": must be a colorname 		or #RRGGBB triplet"
+#@     }
+#@ 
+#@     return $value
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_string
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_string { option value arg } {
+#@     set value
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::_test_flag
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::_test_flag { option value arg } {
+#@     set len [string length $value]
+#@     set res ""
+#@     for {set i 0} {$i < $len} {incr i} {
+#@         set c [string index $value $i]
+#@         if { [string first $c $arg] == -1 } {
+#@             return -code error "bad [string range $option 1 end] value \"$value\": characters must be in \"$arg\""
+#@         }
+#@         if { [string first $c $res] == -1 } {
+#@             append res $c
+#@         }
+#@     }
+#@     return $res
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::_test_enum
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::_test_enum { option value arg } {
+#@     if { [lsearch $arg $value] == -1 } {
+#@         set last [lindex   $arg end]
+#@         set sub  [lreplace $arg end end]
+#@         if { [llength $sub] } {
+#@             set str "[join $sub ", "] or $last"
+#@         } else {
+#@             set str $last
+#@         }
+#@         return -code error "bad [string range $option 1 end] value \"$value\": must be $str"
+#@     }
+#@     return $value
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::_test_int
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::_test_int { option value arg } {
+#@     if { ![string is int -strict $value] || 	    ([string length $arg] && 	    ![expr [string map [list %d $value] $arg]]) } {
+#@ 		    return -code error "bad $option value			    \"$value\": must be integer ($arg)"
+#@     }
+#@     return $value
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::_test_boolean
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::_test_boolean { option value arg } {
+#@     if { ![string is boolean -strict $value] } {
+#@         return -code error "bad $option value \"$value\": must be boolean"
+#@     }
+#@ 
+#@     # Get the canonical form of the boolean value (1 for true, 0 for false)
+#@     return [string is true $value]
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::_test_padding
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::_test_padding { option values arg } {
+#@     set len [llength $values]
+#@     if {$len < 1 || $len > 2} {
+#@         return -code error "bad pad value \"$values\":                        must be positive screen distance"
+#@     }
+#@ 
+#@     foreach value $values {
+#@         if { ![string is int -strict $value] ||             ([string length $arg] &&             ![expr [string map [list %d $value] $arg]]) } {
+#@                 return -code error "bad pad value \"$value\":                                must be positive screen distance ($arg)"
+#@         }
+#@     }
+#@     return $values
+#@ }
+#@ 
+#@ 
+#@ # Widget::_get_padding --
+#@ #
+#@ #       Return the requesting padding value for a padding option.
+#@ #
+#@ # Arguments:
+#@ #	path		Widget to get the options for.
+#@ #       option          The name of the padding option.
+#@ #	index		The index of the padding.  If the index is empty,
+#@ #                       the first padding value is returned.
+#@ #
+#@ # Results:
+#@ #	Return a numeric value that can be used for padding.
+#@ proc Widget::_get_padding { path option {index 0} } {
+#@     set pad [Widget::cget $path $option]
+#@     set val [lindex $pad $index]
+#@     if {$val == ""} { set val [lindex $pad 0] }
+#@     return $val
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::focusNext
+#@ #  Same as tk_focusNext, but call Widget::focusOK
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::focusNext { w } {
+#@     set cur $w
+#@     while 1 {
+#@ 
+#@ 	# Descend to just before the first child of the current widget.
+#@ 
+#@ 	set parent $cur
+#@ 	set children [winfo children $cur]
+#@ 	set i -1
+#@ 
+#@ 	# Look for the next sibling that isn't a top-level.
+#@ 
+#@ 	while 1 {
+#@ 	    incr i
+#@ 	    if {$i < [llength $children]} {
+#@ 		set cur [lindex $children $i]
+#@ 		if {[string equal [winfo toplevel $cur] $cur]} {
+#@ 		    continue
+#@ 		} else {
+#@ 		    break
+#@ 		}
+#@ 	    }
+#@ 
+#@ 	    # No more siblings, so go to the current widget's parent.
+#@ 	    # If it's a top-level, break out of the loop, otherwise
+#@ 	    # look for its next sibling.
+#@ 
+#@ 	    set cur $parent
+#@ 	    if {[string equal [winfo toplevel $cur] $cur]} {
+#@ 		break
+#@ 	    }
+#@ 	    set parent [winfo parent $parent]
+#@ 	    set children [winfo children $parent]
+#@ 	    set i [lsearch -exact $children $cur]
+#@ 	}
+#@ 	if {[string equal $cur $w] || [focusOK $cur]} {
+#@ 	    return $cur
+#@ 	}
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # -----------------------------------------------------------------------------
+#@ #  Command Widget::focusPrev
+#@ #  Same as tk_focusPrev, except:
+#@ #	+ Don't traverse from a child to a direct ancestor
+#@ #	+ Call Widget::focusOK instead of tk::focusOK
+#@ # -----------------------------------------------------------------------------
+#@ proc Widget::focusPrev { w } {
+#@     set cur $w
+#@     set origParent [winfo parent $w]
+#@     while 1 {
+#@ 
+#@ 	# Collect information about the current window's position
+#@ 	# among its siblings.  Also, if the window is a top-level,
+#@ 	# then reposition to just after the last child of the window.
+#@ 
+#@ 	if {[string equal [winfo toplevel $cur] $cur]}  {
+#@ 	    set parent $cur
+#@ 	    set children [winfo children $cur]
+#@ 	    set i [llength $children]
+#@ 	} else {
+#@ 	    set parent [winfo parent $cur]
+#@ 	    set children [winfo children $parent]
+#@ 	    set i [lsearch -exact $children $cur]
+#@ 	}
+#@ 
+#@ 	# Go to the previous sibling, then descend to its last descendant
+#@ 	# (highest in stacking order.  While doing this, ignore top-levels
+#@ 	# and their descendants.  When we run out of descendants, go up
+#@ 	# one level to the parent.
+#@ 
+#@ 	while {$i > 0} {
+#@ 	    incr i -1
+#@ 	    set cur [lindex $children $i]
+#@ 	    if {[string equal [winfo toplevel $cur] $cur]} {
+#@ 		continue
+#@ 	    }
+#@ 	    set parent $cur
+#@ 	    set children [winfo children $parent]
+#@ 	    set i [llength $children]
+#@ 	}
+#@ 	set cur $parent
+#@ 	if {[string equal $cur $w]} {
+#@ 	    return $cur
+#@ 	}
+#@ 	# If we are just at the original parent of $w, skip it as a
+#@ 	# potential focus accepter.  Extra safety in this is to see if
+#@ 	# that parent is also a proc (not a C command), which is what
+#@ 	# BWidgets makes for any megawidget.  Could possibly also check
+#@ 	# for '[info commands ::${origParent}:cmd] != ""'.  [Bug 765667]
+#@ 	if {[string equal $cur $origParent]
+#@ 	    && [info procs ::$origParent] != ""} {
+#@ 	    continue
+#@ 	}
+#@ 	if {[focusOK $cur]} {
+#@ 	    return $cur
+#@ 	}
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command Widget::focusOK
+#@ #  Same as tk_focusOK, but handles -editable option and whole tags list.
+#@ # ----------------------------------------------------------------------------
+#@ proc Widget::focusOK { w } {
+#@     set code [catch {$w cget -takefocus} value]
+#@     if { $code == 1 } {
+#@         return 0
+#@     }
+#@     if {($code == 0) && ($value != "")} {
+#@ 	if {$value == 0} {
+#@ 	    return 0
+#@ 	} elseif {$value == 1} {
+#@ 	    return [winfo viewable $w]
+#@ 	} else {
+#@ 	    set value [uplevel \#0 $value $w]
+#@             if {$value != ""} {
+#@ 		return $value
+#@ 	    }
+#@         }
+#@     }
+#@     if {![winfo viewable $w]} {
+#@ 	return 0
+#@     }
+#@     set code [catch {$w cget -state} value]
+#@     if {($code == 0) && ($value == "disabled")} {
+#@ 	return 0
+#@     }
+#@     set code [catch {$w cget -editable} value]
+#@     if {($code == 0) && ($value == 0)} {
+#@         return 0
+#@     }
+#@ 
+#@     set top [winfo toplevel $w]
+#@     foreach tags [bindtags $w] {
+#@         if { ![string equal $tags $top]  &&
+#@              ![string equal $tags "all"] &&
+#@              [regexp Key [bind $tags]] } {
+#@             return 1
+#@         }
+#@     }
+#@     return 0
+#@ }
+#@ 
+#@ 
+#@ proc Widget::traverseTo { w } {
+#@     set focus [focus]
+#@     if {![string equal $focus ""]} {
+#@ 	event generate $focus <<TraverseOut>>
+#@     }
+#@     focus $w
+#@ 
+#@     event generate $w <<TraverseIn>>
+#@ }
+#@ 
+#@ 
+#@ # Widget::varForOption --
+#@ #
+#@ #	Retrieve a fully qualified variable name for the option specified.
+#@ #	If the option is not one for which a variable exists, throw an error 
+#@ #	(ie, those options that map directly to widget options).
+#@ #
+#@ # Arguments:
+#@ #	path	megawidget to get an option var for.
+#@ #	option	option to get a var for.
+#@ #
+#@ # Results:
+#@ #	varname	name of the variable, fully qualified, suitable for tracing.
+#@ 
+#@ proc Widget::varForOption {path option} {
+#@     variable _class
+#@     variable _optiontype
+#@ 
+#@     set class $_class($path)
+#@     upvar 0 ${class}::$path:opt pathopt
+#@ 
+#@     if { ![info exists pathopt($option)] } {
+#@ 	error "unable to find variable for option \"$option\""
+#@     }
+#@     set varname "::Widget::${class}::$path:opt($option)"
+#@     return $varname
+#@ }
+#@ 
+#@ # Widget::getVariable --
+#@ #
+#@ #       Get a variable from within the namespace of the widget.
+#@ #
+#@ # Arguments:
+#@ #	path		Megawidget to get the variable for.
+#@ #	varName		The variable name to retrieve.
+#@ #       newVarName	The variable name to refer to in the calling proc.
+#@ #
+#@ # Results:
+#@ #	Creates a reference to newVarName in the calling proc.
+#@ proc Widget::getVariable { path varName {newVarName ""} } {
+#@     variable _class
+#@     set class $_class($path)
+#@     if {![string length $newVarName]} { set newVarName $varName }
+#@     uplevel 1 [list upvar \#0 ${class}::$path:$varName $newVarName]
+#@ }
+#@ 
+#@ # Widget::options --
+#@ #
+#@ #       Return a key-value list of options for a widget.  This can
+#@ #       be used to serialize the options of a widget and pass them
+#@ #       on to a new widget with the same options.
+#@ #
+#@ # Arguments:
+#@ #	path		Widget to get the options for.
+#@ #	args		A list of options.  If empty, all options are returned.
+#@ #
+#@ # Results:
+#@ #	Returns list of options as: -option value -option value ...
+#@ proc Widget::options { path args } {
+#@     if {[llength $args]} {
+#@         foreach option $args {
+#@             lappend options [_get_configure $path $option]
+#@         }
+#@     } else {
+#@         set options [_get_configure $path {}]
+#@     }
+#@ 
+#@     set result [list]
+#@     foreach list $options {
+#@         if {[llength $list] < 5} { continue }
+#@         lappend result [lindex $list 0] [lindex $list end]
+#@     }
+#@     return $result
+#@ }
+#@ 
+#@ 
+#@ # Widget::getOption --
+#@ #
+#@ #	Given a list of widgets, determine which option value to use.
+#@ #	The widgets are given to the command in order of highest to
+#@ #	lowest.  Starting with the lowest widget, whichever one does
+#@ #	not match the default option value is returned as the value.
+#@ #	If all the widgets are default, we return the highest widget's
+#@ #	value.
+#@ #
+#@ # Arguments:
+#@ #	option		The option to check.
+#@ #	default		The default value.  If any widget in the list
+#@ #			does not match this default, its value is used.
+#@ #	args		A list of widgets.
+#@ #
+#@ # Results:
+#@ #	Returns the value of the given option to use.
+#@ #
+#@ proc Widget::getOption { option default args } {
+#@     for {set i [expr [llength $args] -1]} {$i >= 0} {incr i -1} {
+#@ 	set widget [lindex $args $i]
+#@ 	set value  [Widget::cget $widget $option]
+#@ 	if {[string equal $value $default]} { continue }
+#@ 	return $value
+#@     }
+#@     return $value
+#@ }
+#@ 
+#@ 
+#@ proc Widget::nextIndex { path node } {
+#@     Widget::getVariable $path autoIndex
+#@     if {![info exists autoIndex]} { set autoIndex -1 }
+#@     return [string map [list #auto [incr autoIndex]] $node]
+#@ }
+#@ 
+#@ 
+#@ proc Widget::exists { path } {
+#@     variable _class
+#@     return [info exists _class($path)]
+#@ }
+#@ 
+#@ proc Widget::theme {{bool {}}} {
+#@     # Private, *experimental* API that may change at any time - JH
+#@     variable _theme
+#@     if {[llength [info level 0]] == 2} {
+#@ 	# set theme-ability
+#@ 	if {[catch {package require Tk 8.5a6}]
+#@ 	    && [catch {package require tile 0.6}]
+#@ 	    && [catch {package require tile 1}]} {
+#@ 	    return -code error "BWidget's theming requires tile 0.6+"
+#@ 	} else {
+#@ 	    catch {style default BWSlim.Toolbutton -padding 0}
+#@ 	}
+#@ 	set _theme [string is true -strict $bool]
+#@     }
+#@     return $_theme
+#@ }
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/widget.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/init.tcl
+
+#@ namespace eval Widget {}
+#@ proc Widget::_opt_defaults {{prio widgetDefault}} {
+#@     if {$::tcl_version >= 8.4} {
+#@ 	set plat [tk windowingsystem]
+#@     } else {
+#@ 	set plat $::tcl_platform(platform)
+#@     }
+#@     switch -exact $plat {
+#@ 	"aqua" {
+#@ 	}
+#@ 	"win32" -
+#@ 	"windows" {
+#@ 	    #option add *Listbox.background	SystemWindow $prio
+#@ 	    option add *ListBox.background	SystemWindow $prio
+#@ 	    #option add *Button.padY		0 $prio
+#@ 	    option add *ButtonBox.padY		0 $prio
+#@ 	    option add *Dialog.padY		0 $prio
+#@ 	    option add *Dialog.anchor		e $prio
+#@ 	}
+#@ 	"x11" -
+#@ 	default {
+#@ 	    option add *Scrollbar.width		12 $prio
+#@ 	    option add *Scrollbar.borderWidth	1  $prio
+#@ 	    option add *Dialog.separator	1  $prio
+#@ 	    option add *MainFrame.relief	raised $prio
+#@ 	    option add *MainFrame.separator	none   $prio
+#@ 	}
+#@     }
+#@ }
+#@ Widget::_opt_defaults
+#@ 
+#@ option read [file join $::BWIDGET::LIBRARY "lang" "en.rc"]
+#@ 
+#@ ## Add a TraverseIn binding to standard Tk widgets to handle some of
+#@ ## the BWidget-specific things we do.
+#@ bind Entry   <<TraverseIn>> { %W selection range 0 end; %W icursor end }
+#@ bind Spinbox <<TraverseIn>> { %W selection range 0 end; %W icursor end }
+#@ 
+#@ bind all <Key-Tab>       { Widget::traverseTo [Widget::focusNext %W] }
+#@ bind all <<PrevWindow>>  { Widget::traverseTo [Widget::focusPrev %W] }
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/init.tcl
+
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/utils.tcl
+
+#@ # ----------------------------------------------------------------------------
+#@ #  utils.tcl
+#@ #  This file is part of Unifix BWidget Toolkit
+#@ #  $Id: utils.tcl,v 1.15.2.1 2009/09/03 17:29:03 oehhar Exp $
+#@ # ----------------------------------------------------------------------------
+#@ #  Index of commands:
+#@ #     - GlobalVar::exists
+#@ #     - GlobalVar::setvarvar
+#@ #     - GlobalVar::getvarvar
+#@ #     - BWidget::assert
+#@ #     - BWidget::clonename
+#@ #     - BWidget::get3dcolor
+#@ #     - BWidget::XLFDfont
+#@ #     - BWidget::place
+#@ #     - BWidget::grab
+#@ #     - BWidget::focus
+#@ # ----------------------------------------------------------------------------
+#@ 
+#@ namespace eval GlobalVar {
+#@     proc use {} {}
+#@ }
+#@ 
+#@ 
+#@ namespace eval BWidget {
+#@     variable _top
+#@     variable _gstack {}
+#@     variable _fstack {}
+#@     proc use {} {}
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command GlobalVar::exists
+#@ # ----------------------------------------------------------------------------
+#@ proc GlobalVar::exists { varName } {
+#@     return [uplevel \#0 [list info exists $varName]]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command GlobalVar::setvar
+#@ # ----------------------------------------------------------------------------
+#@ proc GlobalVar::setvar { varName value } {
+#@     return [uplevel \#0 [list set $varName $value]]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command GlobalVar::getvar
+#@ # ----------------------------------------------------------------------------
+#@ proc GlobalVar::getvar { varName } {
+#@     return [uplevel \#0 [list set $varName]]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command GlobalVar::tracevar
+#@ # ----------------------------------------------------------------------------
+#@ proc GlobalVar::tracevar { cmd varName args } {
+#@     return [uplevel \#0 [list trace $cmd $varName] $args]
+#@ }
+#@ 
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::lreorder
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::lreorder { list neworder } {
+#@     set pos     0
+#@     set newlist {}
+#@     foreach e $neworder {
+#@         if { [lsearch -exact $list $e] != -1 } {
+#@             lappend newlist $e
+#@             set tabelt($e)  1
+#@         }
+#@     }
+#@     set len [llength $newlist]
+#@     if { !$len } {
+#@         return $list
+#@     }
+#@     if { $len == [llength $list] } {
+#@         return $newlist
+#@     }
+#@     set pos 0
+#@     foreach e $list {
+#@         if { ![info exists tabelt($e)] } {
+#@             set newlist [linsert $newlist $pos $e]
+#@         }
+#@         incr pos
+#@     }
+#@     return $newlist
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::assert
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::assert { exp {msg ""}} {
+#@     set res [uplevel 1 expr $exp]
+#@     if { !$res} {
+#@         if { $msg == "" } {
+#@             return -code error "Assertion failed: {$exp}"
+#@         } else {
+#@             return -code error $msg
+#@         }
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::clonename
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::clonename { menu } {
+#@     set path     ""
+#@     set menupath ""
+#@     set found    0
+#@     foreach widget [lrange [split $menu "."] 1 end] {
+#@         if { $found || [winfo class "$path.$widget"] == "Menu" } {
+#@             set found 1
+#@             append menupath "#" $widget
+#@             append path "." $menupath
+#@         } else {
+#@             append menupath "#" $widget
+#@             append path "." $widget
+#@         }
+#@     }
+#@     return $path
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::getname
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::getname { name } {
+#@     if { [string length $name] } {
+#@         set text [option get . "${name}Name" ""]
+#@         if { [string length $text] } {
+#@             return [parsetext $text]
+#@         }
+#@     }
+#@     return {}
+#@  }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::parsetext
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::parsetext { text } {
+#@     set result ""
+#@     set index  -1
+#@     set start  0
+#@     while { [string length $text] } {
+#@         set idx [string first "&" $text]
+#@         if { $idx == -1 } {
+#@             append result $text
+#@             set text ""
+#@         } else {
+#@             set char [string index $text [expr {$idx+1}]]
+#@             if { $char == "&" } {
+#@                 append result [string range $text 0 $idx]
+#@                 set    text   [string range $text [expr {$idx+2}] end]
+#@                 set    start  [expr {$start+$idx+1}]
+#@             } else {
+#@                 append result [string range $text 0 [expr {$idx-1}]]
+#@                 set    text   [string range $text [expr {$idx+1}] end]
+#@                 incr   start  $idx
+#@                 set    index  $start
+#@             }
+#@         }
+#@     }
+#@     return [list $result $index]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::get3dcolor
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::get3dcolor { path bgcolor } {
+#@     foreach val [winfo rgb $path $bgcolor] {
+#@         lappend dark [expr {60*$val/100}]
+#@         set tmp1 [expr {14*$val/10}]
+#@         if { $tmp1 > 65535 } {
+#@             set tmp1 65535
+#@         }
+#@         set tmp2 [expr {(65535+$val)/2}]
+#@         lappend light [expr {($tmp1 > $tmp2) ? $tmp1:$tmp2}]
+#@     }
+#@     return [list [eval format "#%04x%04x%04x" $dark] [eval format "#%04x%04x%04x" $light]]
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::XLFDfont
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::XLFDfont { cmd args } {
+#@     switch -- $cmd {
+#@         create {
+#@             set font "-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+#@         }
+#@         configure {
+#@             set font [lindex $args 0]
+#@             set args [lrange $args 1 end]
+#@         }
+#@         default {
+#@             return -code error "XLFDfont: commande incorrect: $cmd"
+#@         }
+#@     }
+#@     set lfont [split $font "-"]
+#@     if { [llength $lfont] != 15 } {
+#@         return -code error "XLFDfont: description XLFD incorrect: $font"
+#@     }
+#@ 
+#@     foreach {option value} $args {
+#@         switch -- $option {
+#@             -foundry { set index 1 }
+#@             -family  { set index 2 }
+#@             -weight  { set index 3 }
+#@             -slant   { set index 4 }
+#@             -size    { set index 7 }
+#@             default  { return -code error "XLFDfont: option incorrecte: $option" }
+#@         }
+#@         set lfont [lreplace $lfont $index $index $value]
+#@     }
+#@     return [join $lfont "-"]
+#@ }
+#@ 
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::place
+#@ # ----------------------------------------------------------------------------
+#@ #
+#@ # Notes:
+#@ #  For Windows systems with more than one monitor the available screen area may
+#@ #  have negative positions. Geometry settings with negative numbers are used
+#@ #  under X to place wrt the right or bottom of the screen. On windows, Tk
+#@ #  continues to do this. However, a geometry such as 100x100+-200-100 can be
+#@ #  used to place a window onto a secondary monitor. Passing the + gets Tk
+#@ #  to pass the remainder unchanged so the Windows manager then handles -200
+#@ #  which is a position on the left hand monitor.
+#@ #  I've tested this for left, right, above and below the primary monitor.
+#@ #  Currently there is no way to ask Tk the extent of the Windows desktop in 
+#@ #  a multi monitor system. Nor what the legal co-ordinate range might be.
+#@ #
+#@ proc BWidget::place { path w h args } {
+#@     variable _top
+#@ 
+#@     update idletasks
+#@ 
+#@     # If the window is not mapped, it may have any current size.
+#@     # Then use required size, but bound it to the screen width.
+#@     # This is mostly inexact, because any toolbars will still be removed
+#@     # which may reduce size.
+#@     if { $w == 0 && [winfo ismapped $path] } {
+#@         set w [winfo width $path]
+#@     } else {
+#@         if { $w == 0 } {
+#@             set w [winfo reqwidth $path]
+#@         }
+#@         set vsw [winfo vrootwidth  $path]
+#@         if { $w > $vsw } { set w $vsw }
+#@     }
+#@ 
+#@     if { $h == 0 && [winfo ismapped $path] } {
+#@         set h [winfo height $path]
+#@     } else {
+#@         if { $h == 0 } {
+#@             set h [winfo reqheight $path]
+#@         }
+#@         set vsh [winfo vrootheight $path]
+#@         if { $h > $vsh } { set h $vsh }
+#@     }
+#@ 
+#@     set arglen [llength $args]
+#@     if { $arglen > 3 } {
+#@         return -code error "BWidget::place: bad number of argument"
+#@     }
+#@ 
+#@     if { $arglen > 0 } {
+#@         set where [lindex $args 0]
+#@ 	set list  [list "at" "center" "left" "right" "above" "below"]
+#@         set idx   [lsearch $list $where]
+#@         if { $idx == -1 } {
+#@ 	    return -code error [BWidget::badOptionString position $where $list]
+#@         }
+#@         if { $idx == 0 } {
+#@             set err [catch {
+#@                 # purposely removed the {} around these expressions - [PT]
+#@                 set x [expr int([lindex $args 1])]
+#@                 set y [expr int([lindex $args 2])]
+#@             }]
+#@             if { $err } {
+#@                 return -code error "BWidget::place: incorrect position"
+#@             }
+#@             if {$::tcl_platform(platform) == "windows"} {
+#@                 # handle windows multi-screen. -100 != +-100
+#@                 if {[string index [lindex $args 1] 0] != "-"} {
+#@                     set x "+$x"
+#@                 }
+#@                 if {[string index [lindex $args 2] 0] != "-"} {
+#@                     set y "+$y"
+#@                 }
+#@             } else {
+#@                 if { $x >= 0 } {
+#@                     set x "+$x"
+#@                 }
+#@                 if { $y >= 0 } {
+#@                     set y "+$y"
+#@                 }
+#@             }
+#@         } else {
+#@             if { $arglen == 2 } {
+#@                 set widget [lindex $args 1]
+#@                 if { ![winfo exists $widget] } {
+#@                     return -code error "BWidget::place: \"$widget\" does not exist"
+#@                 }
+#@ 	    } else {
+#@ 		set widget .
+#@ 	    }
+#@             set sw [winfo screenwidth  $path]
+#@             set sh [winfo screenheight $path]
+#@             if { $idx == 1 } {
+#@                 if { $arglen == 2 } {
+#@                     # center to widget
+#@                     set x0 [expr {[winfo rootx $widget] + ([winfo width  $widget] - $w)/2}]
+#@                     set y0 [expr {[winfo rooty $widget] + ([winfo height $widget] - $h)/2}]
+#@                 } else {
+#@                     # center to screen
+#@                     set x0 [expr {($sw - $w)/2 - [winfo vrootx $path]}]
+#@                     set y0 [expr {($sh - $h)/2 - [winfo vrooty $path]}]
+#@                 }
+#@                 set x "+$x0"
+#@                 set y "+$y0"
+#@                 if {$::tcl_platform(platform) != "windows"} {
+#@                     if { $x0+$w > $sw } {set x "-0"; set x0 [expr {$sw-$w}]}
+#@                     if { $x0 < 0 }      {set x "+0"}
+#@                     if { $y0+$h > $sh } {set y "-0"; set y0 [expr {$sh-$h}]}
+#@                     if { $y0 < 0 }      {set y "+0"}
+#@                 }
+#@             } else {
+#@                 set x0 [winfo rootx $widget]
+#@                 set y0 [winfo rooty $widget]
+#@                 set x1 [expr {$x0 + [winfo width  $widget]}]
+#@                 set y1 [expr {$y0 + [winfo height $widget]}]
+#@                 if { $idx == 2 || $idx == 3 } {
+#@                     set y "+$y0"
+#@                     if {$::tcl_platform(platform) != "windows"} {
+#@                         if { $y0+$h > $sh } {set y "-0"; set y0 [expr {$sh-$h}]}
+#@                         if { $y0 < 0 }      {set y "+0"}
+#@                     }
+#@                     if { $idx == 2 } {
+#@                         # try left, then right if out, then 0 if out
+#@                         if { $x0 >= $w } {
+#@                             set x [expr {$x0-$w}]
+#@                         } elseif { $x1+$w <= $sw } {
+#@                             set x "+$x1"
+#@                         } else {
+#@                             set x "+0"
+#@                         }
+#@                     } else {
+#@                         # try right, then left if out, then 0 if out
+#@                         if { $x1+$w <= $sw } {
+#@                             set x "+$x1"
+#@                         } elseif { $x0 >= $w } {
+#@                             set x [expr {$x0-$w}]
+#@                         } else {
+#@                             set x "-0"
+#@                         }
+#@                     }
+#@                 } else {
+#@                     set x "+$x0"
+#@                     if {$::tcl_platform(platform) != "windows"} {
+#@                         if { $x0+$w > $sw } {set x "-0"; set x0 [expr {$sw-$w}]}
+#@                         if { $x0 < 0 }      {set x "+0"}
+#@                     }
+#@                     if { $idx == 4 } {
+#@                         # try top, then bottom, then 0
+#@                         if { $h <= $y0 } {
+#@                             set y [expr {$y0-$h}]
+#@                         } elseif { $y1+$h <= $sh } {
+#@                             set y "+$y1"
+#@                         } else {
+#@                             set y "+0"
+#@                         }
+#@                     } else {
+#@                         # try bottom, then top, then 0
+#@                         if { $y1+$h <= $sh } {
+#@                             set y "+$y1"
+#@                         } elseif { $h <= $y0 } {
+#@                             set y [expr {$y0-$h}]
+#@                         } else {
+#@                             set y "-0"
+#@                         }
+#@                     }
+#@                 }
+#@             }
+#@         }
+#@ 
+#@         ## If there's not a + or - in front of the number, we need to add one.
+#@         if {[string is integer [string index $x 0]]} { set x +$x }
+#@         if {[string is integer [string index $y 0]]} { set y +$y }
+#@ 
+#@         wm geometry $path "${w}x${h}${x}${y}"
+#@     } else {
+#@         wm geometry $path "${w}x${h}"
+#@     }
+#@     update idletasks
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::grab
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::grab { option path } {
+#@     variable _gstack
+#@ 
+#@     if { $option == "release" } {
+#@         catch {::grab release $path}
+#@         while { [llength $_gstack] } {
+#@             set grinfo  [lindex $_gstack end]
+#@             set _gstack [lreplace $_gstack end end]
+#@             foreach {oldg mode} $grinfo {
+#@                 if { ![string equal $oldg $path] && [winfo exists $oldg] } {
+#@                     if { $mode == "global" } {
+#@                         catch {::grab -global $oldg}
+#@                     } else {
+#@                         catch {::grab $oldg}
+#@                     }
+#@                     return
+#@                 }
+#@             }
+#@         }
+#@     } else {
+#@         set oldg [::grab current]
+#@         if { $oldg != "" } {
+#@             lappend _gstack [list $oldg [::grab status $oldg]]
+#@         }
+#@         if { $option == "global" } {
+#@             ::grab -global $path
+#@         } else {
+#@             ::grab $path
+#@         }
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # ----------------------------------------------------------------------------
+#@ #  Command BWidget::focus
+#@ # ----------------------------------------------------------------------------
+#@ proc BWidget::focus { option path {refocus 1} } {
+#@     variable _fstack
+#@ 
+#@     if { $option == "release" } {
+#@         while { [llength $_fstack] } {
+#@             set oldf [lindex $_fstack end]
+#@             set _fstack [lreplace $_fstack end end]
+#@             if { ![string equal $oldf $path] && [winfo exists $oldf] } {
+#@                 if {$refocus} {catch {::focus -force $oldf}}
+#@                 return
+#@             }
+#@         }
+#@     } elseif { $option == "set" } {
+#@         lappend _fstack [::focus]
+#@         ::focus -force $path
+#@     }
+#@ }
+#@ 
+#@ # BWidget::refocus --
+#@ #
+#@ #	Helper function used to redirect focus from a container frame in 
+#@ #	a megawidget to a component widget.  Only redirects focus if
+#@ #	focus is already on the container.
+#@ #
+#@ # Arguments:
+#@ #	container	container widget to redirect from.
+#@ #	component	component widget to redirect to.
+#@ #
+#@ # Results:
+#@ #	None.
+#@ 
+#@ proc BWidget::refocus {container component} {
+#@     if { [string equal $container [::focus]] } {
+#@ 	::focus $component
+#@     }
+#@     return
+#@ }
+#@ 
+#@ ## These mirror tk::(Set|Restore)FocusGrab
+#@ 
+#@ # BWidget::SetFocusGrab --
+#@ #   swap out current focus and grab temporarily (for dialogs)
+#@ # Arguments:
+#@ #   grab	new window to grab
+#@ #   focus	window to give focus to
+#@ # Results:
+#@ #   Returns nothing
+#@ #
+#@ proc BWidget::SetFocusGrab {grab {focus {}}} {
+#@     variable _focusGrab
+#@     set index "$grab,$focus"
+#@ 
+#@     lappend _focusGrab($index) [::focus]
+#@     set oldGrab [::grab current $grab]
+#@     lappend _focusGrab($index) $oldGrab
+#@     if {[winfo exists $oldGrab]} {
+#@ 	lappend _focusGrab($index) [::grab status $oldGrab]
+#@     }
+#@     # The "grab" command will fail if another application
+#@     # already holds the grab.  So catch it.
+#@     catch {::grab $grab}
+#@     if {[winfo exists $focus]} {
+#@ 	::focus $focus
+#@     }
+#@ }
+#@ 
+#@ # BWidget::RestoreFocusGrab --
+#@ #   restore old focus and grab (for dialogs)
+#@ # Arguments:
+#@ #   grab	window that had taken grab
+#@ #   focus	window that had taken focus
+#@ #   destroy	destroy|withdraw - how to handle the old grabbed window
+#@ # Results:
+#@ #   Returns nothing
+#@ #
+#@ proc BWidget::RestoreFocusGrab {grab focus {destroy destroy}} {
+#@     variable _focusGrab
+#@     set index "$grab,$focus"
+#@     if {[info exists _focusGrab($index)]} {
+#@ 	foreach {oldFocus oldGrab oldStatus} $_focusGrab($index) break
+#@ 	unset _focusGrab($index)
+#@     } else {
+#@ 	set oldGrab ""
+#@     }
+#@ 
+#@     catch {::focus $oldFocus}
+#@     ::grab release $grab
+#@     if {[string equal $destroy "withdraw"]} {
+#@ 	wm withdraw $grab
+#@     } else {
+#@ 	::destroy $grab
+#@     }
+#@     if {[winfo exists $oldGrab] && [winfo ismapped $oldGrab]} {
+#@ 	if {[string equal $oldStatus "global"]} {
+#@ 	    ::grab -global $oldGrab
+#@ 	} else {
+#@ 	    ::grab $oldGrab
+#@ 	}
+#@     }
+#@ }
+#@ 
+#@ # BWidget::badOptionString --
+#@ #
+#@ #	Helper function to return a proper error string when an option
+#@ #       doesn't match a list of given options.
+#@ #
+#@ # Arguments:
+#@ #	type	A string that represents the type of option.
+#@ #	value	The value that is in-valid.
+#@ #       list	A list of valid options.
+#@ #
+#@ # Results:
+#@ #	None.
+#@ proc BWidget::badOptionString {type value list} {
+#@     set last [lindex $list end]
+#@     set list [lreplace $list end end]
+#@     return "bad $type \"$value\": must be [join $list ", "], or $last"
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::wrongNumArgsString { string } {
+#@     return "wrong # args: should be \"$string\""
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::read_file { file } {
+#@     set fp [open $file]
+#@     set x  [read $fp [file size $file]]
+#@     close $fp
+#@     return $x
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::classes { class } {
+#@     variable use
+#@ 
+#@     ${class}::use
+#@     set classes [list $class]
+#@     if {![info exists use($class)]} { return }
+#@     foreach class $use($class) {
+#@         if {![string equal $class "-classonly"]} {
+#@             eval lappend classes [classes $class]
+#@         }
+#@     }
+#@     return [lsort -unique $classes]
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::library { args } {
+#@     variable use
+#@ 
+#@     set libs    [list widget init utils]
+#@     set classes [list]
+#@     foreach class $args {
+#@ 	${class}::use
+#@         eval lappend classes [classes $class]
+#@     }
+#@ 
+#@     eval lappend libs [lsort -unique $classes]
+#@ 
+#@     set library ""
+#@     foreach lib $libs {
+#@ 	if {![info exists use($lib,file)]} {
+#@ 	    set file [file join $::BWIDGET::LIBRARY $lib.tcl]
+#@ 	} else {
+#@ 	    set file [file join $::BWIDGET::LIBRARY $use($lib,file).tcl]
+#@ 	}
+#@         append library [read_file $file]
+#@     }
+#@ 
+#@     return $library
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::inuse { class } {
+#@     variable ::Widget::_inuse
+#@ 
+#@     if {![info exists _inuse($class)]} { return 0 }
+#@     return [expr $_inuse($class) > 0]
+#@ }
+#@ 
+#@ 
+#@ proc BWidget::write { filename {mode w} } {
+#@     variable use
+#@ 
+#@     if {![info exists use(classes)]} { return }
+#@ 
+#@     set classes [list]
+#@     foreach class $use(classes) {
+#@ 	if {![inuse $class]} { continue }
+#@ 	lappend classes $class
+#@     }
+#@ 
+#@     set fp [open $filename $mode]
+#@     puts $fp [eval library $classes]
+#@     close $fp
+#@ 
+#@     return
+#@ }
+#@ 
+#@ 
+#@ # BWidget::bindMouseWheel --
+#@ #
+#@ #	Bind mouse wheel actions to a given widget.
+#@ #
+#@ # Arguments:
+#@ #	widget - The widget to bind.
+#@ #
+#@ # Results:
+#@ #	None.
+#@ proc BWidget::bindMouseWheel { widget } {
+#@     if {[bind all <MouseWheel>] eq ""} {
+#@ 	# style::as and Tk 8.5 have global bindings
+#@ 	# Only enable these if no global binding for MouseWheel exists
+#@ 	bind $widget <MouseWheel> 	    {%W yview scroll [expr {-%D/24}]  units}
+#@ 	bind $widget <Shift-MouseWheel> 	    {%W yview scroll [expr {-%D/120}] pages}
+#@ 	bind $widget <Control-MouseWheel> 	    {%W yview scroll [expr {-%D/120}] units}
+#@     }
+#@ 
+#@     if {[bind all <Button-4>] eq ""} {
+#@ 	# style::as and Tk 8.5 have global bindings
+#@ 	# Only enable these if no global binding for them exists
+#@ 	bind $widget <Button-4> {event generate %W <MouseWheel> -delta  120}
+#@ 	bind $widget <Button-5> {event generate %W <MouseWheel> -delta -120}
+#@     }
+#@ }
+#@ 
+#@ 
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/syn/fp/bw/utils.tcl
+
+#@ 
+#@ #set up tlu_plus files (for virtual route and post route extraction)
+#@ set_tlu_plus_files -max_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcbest_top2.tluplus -min_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcworst_top2.tluplus -tech2itf_map $mw_techfile_path/tluplus/star.map_9M
+#@ 
+#@ #perform consistency checks across all libraries (both logic and physical libraries)
+#@ set_check_library_options -all
+#@ check_library
+#@ check_tlu_plus_files
+#@ 
+#@ #connect/link all referenced library components to the current design
+#@ link
+#@ 
+#@ #Power Mapping
+#@ derive_pg_connection -power_net VDD -power_pin VDD                     -ground_net VSS -ground_pin VSS                     -create_ports "top"
+#@ derive_pg_connection -power_net VDD -ground_net VSS                     -tie
+#@ check_mv_design -power_nets
+#@ 
+#@ #Read timing and apply constraints
+#@ read_sdc ./pipelined.syn.sdc
+#@ # -- Starting source /home/lab.apps/vlsiapps/icc/current/auxx/syn/all_command_option_def.tcl
+
+#@ define_proc_attributes all_physical_only_cells -info "Get the collection of physical only cells" -define_args {
+#@ { -coordinates "coordinates of bounding box" "llx lly urx ury" string {optional}} 
+#@ { -lib_cells "get cells related to these objects" "objects" list {optional}} 
+#@ { -cell_name "list of cell name patterns and collections" "patterns" list {optional}} 
+#@ { "" "Existing collection" "arguments" list {optional}} 
+#@ }
+#@ define_proc_attributes all_physical_only_nets  -info "Get the collection of physical only nets" -define_args {
+#@ { "" "list of cell name patterns and collections" "arguments" list {optional}} 
+#@ } 
+#@ define_proc_attributes all_drc_violated_nets -info "Returns all DRC violated nets" -define_args { 
+#@ { -max_capacitance "max Cap DRC violated nets" "" string {optional}} 
+#@ { -max_transition "max transition time DRC violated nets" "" string {optional}} 
+#@ { -max_fanout "max fanout DRC violated nets" "" string {optional}}
+#@ { -threshold "Captures all values more than or equal to threshold" "threshold" string {optional}} 
+#@ { -bound "Captures all values less than or equal to bound bound" "upper" string {optional}} 
+#@ { "" "objects patterns OR collection" "arguments"  list {optional}} 
+#@ }
+#@ define_proc_attributes all_fanin -info "return pins or cells in transitive fanin" -define_args { 
+#@ { -to "set of sink ports, pins, or nets" "sink_list" list {optional}} 
+#@ { -startpoints_only  "return only the timing startpoints" "" string {optional}} 
+#@ { -exclude_bboxes "black-boxes are not included in return-set" "" string {optional}} 
+#@ { -break_on_bboxes  "traversal stops at black-boxes" "" string {optional}} 
+#@ { -only_cells "only cells are included in the return-set" "" string {optional}} 
+#@ { -flat "trace entire design instead of just current hierarchy" "" string {optional}} 
+#@ { -levels "maximum number of levels of logic to traverse" "n" string {optional}} 
+#@ { -trace_arcs "Type of network arcs to trace. Values: timing, all" "arc_type" string {optional}}
+#@ }
+#@ define_proc_attributes all_high_fanout -info "Returns all high fanout objects" -define_args { 
+#@ { -nets "high fanout nets" "" string {optional}} 
+#@ { -threshold "high fanout threshold: value>=0" "threshold" string {optional}} 
+#@ { -through_buf_inv "treat buffers and inverters as transparent -check for transitive fanout" "" string {optional}} 
+#@ { "" "objects patterns OR collection" "arguments" string {optional}} 
+#@ }
+#@ define_proc_attributes all_ideal_nets -info "Returns all ideal nets" -define_args { 
+#@ { "" "objects patterns OR collection" "arguments" string {optional}} 
+#@ }
+#@ define_proc_attributes all_inputs -info "return input ports" -define_args { 
+#@ { -clock "ports with input delay relative to clock" "clock" string {optional}} 
+#@ { -edge_triggered "ports with non-level-sensitive input delay" "" string {optional}} 
+#@ { -level_sensitive "ports with level-sensitive input delay" "" string {optional}} 
+#@ }
+#@ define_proc_attributes all_outputs -info "return output ports" -define_args { 
+#@ { -clock "ports with output delay relative to clock" "clock" string {optional}} 
+#@ { -edge_triggered "ports with non-level-sensitive output delay" "" string {optional}} 
+#@ { -level_sensitive "ports with level-sensitive output delay" "" string {optional}} 
+#@ }
+#@ define_proc_attributes all_threestate -info "Returns all threestate objects" -define_args { 
+#@ { -nets "threestate nets" "" string {optional}} 
+#@ { "" "objects patterns OR collection" "arguments" string {optional}} 
+#@ }
+#@ define_proc_attributes all_dont_touch -info "Returns all dont touch objects" -define_args { 
+#@ { -nets "Dont touch nets" "" string {optional}} 
+#@ { -cells "Dont touch cells" "" string {optional}} 
+#@ { "" "Dont touch patterns OR collections" "patterns" string {optional}} 
+#@ }
+#@ define_proc_attributes all_size_only_cells -info "Returns all size_only cells" -define_args { 
+#@ { "" "Object patterns OD collections" "patterns" string {optional}} 
+#@ }
+#@ define_proc_attributes all_clocks -info "return all clocks in the current design"  
+#@ define_proc_attributes all_designs -info "return all designs" 
+#@ define_proc_attributes all_registers  -info "create a collection of register cells or pins" -define_args { 
+#@ { -no_hierarchy "only search the top level of hierarchy" "" string {optional}} 
+#@ {-rise_clock "return registers triggered by rise edge of this clock" "rise_clock" string {optional}}
+#@ {-fall_clock "return registers triggered by rise edge of this clock" "fall_clock" string {optional}}
+#@ { -clock "return registers of this clock" "clock" string {optional}} 
+#@ { -cells "return cells - this is the default" "" string {optional}} 
+#@ { -data_pins "return data_pins" "" string {optional}} 
+#@ { -clock_pins "return clock_pins" "" string {optional}} 
+#@ { -slave_clock_pins "return slave_clock_pin" "" string {optional}} 
+#@ { -inverted_output "return FF's with inverted output phase" "" string {optional}} 
+#@ { -output_pins "return output_pins" "" string {optional}} 
+#@ { -level_sensitive "only consider level sensitive registers" "" string {optional}} 
+#@ { -edge_triggered "only consider edge triggered register" "" string {optional}} 
+#@ { -master_slave "only consider master/slave registers" "" string {optional}} 
+#@ }
+#@ define_proc_attributes all_critical_cells -info "return critical cells" -define_args { 
+#@ { -slack_range "critical range to select cells:value>=0" "range_value" string {optional}} 
+#@ }
+#@ define_proc_attributes all_critical_pins -info "return critical pins" -define_args { 
+#@ { -slack_range "critical range to select cells:value>=0" "range_value" string {optional}} 
+#@ { -type "pintype: Values: endpoint, startpoint" "pin_type" string {optional}} 
+#@ }
+#@ define_proc_attributes get_magnet_cells -info "return magnet cells collection" -define_args {
+#@ { -stop_by_sequential_cells "don't pull sequential cells" "" string {optional}} 
+#@ { -exclude_buffers "skip through buffers in levels" "" string {optional}} 
+#@ { -exclude_cells "list of excluded cells list" "" string {optional}}
+#@ { -logical_level "number of logical levels to pull for placement" "integer" string {optional}} 
+#@ { -stop_points "list of stop points where to stop magnetizing paths" "object_list" list {optional}} 
+#@ { "" "a list of magnet objects" "magnet_objects" list {optional}} 
+#@ }
+#@ define_proc_attributes all_fanout -info "return pins or cells in transitive fanout" -define_args {
+#@ {-clock_tree "return all clock tree components in design" "" string {optional}}
+#@ {-from "set of source ports, pins, or nets" "source_list" list {optional}}
+#@ {-endpoints_only "return only the timing endpoints" "" string {optional}}
+#@ {-exclude_bboxes "black-boxes are not included in return-set" "" string {optional}}
+#@ {-break_on_bboxes "traversal stops at black-boxes" "" string {optional}}
+#@ {-only_cells "only cells are included in the return-set" "" string {optional}}
+#@ {-flat "trace entire design instead of just current hierarchy" "" string {optional}}
+#@ {-levels "maximum number of levels of logic to traverse" "n" string {optional}}
+#@ {-trace_arcs "Type of network arcs to trace. Values: timing, all" "arc_type" string {optional}}
+#@ }
+#@ define_proc_attributes all_physical_only_ports -info " Get the collection of physical only ports" -define_args {
+#@ {"" "list of cell name patterns and collections" "arguments" list {optional}}
+#@ }
+#@ define_proc_attributes get_matching_nets_for_pattern -info "Get matched nets for a certain net pattern" -define_args { 
+#@ { -pattern "pattern id" "integer" string {optional}} 
+#@ { -optimizable "Return all nets that can be optimized" "" string {optional}} 
+#@ { -transition_lower_limit "nets with transition equal or greater than lower limit" "lower_limit" string {optional}} 
+#@ { -transition_upper_limit "nets with transition less than upper limit" "upper_limit" string {optional}} 
+#@ { -setup_slack_lower_limit "nets with slack equal or greater than lower limit" "lower_limit" string {optional}} 
+#@ { -setup_slack_upper_limit "nets with slack less than upper limit" "upper_limit" string {optional}} 
+#@ { -hold_slack_lower_limit "nets with hold slack equal or greater than lower limit" "lower_limit" string {optional}} 
+#@ { -hold_slack_upper_limit "nets with hold slack less than upper limit" "upper_limit" string {optional}} 
+#@ }
+#@ # -- End source /home/lab.apps/vlsiapps/icc/current/auxx/syn/all_command_option_def.tcl
+
+#@ check_timing
+#@ 
+#@ #Check for false or multicycle path settings, any disabled arcs and case_analysis settings
+#@ report_timing_requirements
+#@ report disable_timing
+#@ report_case_analysis
+#@ 
+#@ #Define environment
+#@ set_operating_conditions -analysis_type bc_wc  -min BC0D88COM -max WC0D72COM  -max_library tcbn65gpluswc0d72_ccs -min_library tcbn65gplusbc0d88_ccs
+#@ set_min_library tcbn65gpluswc0d72_ccs.db -min_version tcbn65gplusbc0d88_ccs.db
+#@ 
+#@ #Loading and drive settings. 
+#@ # set_drive_cell for inputs
+#@ set_driving_cell -lib_cell INVD1 reset
+#@ set_driving_cell -lib_cell INVD1 clk
+#@ #set_driving_cell -lib_cell INVD1 A
+#@ #set_driving_cell -lib_cell INVD1 B
+#@ # set_load for outputs
+#@ #set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Status]
+#@ #set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output1]
+#@ #set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output2]
+#@ 
+#@ link
+#@ 
+#@ #Define design constraints
+#@ set_max_transition 0.1 [get_designs pipelined]
+#@ set_max_fanout 6 pipelined
+#@ create_clock -name "clk" -period 2 -waveform {0 1} [get_ports clk] 
+#@ set_clock_uncertainty -setup 0.05 clk
+#@ set_clock_uncertainty -hold 0.01 clk
+#@ set_clock_transition 0.05 [get_clocks]
+#@ set_input_delay 0.1 -clock clk [remove_from_collection [all_inputs] [get_ports clk]]
+#@ 
+#@ #Check clock health and assumptions
+#@ report_clock -skew
+#@ report_clock
+#@ 
+#@ #Apply timing and optimization control. 
+#@ #set_dont_use and set_prefer -min<hold_fixing_cells> are likely candidates 
+#@ set_app_var timing_enable_multiple_clocks_per_reg true
+#@ set_fix_multiple_port_nets -all -buffer_constants
+#@ group_path -name INPUTS -from [all_inputs]
+#@ group_path -name OUTPUTS -to [all_outputs]
+#@ 
+#@ #Check that timing constraints are all good
+#@ set_zero_interconnect_delay_mode true
+#@ report_constraint -all
+#@ report_timing
+#@ set_zero_interconnect_delay_mode false
+#@ 
+#@ #save current milkyway Design so you can obtain it again with open_mw_cel ....
+#@ save_mw_cel -as pipelined_data_setup
+#@ 
+#@ #Now you're ready to floorplan the design
+#@ create_floorplan -control_type aspect_ratio                 -core_aspect_ratio 1                 -core_utilization 0.8                 -left_io2core 3                 -right_io2core 3                 -top_io2core 3                 -bottom_io2core 3
+#@ 
+#@ #Plan your power. The outer ring extends out to hit the pin and inner stripe shrinks to cover the core.
+#@ create_rectangular_rings  -nets  {VSS VDD}                          -around core                          -left_segment_layer M2                           -left_segment_width 1                          -right_segment_layer M2                          -right_segment_width 1                          -bottom_segment_layer M1                          -bottom_segment_width 1                          -top_segment_layer M1                           -top_segment_width 1                          -left_offset 0.5                          -right_offset 0.5                          -bottom_offset 0.5                          -top_offset 0.5

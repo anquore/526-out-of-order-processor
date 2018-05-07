@@ -1,0 +1,1 @@
+../../src/verilog/xnorifier.sv

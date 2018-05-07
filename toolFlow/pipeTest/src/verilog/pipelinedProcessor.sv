@@ -1,4 +1,3 @@
-`timescale 1ns/10ps
 module pipelinedProcessor(clk, reset);
 	input clk, reset;
 	

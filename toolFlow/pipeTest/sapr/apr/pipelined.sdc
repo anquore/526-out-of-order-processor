@@ -1,0 +1,1 @@
+../syn/pipelined_design/pipelined.sdc

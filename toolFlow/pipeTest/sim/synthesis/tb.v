@@ -1,0 +1,1 @@
+../../src/verilog/tb.syn.v
