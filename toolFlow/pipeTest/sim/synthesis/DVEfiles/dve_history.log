@@ -7,17 +7,17 @@ gui_create_pref_key -category {schem_pin_hc} -key {textExtFont} -value_type {str
 # State setting overrides
 gui_state_default_create -off -ini
 gui_set_state_value -category Globals -key recent_databases -value {{gui_open_db -file /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/synthesis/vcdplus.vpd -design V1} {gui_open_db -file /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral/pipelined.vpd -design V1} {gui_open_db -file /home/projects/ee526.2018spr/cjgooch/toolFlow/pipeTest/sim/behavioral/pipelined.vpd -design V1} {gui_open_db -file /home/projects/ee526.2018spr/cjgooch/cad0/sim/synthesis/vcdplus.vpd -design V1} {gui_open_db -file /home/projects/ee526.2018spr/cjgooch/cad0/sim/pre-syn/vcdplus.vpd -design V1}}
-gui_set_state_value -category Layout -key child_console_size_x -value 1829
-gui_set_state_value -category Layout -key child_console_size_y -value 154
+gui_set_state_value -category Layout -key child_console_size_x -value 1826
+gui_set_state_value -category Layout -key child_console_size_y -value 151
 gui_set_state_value -category Layout -key child_data_colvariable -value 163
-gui_set_state_value -category Layout -key child_data_size_x -value 216
+gui_set_state_value -category Layout -key child_data_size_x -value 213
 gui_set_state_value -category Layout -key child_data_size_y -value 683
 gui_set_state_value -category Layout -key child_driver_size_x -value 1279
 gui_set_state_value -category Layout -key child_driver_size_y -value 179
 gui_set_state_value -category Layout -key child_hier_col3 -value {-1}
 gui_set_state_value -category Layout -key child_hier_colhier -value 418
 gui_set_state_value -category Layout -key child_hier_colpd -value 0
-gui_set_state_value -category Layout -key child_hier_size_x -value 479
+gui_set_state_value -category Layout -key child_hier_size_x -value 476
 gui_set_state_value -category Layout -key child_hier_size_y -value 683
 gui_set_state_value -category Layout -key child_schematic_docknewline -value false
 gui_set_state_value -category Layout -key child_schematic_pos_x -value {-2}
@@ -27,16 +27,16 @@ gui_set_state_value -category Layout -key child_schematic_size_y -value 672
 gui_set_state_value -category Layout -key child_source_docknewline -value false
 gui_set_state_value -category Layout -key child_source_pos_x -value {-2}
 gui_set_state_value -category Layout -key child_source_pos_y -value {-15}
-gui_set_state_value -category Layout -key child_source_size_x -value 1137
+gui_set_state_value -category Layout -key child_source_size_x -value 1140
 gui_set_state_value -category Layout -key child_source_size_y -value 678
-gui_set_state_value -category Layout -key child_wave_colname -value 266
-gui_set_state_value -category Layout -key child_wave_colvalue -value 266
-gui_set_state_value -category Layout -key child_wave_left -value 536
-gui_set_state_value -category Layout -key child_wave_right -value 1307
+gui_set_state_value -category Layout -key child_wave_colname -value 265
+gui_set_state_value -category Layout -key child_wave_colvalue -value 265
+gui_set_state_value -category Layout -key child_wave_left -value 535
+gui_set_state_value -category Layout -key child_wave_right -value 1305
 gui_set_state_value -category Layout -key main_pos_x -value 65
 gui_set_state_value -category Layout -key main_pos_y -value 80
-gui_set_state_value -category Layout -key main_size_x -value 1894
-gui_set_state_value -category Layout -key main_size_y -value 998
+gui_set_state_value -category Layout -key main_size_x -value 1891
+gui_set_state_value -category Layout -key main_size_y -value 995
 gui_set_state_value -category Layout -key stand_source_child_docknewline -value false
 gui_set_state_value -category Layout -key stand_source_child_pos_x -value {-2}
 gui_set_state_value -category Layout -key stand_source_child_pos_y -value {-15}
@@ -45,10 +45,10 @@ gui_set_state_value -category Layout -key stand_source_child_size_y -value 380
 gui_set_state_value -category Layout -key stand_wave_child_docknewline -value false
 gui_set_state_value -category Layout -key stand_wave_child_pos_x -value {-2}
 gui_set_state_value -category Layout -key stand_wave_child_pos_y -value {-15}
-gui_set_state_value -category Layout -key stand_wave_child_size_x -value 1853
-gui_set_state_value -category Layout -key stand_wave_child_size_y -value 836
-gui_set_state_value -category Layout -key stand_wave_top_pos_x -value 70
-gui_set_state_value -category Layout -key stand_wave_top_pos_y -value 84
+gui_set_state_value -category Layout -key stand_wave_child_size_x -value 1850
+gui_set_state_value -category Layout -key stand_wave_child_size_y -value 833
+gui_set_state_value -category Layout -key stand_wave_top_pos_x -value 73
+gui_set_state_value -category Layout -key stand_wave_top_pos_y -value 87
 gui_set_state_value -category Layout -key stand_wave_top_size_x -value 1918
 gui_set_state_value -category Layout -key stand_wave_top_size_y -value 1006
 gui_create_state_key -category FindDialog -key m_pMatchCase -value_type bool -value false
@@ -59,4 +59,38 @@ gui_state_default_create -off
 
 # Begin command logging
 gui_open_db -file /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/synthesis/vcdplus.vpd -design V1
-gui_list_select -id Hier.1 -current_item_name tb -current_item_type Scope  -selected  { tb   }
+gui_list_expand -id  Hier.1   tb
+gui_list_expand -id  Hier.1   tb.dut
+gui_list_expand -id  Hier.1   tb.dut.theDataPath
+gui_list_expand -id  Hier.1   tb.dut.theDataPath.regStuff
+gui_list_expand -id  Hier.1   tb.dut.theDataPath.regStuff.theReg
+gui_list_select -id Hier.1 -current_item_name tb.dut.theDataPath.regStuff.theReg.bankODFFs -current_item_type Scope  -selected  { tb.dut.theDataPath.regStuff.theReg.bankODFFs   }
+gui_open_window Wave
+gui_list_add -id Wave.1 -from Hier.1 { tb.dut.theDataPath.regStuff.theReg.bankODFFs } -insertionbar
+gui_list_expand -id  Wave.1   {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[31:0][63:0]}
+gui_list_select -id Wave.1 -selected  { {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[31][63:0]}   }
+gui_list_select -id Wave.1 { {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[30][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[29][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[28][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[27][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[26][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[25][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[24][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[23][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[22][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[21][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[20][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[19][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[18][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[17][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[16][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[15][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[14][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[13][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[12][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[11][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[10][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[9][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[8][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[7][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[6][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[5][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[4][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[3][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[2][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[1][63:0]}  {tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut[0][63:0]}   }
+gui_list_set_selected_property -id Wave.1 -radix twosComplement
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_zoom -window Wave.1 -factor 0.5
+gui_list_set_selected_property -id Wave.1 -radix decimal
+gui_wv_scroll_hslidermove -id  Wave.1 1943
+gui_wv_scroll_hslidermove -id  Wave.1 2151
+gui_close_window -window TopLevel.2

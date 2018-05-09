@@ -39,3 +39,4 @@ module ALUStage (ALUSrc, valueToStore, dOrImm, dAddr9,
 	//the ALU
 	alu theAlu (.A, .B, .cntrl(ALUOp), .result, .negative, .zero, .overflow, .carry_out);
 endmodule
+

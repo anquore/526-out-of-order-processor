@@ -1,12 +1,13 @@
 # Begin_DVE_Session_Save_Info
 # DVE full session
-# Saved on Sun May 6 16:52:16 2018
+# Saved on Sun May 6 18:28:49 2018
 # Designs open: 1
 #   V1: /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/synthesis/vcdplus.vpd
 # Toplevel windows open: 1
 # 	TopLevel.1
 #   Source.1: completeDataPath
-#   Group count = 0
+#   Group count = 1
+#   Group bankODFFs signal count = 5
 # End_DVE_Session_Save_Info
 
 # DVE version: H-2013.06_Full64
@@ -65,7 +66,7 @@ if {![gui_exist_window -window TopLevel.1]} {
 } else { 
     set TopLevel.1 TopLevel.1
 }
-gui_show_window -window ${TopLevel.1} -show_state normal -rect {{65 80} {1893 997}}
+gui_show_window -window ${TopLevel.1} -show_state normal -rect {{65 80} {1890 994}}
 
 # ToolBar settings
 gui_set_toolbar_attributes -toolbar {TimeOperations} -dock_state top
@@ -106,23 +107,23 @@ gui_hide_toolbar -toolbar {Testbench}
 # End ToolBar settings
 
 # Docked window settings
-set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 479]
+set HSPane.1 [gui_create_window -type HSPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 476]
 catch { set Hier.1 [gui_share_window -id ${HSPane.1} -type Hier] }
-gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 479
+gui_set_window_pref_key -window ${HSPane.1} -key dock_width -value_type integer -value 476
 gui_set_window_pref_key -window ${HSPane.1} -key dock_height -value_type integer -value -1
 gui_set_window_pref_key -window ${HSPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 478} {height 683} {dock_state left} {dock_on_new_line true} {child_hier_colhier 418} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
-set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 216]
+gui_update_layout -id ${HSPane.1} {{left 0} {top 0} {width 475} {height 683} {dock_state left} {dock_on_new_line true} {child_hier_colhier 418} {child_hier_coltype 100} {child_hier_colpd 0} {child_hier_col1 0} {child_hier_col2 1} {child_hier_col3 -1}}
+set DLPane.1 [gui_create_window -type DLPane -parent ${TopLevel.1} -dock_state left -dock_on_new_line true -dock_extent 213]
 catch { set Data.1 [gui_share_window -id ${DLPane.1} -type Data] }
-gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 216
+gui_set_window_pref_key -window ${DLPane.1} -key dock_width -value_type integer -value 213
 gui_set_window_pref_key -window ${DLPane.1} -key dock_height -value_type integer -value 683
 gui_set_window_pref_key -window ${DLPane.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 215} {height 683} {dock_state left} {dock_on_new_line true} {child_data_colvariable 163} {child_data_colvalue 100} {child_data_coltype 40} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
-set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 154]
-gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1829
-gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 154
+gui_update_layout -id ${DLPane.1} {{left 0} {top 0} {width 212} {height 683} {dock_state left} {dock_on_new_line true} {child_data_colvariable 163} {child_data_colvalue 100} {child_data_coltype 40} {child_data_col1 0} {child_data_col2 1} {child_data_col3 2}}
+set Console.1 [gui_create_window -type Console -parent ${TopLevel.1} -dock_state bottom -dock_on_new_line true -dock_extent 151]
+gui_set_window_pref_key -window ${Console.1} -key dock_width -value_type integer -value 1826
+gui_set_window_pref_key -window ${Console.1} -key dock_height -value_type integer -value 151
 gui_set_window_pref_key -window ${Console.1} -key dock_offset -value_type integer -value 0
-gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1828} {height 153} {dock_state bottom} {dock_on_new_line true}}
+gui_update_layout -id ${Console.1} {{left 0} {top 0} {width 1825} {height 150} {dock_state bottom} {dock_on_new_line true}}
 #### Start - Readjusting docked view's offset / size
 set dockAreaList { top left right bottom }
 foreach dockArea $dockAreaList {
@@ -184,7 +185,14 @@ gui_set_time_units 10ps
 # Global: Signal Compare
 
 # Global: Signal Groups
+gui_load_child_values {tb.dut.theDataPath.regStuff.theReg.bankODFFs}
 
+
+set _session_group_1 bankODFFs
+gui_sg_create "$_session_group_1"
+set bankODFFs "$_session_group_1"
+
+gui_sg_addsignal -group "$_session_group_1" { tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataOut tb.dut.theDataPath.regStuff.theReg.bankODFFs.dataIn tb.dut.theDataPath.regStuff.theReg.bankODFFs.enable tb.dut.theDataPath.regStuff.theReg.bankODFFs.reset tb.dut.theDataPath.regStuff.theReg.bankODFFs.clk }
 
 # Global: Highlighting
 
@@ -219,14 +227,19 @@ gui_list_set_filter -id ${Hier.1} -list { {Package 1} {All 0} {Process 1} {Unnam
 gui_list_set_filter -id ${Hier.1} -text {*}
 gui_hier_list_init -id ${Hier.1}
 gui_change_design -id ${Hier.1} -design V1
-catch {gui_list_select -id ${Hier.1} {tb}}
+catch {gui_list_expand -id ${Hier.1} tb}
+catch {gui_list_expand -id ${Hier.1} tb.dut}
+catch {gui_list_expand -id ${Hier.1} tb.dut.theDataPath}
+catch {gui_list_expand -id ${Hier.1} tb.dut.theDataPath.regStuff}
+catch {gui_list_expand -id ${Hier.1} tb.dut.theDataPath.regStuff.theReg}
+catch {gui_list_select -id ${Hier.1} {tb.dut.theDataPath.regStuff.theReg.bankODFFs}}
 gui_view_scroll -id ${Hier.1} -vertical -set 0
 gui_view_scroll -id ${Hier.1} -horizontal -set 0
 
 # Data 'Data.1'
 gui_list_set_filter -id ${Data.1} -list { {Buffer 1} {Input 1} {Others 1} {Linkage 1} {Output 1} {LowPower 1} {Parameter 1} {All 1} {Aggregate 1} {Event 1} {Assertion 1} {Constant 1} {Interface 1} {Signal 1} {$unit 1} {Inout 1} {Variable 1} }
 gui_list_set_filter -id ${Data.1} -text {*}
-gui_list_show_data -id ${Data.1} {tb}
+gui_list_show_data -id ${Data.1} {tb.dut.theDataPath.regStuff.theReg.bankODFFs}
 gui_view_scroll -id ${Data.1} -vertical -set 0
 gui_view_scroll -id ${Data.1} -horizontal -set 0
 gui_view_scroll -id ${Hier.1} -vertical -set 0

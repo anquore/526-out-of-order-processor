@@ -1,19 +1,21 @@
+Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db'
 Information: Updating design information... (UID-85)
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
  
 ****************************************
 Report : power
         -analysis_effort low
-Design : pipelined
+Design : enableD_FF
 Version: H-2013.03-SP4
-Date   : Sun May  6 16:49:58 2018
+Date   : Wed May  9 00:54:23 2018
 ****************************************
 
 
 Library(s) Used:
 
-    No libraries used.
+    tcbn65gpluswc0d72_ccs (File: /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db)
 
 
 Operating Conditions: WC0D72COM   Library: tcbn65gpluswc0d72_ccs
@@ -21,7 +23,7 @@ Wire Load Model Mode: segmented
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-pipelined              ZeroWireload      tcbn65gpluswc0d72_ccs
+enableD_FF             ZeroWireload      tcbn65gpluswc0d72_ccs
 
 
 Global Operating Voltage = 0.72 
@@ -33,24 +35,24 @@ Power-specific unit information :
     Leakage Power Units = 1nW
 
 
-  Cell Internal Power  =   0.0000 mW        
-  Net Switching Power  =   0.0000 mW        
+  Cell Internal Power  =   2.7972 uW   (99%)
+  Net Switching Power  =  22.1816 nW    (1%)
                          ---------
-Total Dynamic Power    =   0.0000 mW        
+Total Dynamic Power    =   2.8194 uW  (100%)
 
-Cell Leakage Power     =   0.0000 nW
+Cell Leakage Power     =  35.8690 nW
 
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
 --------------------------------------------------------------------------------------------------
-io_pad             0.0000            0.0000            0.0000            0.0000  (     N/A)
-memory             0.0000            0.0000            0.0000            0.0000  (     N/A)
-black_box          0.0000            0.0000            0.0000            0.0000  (     N/A)
-clock_network      0.0000            0.0000            0.0000            0.0000  (     N/A)
-register           0.0000            0.0000            0.0000            0.0000  (     N/A)
-sequential         0.0000            0.0000            0.0000            0.0000  (     N/A)
-combinational      0.0000            0.0000            0.0000            0.0000  (     N/A)
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       2.7854e-03        8.7363e-06           33.6898        2.8278e-03  (  99.04%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.1850e-05        1.3445e-05            2.1793        2.7475e-05  (   0.96%)
 --------------------------------------------------------------------------------------------------
-Total              0.0000 mW         0.0000 mW         0.0000 nW         0.0000 mW
+Total          2.7972e-03 mW     2.2182e-05 mW        35.8690 nW     2.8553e-03 mW
 1

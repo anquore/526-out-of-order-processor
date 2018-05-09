@@ -1,7 +1,7 @@
 Command: vcs -f pipelined.include +v2k +lint -sverilog -full64 -debug_pp -timescale=1ns/10ps \
 -l pipelined.log
                          Chronologic VCS (TM)
-         Version H-2013.06_Full64 -- Sun May  6 16:51:11 2018
+         Version H-2013.06_Full64 -- Sun May  6 18:18:22 2018
                Copyright (c) 1991-2013 by Synopsys Inc.
                          ALL RIGHTS RESERVED
 
@@ -155,4 +155,4 @@ g++  -o ../simv     -Wl,-whole-archive    -Wl,-no-whole-archive  _vcsobj_1_1.o  
 ../simv up to date
 make[1]: Leaving directory `/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/synthesis/csrc' \
 
-CPU time: .955 seconds to compile + .335 seconds to elab + .149 seconds to link
+CPU time: .963 seconds to compile + .341 seconds to elab + .151 seconds to link

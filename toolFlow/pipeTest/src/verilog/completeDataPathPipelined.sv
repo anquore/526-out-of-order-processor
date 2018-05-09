@@ -102,7 +102,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   
   //stall logic for the multiplier
   //control logic state machine
-  typedef enum {eWaitingMult, eStallingMult, eDoneMult} state_eMult;
+  typedef enum reg[1:0] {eWaitingMult, eStallingMult, eDoneMult} state_eMult;
 
   state_eMult state_rMult, state_nMult;
 
@@ -157,7 +157,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   ,.valid_in(valid_inMult)
   ,.clk);
   
-  typedef enum {eWaitingDiv, eStallingDiv, eDoneDiv} state_eDiv;
+  typedef enum reg[1:0] {eWaitingDiv, eStallingDiv, eDoneDiv} state_eDiv;
 
   state_eDiv state_rDiv, state_nDiv;
 

@@ -157,7 +157,7 @@ ADS_LICENSE_FILE=27020@payne.ee.washington.edu
 1525613394 ../../src/verilog/datamem.sv
 1525613212 ../../src/verilog/dataMovement.sv
 1525561300 ../../src/verilog/control.sv
-1525613129 ../../src/verilog/completeDataPathPipelined.sv
+1525653841 ../../src/verilog/completeDataPathPipelined.sv
 1525613096 ../../src/verilog/completeDataPath.sv
 1525561300 ../../src/verilog/bsg_scan.v
 1525561300 ../../src/verilog/bsg_priority_encode_one_hot_out.v
@@ -179,4 +179,4 @@ ADS_LICENSE_FILE=27020@payne.ee.washington.edu
 1369979665 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so
 1369979419 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so
 1369979224 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so
-1525650674 simv.daidir
+1525655906 simv.daidir

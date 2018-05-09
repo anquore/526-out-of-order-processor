@@ -18,7 +18,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,WriteRegister_o
 ,WriteData_o
 ,RegWrite_o
-)
+);
 
   //ins and outs
   input logic clk_i, reset_i;
@@ -81,10 +81,10 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //the flags
   logic negative, zero, overflow, carry_out;
-  enableD_FF nDFF (.d(flagData[0]), .q(negative), .reset(reset_i), .enable(flagValid), .clk);
-	enableD_FF zDFF (.d(flagData[1]), .q(zero), .reset(reset_i), .enable(flagValid), .clk);
-	enableD_FF oDFF (.d(flagData[2]), .q(overflow), .reset(reset_i), .enable(flagValid), .clk);
-	enableD_FF cDFF (.d(flagData[3]), .q(carry_out), .reset(reset_i), .enable(flagValid), .clk);
+  enableD_FF nDFF (.d(flagData[0]), .q(negative), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF zDFF (.d(flagData[1]), .q(zero), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF oDFF (.d(flagData[2]), .q(overflow), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF cDFF (.d(flagData[3]), .q(carry_out), .reset(reset_i), .enable(flagValid), .clk(clk_i));
   
   //determine what branch should have done
   logic correctBranch;
@@ -168,9 +168,10 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 	end
   
   //the regfile
-  assign WriteRegister = RDvalue;
-	assign WriteData = theData;
+  assign WriteRegister_o = RDvalue;
+	assign WriteData_o = theData;
 	assign RegWrite_o = regWrite;
   assign regCommitAddr_o = RDvalue;
   
 endmodule
+

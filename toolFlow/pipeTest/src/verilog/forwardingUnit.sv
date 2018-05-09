@@ -86,3 +86,4 @@ module forwardingUnit (currentReg1, currentReg2, ALUreg, MEMreg, currentData1, c
 	end
 	mux2x64 execReg2Mux (.out(regB), .addr(sendALU2), .muxIns(execReg2));
 endmodule
+
