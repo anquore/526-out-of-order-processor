@@ -44,46 +44,9 @@ open_mw_lib pipelined_design
 {pipelined_design}
 #Read in the verilog, uniquify and save the CEL view.
 import_designs pipelined.syn.v -format verilog -top pipelined
-Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db'
-Information: Using CCS timing libraries. (TIM-024)
-Warning: Unit conflict found: Milkyway technology file resistance unit is Ohm; main library resistance unit is kOhm. (IFS-007)
-Warning: Unit conflict found: Milkyway technology file power unit is mW; main library power unit is nW. (IFS-007)
-Type of creating bus for undefined cells : 0
-Warning: /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c/digital/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus: bus naming style _<%d> is not consistent with main lib. (MWNL-111)
-
-*****  Verilog HDL translation! *****
-
-*****    Start Pass 1 *****
-Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db'
-Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db'
-
-*****  Pass 1 Complete *****
-Elapsed =    0:00:28, CPU =    0:00:27
-
-*****  Verilog HDL translation! *****
-
-*****    Start Pass 2 *****
-
-*****  Pass 2 Complete *****
-
-*****   Verilog HDL translation completed! *****
-Elapsed =    0:00:00, CPU =    0:00:00
-Hierarchy Preservation is turned ON
-The quick-attach skip-search mode has been turned on.
-  Start axu naming escaping style change ...
-  End axu naming escaping style change, status is 1
-Checking single pin net for cell 'pipelined.CEL' now...
-Total number of cell instances: 0
-Total number of nets: 2
-Total number of ports: 2 (include 0 PG ports)
-Total number of hierarchical cell instances: 1
-
-The quick-attach skip-search mode has been turned off.
-INFO:  total find 0 pg nets connected with tie net.
-Elapsed =    0:00:00, CPU =    0:00:00
-Preparing data for query................... 
-Information: Read verilog completed successfully.
-1
+Error: Cannot read file 'pipelined.syn.v'. (UID-58)
+Error: Current design is not defined. (UID-4)
+0
 #set up tlu_plus files (for virtual route and post route extraction)
 set_tlu_plus_files -max_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcbest_top2.tluplus -min_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcworst_top2.tluplus -tech2itf_map $mw_techfile_path/tluplus/star.map_9M
 1
@@ -92,6 +55,10 @@ set_check_library_options -all
 Warning: Missing option -criteria {lvth_groups=lvt_name_list} when -all is specified.  (LIBCHK-001)
 0
 check_library
+Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db'
+Information: Using CCS timing libraries. (TIM-024)
+Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db'
+Loading db file '/home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db'
 
 #BEGIN_XCHECK_LIBRARY
 
@@ -101,7 +68,7 @@ Logic Library:    tcbn65gpluswc0d72_ccs
 Physical Library: /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus 
 check_library options:  -cell_area -cell_footprint -bus_delimiter 
 Version:                                J-2014.09-SP1
-Check date and time:    Sun May  6 17:09:56 2018
+Check date and time:    Sun May  6 23:33:05 2018
 
           List of logic library and file names
 ------------------------------------------------------------------------------
@@ -2615,7 +2582,7 @@ Information: Logic library is INCONSISTENT with physical library (LIBCHK-220)
 #BEGIN_CHECK_LIBRARY
 
    Main library name:   /home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sapr/apr/pipelined_design
-   Check date and time: Sun May  6 17:09:59 2018
+   Check date and time: Sun May  6 23:33:06 2018
 
 #BEGIN_CHECK_TECH_CONSISTENCY
 
@@ -2626,9 +2593,7 @@ Information: Logic library is INCONSISTENT with physical library (LIBCHK-220)
 
 #BEGIN_CHECK_VIEWCMP
 
-   Total number of cells missing CEL view:      0 (out of 1)
-   Total number of cells missing FRAM view:     1 (out of 1)
-   Total number of cells with mismatched view (CEL vs. FRAM):   0 (out of 1)
+   Total number of cells with missing or mismatched views:      0 (out of 0)
 
 #END_CHECK_VIEWCMP
 
@@ -2802,7 +2767,7 @@ Logic Library #3:
 check_library options         -mcmm -upf -optimization { power multibit } -scaling { timing noise power } 
                               -logic
 Version                       J-2014.09-SP1
-Check date and time           Sun May  6 17:10:04 2018
+Check date and time           Sun May  6 23:33:09 2018
 
 
 #BEGIN_LIBSCREEN_UPF
@@ -2929,7 +2894,7 @@ Logic Library #3:
 check_library options         -mcmm -upf -optimization { power multibit } -scaling { timing noise power } 
                               -logic
 Version                       J-2014.09-SP1
-Check date and time           Sun May  6 17:10:08 2018
+Check date and time           Sun May  6 23:33:12 2018
 
 
 #BEGIN_CHECK_THRESHOLD_VOLTAGE_GROUP
@@ -2948,21 +2913,6 @@ No low threshold_voltage_group defined in the option.
 
 0
 check_tlu_plus_files
-Loading db file '/home/lab.apps/vlsiapps/icc/current/libraries/syn/gtech.db'
-Loading db file '/home/lab.apps/vlsiapps/icc/current/libraries/syn/standard.sldb'
-Information: linking reference library : /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c/digital/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus. (PSYN-878)
-
-  Linking design 'pipelined'
-  Using the following designs and libraries:
-  --------------------------------------------------------------------------
-  pipelined                   pipelined.CEL
-  tcbn65gpluswc0d72_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db
-  tcbn65gplusbc0d88_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db
-  tcbn65gplustc0d8_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db
-
 
 Sanity check for TLU+ vs MW-Tech files:
  max_tlu+: /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Back_End/milkyway/tcbn65gplus_200a/techfiles/tluplus/cln65g+_1p09m+alrdl_rcbest_top2.tluplus
@@ -2983,135 +2933,51 @@ Sanity check for TLU+ vs MW-Tech files:
 1
 #connect/link all referenced library components to the current design
 link
-
-  Linking design 'pipelined'
-  Using the following designs and libraries:
-  --------------------------------------------------------------------------
-  pipelined                   pipelined.CEL
-  tcbn65gpluswc0d72_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db
-  tcbn65gplusbc0d88_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db
-  tcbn65gplustc0d8_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db
-
-1
+Error: Current design is not defined. (UID-4)
+0
 #Power Mapping
 derive_pg_connection -power_net VDD -power_pin VDD                     -ground_net VSS -ground_pin VSS                     -create_ports "top"
-Error: Pin name VDD specified by power_pin or ground_pin option is invalid. (MWUI-715)
-Error: Pin name VSS specified by power_pin or ground_pin option is invalid. (MWUI-715)
-Error: derive_pg_connection failed
 0
 derive_pg_connection -power_net VDD -ground_net VSS                     -tie
-reconnected total 0 tie highs and 0 tie lows
-1
+0
 check_mv_design -power_nets
-Information: linking reference library : /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c/digital/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus. (PSYN-878)
-
-  Linking design 'pipelined'
-  Using the following designs and libraries:
-  --------------------------------------------------------------------------
-  pipelined                   pipelined.CEL
-  tcbn65gpluswc0d72_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db
-  tcbn65gplusbc0d88_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db
-  tcbn65gplustc0d8_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db
-
---------------------------------------------------------------------------------
-       Power/Ground Pin Connection Checks
---------------------------------------------------------------------------------
-
-Power/Ground Connection Summary:
-
-P/G net name                P/G pin count
---------------------------------------------------------------------
-Unconnected power pins:           0
-
-Unconnected ground pins:          0
---------------------------------------------------------------------
-No Errors/Warnings Found.
-
---------------------------------------------------------------------------------
-       Supply Operating Voltage Checks
---------------------------------------------------------------------------------
-No Errors/Warnings Found.
-
-Please review report above for warnings and errors.
-1
+Error: Current design is not defined. (UID-4)
+0
 #Read timing and apply constraints
 read_sdc ./pipelined.syn.sdc
- Info: hierarchy_separator was changed to /
-
-Reading SDC version 2.0...
-Error: could not open script file "./pipelined.syn.sdc" (CMD-015)
-Error: Errors reading SDC file:
-        .
-        Use error_info for more info. (SDC-5)
- Info: hierarchy_separator was changed to /
 0
 check_timing
-Information: Updating graph... (UID-83)
-Information: Updating design information... (UID-85)
-
-Information: Checking generated_clocks...
-
-Information: Checking loops...
-
-Information: Checking no_input_delay...
-
-Information: Checking unconstrained_endpoints...
-
-Information: Checking pulse_clock_cell_type...
-
-Information: Checking no_driving_cell...
-
-Information: Checking partial_input_delay...
-1
+Error: Current design is not defined. (UID-4)
+0
 #Check for false or multicycle path settings, any disabled arcs and case_analysis settings
 report_timing_requirements
- 
-****************************************
-Report : timing_requirements
-        -attributes
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
-1
+Error: Current design is not defined. (UID-4)
+0
 report disable_timing
-Warning: Can't find object 'disable_timing' in design 'pipelined'. (UID-95)
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find object 'disable_timing'. (UID-109)
+0
 report_case_analysis
- 
-****************************************
-Report : case_analysis
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
-
-1
+Error: Current design is not defined. (UID-4)
+0
 #Define environment
 set_operating_conditions -analysis_type bc_wc  -min BC0D88COM -max WC0D72COM  -max_library tcbn65gpluswc0d72_ccs -min_library tcbn65gplusbc0d88_ccs
-Using operating conditions 'WC0D72COM' found in library 'tcbn65gpluswc0d72_ccs'.
-Using operating conditions 'BC0D88COM' found in library 'tcbn65gplusbc0d88_ccs'.
-1
+Error: Current design is not defined. (UID-4)
+0
 set_min_library tcbn65gpluswc0d72_ccs.db -min_version tcbn65gplusbc0d88_ccs.db
 1
 #Loading and drive settings. 
 # set_drive_cell for inputs
 set_driving_cell -lib_cell INVD1 reset
-Warning: Design rule attributes from the driving cell will be
-        set on the port. (UID-401)
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find port 'reset'. (UID-109)
+Error: Value for list 'port_list' must have 1 elements. (CMD-036)
+0
 set_driving_cell -lib_cell INVD1 clk
-Warning: Design rule attributes from the driving cell will be
-        set on the port. (UID-401)
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find port 'clk'. (UID-109)
+Error: Value for list 'port_list' must have 1 elements. (CMD-036)
+0
 #set_driving_cell -lib_cell INVD1 A
 #set_driving_cell -lib_cell INVD1 B
 # set_load for outputs
@@ -3119,87 +2985,58 @@ Warning: Design rule attributes from the driving cell will be
 #set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output1]
 #set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output2]
 link
-
-  Linking design 'pipelined'
-  Using the following designs and libraries:
-  --------------------------------------------------------------------------
-  pipelined                   pipelined.CEL
-  tcbn65gpluswc0d72_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gpluswc0d72_ccs.db
-  tcbn65gplusbc0d88_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplusbc0d88_ccs.db
-  tcbn65gplustc0d8_ccs (library)
-                              /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/timing_power_noise/CCS/tcbn65gplus_200a/tcbn65gplustc0d8_ccs.db
-
-1
+Error: Current design is not defined. (UID-4)
+0
 #Define design constraints
 set_max_transition 0.1 [get_designs pipelined]
-1
+Error: Can't find design 'pipelined'. (UID-109)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
 set_max_fanout 6 pipelined
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find object 'pipelined'. (UID-109)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
 create_clock -name "clk" -period 2 -waveform {0 1} [get_ports clk] 
-1
+Error: Current design is not defined. (UID-4)
 set_clock_uncertainty -setup 0.05 clk
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find object 'clk'. (UID-109)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
 set_clock_uncertainty -hold 0.01 clk
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find object 'clk'. (UID-109)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
 set_clock_transition 0.05 [get_clocks]
-1
+Error: Current design is not defined. (UID-4)
+Error: Can't find clocks matching '*'. (UID-109)
+Error: Value for list 'clock_list' must have 1 elements. (CMD-036)
+0
 set_input_delay 0.1 -clock clk [remove_from_collection [all_inputs] [get_ports clk]]
-1
+Error: Current design is not defined. (UID-4)
+Error: Current design is not defined. (UID-4)
 #Check clock health and assumptions
 report_clock -skew
-Information: Updating graph... (UID-83)
-Information: Updating design information... (UID-85)
- 
-****************************************
-Report : clock_skew
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
-                 Rise      Fall  Min Rise  Min fall        Uncertainty
-Object          Delay     Delay     Delay     Delay     Plus      Minus
---------------------------------------------------------------------------------
-clk                 -         -         -         -      0.01      0.05
-
-                 Max Transition      Min Transition
-Object           Rise      Fall      Rise      Fall
--------------------------------------------------------
-clk              0.05      0.05      0.05      0.05
-1
+Error: Current design is not defined. (UID-4)
+0
 report_clock
- 
-****************************************
-Report : clocks
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
-Attributes:
-    d - dont_touch_network
-    f - fix_hold
-    p - propagated_clock
-    G - generated_clock
-    g - lib_generated_clock
-
-Clock          Period   Waveform            Attrs     Sources
---------------------------------------------------------------------------------
-clk              2.00   {0 1}                         {clk}
---------------------------------------------------------------------------------
-1
+Error: Current design is not defined. (UID-4)
+0
 #Apply timing and optimization control. 
 #set_dont_use and set_prefer -min<hold_fixing_cells> are likely candidates 
 set_app_var timing_enable_multiple_clocks_per_reg true
 true
 set_fix_multiple_port_nets -all -buffer_constants
-1
+Error: Current design is not defined. (UID-4)
+0
 group_path -name INPUTS -from [all_inputs]
-1
+Error: Current design is not defined. (UID-4)
+Error: Value for list '-from' must have 1 elements. (CMD-036)
+0
 group_path -name OUTPUTS -to [all_outputs]
-Warning: No output ports on design 'pipelined'. (UID-17)
+Error: Current design is not defined. (UID-4)
 Error: Value for list '-to' must have 1 elements. (CMD-036)
 0
 #Check that timing constraints are all good
@@ -3207,89 +3044,111 @@ set_zero_interconnect_delay_mode true
 Warning: Timer is in zero interconnect delay mode. (TIM-177)
 1
 report_constraint -all
-Warning: Timer is in zero interconnect delay mode. (TIM-177)
-Information: Updating design information... (UID-85)
- 
-****************************************
-Report : constraint
-        -all_violators
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
-This design has no constraints.
-
-1
+Error: Current design is not defined. (UID-4)
+0
 report_timing
-Warning: Timer is in zero interconnect delay mode. (TIM-177)
- 
-****************************************
-Report : timing
-        -path full
-        -delay max
-        -max_paths 1
-Design : pipelined
-Version: J-2014.09-SP1
-Date   : Sun May  6 17:10:09 2018
-****************************************
-
- z Timer is in zero interconnect delay mode.
-
-Operating Conditions: WC0D72COM   Library: tcbn65gpluswc0d72_ccs
-No paths.
-
-1
+Error: Current design is not defined. (UID-4)
+0
 set_zero_interconnect_delay_mode false
 Information: Timer is not in zero interconnect delay mode. (TIM-176)
 1
 #save current milkyway Design so you can obtain it again with open_mw_cel ....
 save_mw_cel -as pipelined_data_setup
-Information: Performing CEL netlist consistency check. (MWDC-118)
-Information: CEL consistency check PASSED. (MWDC-119)
-Information: Saved design named pipelined_data_setup. (UIG-5)
-1
+Error: Cannot get cellId for the current design. (UIG-2)
+0
 #Now you're ready to floorplan the design
 create_floorplan -control_type aspect_ratio                 -core_aspect_ratio 1                 -core_utilization 0.8                 -left_io2core 3                 -right_io2core 3                 -top_io2core 3                 -bottom_io2core 3
-0 pads are constrained in TDF table
-There are 0 IO pads 0 corner pads in total
-Number of Rows = 0. Please check your core height setting.
-Error: Planner run through unsuccessful.  (APLUI-102)
-0
+Error: Current design is not defined. (UID-4)
 #Plan your power. The outer ring extends out to hit the pin and inner stripe shrinks to cover the core.
 create_rectangular_rings  -nets  {VSS VDD}                          -around core                          -left_segment_layer M2                           -left_segment_width 1                          -right_segment_layer M2                          -right_segment_width 1                          -bottom_segment_layer M1                          -bottom_segment_width 1                          -top_segment_layer M1                           -top_segment_width 1                          -left_offset 0.5                          -right_offset 0.5                          -bottom_offset 0.5                          -top_offset 0.5
-Using [5 x 5] Fat Wire Table for M1
-Using [5 x 5] Fat Wire Table for M2
-Using [5 x 5] Fat Wire Table for M3
-Using [5 x 5] Fat Wire Table for M4
-Using [5 x 5] Fat Wire Table for M5
-Using [5 x 5] Fat Wire Table for M6
-Using [5 x 5] Fat Wire Table for M7
-Using [3 x 3] Fat Wire Table for M8
-Using [3 x 3] Fat Wire Table for M9
-Using [5 x 5] Fat Wire Table for VIA1
-Using [5 x 5] Fat Wire Table for VIA2
-Using [5 x 5] Fat Wire Table for VIA3
-Using [5 x 5] Fat Wire Table for VIA4
-Using [5 x 5] Fat Wire Table for VIA5
-Using [5 x 5] Fat Wire Table for VIA6
-Using [3 x 3] Fat Wire Table for VIA7
-Using [3 x 3] Fat Wire Table for VIA8
-**** WARNING: No Image Cell !! 
+Error: Current design is not defined. (UID-4)
+create_power_straps -direction horizontal                     -extend_high_ends to_boundary_and_generate_pins                       -extend_low_ends to_boundary_and_generate_pins                       -nets  {VSS VDD}                       -layer M1                      -width 0.33                       -configure rows                      -step 3.6                      -pitch_within_group 1.8
+Error: Current design is not defined. (UID-4)
+#Run placement, fixing timing violations and congestion. 
+create_fp_placement 
+Error: No design is loaded. (VFP-003)
+0
+#save current design
+save_mw_cel -as pipelined_post_place
+Error: Cannot get cellId for the current design. (UIG-2)
+0
+#define clock contrains
+set cts_force_user_constraints true
+true
+set_max_transition 1 [get_clocks clk]
+Error: Current design is not defined. (UID-4)
+Error: Can't find clock 'clk'. (UID-109)
+Error: Value for list 'object_list' must have 1 elements. (CMD-036)
+0
+set_clock_tree_options  -clock_trees clk                        -layer_list {M1 M2 M3 M4 M5 M6 M7}                        -target_skew 0.1                        -max_capacitance [load_of tcbn65gpluswc0d72_ccs/INVD8/I]                        -max_transition 0.15                        -max_fanout 8                        -max_rc_delay 0.3                        -use_default_routing_for_sinks 1                        -logic_level_balance true
+Error: Current design is not defined. (UID-4)
+Error: Can't find object 'clk'. (UID-109)
+Error: Value for list '-clock_trees' must have 1 elements. (CMD-036)
+0
+clock_opt -inter_clock_balance          -update_clock_latency          -operating_condition max          -only_cts
+Error: Current design is not defined. (UID-4)
+0
+route_zrt_group -all_clock_nets -reuse_existing_global_route true
+Error: Top cell not open. (ZRT-072)
+Error: Could not find any nets in the design that match the specification. (ZRT-070)
+0
+#save current design
+save_mw_cel -as pipelined_post_clk_route
+Error: Cannot get cellId for the current design. (UIG-2)
+0
+#Fills empty spaces in std cell rows w/ filler cells
+insert_stdcell_filler -cell_with_metal {GFILL10 GFILL4 GFILL3 GFILL2 GFILL1}                      -connect_to_power "VDD"                      -connect_to_ground "VSS"
+Can not get cellId for current design
+#Finally, connect all power and ground pins
+derive_pg_connection -cells [get_cells] -power_net VDD -ground_net VSS
+Error: Current design is not defined. (UID-4)
+#Route
+route_opt
+Error: Current design is not defined. (UID-4)
+Error: Current design is not defined. (UID-4)
+0
+#Run DRC, LVS
+signoff_drc -check_all_layers
+Error: Current design is not defined. (UID-4)
+list_drc_error_types
+Error: Current design is not defined. (UID-4)
+set short_errors [get_drc_errors -type {Short}]
+Error: Current design is not defined. (UID-4)
+verify_lvs
+Error: Current design is not defined. (UID-4)
+#save the final design
+save_mw_cel -as pipelined_post_route
+Error: Cannot get cellId for the current design. (UIG-2)
+0
+#Avoid issues with upper/lower case confusion esp with spice.
+define_name_rules STANDARD -case
+1
+change_names -rules STANDARD
+Error: Current design is not defined. (UID-4)
+0
+#Parasitics write out
+extract_rc
+Error: Current design is not defined. (UID-4)
+0
+write_parasitics
+Information: design not extracted; do extract_rc or read_parasitics before write_parasitics.
+Error: Writing parasitics file failed. (RCEX-036)
+0
+#Write out design data
+write_def -lef may_need_for_rotated_vias.lef           -output "pipelined.def"          -all_vias
+No valid cell found, write_def command failed 
+0
+#Write out Verilog of finalized design
+write_verilog pipelined_apr.v               -pg              -unconnected_ports
+Error: Current design is not defined. (UID-4)
+Current design is not set
+0
+#Write out delay and constraints
+write_sdf -context verilog -version 1.0 pipelined_apr.sdf
+Error: Current design is not defined. (UID-4)
+0
+0
+icc_shell> exit
 
-Lay[M1] H=1, V=1
-Lay[M2] H=1, V=1
-Lay[M3] H=1, V=1
-Lay[M4] H=1, V=1
-Lay[M5] H=1, V=1
-Lay[M6] H=1, V=1
-Lay[M7] H=1, V=1
-Lay[M8] H=1, V=1
-Lay[M9] H=1, V=1
-Lay[AP] H=1, V=1
-1 cells out of bound
-4 nets out of bound
+Thank you...
 
-ERROR:  The cell bounding box does not form a valid rectangle.
-
-No info on the top cell boundaries!

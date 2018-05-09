@@ -1,1 +1,0 @@
-../../src/verilog/fullReg32x64.sv

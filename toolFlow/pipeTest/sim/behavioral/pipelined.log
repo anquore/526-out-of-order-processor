@@ -2,7 +2,7 @@ Command: vcs -f pipelined.include +v2k -debug_pp +lint=IRIMW,NCEID,GCWM,IGSFPG,T
 -sverilog -full64 +plusarg_save -timescale=1ns/10ps -l pipelined.log +testname=default_test \
 +define+SIM=1+EXTERNAL_DATA=1+DEBUG=1+BEHAV=1
                          Chronologic VCS (TM)
-         Version H-2013.06_Full64 -- Sun May  6 06:57:20 2018
+         Version H-2013.06_Full64 -- Sun May  6 17:44:59 2018
                Copyright (c) 1991-2013 by Synopsys Inc.
                          ALL RIGHTS RESERVED
 
@@ -150,4 +150,4 @@ g++  -o ../simv     -Wl,-whole-archive    -Wl,-no-whole-archive  _vcsobj_1_1.o  
 ../simv up to date
 make[1]: Leaving directory `/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral/csrc' \
 
-CPU time: .966 seconds to compile + .339 seconds to elab + .150 seconds to link
+CPU time: .969 seconds to compile + .336 seconds to elab + .150 seconds to link

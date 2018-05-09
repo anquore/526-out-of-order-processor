@@ -6,7 +6,6 @@
 
 
 // How many bytes are in our memory?  Must be a power of two.
-`define DATA_MEM_SIZE		1024
 	
 module datamem (
 	input logic		[63:0]	address,
@@ -17,24 +16,25 @@ module datamem (
 	input logic		[3:0]		xfer_size, //unhooked
 	output logic	[63:0]	read_data
 	);
+	//define DATA_MEM_SIZE 1024
 
 	// Force %t's to print in a nice format.
-	initial $timeformat(-9, 2, " ns", 10);
+	//initial $timeformat(-9, 2, " ns", 10);
 
 	// Make sure size is a power of two and reasonable.
-	initial assert((`DATA_MEM_SIZE & (`DATA_MEM_SIZE-1)) == 0 && `DATA_MEM_SIZE > 8);
+	//initial assert((`DATA_MEM_SIZE & (`DATA_MEM_SIZE-1)) == 0 && `DATA_MEM_SIZE > 8);
 	
 	// Make sure accesses are reasonable.
-	always_ff @(posedge clk) begin
-		if (address !== 'x && (write_enable || read_enable)) begin // address or size could be all X's at startup, so ignore this case.
+	/*always_ff @(posedge clk) begin
+		if (address != x && (write_enable || read_enable)) begin // address or size could be all X's at startup, so ignore this case.
 			assert((address & (xfer_size - 1)) == 0);	// Makes sure address is aligned.
 			assert((xfer_size & (xfer_size-1)) == 0);	// Make sure size is a power of 2.
 			assert(address + xfer_size <= `DATA_MEM_SIZE);	// Make sure in bounds.
 		end
-	end
+	end*/
 	
 	// The data storage itself.
-	logic [7:0] mem [`DATA_MEM_SIZE-1:0];
+	logic [7:0] mem [1023:0];
 	
 	// Compute a properly aligned address
 	logic [63:0] aligned_address;

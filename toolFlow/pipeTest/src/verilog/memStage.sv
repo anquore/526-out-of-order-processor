@@ -21,3 +21,4 @@ module memStage (clk, memWrite, read_enable, memToReg, ReadData2, address, might
 	end
 	mux2x64 sendToFinalMux (.out(mightSendToReg), .addr(memToReg), .muxIns(regBackDataToMux));
 endmodule
+

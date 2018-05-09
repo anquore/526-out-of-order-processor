@@ -1,1 +1,0 @@
-../../src/syn/fsm_syn.tcl

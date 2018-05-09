@@ -39,7 +39,7 @@ pipelined.log
 sysc_uni_pwd=/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/behavioral
 installdir=/homes/lab.apps/vlsiapps/hspice/current/hspice
 XILINXD_LICENSE_FILE=5280@payne.ee.washington.edu
-XDG_SESSION_ID=8698
+XDG_SESSION_ID=8773
 XDG_RUNTIME_DIR=/run/user/616181
 VMR_MODE_FLAG=64
 VENDOR=unknown
@@ -55,8 +55,8 @@ UNAME=/bin/uname
 TOOL_HOME=/home/lab.apps/vlsiapps/vcs/current/amd64
 SYNOPSYS=/homes/lab.apps/vlsiapps/design_compiler/current
 SSH_TTY=/dev/pts/0
-SSH_CONNECTION=97.113.220.116 55248 128.95.3.84 22
-SSH_CLIENT=97.113.220.116 55248 22
+SSH_CONNECTION=97.113.220.116 56039 128.95.3.84 22
+SSH_CLIENT=97.113.220.116 56039 22
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
 SPECTRE_DEFAULTS=-E
 SNPSLMD_LICENSE_FILE=27020@payne.ee.washington.edu:/home/lab.apps/vlsiapps/vcs/current/flexlm//license.dat
@@ -117,7 +117,7 @@ ADS_LICENSE_FILE=27020@payne.ee.washington.edu
 1525614390 ../../src/verilog/signExtend12.sv
 1525614467 ../../src/verilog/shifter.sv
 1525614428 ../../src/verilog/shiftLeft2.sv
-1525614204 ../../src/verilog/reservationStationx2.sv
+1525645818 ../../src/verilog/reservationStationx2.sv
 1525614234 ../../src/verilog/reservationStation.sv
 1525561300 ../../src/verilog/registerX65.sv
 1525561300 ../../src/verilog/registerX64.sv
@@ -160,7 +160,7 @@ ADS_LICENSE_FILE=27020@payne.ee.washington.edu
 1525613394 ../../src/verilog/datamem.sv
 1525613212 ../../src/verilog/dataMovement.sv
 1525561300 ../../src/verilog/control.sv
-1525613129 ../../src/verilog/completeDataPathPipelined.sv
+1525653841 ../../src/verilog/completeDataPathPipelined.sv
 1525613096 ../../src/verilog/completeDataPath.sv
 1525561300 ../../src/verilog/bsg_scan.v
 1525561300 ../../src/verilog/bsg_priority_encode_one_hot_out.v
@@ -182,4 +182,4 @@ ADS_LICENSE_FILE=27020@payne.ee.washington.edu
 1369979665 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so
 1369979419 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so
 1369979224 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so
-1525615043 simv.daidir
+1525653902 simv.daidir
