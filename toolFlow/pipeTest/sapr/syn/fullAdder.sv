@@ -1,1 +1,0 @@
-../../src/verilog/fullAdder.sv
