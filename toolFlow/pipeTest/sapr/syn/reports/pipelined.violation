@@ -1,12 +1,2 @@
- 
-****************************************
-Report : constraint
-        -all_violators
-Design : enableD_FF
-Version: H-2013.03-SP4
-Date   : Wed May  9 00:54:23 2018
-****************************************
-
-This design has no violated constraints.
-
-1
+Error: Current design is not defined. (UID-4)
+0
