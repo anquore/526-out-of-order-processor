@@ -269,7 +269,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
       ,.decodeROBTag1_i(RSROBTag1[i])
       ,.decodeROBTag2_i(RSROBTag2[i])
       ,.decodeROBTag_i(RSROBTag[i])
-      ,.decodeWriteEn_i(RSWriteEn[i])
+      ,.decodeWriteEn_i(firstWallOut[32] & RSWriteEn[i])
       ,.decodeROBval1_i(RSROBval1[i])
       ,.decodeROBval2_i(RSROBval2[i])
       ,.decodeCommands_i(RSCommands[i])
@@ -278,7 +278,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
       ,.issueROBTag_i(completionRSROBTag)
       ,.issueROBval_i(completionRSROBval)
       
-      ,.stall_i(executionStall[i])
+      ,.stall_i(executionStall[i] & firstWallOut[32] & ~decodeStall)
       ,.reservationStationVal1_o(reservationStationVal1[i])
       ,.reservationStationVal2_o(reservationStationVal2[i])
       ,.reservationStationCommands_o(reservationStationCommands[i])
@@ -443,12 +443,13 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 	//assign MEMreg[4:0] = thirdWallOut[136:132];
 	//assign MEMforward = thirdWallOut[138];
 	
-	logic [69 + (ROBsizeLog - 1):0] finalWallIn, finalWallOut;
+	logic [70 + (ROBsizeLog - 1):0] finalWallIn, finalWallOut;
 	assign finalWallIn[63:0] = mightSendToReg;
-	assign finalWallIn[64] = thirdWallOut[0];
-	assign finalWallIn[68:65] = thirdWallOut[72:69];
-	assign finalWallIn[69 + (ROBsizeLog - 1):69] = thirdWallOut[73 + (ROBsizeLog - 1):73];
-	wallOfDFFs #(.LENGTH(70 + (ROBsizeLog - 1))) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
+  assign finalWallIn[64] = thirdWallIn[68];
+	assign finalWallIn[65] = thirdWallOut[0];
+	assign finalWallIn[69:66] = thirdWallOut[72:69];
+	assign finalWallIn[70 + (ROBsizeLog - 1):70] = thirdWallOut[73 + (ROBsizeLog - 1):73];
+	wallOfDFFs #(.LENGTH(71 + (ROBsizeLog - 1))) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
   
   
   
@@ -459,10 +460,10 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.reset_i(reset)
 
   //data from memory stage
-  ,.dataFromMem_i(finalWallOut[63:0])
-  ,.flagsFromMem_i(finalWallOut[68:65])
-  ,.ROBTagFromMem_i(finalWallOut[69 + (ROBsizeLog - 1):69])
-  ,.save_cond_i(finalWallOut[64])
+  ,.dataFromMem_i(finalWallOut[64:0])
+  ,.flagsFromMem_i(finalWallOut[69:66])
+  ,.ROBTagFromMem_i(finalWallOut[70 + (ROBsizeLog - 1):70])
+  ,.save_cond_i(finalWallOut[65])
 
   //to reservation station
   ,.RSROBTag_o(completionRSROBTag)

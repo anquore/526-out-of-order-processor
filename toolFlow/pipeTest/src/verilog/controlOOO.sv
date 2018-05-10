@@ -194,8 +194,8 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
 			reg2Loc = 1'bx;
 			regWrite = 0;
 			dOrImm = 1'bx;
-			ALUSrc = 1'bx;
-			ALUOp = 3'bxxx;
+			ALUSrc = 0;
+			ALUOp = 0;
 			memWrite = 0;
 			memToReg = 0;
 			valueToStore = 1'bx; 

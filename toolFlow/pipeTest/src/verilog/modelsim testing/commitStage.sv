@@ -170,7 +170,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   //the regfile
   assign WriteRegister_o = RDvalue;
 	assign WriteData_o = theData;
-	assign RegWrite_o = regWrite;
+	assign RegWrite_o = regWrite & dataValid;
   assign regCommitAddr_o = RDvalue;
   
 endmodule

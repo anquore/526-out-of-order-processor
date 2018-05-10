@@ -120,8 +120,8 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //pick between RM and RD for the true RM value
   logic [4:0] trueRM;
-	logic [4:0][1:0] addressDataToMux;
-	integer i, j;
+	logic [1:0][4:0] addressDataToMux;
+	/*integer i, j;
 	always_comb begin
 		for(i=0; i<5; i++) begin
 			addressDataToMux[i][0] = RDvalue_i[i];
@@ -130,7 +130,10 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 			addressDataToMux[j][1] = RMvalue_i[j];
 		end
 	end
-	mux2x5 whatRegToRead (.out(trueRM), .addr(reg2Loc_i), .muxIns(addressDataToMux));
+	mux2x5 whatRegToRead (.out(trueRM), .addr(reg2Loc_i), .muxIns(addressDataToMux));*/
+  assign addressDataToMux[0] = RDvalue_i;
+  assign addressDataToMux[1] = RMvalue_i;
+  assign trueRM = addressDataToMux[reg2Loc_i];
   
   //connect up the map table addresses
   assign mapReadAddr1_o = RNvalue_i;

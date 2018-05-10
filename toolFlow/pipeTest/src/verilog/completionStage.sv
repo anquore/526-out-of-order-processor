@@ -20,7 +20,7 @@ module completionStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1),
 
   //ins and outs
   input logic clk_i, reset_i;
-  input logic [63:0] dataFromMem_i;
+  input logic [64:0] dataFromMem_i;
   input logic [3:0] flagsFromMem_i;
   input logic [ROBsizeLog - 1:0] ROBTagFromMem_i;
   input logic save_cond_i;
@@ -50,5 +50,6 @@ module completionStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1),
   assign ROBWriteData_o[64] = dataIsValid;
   assign ROBWriteData_o[68:65] = flagsFromMem_i;
   assign ROBWriteData_o[69] = flagsAreValid;
+  assign ROBWriteEn_o = dataFromMem_i[64];
   
 endmodule

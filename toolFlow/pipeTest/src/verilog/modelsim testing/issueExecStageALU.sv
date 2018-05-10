@@ -36,6 +36,7 @@ module issueExecStageALU #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   output logic valid_o;
   
   //save the incoming data and tag when valid_in is high
+  /*
   logic [9:0] executeCommands;
   wallOfDFFs #(.LENGTH(10)) commandsWall
   (.q(executeCommands)
@@ -76,13 +77,13 @@ module issueExecStageALU #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   ,.reset(reset_i)
   ,.enable(canGo_i)
   ,.clk(clk_i));
-
+  */
   
   //the ALU
   alu theALU 
-  (.A(storedValue1)
-  ,.B(storedValue2)
-  ,.cntrl(executeCommands[4:2])
+  (.A(reservationStationVal1_i)
+  ,.B(reservationStationVal2_i)
+  ,.cntrl(reservationStationCommands_i[4:2])
   ,.result(executeVal_o)
   ,.negative(executeFlags_o[0])
   ,.zero(executeFlags_o[1])
@@ -91,10 +92,10 @@ module issueExecStageALU #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   
 
   //assign outputs
-  assign executeTag_o = executeTag;
-  assign executeCommands_o = executeCommands;
+  assign executeTag_o = reservationStationTag_i;
+  assign executeCommands_o = reservationStationCommands_i;
   assign stallRS_o = ~canGo_i;
-  assign valid_o = storedReady;
+  assign valid_o = readyRS_i;
   
 endmodule
 
