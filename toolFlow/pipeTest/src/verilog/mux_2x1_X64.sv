@@ -8,7 +8,7 @@ module mux_2x1_X64(outs, select, invSelect, ins);
 	NAND_MUX_2x1 m5(.out(outs[5]), .select, .invSelect, .in({ins[1][5], ins[0][5]}));
 	NAND_MUX_2x1 m4(.out(outs[4]), .select, .invSelect, .in({ins[1][4], ins[0][4]}));
 	NAND_MUX_2x1 m3(.out(outs[3]), .select, .invSelect, .in({ins[1][3], ins[0][3]}));
-	NAND_MUX_2x1 m2(.out(outs[2]), .select, .invSelect, .in({ins[1][2], ins[0][2]}));
+	NAND_MUX_2x1 m2(.out(outs[2]), .select, .invSelect, .in({ins[1][3], ins[0][3]}));
 	NAND_MUX_2x1 m1(.out(outs[1]), .select, .invSelect, .in({ins[1][1], ins[0][1]}));
 	NAND_MUX_2x1 m0(.out(outs[0]), .select, .invSelect, .in({ins[1][0], ins[0][0]}));
 		NAND_MUX_2x1 m15(.out(outs[15]), .select, .invSelect, .in({ins[1][15], ins[0][15]}));
