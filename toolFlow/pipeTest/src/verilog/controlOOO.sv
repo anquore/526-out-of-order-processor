@@ -1,15 +1,15 @@
 module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToReg,
 								ALUOp, ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, 
-								BRMI, saveCond, regRD, read_enable, needToForward, negative, overflow, whichFlags, zero, carry_out, whichMath, leftShift, mult, div, commandType_o);
+								BRMI, saveCond, regRD, read_enable, needToForward, negative, overflow, whichFlags, zero, carry_out, whichMath, leftShift, mult, div, commandType_o, doingABranch_o);
 	input logic [17:0] instr;
 	input logic [3:0] flags;
 	input logic commandZero, negative, overflow, whichFlags, zero, carry_out;
 	output logic uncondBr, brTaken, memWrite, memToReg, 
-					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div;
+					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div, doingABranch_o;
   output logic [1:0] whichMath;
 	output logic [2:0] ALUOp;
 	output logic [4:0] regRD;
-  output logic [2:0] commandType_o;
+  output logic [3:0] commandType_o;
 	
 	//the control logic
 	always_comb begin
@@ -35,6 +35,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 		else if (instr[10:0] == 11'b11101011000) begin //subs
 			reg2Loc = 1;
@@ -57,6 +58,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b11001011000) begin //sub
 			reg2Loc = 1;
@@ -79,6 +81,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 		else if (instr[10:0] == 11'b10101011000) begin //adds
 			reg2Loc = 1;
@@ -101,6 +104,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b10001011000) begin //add
 			reg2Loc = 1;
@@ -123,6 +127,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b10001010000) begin //and
 			reg2Loc = 1;
@@ -167,6 +172,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b11001010000) begin //eor
 			reg2Loc = 1;
@@ -189,6 +195,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 		else if (instr[10:5] == 6'b000101) begin //branch
 			reg2Loc = 1'bx;
@@ -210,7 +217,8 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       leftShift = 1'bx;
       mult = 1'b0;
       div = 1'b0;
-      commandType_o = 0;
+      commandType_o = 8;
+      doingABranch_o = 1;
 		end
 		else if (instr[10:3] == 8'b10110100) begin //cbz
 			reg2Loc = 0;
@@ -219,7 +227,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
 			ALUSrc = 0;
 			ALUOp = 0;
 			memWrite = 0;
-			memToReg = 1'bx;
+			memToReg = 0;
 			valueToStore = 0; 
 			uncondBr = 0; 
 			brTaken = 1;
@@ -233,15 +241,16 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 5;
+      doingABranch_o = 1;
 		end
 		else if (instr[10:3] == 8'b01010100) begin //B.COND
 			reg2Loc = 1'bx;
 			regWrite = 0;
 			dOrImm = 1'bx;
 			ALUSrc = 0;
-			ALUOp = 3'bxxx;
+			ALUOp = 0;
 			memWrite = 0;
-			memToReg = 1'bx;
+			memToReg = 0;
 			valueToStore = 0; 
 			uncondBr = 0;
       /*
@@ -292,15 +301,16 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 3;
+      doingABranch_o = 1;
 		end
-		else if (instr[10:0] == 11'b11111000000) begin //memory management
+		else if (instr[10:0] == 11'b11111000000) begin //STUR
       reg2Loc = 0;
       regWrite = 0;
       dOrImm = 0;
       ALUSrc = 1;
       ALUOp = 2;
       memWrite = 1;
-      memToReg = 1'bx;
+      memToReg = 0;
       valueToStore = 0; 
       uncondBr = 1'bx; 
       brTaken = 0;
@@ -314,6 +324,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 1;
+      doingABranch_o = 0;
 		end
 		else if (instr[10:0] == 11'b11111000010) begin //LDUR
       reg2Loc = 1'bx;
@@ -336,6 +347,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 		else if (instr[10:5] == 6'b100101) begin //BL
 			reg2Loc = 1'bx;
@@ -358,6 +370,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 7;
+      doingABranch_o = 1;
 		end
 		else if (instr[10:0] == 11'b11010110000) begin //BR
 			reg2Loc = 0;
@@ -380,6 +393,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 6;
+      doingABranch_o = 1;
 		end
     else if(instr[10:0] == 11'b11010011010) begin //LSR
       reg2Loc = 1;
@@ -402,6 +416,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
     end
     else if(instr[10:0] == 11'b11010011011) begin //LSL
       reg2Loc = 1;
@@ -424,6 +439,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
     end
     else if (instr[10:0] == 11'b10011011000) begin //mult
 			reg2Loc = 1;
@@ -446,6 +462,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b1;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b10011010110) begin //div
 			reg2Loc = 1;
@@ -468,6 +485,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b1;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 		else begin //do nothing
 			reg2Loc = 1'bx;
@@ -490,9 +508,11 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
 	end	
 endmodule
+
 /*
 module control_testbench();
 	logic [11:0] instr;

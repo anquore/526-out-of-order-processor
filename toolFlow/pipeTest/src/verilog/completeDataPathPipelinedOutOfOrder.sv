@@ -28,13 +28,14 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 , leftShift
 , mult
 , div
-, commandType_i);
+, commandType_i
+, doingABranch_i);
 	input logic clk, uncondBr, brTaken, memWrite, memToReg, reset, 
-					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div;
+					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div, doingABranch_i;
   input logic [1:0] whichMath;
 	input logic [2:0] ALUOp;
 	input logic [4:0] regRD;
-  input logic [2:0] commandType_i;
+  input logic [3:0] commandType_i;
 	output logic [17:0] instr;
 	output logic [3:0] flags;
 	output logic commandZero, negative, overflow, whichFlags, zero, carry_out;
@@ -48,14 +49,28 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 	logic [63:0] regPC, address;
 	logic [31:0] instruction;
   logic [32:0] firstWallIn, firstWallOut;
-	instructionFetch instructionGetter (.clk, .reset, .uncondBr, .brTaken, .BRMI, 
-													.regPC, .instrToRead(firstWallOut[31:0]), .instruction, .address, .enablePC(~decodeStall));
+  logic needToRestore;
+  logic [63:0] restorePoint;
+	instructionFetch instructionGetter 
+  (.clk
+  , .reset
+  , .uncondBr
+  , .brTaken
+  , .BRMI
+  , .regPC
+  , .instrToRead(firstWallOut[31:0])
+  , .instruction
+  , .address
+  , .enablePC(~decodeStall)
+  ,.needToRestore_i(needToRestore)
+  ,.restorePoint_i(restorePoint)
+  );
 													
 	//first wall
 
 	assign firstWallIn[31:0] = instruction;
   assign firstWallIn[32] = 1;
-	wallOfDFFs #(.LENGTH(33)) firstWall (.q(firstWallOut), .d(firstWallIn), .reset(reset), .enable(~decodeStall), .clk);
+	wallOfDFFs #(.LENGTH(33)) firstWall (.q(firstWallOut), .d(firstWallIn), .reset(reset | needToRestore), .enable(~decodeStall), .clk);
 
 	//reg read/decode stage
 	//port the instructions out to the command module to produce all the commands
@@ -66,7 +81,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   //the ROB unit
   //decode pieces
   logic	[ROBsizeLog - 1:0] 	robReadAddr1, robReadAddr2;
-  logic [7:0]	robWriteData;
+  logic [8:0]	robWriteData;
   logic 	robUpdateTail;
   logic [64:0]	robReadData1, robReadData2;
   logic [ROBsizeLog - 1:0] robNextTail;
@@ -78,13 +93,13 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic ROBWriteEn;
   
   //commit pieces
-  logic [77:0] ROBcommitReadData;
+  logic [78:0] ROBcommitReadData;
   logic [ROBsizeLog - 1:0] ROBhead;
   logic ROBupdateHead;
   
   ROB #(.ROBsize(ROBsize)) theROB
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   ,.decodeReadAddr1_i(robReadAddr1)
   ,.decodeReadAddr2_i(robReadAddr2)
@@ -125,7 +140,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   .decodeWriteAddr(mapWriteAddr),
   .decodeRegWrite(mapRegWrite), 
   .clk(clk), 
-  .reset(reset)
+  .reset(reset | needToRestore)
   
   ,.resets_i(mapResets)
   ,.commitReadAddr_i(mapCommitReadAddr)
@@ -165,7 +180,9 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic [3:0] RSstall;
   logic [3:0][9:0] RSCommands;
 
-  
+  //from the completion stage
+  logic	[ROBsizeLog - 1:0] 	completionRSROBTag;
+  logic [64:0] completionRSROBval;
   decodeStage #(.ROBsize(ROBsize)) dut
   (.clk_i(clk)
   ,.reset_i(reset)
@@ -193,6 +210,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.regWrite_i(regWrite)
   ,.needToForward_i(needToForward)
   ,.leftShift_i(leftShift)
+  ,.doingABranch_i(doingABranch_i)
 
   ,.decodeStall_o(decodeStall)
 
@@ -237,6 +255,9 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.regfileReadRegister2_o(regfileReadRegister2)
   ,.regfileReadData1_i(regfileReadData1)
   ,.regfileReadData2_i(regfileReadData2)
+  
+  ,.completionRSROBTag_i(completionRSROBTag)
+  ,.completionRSROBval_i(completionRSROBval)
   );
   
   
@@ -257,15 +278,13 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic [3:0][ROBsizeLog-1:0] reservationStationTag;
   logic [3:0] executionReady;
   
-  //from the completion stage
-  logic	[ROBsizeLog - 1:0] 	completionRSROBTag;
-  logic [64:0] completionRSROBval;
+
   genvar i;
   generate
 		for(i=0; i < 4; i++) begin : eachEnDff
 			reservationStationx2 #(.ROBsize(ROBsize)) theRS
       (.clk_i(clk)
-      ,.reset_i(reset)
+      ,.reset_i(reset | needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[i])
       ,.decodeROBTag2_i(RSROBTag2[i])
       ,.decodeROBTag_i(RSROBTag[i])
@@ -342,7 +361,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   
   issueExecStageDiv #(.ROBsize(ROBsize)) theMultiplier
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[2])
@@ -363,7 +382,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   
   issueExecStageDiv #(.ROBsize(ROBsize)) theDivider
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[3])
@@ -432,12 +451,13 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   assign thirdWallIn[72:69] = flagsToMem;
 	assign thirdWallIn[73 + (ROBsizeLog - 1):73] = tagToMem;
 	//assign thirdWallIn[138] = secondWallOut[171];
-	wallOfDFFs #(.LENGTH(74 + (ROBsizeLog - 1))) thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset), .enable(validToMem), .clk);
+	wallOfDFFs #(.LENGTH(74 + (ROBsizeLog - 1))) thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(validToMem), .clk);
 	
-	//memory stage
-  logic [63:0] writeDataMem, mightSendToReg;
-	memStage thatMem (.clk, .memWrite(1'b0), .read_enable(thirdWallOut[3]), .memToReg(thirdWallOut[1]),
-							.ReadData2(writeDataMem), .address(thirdWallOut[67:4]), .mightSendToReg);
+  //memory stage
+  logic writeEnMem;
+  logic [63:0] writeAddrMem, writeDataMem, mightSendToReg;
+	memStage thatMem (.clk, .memWrite(writeEnMem), .read_enable(thirdWallOut[3]), .memToReg(thirdWallOut[1]),
+							.ReadData2(writeDataMem), .addressLoad(thirdWallOut[67:4]), .addressStore(writeAddrMem), .mightSendToReg);
 							
 	//break out bits for forwarding
 	//assign MEMreg[4:0] = thirdWallOut[136:132];
@@ -449,9 +469,12 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 	assign finalWallIn[65] = thirdWallOut[0];
 	assign finalWallIn[69:66] = thirdWallOut[72:69];
 	assign finalWallIn[70 + (ROBsizeLog - 1):70] = thirdWallOut[73 + (ROBsizeLog - 1):73];
-	wallOfDFFs #(.LENGTH(71 + (ROBsizeLog - 1))) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
+	wallOfDFFs #(.LENGTH(71 + (ROBsizeLog - 1))) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
   
-  
+  //single delay stage
+  //logic [70 + (ROBsizeLog - 1):0] finalWallIn1, finalWallOut1;
+  //assign finalWallIn1 = finalWallOut;
+  //wallOfDFFs #(.LENGTH(71 + (ROBsizeLog - 1))) finalWall1 (.q(finalWallOut1), .d(finalWallIn1), .reset(reset | needToRestore), .enable(1'b1), .clk);
   
   
   //the completion stage
@@ -496,6 +519,15 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.WriteRegister_o(WriteRegister)
   ,.WriteData_o(WriteData)
   ,.RegWrite_o(RegWrite)
+  
+  //to instr fetch
+  ,.needToRestore_o(needToRestore)
+  ,.restorePoint_o(restorePoint)
+  
+  //to memory
+  ,.writeAddrMem_o(writeAddrMem)
+  ,.writeDataMem_o(writeDataMem)
+  ,.writeEnMem_o(writeEnMem)
   );
   
 

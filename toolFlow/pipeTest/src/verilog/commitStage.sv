@@ -18,13 +18,22 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,WriteRegister_o
 ,WriteData_o
 ,RegWrite_o
+
+//to instr fetch
+,needToRestore_o
+,restorePoint_o
+
+//to memory
+,writeAddrMem_o
+,writeDataMem_o
+,writeEnMem_o
 );
 
   //ins and outs
   input logic clk_i, reset_i;
   
   //ROB ports
-  input logic [77:0] ROBcommitReadData_i;
+  input logic [78:0] ROBcommitReadData_i;
   input logic [ROBsizeLog - 1:0] ROBhead_i;
   output logic ROBupdateHead_o;
   
@@ -39,15 +48,24 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 	output logic [63:0]	WriteData_o;
 	output logic 			RegWrite_o;
   
+  //instruction fetch ports
+  output logic needToRestore_o;
+  output logic [63:0] restorePoint_o;
+  
+  //memory ports
+  output logic writeEnMem_o;
+  output logic [63:0] writeAddrMem_o, writeDataMem_o;
+
+  
   //break up the ROB data
-  logic [2:0] commandType;
+  logic [3:0] commandType;
   logic [4:0] RDvalue;
   logic flagValid;
   logic [3:0] flagData;
   logic dataValid;
   logic [63:0] theData;
   
-  assign commandType = ROBcommitReadData_i[77:75];
+  assign commandType = ROBcommitReadData_i[78:75];
   assign RDvalue = ROBcommitReadData_i[74:70];
   assign flagValid = ROBcommitReadData_i[69];
   assign flagData = ROBcommitReadData_i[68:65];
@@ -112,7 +130,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //restore functionality
   //determine if a mistake was made, if it was get back to the correct point
-  logic needToRestore;
+  logic needToRestore, memWrite;
   logic [63:0] restorePoint;
   always_comb begin
 		if(commandType == 0) begin
@@ -121,6 +139,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = 0;
       //we are writing to the reg
       regWrite = 1;
+      memWrite = 0;
     end
     else if(commandType == 1) begin
       //this is a store command, will be updated at a later point
@@ -128,6 +147,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = 0;
       //we are not writing to the reg
       regWrite = 0;
+      memWrite = 1;
     end
     else if (commandType == 2 | commandType == 3) begin
       //this is either a B.COND
@@ -136,6 +156,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = theData;
       //we are not writing to the reg
       regWrite = 0;
+      memWrite = 0;
     end
     else if(commandType == 4) begin
       //this is a CBZ we didn't take
@@ -143,6 +164,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = theData;
       //we are not writing to the reg
       regWrite = 0;
+      memWrite = 0;
     end
     else if(commandType == 5) begin
       //this is a CBZ we take
@@ -150,6 +172,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = theData;
       //we are not writing to the reg
       regWrite = 0;
+      memWrite = 0;
     end
     else if(commandType == 6) begin
       //a BR
@@ -157,14 +180,31 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
       restorePoint = regCommitRead_i;
       //we are not writing to the reg
       regWrite = 0;
+      memWrite = 0;
     end
     else if(commandType == 7) begin
       //a BL
       needToRestore = 0;
       restorePoint = regCommitRead_i;
-      //we are not writing to the reg
+      //we are writing to the reg
       regWrite = 1;
-    end  
+      memWrite = 0;
+    end
+    else if(commandType == 8) begin
+      //a branch 
+      needToRestore = 0;
+      restorePoint = 0;
+      //we are not writing to the reg
+      regWrite = 0;
+      memWrite = 0;
+    end
+    else begin
+      needToRestore = 0;
+      restorePoint = 0;
+      //we are not writing to the reg
+      regWrite = 0;
+      memWrite = 0;
+    end
 	end
   
   //the regfile
@@ -172,6 +212,13 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 	assign WriteData_o = theData;
 	assign RegWrite_o = regWrite & dataValid;
   assign regCommitAddr_o = RDvalue;
+  
+  assign restorePoint_o = restorePoint;
+  assign needToRestore_o = needToRestore;
+  
+  assign writeAddrMem_o = theData;
+  assign writeEnMem_o = memWrite & dataValid;
+  assign writeDataMem_o = regCommitRead_i;
   
 endmodule
 

@@ -20,17 +20,17 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 
 	input logic	[addrSize - 1:0] 	decodeReadAddr1_i, decodeReadAddr2_i, decodeWriteAddr_i, completionWriteAddr_i, commitReadAddr_i;
   input logic [ROBsize - 1:0] resets_i;
-	input logic [7:0]	decodeWriteData_i;
+	input logic [8:0]	decodeWriteData_i;
   input logic [69:0] completionWriteData_i;
 	input logic 			decodeWriteEn_i, clk_i, completionWriteEn_i;
 	output logic [69:0]	decodeReadData1_o, decodeReadData2_o;
-  output logic [77:0] commitReadData_o;
+  output logic [78:0] commitReadData_o;
 	
   //decode stage behavior
   //management registers, handles what type of command this is and what arch reg gets written back too
 	logic [ROBsize - 1:0] decodedManagement;
-	logic [ROBsize - 1:0][7:0] managementDataOut;
-	logic [7:0][ROBsize - 1:0] managementMuxIns;
+	logic [ROBsize - 1:0][8:0] managementDataOut;
+	logic [8:0][ROBsize - 1:0] managementMuxIns;
   
 	//the decode decoder
   integer a;
@@ -52,7 +52,7 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 	//generate a collection of ROBsize different 7 bit registers each with their own enable and reset signal to hold the arch reg and what kind of command this is
 	generate
 		for(k=0; k<ROBsize; k++) begin : eachManagementReg
-			wallOfDFFs #(.LENGTH(8)) managementReg (.q(managementDataOut[k][7:0]), .d(decodeWriteData_i[7:0]), .reset(resets_i[k]), .enable(decodedManagement[k]), .clk(clk_i));
+			wallOfDFFs #(.LENGTH(9)) managementReg (.q(managementDataOut[k][8:0]), .d(decodeWriteData_i[8:0]), .reset(resets_i[k]), .enable(decodedManagement[k]), .clk(clk_i));
 		end
 	endgenerate 
 	
@@ -92,7 +92,7 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 	
   //commit behavior
   assign commitReadData_o[69:0] = completionDataOut[commitReadAddr_i];
-  assign commitReadData_o[77:70] = managementDataOut[commitReadAddr_i];
+  assign commitReadData_o[78:70] = managementDataOut[commitReadAddr_i];
 	
 endmodule
 

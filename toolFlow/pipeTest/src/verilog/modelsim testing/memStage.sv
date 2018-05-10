@@ -1,19 +1,19 @@
-module memStage (clk, memWrite, read_enable, memToReg, ReadData2, address, mightSendToReg);
+module memStage (clk, memWrite, read_enable, memToReg, ReadData2, addressLoad, addressStore, mightSendToReg);
 	input logic clk, memWrite, read_enable, memToReg;
-	input logic [63:0] ReadData2, address;
+	input logic [63:0] ReadData2, addressLoad, addressStore;
 	output logic [63:0] mightSendToReg;
 	
 	//the memory block
 	logic [63:0] read_data;
 	logic [63:0][1:0] regBackDataToMux;
-	datamem theDataMemory (.address, .write_enable(memWrite), .read_enable, 
+	datamem theDataMemory (.addressLoad, .addressStore, .write_enable(memWrite), .read_enable, 
 									.write_data(ReadData2), .clk, .xfer_size(4'b1000), .read_data);
 									
 	//decides who gets sent to the reg
 	integer m, n;
 	always_comb begin
 		for(m=0; m<64; m++) begin
-			regBackDataToMux[m][0] = address[m];
+			regBackDataToMux[m][0] = addressLoad[m];
 		end
 		for(n=0; n<64; n++) begin
 			regBackDataToMux[n][1] = read_data[n];

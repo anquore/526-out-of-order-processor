@@ -1,17 +1,18 @@
-module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC);
-	input logic clk, reset, uncondBr, brTaken, BRMI, enablePC;
+module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC, needToRestore_i, restorePoint_i);
+	input logic clk, reset, uncondBr, brTaken, BRMI, enablePC, needToRestore_i;
 	input logic [63:0] regPC;
 	input logic [31:0] instrToRead;
+  input logic [63:0] restorePoint_i;
 	output logic [31:0] instruction;
 	output logic [63:0] address;
 	
-	logic [63:0] newAddress, value19Extend, value26Extend;
+	logic [63:0] newAddress, newAddress1, value19Extend, value26Extend;
 	
 	//the instruction memory
 	instructmem instrMem(.address, .instruction, .clk);
 	
 	//PC value
-	individualReg64 PC(.q(address), .d(newAddress), .reset, .enable(enablePC), .clk);
+	individualReg64 PC(.q(address), .d(newAddress1), .reset, .enable(enablePC), .clk);
 	
 	//sign extenders
 	signExtend19 extend19(.valueIn(instrToRead[23:5]), .extendedOut(value19Extend));
@@ -75,6 +76,22 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 		end
 	end
 	mux2x64 finalChoiceMux (.out(newAddress), .addr(BRMI), .muxIns(finalNewAddressToDo));	
+  
+  
+  
+  logic [63:0][1:0] finalNewAddressToDo1; 
+	integer p, q;
+	always_comb begin
+		for(p=0; p<64; p++) begin
+			finalNewAddressToDo1[p][0] = newAddress[p];
+		end
+		for(q=0; q<64; q++) begin
+			finalNewAddressToDo1[q][1] = restorePoint_i[q];
+		end
+	end
+	mux2x64 finalChoiceMux1 (.out(newAddress1), .addr(needToRestore_i), .muxIns(finalNewAddressToDo1));	
+  
+  
 endmodule
 
 /*

@@ -10,27 +10,27 @@ cModel Technology
 Z0 dC:/Users/Richard/Desktop/uw_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing
 vadder64
 Z1 DXx6 sv_std 3 std 0 22 WmjPaeP=7F5?QFXzJ>D[Q2
-Z2 !s110 1525917575
+Z2 !s110 1525977944
 !i10b 1
 !s100 Jn]07<GYDS>4I2RC`7QBd3
 I7R2cRR4J9IE^kajZ?CV_^3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 adder64_sv_unit
 S1
-R0
-Z4 w1525653721
+Z4 dC:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing
+Z5 w1525653721
 8./adder64.sv
 F./adder64.sv
 L0 1
-Z5 OV;L;10.4d;61
+Z6 OV;L;10.4d;61
 r1
 !s85 0
 31
-Z6 !s108 1525917575.000000
+Z7 !s108 1525977944.000000
 !s107 ./adder64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./adder64.sv|
 !i113 1
-Z7 tSvlog 1
+Z8 tSvlog 1
 vadderC65
 R1
 R2
@@ -40,114 +40,114 @@ IKJX:NZ`MLYbF>1GXT3J=_3
 R3
 !s105 adderC65_sv_unit
 S1
-R0
 R4
+R5
 8./adderC65.sv
 F./adderC65.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R6
+R7
 !s107 ./adderC65.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./adderC65.sv|
 !i113 1
-R7
+R8
 nadder@c65
 valu
 R1
-Z8 !s110 1525917569
+Z9 !s110 1525977939
 !i10b 1
 !s100 i@nIH>9=E=bTKg?cAf`M30
 Im>2;GIiI>`LHJF8e>0zak3
 R3
 !s105 alu_sv_unit
 S1
-R0
 R4
+R5
 8./alu.sv
 F./alu.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z9 !s108 1525917569.000000
+Z10 !s108 1525977939.000000
 !s107 ./alu.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./alu.sv|
 !i113 1
-R7
+R8
 vALUStage
 R1
-Z10 !s110 1525917572
+Z11 !s110 1525977941
 !i10b 1
 !s100 @j`jia9:UVX^DEPgogDYi3
 I`MJR_54=Q]2_Z1<4^=AYU0
 R3
 !s105 ALUstage_sv_unit
 S1
-R0
-Z11 w1525886991
+R4
+Z12 w1525886991
 8./ALUstage.sv
 F./ALUstage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z12 !s108 1525917572.000000
+Z13 !s108 1525977941.000000
 !s107 ./ALUstage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./ALUstage.sv|
 !i113 1
-R7
+R8
 n@a@l@u@stage
 vandifier
 R1
-Z13 !s110 1525917573
+Z14 !s110 1525977942
 !i10b 1
 !s100 k>lME7D?nL`<;^bPKm8Zg2
 IEHOLOED?DP7fJXMnF>;hZ2
 R3
 !s105 andifier_sv_unit
 S1
-R0
 R4
+R5
 8./andifier.sv
 F./andifier.sv
 L0 3
-R5
+R6
 r1
 !s85 0
 31
-Z14 !s108 1525917573.000000
+Z15 !s108 1525977942.000000
 !s107 ./andifier.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./andifier.sv|
 !i113 1
-R7
+R8
 vbitSlice
 R1
-R8
+R9
 !i10b 1
 !s100 >9ZcTd<?>Gfdg1LOi8?8m2
 ITa`Kf2Df42B02YkNQ;Di81
 R3
 !s105 bitSlice_sv_unit
 S1
-R0
 R4
+R5
 8./bitSlice.sv
 F./bitSlice.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+Z16 !s108 1525977938.000000
 !s107 ./bitSlice.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./bitSlice.sv|
 !i113 1
-R7
+R8
 nbit@slice
 vbsg_priority_encode_one_hot_out
 R1
@@ -158,396 +158,396 @@ I1SCmnWZ:V0[IB11U_:b;N1
 R3
 !s105 bsg_priority_encode_one_hot_out_v_unit
 S1
-R0
 R4
+R5
 8./bsg_priority_encode_one_hot_out.v
 F./bsg_priority_encode_one_hot_out.v
-Z15 L0 10
-R5
+Z17 L0 10
+R6
 r1
 !s85 0
 31
-R6
+R7
 !s107 ./bsg_priority_encode_one_hot_out.v|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./bsg_priority_encode_one_hot_out.v|
 !i113 1
-R7
+R8
 vbsg_scan
 R1
-R2
+Z18 !s110 1525977945
 !i10b 1
 !s100 50I952kkg4TS_oeTQnOnQ3
 I:F<AmE^zK17Td]VbTH36<3
 R3
 !s105 bsg_scan_v_unit
 S1
-R0
+R4
 w1525888389
 8./bsg_scan.v
 F./bsg_scan.v
 L0 7
-R5
+R6
 r1
 !s85 0
 31
-R6
+R7
 !s107 ./bsg_scan.v|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./bsg_scan.v|
 !i113 1
-R7
+R8
 vcommitStage
 R1
-Z16 !s110 1525917574
+R2
 !i10b 1
-!s100 bf=dCz:=6Oa>gRYL@5a862
-I9]R1b[]?QVeBj5k0MmDMN3
+!s100 5=9NH4]<hgUmc>`ie`QkS1
+I3`mB1>N8LL5<KngY_93T]3
 R3
 !s105 commitStage_sv_unit
 S1
-R0
-w1525916025
+R4
+w1525977506
 8./commitStage.sv
 F./commitStage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z17 !s108 1525917574.000000
+Z19 !s108 1525977943.000000
 !s107 ./commitStage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./commitStage.sv|
 !i113 1
-R7
+R8
 ncommit@stage
 vcompleteDataPath
 R1
-Z18 !s110 1525917571
+Z20 !s110 1525977940
 !i10b 1
 !s100 f31K7E7ohPWl^6:D:Qbnn3
 Ib7X_;4go7ck5?oRX_m7fJ3
 R3
 !s105 completeDataPath_sv_unit
 S1
-R0
 R4
+R5
 8./completeDataPath.sv
 F./completeDataPath.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z19 !s108 1525917571.000000
+Z21 !s108 1525977940.000000
 !s107 ./completeDataPath.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./completeDataPath.sv|
 !i113 1
-R7
+R8
 ncomplete@data@path
 vcompleteDataPathPipelinedOutOfOrder
 R1
-R18
+R11
 !i10b 1
-!s100 eUe=^Qi2IFCNm3=^?l_7Y1
-IZ1ezQO>SAE474VBX^7CmD0
+!s100 [UjlZ?iHT79^RKAB^:>Om2
+IGNLdo8Od_TON9BDf2_3?P2
 R3
 !s105 completeDataPathPipelinedOutOfOrder_sv_unit
 S1
-R0
-w1525917250
+R4
+w1525976420
 8./completeDataPathPipelinedOutOfOrder.sv
 F./completeDataPathPipelinedOutOfOrder.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R19
+R13
 !s107 ./completeDataPathPipelinedOutOfOrder.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./completeDataPathPipelinedOutOfOrder.sv|
 !i113 1
-R7
+R8
 ncomplete@data@path@pipelined@out@of@order
 vcompletionStage
 R1
-Z20 !s110 1525917576
+R18
 !i10b 1
 !s100 8>AFVl@;Q<IJS;JPeh0Cb3
 IRVo9NPPa;FKfg1MWY]dLj0
 R3
 !s105 completionStage_sv_unit
 S1
-R0
+R4
 w1525917373
 8./completionStage.sv
 F./completionStage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z21 !s108 1525917576.000000
+Z22 !s108 1525977945.000000
 !s107 ./completionStage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./completionStage.sv|
 !i113 1
-R7
+R8
 ncompletion@stage
 vcontrolOOO
 R1
-R18
+R20
 !i10b 1
-!s100 nID_>M80<V7=U7hLnFz123
-IfnTzU47f1bQ=a0A?_>Z4E0
+!s100 Q`KdZ@ni>@X<o[BM?Z[PJ0
+IY]7L0mULnKV43HI[WJX_52
 R3
 !s105 controlOOO_sv_unit
 S1
-R0
-w1525917550
+R4
+w1525977931
 8./controlOOO.sv
 F./controlOOO.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R19
+R21
 !s107 ./controlOOO.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./controlOOO.sv|
 !i113 1
-R7
+R8
 ncontrol@o@o@o
 vD_FF
 R1
-Z22 !s110 1525917567
+Z23 !s110 1525977937
 !i10b 1
 !s100 THI34i_cXaQ8UX1^:PlcC2
 I6nmfCbMGlCaE`j0]i2[720
 R3
 !s105 D_FF_sv_unit
 S1
-R0
 R4
+R5
 8./D_FF.sv
 F./D_FF.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z23 !s108 1525917567.000000
+Z24 !s108 1525977937.000000
 !s107 ./D_FF.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./D_FF.sv|
 !i113 1
-R7
+R8
 n@d_@f@f
 vdatamem
 R1
-Z24 !s110 1525917570
+R20
 !i10b 1
-!s100 Y6ILkhmAN_W^`>^Ob[:mL0
-I^_G3IQD7m^^F1dOGEX4iV3
+!s100 1IL2T[c_WInFR?C6@nRU=2
+IJU`:`]@3?UkHQh:QPHj9g1
 R3
 !s105 datamem_sv_unit
 S1
-R0
-R11
+R4
+w1525967816
 8./datamem.sv
 F./datamem.sv
-R15
-R5
+R17
+R6
 r1
 !s85 0
 31
-Z25 !s108 1525917570.000000
+R21
 !s107 ./datamem.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./datamem.sv|
 !i113 1
-R7
+R8
 vdataMovement
 R1
-R18
+R20
 !i10b 1
 !s100 lJeAG7g`O?aQU5hMZTOPn0
 IlG7A=IgW27]`7@QaHNNmZ1
 R3
 !s105 dataMovement_sv_unit
 S1
-R0
 R4
+R5
 8./dataMovement.sv
 F./dataMovement.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R25
+R21
 !s107 ./dataMovement.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./dataMovement.sv|
 !i113 1
-R7
+R8
 ndata@movement
 vdecoder1x2
 R1
-Z26 !s110 1525917568
+R23
 !i10b 1
 !s100 oN8mR;Z0NRgoA>jA^l4;92
 I;Hk?O0Q_JAT9?=5cckRLR1
 R3
 !s105 decoder1x2_sv_unit
 S1
-R0
 R4
+R5
 8./decoder1x2.sv
 F./decoder1x2.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./decoder1x2.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./decoder1x2.sv|
 !i113 1
-R7
+R8
 vdecoder2x4
 R1
-R22
+R23
 !i10b 1
 !s100 MVAiQ2`A5WkZaBo:>>Gm31
 IH]@lzKn@[CZzQNfBB9X7@2
 R3
 !s105 decoder2x4_sv_unit
 S1
-R0
 R4
+R5
 8./decoder2x4.sv
 F./decoder2x4.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./decoder2x4.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./decoder2x4.sv|
 !i113 1
-R7
+R8
 vdecoder4x16
 R1
-R26
+R23
 !i10b 1
 !s100 [];G_i@ZEmii_Tl0n1MfL0
 IcUeLL8m[G`fYA;InB9QYm3
 R3
 !s105 decoder4x16_sv_unit
 S1
-R0
 R4
+R5
 8./decoder4x16.sv
 F./decoder4x16.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z27 !s108 1525917568.000000
+R24
 !s107 ./decoder4x16.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./decoder4x16.sv|
 !i113 1
-R7
+R8
 vdecoder5x32
 R1
-R26
+R23
 !i10b 1
 !s100 Qe7MMOMYYF2Y>i8i3Hl[L1
 IFWTNmCW6SKZK?So9UIl]c3
 R3
 !s105 decoder5x32_sv_unit
 S1
-R0
 R4
+R5
 8./decoder5x32.sv
 F./decoder5x32.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R24
 !s107 ./decoder5x32.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./decoder5x32.sv|
 !i113 1
-R7
+R8
 vdecodeStage
 R1
-Z28 !s110 1525917579
+Z25 !s110 1525977948
 !i10b 1
-!s100 ZJ5>>Wm>GfTQKJCb91=O22
-IILUnY64E>Z1hPiU1;SH;f0
+!s100 bOEXk]RM72mg?H]9zPGU_3
+I^PF62UTlU^Oo_FG9z_e7`3
 R3
 !s105 decodeStage_sv_unit
 S1
-R0
-w1525895575
+R4
+w1525976309
 8./decodeStage.sv
 F./decodeStage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z29 !s108 1525917579.000000
+!s108 1525977948.000000
 !s107 ./decodeStage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./decodeStage.sv|
 !i113 1
-R7
+R8
 ndecode@stage
 vdivider
 R1
-R16
+Z26 !s110 1525977943
 !i10b 1
 !s100 5L@Zzcif4JTWRV=QfGMO33
 Ie_R2nA_I_GkDD_9HO8V3`0
 R3
 !s105 divider_sv_unit
 S1
-R0
 R4
+R5
 8./divider.sv
 F./divider.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R17
+R19
 !s107 ./divider.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./divider.sv|
 !i113 1
-R7
+R8
 venableD_FF
 R1
-R22
+R23
 !i10b 1
 !s100 n=G6i=^Nof`S<KLJ0f[653
 ID@SSC<E=A9[CfDcCD]WP>1
 R3
 !s105 enableD_FF_sv_unit
 S1
-R0
 R4
+R5
 8./enableD_FF.sv
 F./enableD_FF.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./enableD_FF.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./enableD_FF.sv|
 !i113 1
-R7
+R8
 nenable@d_@f@f
 vexecuteOutput
 R1
@@ -558,657 +558,657 @@ I]?7V3hll2AS^aSgDGRDDI2
 R3
 !s105 execOutput_sv_unit
 S1
-R0
+R4
 w1525888139
 8./execOutput.sv
 F./execOutput.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R17
+R7
 !s107 ./execOutput.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./execOutput.sv|
 !i113 1
-R7
+R8
 nexecute@output
 vFF_en
 R1
-R20
+R18
 !i10b 1
 !s100 >_>Kooh4o>Jdk70mOK5R?0
 ILiZCJdHPK60gzaQnEnj?^3
 R3
 !s105 FF_en_sv_unit
 S1
-R0
 R4
+R5
 8./FF_en.sv
 F./FF_en.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R21
+R22
 !s107 ./FF_en.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./FF_en.sv|
 !i113 1
-R7
+R8
 n@f@f_en
 vforwardingUnit
 R1
-R10
+R11
 !i10b 1
 !s100 RUo4VAfXY_D4BRfk6k25i3
 IGQ]67IgMda?6WnfAaQ9i21
 R3
 !s105 forwardingUnit_sv_unit
 S1
-R0
-R11
+R4
+R12
 8./forwardingUnit.sv
 F./forwardingUnit.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R12
+R13
 !s107 ./forwardingUnit.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./forwardingUnit.sv|
 !i113 1
-R7
+R8
 nforwarding@unit
 vfull_adder
 R1
-R16
+R26
 !i10b 1
 !s100 f^;PaXjmolQZZa=BRBg8?1
 I6K6V4Z?=VmH_8lcdRIXgE2
 R3
 !s105 full_adder_sv_unit
 S1
-R0
 R4
+R5
 8./full_adder.sv
 F./full_adder.sv
 L0 3
-R5
+R6
 r1
 !s85 0
 31
-R14
+R19
 !s107 ./full_adder.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./full_adder.sv|
 !i113 1
-R7
+R8
 vfullAdder
 R1
-R20
+R18
 !i10b 1
 !s100 _HBL>VfiDO;3FzKSANL]Q2
 I5^TZO]Y1l<ao2K3BUY8_J1
 R3
 !s105 fullAdder_sv_unit
 S1
-R0
 R4
+R5
 8./fullAdder.sv
 F./fullAdder.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R21
+R22
 !s107 ./fullAdder.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./fullAdder.sv|
 !i113 1
-R7
+R8
 nfull@adder
 vfullAdderArray63
 R1
-R16
+R26
 !i10b 1
 !s100 HNUI<a:TE184RLS;0lD_m2
 IngMD8k_ffAl>M170L3oDg3
 R3
 !s105 fullAdderArray63_sv_unit
 S1
-R0
 R4
+R5
 8./fullAdderArray63.sv
 F./fullAdderArray63.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R17
+R19
 !s107 ./fullAdderArray63.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./fullAdderArray63.sv|
 !i113 1
-R7
+R8
 nfull@adder@array63
 vfullReg32x64
 R1
-R22
+R23
 !i10b 1
 !s100 <TXTI=3`7k5jj7`8Gz70]2
 IUZzJWQd6_aOl?FdK:ORQ53
 R3
 !s105 fullReg32x64_sv_unit
 S1
-R0
 R4
+R5
 8./fullReg32x64.sv
 F./fullReg32x64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./fullReg32x64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./fullReg32x64.sv|
 !i113 1
-R7
+R8
 nfull@reg32x64
 vheadTailROB
 R1
-R20
+R18
 !i10b 1
 !s100 ?MkcBCzThiMaT5X;R8::o3
 Il]XGO<YM6@YNWLi?=3Y?D1
 R3
 !s105 headTailROB_sv_unit
 S1
-R0
 R4
+R5
 8./headTailROB.sv
 F./headTailROB.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R21
+R22
 !s107 ./headTailROB.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./headTailROB.sv|
 !i113 1
-R7
+R8
 nhead@tail@r@o@b
 vindividualReg64
 R1
-R22
+R23
 !i10b 1
 !s100 h1GP6CD2Je;lT9E=Gb5mQ2
 I4DCko@]X3;Y_9l;7<?G:i1
 R3
 !s105 individualReg64_sv_unit
 S1
-R0
 R4
+R5
 8./individualReg64.sv
 F./individualReg64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./individualReg64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./individualReg64.sv|
 !i113 1
-R7
+R8
 nindividual@reg64
 vinstructionFetch
 R1
-R24
+R9
 !i10b 1
-!s100 :3M[6@Xm4<V]]B3L5_6`M1
-I2RIOgTGX:;1O@JMfc3VCQ3
+!s100 [F>oOW2c[iK0K[`P`nkTB2
+IzOV4Z>];h>Y52koPE3:CZ0
 R3
 !s105 instructionFetch_sv_unit
 S1
-R0
 R4
+w1525966731
 8./instructionFetch.sv
 F./instructionFetch.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R25
+R10
 !s107 ./instructionFetch.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./instructionFetch.sv|
 !i113 1
-R7
+R8
 ninstruction@fetch
 vinstructmem
 R1
-R24
+R20
 !i10b 1
-!s100 lDb9EzmFD6ME[nc]Ooa<`2
-IV<lRV0Td[a[cToe:Aoe^g3
+!s100 TYFN:oFNNEME8jAj3lC`>0
+I_AF]:OaC8=`2J_Z<z<JnL0
 R3
 !s105 instructmem_sv_unit
 S1
-R0
-w1525894806
+R4
+w1525977380
 8./instructmem.sv
 F./instructmem.sv
-L0 21
-R5
+L0 22
+R6
 r1
 !s85 0
 31
-R25
+R21
 !s107 ./instructmem.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./instructmem.sv|
 !i113 1
-R7
+R8
 vissueExecStageALU
 R1
-R28
+Z27 !s110 1525977947
 !i10b 1
 !s100 zBzT@OKa`VfXPLh[jGjOK1
 IId53`VDCDQQ[_P:D?^G^S0
 R3
-Z30 !s105 issueExecStageALU_sv_unit
+Z28 !s105 issueExecStageALU_sv_unit
 S1
-R0
-Z31 w1525915978
-Z32 8./issueExecStageALU.sv
-Z33 F./issueExecStageALU.sv
+R4
+Z29 w1525915978
+Z30 8./issueExecStageALU.sv
+Z31 F./issueExecStageALU.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R29
-Z34 !s107 ./issueExecStageALU.sv|
-Z35 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./issueExecStageALU.sv|
+Z32 !s108 1525977947.000000
+Z33 !s107 ./issueExecStageALU.sv|
+Z34 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./issueExecStageALU.sv|
 !i113 1
-R7
+R8
 nissue@exec@stage@a@l@u
 vissueExecStageALU_testbench
 R1
-R28
+R27
 !i10b 1
 !s100 5;EnboIEE:zVY^IQh>SR@3
 I8AGS3:BJ=4M;1a<iR>UMo3
 R3
-R30
+R28
 S1
-R0
+R4
+R29
+R30
 R31
-R32
-R33
-Z36 L0 102
-R5
+Z35 L0 102
+R6
 r1
 !s85 0
 31
-R29
+R32
+R33
 R34
-R35
 !i113 1
-R7
+R8
 nissue@exec@stage@a@l@u_testbench
 vissueExecStageDiv
 R1
-R28
+R25
 !i10b 1
 !s100 6j<LRD:g`llP:DihD<0>`0
 Ilf`a3Mh2EmJ98]U0Z_2`Q2
 R3
-Z37 !s105 issueExecStageDiv_sv_unit
+Z36 !s105 issueExecStageDiv_sv_unit
 S1
-R0
-Z38 w1525889181
-Z39 8./issueExecStageDiv.sv
-Z40 F./issueExecStageDiv.sv
+R4
+Z37 w1525889181
+Z38 8./issueExecStageDiv.sv
+Z39 F./issueExecStageDiv.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R29
-Z41 !s107 ./issueExecStageDiv.sv|
-Z42 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./issueExecStageDiv.sv|
+R32
+Z40 !s107 ./issueExecStageDiv.sv|
+Z41 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./issueExecStageDiv.sv|
 !i113 1
-R7
+R8
 nissue@exec@stage@div
 vissueExecStageDiv_testbench
 R1
-R28
+R25
 !i10b 1
 !s100 g>:Q_Zbz4GU6O@OA6S:R13
 I]BVQ9PznB2a@g?K?`_gzP0
 R3
-R37
+R36
 S1
-R0
+R4
+R37
 R38
 R39
-R40
-R36
-R5
+R35
+R6
 r1
 !s85 0
 31
-R29
+R32
+R40
 R41
-R42
 !i113 1
-R7
+R8
 nissue@exec@stage@div_testbench
 vmapTable
 R1
-R16
+R26
 !i10b 1
 !s100 8XZh2>gfWBgEzkD_A6Ql20
 I?Sb8dYdRW63Z>S7Nf<1B93
 R3
 !s105 mapTable_sv_unit
 S1
-R0
+R4
 w1525887512
 8./mapTable.sv
 F./mapTable.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R17
+R19
 !s107 ./mapTable.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mapTable.sv|
 !i113 1
-R7
+R8
 nmap@table
 vmemStage
 R1
-R10
+R11
 !i10b 1
-!s100 @U2mhNf52eKAB;GOfeERV2
-I?GKL5=P@[S:z;P[173PgB1
+!s100 HVIo=WgOLUc9zGe:Dcgd91
+IEY<l6RO5BJBBB1[EcjLgc1
 R3
 !s105 memStage_sv_unit
 S1
-R0
-R11
+R4
+w1525967988
 8./memStage.sv
 F./memStage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R12
+R13
 !s107 ./memStage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./memStage.sv|
 !i113 1
-R7
+R8
 nmem@stage
 vmultiplier
 R1
-R13
+R14
 !i10b 1
 !s100 R^A`ISNQdgCd]>QRbJk1c0
 IJQG>Xld^iMFVWIK`B@ADm0
 R3
 !s105 multiplier_sv_unit
 S1
-R0
 R4
+R5
 8./multiplier.sv
 F./multiplier.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R14
+R15
 !s107 ./multiplier.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./multiplier.sv|
 !i113 1
-R7
+R8
 vmux16x1
 R1
-R26
+Z42 !s110 1525977938
 !i10b 1
 !s100 nL<Q[niLTR[G9f27ioFXI2
 IAG8aD<<BTDWO3PFX;?_1`1
 R3
 !s105 mux16x1_sv_unit
 S1
-R0
 R4
+R5
 8./mux16x1.sv
 F./mux16x1.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R16
 !s107 ./mux16x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux16x1.sv|
 !i113 1
-R7
+R8
 vmux2_1
 R1
-R22
+R23
 !i10b 1
 !s100 <X^SoUIfPC0BBz[0f9mjk2
 IPi@:KDL0]^J6@EcSLLz=10
 R3
 !s105 mux2_1_sv_unit
 S1
-R0
 R4
+R5
 8./mux2_1.sv
 F./mux2_1.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R23
+R24
 !s107 ./mux2_1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux2_1.sv|
 !i113 1
-R7
+R8
 vmux2x5
 R1
-R24
+R20
 !i10b 1
 !s100 RM63[FGgVhL>2QEhJBeHL2
 I42CJoBWFL:9TJ61e=BeB10
 R3
 !s105 mux2x5_sv_unit
 S1
-R0
 R4
+R5
 8./mux2x5.sv
 F./mux2x5.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R25
+R21
 !s107 ./mux2x5.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux2x5.sv|
 !i113 1
-R7
+R8
 vmux2x64
 R1
-R8
+R9
 !i10b 1
 !s100 <b:?OR=RnMz?feO;QM[Q10
 INoK4C@iJoaALOO=8JJ6MH1
 R3
 !s105 mux2x64_sv_unit
 S1
-R0
 R4
+R5
 8./mux2x64.sv
 F./mux2x64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+R10
 !s107 ./mux2x64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux2x64.sv|
 !i113 1
-R7
+R8
 vmux32x1
 R1
-R26
+R42
 !i10b 1
 !s100 NaiOY7G7fL=2zJCD3=K3I0
 Ilf6[i`H3XENEDI_ZOj;@z2
 R3
 !s105 mux32x1_sv_unit
 S1
-R0
 R4
+R5
 8./mux32x1.sv
 F./mux32x1.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R16
 !s107 ./mux32x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux32x1.sv|
 !i113 1
-R7
+R8
 vmux32x64
 R1
-R8
+R42
 !i10b 1
 !s100 94HLVWZ`Aifjm<QHSojVV3
 IP6nf7;:_?=R3Q`BBioGCV2
 R3
 !s105 mux32x64_sv_unit
 S1
-R0
 R4
+R5
 8./mux32x64.sv
 F./mux32x64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R16
 !s107 ./mux32x64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux32x64.sv|
 !i113 1
-R7
+R8
 vmux32xY
 R1
-Z43 !s110 1525917577
+Z43 !s110 1525977946
 !i10b 1
 !s100 78e:j3;YANC`_Zzkknk?h1
 IEFnn4Hfez5Xh01TaGE[n51
 R3
 !s105 mux32xY_sv_unit
 S1
-R0
 R4
+R5
 8./mux32xY.sv
 F./mux32xY.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z44 !s108 1525917577.000000
+Z44 !s108 1525977946.000000
 !s107 ./mux32xY.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux32xY.sv|
 !i113 1
-R7
+R8
 nmux32x@y
 vmux4x1
 R1
-R26
+R42
 !i10b 1
 !s100 P>IDJ7A=OlGkV@;[SO`YT0
 I[7VKfPQ6jn8_Vb5?:ijC<0
 R3
 !s105 mux4x1_sv_unit
 S1
-R0
 R4
+R5
 8./mux4x1.sv
 F./mux4x1.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R24
 !s107 ./mux4x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux4x1.sv|
 !i113 1
-R7
+R8
 vmux8x1
 R1
-R26
+R42
 !i10b 1
 !s100 CDhM1EUbeTV<ECW]>N[n22
 IPB34]G7=hB3ES]75WG3Sj3
 R3
 !s105 mux8x1_sv_unit
 S1
-R0
 R4
+R5
 8./mux8x1.sv
 F./mux8x1.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R27
+R16
 !s107 ./mux8x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux8x1.sv|
 !i113 1
-R7
+R8
 vmux_2x1_X64
 R1
-R20
+R18
 !i10b 1
 !s100 HE=zT^SI[z9ZX>XVX^`OZ3
 IBnOW:;QNhIB=<0<a?k:K[2
 R3
 !s105 mux_2x1_X64_sv_unit
 S1
-R0
 R4
+R5
 8./mux_2x1_X64.sv
 F./mux_2x1_X64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R21
+R22
 !s107 ./mux_2x1_X64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux_2x1_X64.sv|
 !i113 1
-R7
+R8
 nmux_2x1_@x64
 vmux_2x1_X65
 R1
@@ -1219,12 +1219,12 @@ IIZ]KI5ben7HE:^Q^OL>aY2
 R3
 !s105 mux_2x1_X65_sv_unit
 S1
-R0
 R4
+R5
 8./mux_2x1_X65.sv
 F./mux_2x1_X65.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
@@ -1232,7 +1232,7 @@ R44
 !s107 ./mux_2x1_X65.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux_2x1_X65.sv|
 !i113 1
-R7
+R8
 nmux_2x1_@x65
 vmux_4x1_X64
 R1
@@ -1243,20 +1243,20 @@ IHc[kZb6bkb24Sm]H25;>A2
 R3
 !s105 mux_4x1_X64_sv_unit
 S1
-R0
 R4
+R5
 8./mux_4x1_X64.sv
 F./mux_4x1_X64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R44
+R22
 !s107 ./mux_4x1_X64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux_4x1_X64.sv|
 !i113 1
-R7
+R8
 nmux_4x1_@x64
 vmux_4x1_X65
 R1
@@ -1267,12 +1267,12 @@ I6EfB`0?gjM]n7D7k=9[NR1
 R3
 !s105 mux_4x1_X65_sv_unit
 S1
-R0
 R4
+R5
 8./mux_4x1_X65.sv
 F./mux_4x1_X65.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
@@ -1280,55 +1280,55 @@ R44
 !s107 ./mux_4x1_X65.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./mux_4x1_X65.sv|
 !i113 1
-R7
+R8
 nmux_4x1_@x65
 vNAND_MUX_2x1
 R1
-R13
+R14
 !i10b 1
 !s100 `^44XMLKeS83gNF]zjkRD1
 Ik9e:FQR[O_R]9oDc;_3ih0
 R3
 !s105 NAND_MUX_2x1_sv_unit
 S1
-R0
 R4
+R5
 8./NAND_MUX_2x1.sv
 F./NAND_MUX_2x1.sv
 L0 3
-R5
+R6
 r1
 !s85 0
 31
-R14
+R15
 !s107 ./NAND_MUX_2x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./NAND_MUX_2x1.sv|
 !i113 1
-R7
+R8
 n@n@a@n@d_@m@u@x_2x1
 vNAND_MUX_4x1
 R1
-R13
+R14
 !i10b 1
 !s100 WJK;VoQe[iXMbIUW6cCRV3
 IVe6b8hUn<?Z]:BPQYfI[K3
 R3
 !s105 NAND_MUX_4x1_sv_unit
 S1
-R0
 R4
+R5
 8./NAND_MUX_4x1.sv
 F./NAND_MUX_4x1.sv
 L0 3
-R5
+R6
 r1
 !s85 0
 31
-R14
+R15
 !s107 ./NAND_MUX_4x1.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./NAND_MUX_4x1.sv|
 !i113 1
-R7
+R8
 n@n@a@n@d_@m@u@x_4x1
 vnorifier
 R1
@@ -1339,12 +1339,12 @@ IT>[hKao2QbYZNN1og9Pfm2
 R3
 !s105 norifier_sv_unit
 S1
-R0
 R4
+R5
 8./norifier.sv
 F./norifier.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
@@ -1352,30 +1352,30 @@ R44
 !s107 ./norifier.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./norifier.sv|
 !i113 1
-R7
+R8
 vorGate16
 R1
-R8
+R9
 !i10b 1
 !s100 AdHK05`IHkD9G6XUAiOhI1
 I92E3zBJTJ]bn@i;l_7W_40
 R3
 !s105 orGate16_sv_unit
 S1
-R0
 R4
+R5
 8./orGate16.sv
 F./orGate16.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+R10
 !s107 ./orGate16.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./orGate16.sv|
 !i113 1
-R7
+R8
 nor@gate16
 vpipelinedProcessor_testbench
 R1
@@ -1391,7 +1391,7 @@ w1525884466
 Z46 8./pipelinedProcessorOOO.sv
 Z47 F./pipelinedProcessorOOO.sv
 Z48 L0 25
-R5
+R6
 r1
 !s85 0
 31
@@ -1399,55 +1399,55 @@ r1
 Z49 !s107 ./pipelinedProcessorOOO.sv|
 Z50 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./pipelinedProcessorOOO.sv|
 !i113 1
-R7
+R8
 npipelined@processor_testbench
 vpipelinedProcessorOOO
 R1
-R10
+R14
 !i10b 1
-!s100 4>QJR;ZK7<B9871[S;[2W2
-I?G=eY:0oBPJ=1UE:b0JRC1
+!s100 MJCd0jlJVQF9dEZcH9LA_2
+I0;H:>MC0;Y9dVS8f[;g1N0
 R3
 R45
 S1
-R0
-Z51 w1525889589
+R4
+Z51 w1525963441
 R46
 R47
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R12
+R13
 R49
 R50
 !i113 1
-R7
+R8
 npipelined@processor@o@o@o
 vpipelinedProcessorOOO_testbench
 R1
-R10
+R14
 !i10b 1
 !s100 YTLTW_HPhKZ=lRjU4QmIm3
 I@5[U9L6f^LEPDTRd`ifXL2
 R3
 R45
 S1
-R0
+R4
 R51
 R46
 R47
 R48
-R5
+R6
 r1
 !s85 0
 31
-R12
+R13
 R49
 R50
 !i113 1
-R7
+R8
 npipelined@processor@o@o@o_testbench
 vregfile
 R1
@@ -1463,7 +1463,7 @@ Z54 w1525889225
 Z55 8./regfileOOO.sv
 Z56 F./regfileOOO.sv
 L0 2
-R5
+R6
 r1
 !s85 0
 31
@@ -1471,46 +1471,46 @@ Z57 !s108 1525889230.000000
 Z58 !s107 ./regfileOOO.sv|
 Z59 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./regfileOOO.sv|
 !i113 1
-R7
+R8
 vregfileOOO
 R1
-R8
+R42
 !i10b 1
 !s100 72JBRQ^azYFKBbcEWLzZg3
 Igo3d3LJ?Rb06RddgH@?SH0
 R3
 R53
 S1
-R0
+R4
 w1525889478
 R55
 R56
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+R16
 R58
 R59
 !i113 1
-R7
+R8
 nregfile@o@o@o
 vregisterX16
 R1
-Z60 !s110 1525917578
+R43
 !i10b 1
 !s100 KF4OQj>3m90fYLoN@o3673
 IU_f3=0zg:h_9EhEBOelKW0
 R3
 !s105 registerX16_sv_unit
 S1
-R0
 R4
+R5
 8./registerX16.sv
 F./registerX16.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
@@ -1518,79 +1518,79 @@ R44
 !s107 ./registerX16.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./registerX16.sv|
 !i113 1
-R7
+R8
 nregister@x16
 vregisterX64
 R1
-R60
+R43
 !i10b 1
 !s100 70=jC`;5`6_S>`@O2dc3U3
 Iz;FEHhHW_8T`L1MbfkZ:93
 R3
 !s105 registerX64_sv_unit
 S1
-R0
 R4
+R5
 8./registerX64.sv
 F./registerX64.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-Z61 !s108 1525917578.000000
+R44
 !s107 ./registerX64.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./registerX64.sv|
 !i113 1
-R7
+R8
 nregister@x64
 vregisterX65
 R1
-R60
+R27
 !i10b 1
 !s100 5WOTClK3WNYezQ9d>0D>P2
 IZSQkgaVckPOie`PZE7^ll2
 R3
 !s105 registerX65_sv_unit
 S1
-R0
 R4
+R5
 8./registerX65.sv
 F./registerX65.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R61
+R32
 !s107 ./registerX65.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./registerX65.sv|
 !i113 1
-R7
+R8
 nregister@x65
 vregReadAndWriteStage
 R1
-R10
+R11
 !i10b 1
 !s100 bLn<<B?^0=M09]Sl_Jc6g0
 I]mR9[3^hW^WWgIk]Xincz2
 R3
 !s105 regReadAndWriteStage_sv_unit
 S1
-R0
 R4
+R5
 8./regReadAndWriteStage.sv
 F./regReadAndWriteStage.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R12
+R13
 !s107 ./regReadAndWriteStage.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./regReadAndWriteStage.sv|
 !i113 1
-R7
+R8
 nreg@read@and@write@stage
 vregstim
 R1
@@ -1606,7 +1606,7 @@ R54
 R55
 R56
 L0 48
-R5
+R6
 r1
 !s85 0
 31
@@ -1614,269 +1614,269 @@ R57
 R58
 R59
 !i113 1
-R7
+R8
 vreservationStation
 R1
-R60
+R27
 !i10b 1
 !s100 =jg8m0UdN=h<A@z>HTIjS3
 IzmRMWU@BenScej3M3]KXM3
 R3
 !s105 reservationStation_sv_unit
 S1
-R0
 R4
+R5
 8./reservationStation.sv
 F./reservationStation.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R61
+R32
 !s107 ./reservationStation.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./reservationStation.sv|
 !i113 1
-R7
+R8
 nreservation@station
 vreservationStationx2
 R1
-R60
+R27
 !i10b 1
 !s100 mT>;zPZ18]5^Q[8iI1^F00
 I=zamUbGS>ETKcQQZ;N]eM3
 R3
 !s105 reservationStationx2_sv_unit
 S1
-R0
 R4
+R5
 8./reservationStationx2.sv
 F./reservationStationx2.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R61
+R32
 !s107 ./reservationStationx2.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./reservationStationx2.sv|
 !i113 1
-R7
+R8
 nreservation@stationx2
 vROB
 R1
-R60
+R27
 !i10b 1
-!s100 fj<ifRS=TCj;fkHkXENfi1
-IP?Ibocd9?G:L5eR8SYg=k1
+!s100 Yo1dR<T6VH=GjW4[gUHk43
+Ib?^eLWMFif@7JRmV;Y^?N2
 R3
 !s105 ROB_sv_unit
 S1
-R0
 R4
+w1525963485
 8./ROB.sv
 F./ROB.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R61
+R32
 !s107 ./ROB.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./ROB.sv|
 !i113 1
-R7
+R8
 n@r@o@b
 vROBregs
 R1
-R28
+R27
 !i10b 1
-!s100 CY`N3IOUINm6hNZlmXH]P0
-ILC:`Mb6mJSO<k?R>3Z0QL2
+!s100 `S1eGzD66eBjE4EEK=8Pl3
+InzHLf`l5I4;f6YeI:ablM0
 R3
 !s105 ROBregs_sv_unit
 S1
-R0
-w1525891433
+R4
+w1525971066
 8./ROBregs.sv
 F./ROBregs.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R61
+R32
 !s107 ./ROBregs.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./ROBregs.sv|
 !i113 1
-R7
+R8
 n@r@o@bregs
 vshifter
 R1
-R13
+R14
 !i10b 1
 !s100 HTNSjA_^>1O8=aE4BXcCK0
 IgXjA81^ZAI>H1UE1I@BAQ1
 R3
 !s105 shifter_sv_unit
 S1
-R0
 R4
+R5
 8./shifter.sv
 F./shifter.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R14
+R15
 !s107 ./shifter.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./shifter.sv|
 !i113 1
-R7
+R8
 vshiftLeft2
 R1
-R24
+R9
 !i10b 1
 !s100 JO;PQIUXV=V;^@_aC7Jmn3
 IFQg5nK_;K`K69SCOOk`B@0
 R3
 !s105 shiftLeft2_sv_unit
 S1
-R0
 R4
+R5
 8./shiftLeft2.sv
 F./shiftLeft2.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R25
+R10
 !s107 ./shiftLeft2.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./shiftLeft2.sv|
 !i113 1
-R7
+R8
 nshift@left2
 vsignExtend12
 R1
-R18
+R20
 !i10b 1
 !s100 _@>3PhjQZFO4n`NBVGn;f0
 IGI09m0;SH3b<T_715L@h73
 R3
 !s105 signExtend12_sv_unit
 S1
-R0
 R4
+R5
 8./signExtend12.sv
 F./signExtend12.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R19
+R21
 !s107 ./signExtend12.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./signExtend12.sv|
 !i113 1
-R7
+R8
 nsign@extend12
 vsignExtend19
 R1
-R8
+R9
 !i10b 1
 !s100 GO0>Lc@k=[]00P?=bhB042
 IUBOm7GG^aF:m0dg45V[MA2
 R3
 !s105 signExtend19_sv_unit
 S1
-R0
 R4
+R5
 8./signExtend19.sv
 F./signExtend19.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+R10
 !s107 ./signExtend19.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./signExtend19.sv|
 !i113 1
-R7
+R8
 nsign@extend19
 vsignExtend26
 R1
-R8
+R9
 !i10b 1
 !s100 T2n2>a@6^h<Y>eJc=[g1X1
 I?U7SDcQi>]gE9HRXOR9Vh2
 R3
 !s105 signExtend26_sv_unit
 S1
-R0
 R4
+R5
 8./signExtend26.sv
 F./signExtend26.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R9
+R10
 !s107 ./signExtend26.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./signExtend26.sv|
 !i113 1
-R7
+R8
 nsign@extend26
 vsignExtend9
 R1
-R24
+R20
 !i10b 1
 !s100 QRKWhImEdS;KY[Lj@[2Az3
 I3ON>dIVbGH8e0^fbQald51
 R3
 !s105 signExtend9_sv_unit
 S1
-R0
 R4
+R5
 8./signExtend9.sv
 F./signExtend9.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R25
+R21
 !s107 ./signExtend9.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./signExtend9.sv|
 !i113 1
-R7
+R8
 nsign@extend9
 vwallOfDFFs
 R1
-R18
+R11
 !i10b 1
 !s100 KO8OWi_[mN_HR1z6ncI5V0
 I]TW]:@KoGRk=I_c`cES742
 R3
 !s105 wallOfDFFs_sv_unit
 S1
-R0
 R4
+R5
 8./wallOfDFFs.sv
 F./wallOfDFFs.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R19
+R13
 !s107 ./wallOfDFFs.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./wallOfDFFs.sv|
 !i113 1
-R7
+R8
 nwall@of@d@f@fs
 vxnorifier
 R1
@@ -1887,17 +1887,17 @@ I=mnC7>CzBZl1FaTk18JFg1
 R3
 !s105 xnorifier_sv_unit
 S1
-R0
+R4
 w1525653722
 8./xnorifier.sv
 F./xnorifier.sv
 L0 1
-R5
+R6
 r1
 !s85 0
 31
-R6
+R7
 !s107 ./xnorifier.sv|
 !s90 -##implicit##push_minusfile_path##|C:/Users/Richard/Desktop/UW_class_materials/EE 526/526-out-of-order-processor/toolFlow/pipeTest/src/verilog/modelsim testing/vlog.opt|-##implicit##pop_minusfile_path##|-reportprogress|300|./xnorifier.sv|
 !i113 1
-R7
+R8

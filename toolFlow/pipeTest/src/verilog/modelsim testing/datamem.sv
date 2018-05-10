@@ -8,7 +8,8 @@
 // How many bytes are in our memory?  Must be a power of two.
 	
 module datamem (
-	input logic		[63:0]	address,
+	input logic		[63:0]	addressLoad, 
+  input logic		[63:0]  addressStore,
 	input logic					write_enable,
 	input logic					read_enable, //linked to 1
 	input logic		[63:0]	write_data,
@@ -37,14 +38,25 @@ module datamem (
 	logic [7:0] mem [1023:0];
 	
 	// Compute a properly aligned address
-	logic [63:0] aligned_address;
+	logic [63:0] aligned_address0;
 	always_comb begin
 		case (xfer_size)
-		1: aligned_address = address;
-		2: aligned_address = {address[63:1], 1'b0};
-		4: aligned_address = {address[63:2], 2'b00};
-		8: aligned_address = {address[63:3], 3'b000};
-		default: aligned_address = {address[63:3], 3'b000}; // Bad addresses forced to double-word aligned.
+		1: aligned_address0 = addressLoad;
+		2: aligned_address0 = {addressLoad[63:1], 1'b0};
+		4: aligned_address0 = {addressLoad[63:2], 2'b00};
+		8: aligned_address0 = {addressLoad[63:3], 3'b000};
+		default: aligned_address0 = {addressLoad[63:3], 3'b000}; // Bad addresses forced to double-word aligned.
+		endcase
+	end
+  
+  logic [63:0] aligned_address1;
+	always_comb begin
+		case (xfer_size)
+		1: aligned_address1 = addressStore;
+		2: aligned_address1 = {addressStore[63:1], 1'b0};
+		4: aligned_address1 = {addressStore[63:2], 2'b00};
+		8: aligned_address1 = {addressStore[63:3], 3'b000};
+		default: aligned_address1 = {addressStore[63:3], 3'b000}; // Bad addresses forced to double-word aligned.
 		endcase
 	end
 	
@@ -54,7 +66,7 @@ module datamem (
 		read_data = 'x;
 		if (read_enable == 1)
 			for(i=0; i<xfer_size; i++)
-				read_data[8*i+7 -: 8] = mem[aligned_address + i]; // 8*i+7 -: 8 means "start at 8*i+7, for 8 bits total"
+				read_data[8*i+7 -: 8] = mem[aligned_address0 + i]; // 8*i+7 -: 8 means "start at 8*i+7, for 8 bits total"
 	end
 	
 	// Handle the writes.
@@ -62,7 +74,7 @@ module datamem (
 	always_ff @(posedge clk) begin
 		if (write_enable)
 			for(j=0; j<xfer_size; j++)
-				mem[aligned_address + j] <= write_data[8*j+7 -: 8]; 
+				mem[aligned_address1 + j] <= write_data[8*j+7 -: 8]; 
 	end
 endmodule
 

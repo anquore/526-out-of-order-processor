@@ -3,23 +3,23 @@ module pipelinedProcessorOOO(clk, reset);
 	
 	//the datapath
 	logic uncondBr, brTaken, memWrite, memToReg, 
-					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div;
+					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div, doingABranch;
   logic [1:0] whichMath;
 	logic [2:0] ALUOp;
 	logic [4:0] regRD;
 	logic [17:0] instr;
 	logic [3:0] flags;
-  logic [2:0] commandType;
+  logic [3:0] commandType;
 	logic commandZero, negative, overflow, whichFlags, zero, carry_out;
 	completeDataPathPipelinedOutOfOrder theDataPath (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, 
-								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_i(commandType));
+								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_i(commandType), .doingABranch_i(doingABranch));
 								
 	//the control
 	controlOOO theControl (.instr, .flags, .commandZero, .uncondBr, .brTaken, .memWrite, .memToReg,
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
-								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_o(commandType));
+								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_o(commandType), .doingABranch_o(doingABranch));
 endmodule
 
 module pipelinedProcessorOOO_testbench();

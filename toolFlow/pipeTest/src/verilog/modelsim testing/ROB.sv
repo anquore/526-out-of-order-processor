@@ -21,11 +21,11 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 ,commitReadData_o);
 
   input logic	[addrSize:0] 	decodeReadAddr1_i, decodeReadAddr2_i, completionWriteAddr_i;
-	input logic [7:0]	decodeWriteData_i;
+	input logic [8:0]	decodeWriteData_i;
   input logic [69:0] completionWriteData_i;
 	input logic 			reset_i, clk_i, completionWriteEn_i, updateHead_i, updateTail_i;
 	output logic [64:0]	decodeReadData1_o, decodeReadData2_o;
-  output logic [77:0] commitReadData_o;
+  output logic [78:0] commitReadData_o;
   output logic [addrSize:0] nextTail_o, head_o;
   output logic stall_o;
   

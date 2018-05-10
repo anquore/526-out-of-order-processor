@@ -25,6 +25,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,regWrite_i
 ,needToForward_i
 ,leftShift_i
+,doingABranch_i
 
 ,decodeStall_o
 
@@ -69,12 +70,16 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,regfileReadRegister2_o
 ,regfileReadData1_i
 ,regfileReadData2_i
+
+//from the completion stage
+,completionRSROBTag_i
+,completionRSROBval_i
 );
 
   //inputs and outputs
   input logic clk_i, reset_i;
   input logic [4:0] RDvalue_i, RMvalue_i, RNvalue_i;
-  input logic [2:0] commandType_i;
+  input logic [3:0] commandType_i;
   input logic [63:0] PCaddress_i;
   input logic [8:0] dAddr9_i;
 	input logic [11:0] imm12_i;
@@ -90,7 +95,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   input logic read_enable_i;
   input logic [1:0] whichMath_i;
   input logic needToForward_i;
-  input logic leftShift_i;
+  input logic leftShift_i, doingABranch_i;
   output logic decodeStall_o;
   
   //map table
@@ -101,7 +106,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //ROB unit
   output logic	[addrSize:0] 	robReadAddr1_o, robReadAddr2_o;
-	output logic [7:0]	robWriteData_o;
+	output logic [8:0]	robWriteData_o;
 	output logic 	robUpdateTail_o;
 	input logic [64:0]	robReadData1_i, robReadData2_i;
   input logic [addrSize:0] robNextTail_i;
@@ -117,6 +122,10 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   //regfile
   output logic	[4:0] 	regfileReadRegister1_o, regfileReadRegister2_o;
 	input logic [63:0]	regfileReadData1_i, regfileReadData2_i;
+  
+  //completion stage
+  input logic [64:0] completionRSROBval_i;
+  input logic [ROBsizeLog - 1:0] completionRSROBTag_i;
   
   //pick between RM and RD for the true RM value
   logic [4:0] trueRM;
@@ -147,7 +156,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign robReadAddr2_o = mapReadData2_i;
   
   //assembly the rob write values 
-  assign robWriteData_o[7:5] = commandType_i;
+  assign robWriteData_o[8:5] = commandType_i;
   assign robWriteData_o[4:0] = RDvalue_i; //not true, needs to account for CBZ stuff
   assign robUpdateTail_o = 1;
   
@@ -169,11 +178,29 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign RNvalueInReg = (mapReadData1_i == 0);
   assign RMvalueInReg = (mapReadData2_i == 0);
   
+  //check if the data is in the completion stage
+  logic RMvalueInCom, RNvalueInCom;
+  assign RNvalueInCom = (mapReadData1_i == completionRSROBTag_i);
+  assign RMvalueInCom = (mapReadData2_i == completionRSROBTag_i);
+  
+  //determine if the ROB value is in the completion stage or ROB
+  logic [1:0][63:0] decisionROBorComRN, decisionROBorComRM;
+  assign decisionROBorComRN[0] = robReadData1_i[63:0];
+  assign decisionROBorComRN[1] = completionRSROBval_i;
+  assign decisionROBorComRM[0] = robReadData2_i[63:0];
+  assign decisionROBorComRM[1] = completionRSROBval_i;
+  
+  //pick between them
+  logic [63:0] ROBRNcom, ROBRMcom;
+  assign ROBRNcom = decisionROBorComRN[RNvalueInCom];
+  //assign RSROBval1_o = RSRNdata;
+  assign ROBRMcom = decisionROBorComRM[RMvalueInCom];
+  
   //determine which value to send to the RS for RN and RM, the rob or the reg
   logic [1:0][63:0] decisionROBorRegRN, decisionROBorRegRM;
-  assign decisionROBorRegRN[0] = robReadData1_i[63:0];
+  assign decisionROBorRegRN[0] = ROBRNcom;
   assign decisionROBorRegRN[1] = regfileReadData1_i;
-  assign decisionROBorRegRM[0] = robReadData2_i[63:0];
+  assign decisionROBorRegRM[0] = ROBRMcom;
   assign decisionROBorRegRM[1] = regfileReadData2_i;
   
   logic [63:0] RSRNdata, preBranchRSRM;
@@ -183,14 +210,14 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //determine if we are branching
   logic doingABranch, doingABranch_noBR;
-  assign doingABranch = commandType_i[1] | commandType_i[2];
+  assign doingABranch = doingABranch_i;
   assign doingABranch_noBR = doingABranch & ~(commandType_i == 6);
   
   
   //determine the tag to associate with the RN RS data
   logic [ROBsizeLog - 1:0] 	RSRNTag;
   always_comb begin
-    if (doingABranch | RNvalueInReg | robReadData1_i[64])
+    if (doingABranch | RNvalueInReg | robReadData1_i[64] | RNvalueInCom)
       RSRNTag = 0;
     else
       RSRNTag = mapReadData1_i;
@@ -246,7 +273,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   //determine the tag to associate with the RM RS data
   logic [ROBsizeLog - 1:0] 	RSRMTag;
   always_comb begin
-    if (doingABranch | RMvalueInReg | robReadData2_i[64] | ALUSrc_i)
+    if (doingABranch | RMvalueInReg | robReadData2_i[64] | ALUSrc_i | RMvalueInCom)
       RSRMTag = 0;
     else
       RSRMTag = mapReadData2_i;
