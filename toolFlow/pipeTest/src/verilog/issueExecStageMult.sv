@@ -1,4 +1,4 @@
-module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -70,11 +70,11 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   assign valid_in = (valid_o & readyRS_i & canGo_i) | (stallStart & readyRS_i);
   
   //the divider
-  divider div 
-  (.quotient(executeVal_o)
+  multiplier mult 
+  (.out(executeVal_o)
   ,.valid_out(valid_o)
-  ,.divisor(reservationStationVal2_i)//bottom
-  ,.dividend(reservationStationVal1_i)
+  ,.B(reservationStationVal2_i)
+  ,.A(reservationStationVal1_i)
   ,.valid_in(valid_in)
   ,.rst(reset_i)
   ,.clk(clk_i));
@@ -97,68 +97,4 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   assign executeFlags_o = 0;
   assign stallRS_o = ~valid_in;
   
-endmodule
-  
-module issueExecStageDiv_testbench();
-  //Reservation station inouts
-  logic clk_i, reset_i;
-  logic [63:0] reservationStationVal1_i, reservationStationVal2_i;
-  logic [9:0] reservationStationCommands_i;
-  logic [3:0] reservationStationTag_i;
-  logic readyRS_i;
-  logic stallRS_o;
-  
-  //from the execution decision unit
-  logic canGo_i;
-  logic [63:0] executeVal_o;
-  logic [9:0] executeCommands_o;
-  logic [3:0] executeTag_o;
-  logic valid_o;
-  
-  
-  issueExecStageDiv #(.ROBsize(8)) dut
-  (.clk_i
-  ,.reset_i
-
-  //RS inouts
-  ,.stallRS_o
-  ,.reservationStationVal1_i
-  ,.reservationStationVal2_i
-  ,.reservationStationCommands_i
-  ,.reservationStationTag_i
-  ,.readyRS_i
-
-  //inouts to continue through execute stage
-  ,.canGo_i
-  ,.executeTag_o
-  ,.executeCommands_o
-  ,.executeVal_o
-  ,.valid_o
-  );
-  
-  parameter ClockDelay = 5000;
-  initial begin // Set up the clock
-		clk_i <= 0;
-		forever #(ClockDelay/2) clk_i <= ~clk_i;
-	end
-  
-  integer i;
-  
-  initial begin
-    //set everything to zero
-    reservationStationVal1_i <= 0; reservationStationVal2_i <= 0; reservationStationCommands_i <= 0; reservationStationTag_i <= 0;
-    readyRS_i <= 0; canGo_i <= 0;
-    reset_i <= 1'b1;@(posedge clk_i);
-    //flash reset
-    reset_i <= 1'b0; @(posedge clk_i);
-    
-    @(posedge clk_i);
-    @(posedge clk_i);
-    @(posedge clk_i);
-    reservationStationVal1_i <= 15; reservationStationVal2_i <= 3; reservationStationCommands_i <= 10; reservationStationTag_i <= 3;
-    readyRS_i <= 1;
-    
-    repeat(10) begin @(posedge clk_i); end
-
-  end
 endmodule

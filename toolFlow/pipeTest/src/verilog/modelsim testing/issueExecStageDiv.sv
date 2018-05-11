@@ -73,7 +73,7 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   divider div 
   (.quotient(executeVal_o)
   ,.valid_out(valid_o)
-  ,.divisor(reservationStationVal2_i)
+  ,.divisor(reservationStationVal2_i)//bottom
   ,.dividend(reservationStationVal1_i)
   ,.valid_in(valid_in)
   ,.rst(reset_i)

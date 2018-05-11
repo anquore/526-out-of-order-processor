@@ -39,6 +39,7 @@ LSL = '110_1001_1011'
 LSR = '110_1001_1010'
 
 def main():
+  '''
   #clear the file
   theFile = open('testing.arm','w')
   theFile.write("//Starting assembly\n")
@@ -211,6 +212,41 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  '''
+  
+  
+  #ROB stalling testing and basic out of order test
+  #clear the file
+  theFile = open('ROB_stall_test_and_basic_OOO.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('ROB_stall_test_and_basic_OOO.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 1000, 0, 31, theFile)
+  immediateCommand('ADDI', ADDI, 3, 1, 31, theFile)
+  immediateCommand('ADDI', ADDI, 8, 2, 31, theFile)
+  
+  #do the following math
+  mathCommand('DIV', DIV, 12, 1, 0, theFile)
+  mathCommand('AND', AND, 3, 2, 1, theFile)
+  mathCommand('ADD', ADD, 4, 2, 1, theFile)
+  mathCommand('ADDS', ADDS, 5, 2, 1, theFile)
+  mathCommand('SUB', SUB, 6, 2, 1, theFile)
+  mathCommand('SUBS', SUBS, 7, 2, 1, theFile)
+  mathCommand('OR', OR, 8, 2, 1, theFile)
+  mathCommand('XOR', XOR, 9, 2, 1, theFile)#should stall about here
+  mathCommand('OR', OR, 10, 2, 1, theFile)
+  mathCommand('XOR', XOR, 11, 2, 1, theFile)
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #open the file to append
+  theFile = open('ROB_stall_test_and_basic_OOO.arm','a')
   
   theFile.close()
 

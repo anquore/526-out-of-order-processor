@@ -80,6 +80,8 @@ vlog "./ROB.sv"
 vlog "./ROBregs.sv"
 vlog "./issueExecStageALU.sv"
 vlog "./issueExecStageDiv.sv"
+vlog "./issueExecStageShift.sv"
+vlog "./issueExecStageMult.sv"
 vlog "./decodeStage.sv"
 
 

@@ -97,6 +97,8 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic [ROBsizeLog - 1:0] ROBhead;
   logic ROBupdateHead;
   
+  //RS stalls
+  logic [3:0] RSstall;
   ROB #(.ROBsize(ROBsize)) theROB
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
@@ -106,7 +108,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.decodeReadData1_o(robReadData1)
   ,.decodeReadData2_o(robReadData2)
 
-  ,.updateTail_i(firstWallOut[32] & ~decodeStall)
+  ,.updateTail_i(firstWallOut[32] & ~(RSstall[0] | RSstall[1] | RSstall[2] | RSstall[3]))
   ,.decodeWriteData_i(robWriteData)
   ,.nextTail_o(robNextTail)
   ,.stall_o(robStall)
@@ -177,7 +179,6 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic	[3:0][ROBsizeLog - 1:0] 	RSROBTag1, RSROBTag2, RSROBTag;
   logic [3:0][64:0] RSROBval1, RSROBval2;
   logic [3:0] RSWriteEn;
-  logic [3:0] RSstall;
   logic [3:0][9:0] RSCommands;
 
   //from the completion stage
@@ -188,7 +189,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.reset_i(reset)
 
   //instruction and commands
-  ,.RDvalue_i(firstWallOut[4:0])
+  ,.RDvalue_i(regRD)
   ,.RMvalue_i(firstWallOut[20:16])
   ,.RNvalue_i(firstWallOut[9:5])
   ,.dAddr9_i(firstWallOut[20:12])
@@ -338,7 +339,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.valid_o(valid_execute[0])
   );
   
-  issueExecStageALU #(.ROBsize(ROBsize)) theShifter
+  issueExecStageShift #(.ROBsize(ROBsize)) theShifter
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -359,7 +360,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.valid_o(valid_execute[1])
   );
   
-  issueExecStageDiv #(.ROBsize(ROBsize)) theMultiplier
+  issueExecStageMult #(.ROBsize(ROBsize)) theMultiplier
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
 
@@ -465,7 +466,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 	
 	logic [70 + (ROBsizeLog - 1):0] finalWallIn, finalWallOut;
 	assign finalWallIn[63:0] = mightSendToReg;
-  assign finalWallIn[64] = thirdWallIn[68];
+  assign finalWallIn[64] = thirdWallOut[68];
 	assign finalWallIn[65] = thirdWallOut[0];
 	assign finalWallIn[69:66] = thirdWallOut[72:69];
 	assign finalWallIn[70 + (ROBsizeLog - 1):70] = thirdWallOut[73 + (ROBsizeLog - 1):73];
