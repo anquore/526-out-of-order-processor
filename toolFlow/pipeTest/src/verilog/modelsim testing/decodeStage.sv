@@ -54,6 +54,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,robWriteData_o
 ,robNextTail_i
 ,robStall_i
+,robWriteEn_i
 
 //reservation station connections
 ,RSROBTag1_o
@@ -64,6 +65,7 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 ,RSROBval2_o
 ,RSCommands_o
 ,RSstall_i
+,ROBdontUpdate_o
 
 //regfile connections
 ,regfileReadRegister1_o
@@ -110,7 +112,8 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
 	output logic 	robUpdateTail_o;
 	input logic [64:0]	robReadData1_i, robReadData2_i;
   input logic [addrSize:0] robNextTail_i;
-  input logic robStall_i;
+  input logic robStall_i, robWriteEn_i;
+  output logic ROBdontUpdate_o;
   
   //reservation station
   output logic	[3:0][ROBsizeLog - 1:0] 	RSROBTag1_o, RSROBTag2_o, RSROBTag_o;
@@ -161,9 +164,12 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign robUpdateTail_o = 1;
   
   //determine if a stall in needed
-  logic needAStall;
-  assign needAStall = robStall_i | RSstall_i[0] | RSstall_i[1] | RSstall_i[2] | RSstall_i[3];
+  logic needAStall, ROBdontUpdate;
+  logic [3:0] RSWriteEn;
+  assign ROBdontUpdate = (RSstall_i[0] & RSWriteEn[0]) | (RSstall_i[1] & RSWriteEn[1]) | (RSstall_i[2] & RSWriteEn[2]) | (RSstall_i[3] & RSWriteEn[3]);
+  assign needAStall = robStall_i | ROBdontUpdate;
   assign decodeStall_o = needAStall;
+  assign ROBdontUpdate_o = ROBdontUpdate;
   
   //finish the map table connections
   assign mapWriteData_o = robNextTail_i;
@@ -180,8 +186,8 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
   //check if the data is in the completion stage
   logic RMvalueInCom, RNvalueInCom;
-  assign RNvalueInCom = (mapReadData1_i == completionRSROBTag_i);
-  assign RMvalueInCom = (mapReadData2_i == completionRSROBTag_i);
+  assign RNvalueInCom = (mapReadData1_i == completionRSROBTag_i) & robWriteEn_i;
+  assign RMvalueInCom = (mapReadData2_i == completionRSROBTag_i) & robWriteEn_i;
   
   //determine if the ROB value is in the completion stage or ROB
   logic [1:0][63:0] decisionROBorComRN, decisionROBorComRM;
@@ -305,12 +311,18 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
         RSCommands_o[g] = RScommands;
 		end
   end
-    
+  
+
   //assign each of the write enables
-  assign RSWriteEn_o[0] = (whichMath_i == 0) & (~needAStall);
-  assign RSWriteEn_o[1] = (whichMath_i == 1) & (~needAStall);
-  assign RSWriteEn_o[2] = (whichMath_i == 2) & (~needAStall);
-  assign RSWriteEn_o[3] = (whichMath_i == 3) & (~needAStall);
+  assign RSWriteEn[0] = (whichMath_i == 0) & (~robStall_i);
+  assign RSWriteEn[1] = (whichMath_i == 1) & (~robStall_i);
+  assign RSWriteEn[2] = (whichMath_i == 2) & (~robStall_i);
+  assign RSWriteEn[3] = (whichMath_i == 3) & (~robStall_i);
+  
+  assign RSWriteEn_o[0] = RSWriteEn[0];
+  assign RSWriteEn_o[1] = RSWriteEn[1];
+  assign RSWriteEn_o[2] = RSWriteEn[2];
+  assign RSWriteEn_o[3] = RSWriteEn[3];
 
 endmodule
 

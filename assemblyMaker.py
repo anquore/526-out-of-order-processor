@@ -63,10 +63,10 @@ def main():
   mathCommand('XOR', XOR, 9, 2, 1, theFile)
   
   #do some memory work
-  memoryCommand('STUR', STUR, 0, 0, 31, theFile)
-  memoryCommand('STUR', STUR, 8, 1, 31, theFile)
-  memoryCommand('LDUR', LDUR, 8, 16, 31, theFile)
-  memoryCommand('LDUR', LDUR, 0, 15, 31, theFile)
+  #memoryCommand('STUR', STUR, 0, 0, 31, theFile)
+  #memoryCommand('STUR', STUR, 8, 1, 31, theFile)
+  #memoryCommand('LDUR', LDUR, 8, 16, 31, theFile)
+  #memoryCommand('LDUR', LDUR, 0, 15, 31, theFile)
   
   #branch testing
   #R1 > R0, success
@@ -174,16 +174,16 @@ def main():
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
   #testing shifts
-  shiftCommand('LSL', LSL, 10, 3, 1, theFile)
+  shiftCommand('LSL', LSL, 10, 3, 1, theFile)#69, 272
   shiftCommand('LSR', LSR, 11, 3, 10, theFile)
   
   #testing multiply
   #send one multiply then an add
-  mathCommand('MULT', MULT, 20, 7, 6, theFile)
+  mathCommand('MULT', MULT, 20, 7, 6, theFile) #280
   mathCommand('ADD', ADD, 21, 5, 4, theFile)
   
   #send two multiples then a subs
-  mathCommand('MULT', MULT, 22, 7, 6, theFile)
+  mathCommand('MULT', MULT, 22, 7, 6, theFile)#never see, #288
   mathCommand('MULT', MULT, 23, 5, 4, theFile)
   mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
   
@@ -205,14 +205,44 @@ def main():
   mathCommand('ADD', ADD, 22, 5, 20, theFile)
   
   mathCommand('ADD', ADD, 23, 2, 1, theFile)
-  mathCommand('MULT', MULT, 24, 23, 4, theFile)
+  mathCommand('MULT', MULT, 24, 23, 4, theFile) #340
   mathCommand('MULT', MULT, 26, 5, 23, theFile)
-  mathCommand('DIV', DIV, 27, 23, 24, theFile)
+  
+  
+  #testing divide
+  mathCommand('DIV', DIV, 12, 23, 24, theFile)
+  mathCommand('ADD', ADD, 13, 5, 4, theFile)
+  
+  #send two multiples then a subs
+  mathCommand('DIV', DIV, 14, 7, 6, theFile)
+  mathCommand('DIV', DIV, 15, 5, 4, theFile)
+  mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
+  
+  #do a multiply then a branch
+  mathCommand('DIV', DIV, 16, 5, 6, theFile)
+  condBranchCommand('EQ', BCOND, 4, EQ, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #do an add to check branch happened
+  mathCommand('ADD', ADD, 17, 5, 4, theFile)
+  
+  #check some forwarding
+  mathCommand('DIV', DIV, 12, 5, 4, theFile)
+  mathCommand('ADD', ADD, 13, 12, 4, theFile)
+  mathCommand('ADD', ADD, 14, 5, 12, theFile)
+  
+  mathCommand('ADD', ADD, 15, 2, 1, theFile)
+  mathCommand('DIV', DIV, 16, 15, 4, theFile) #340
+  mathCommand('DIV', DIV, 18, 5, 15, theFile)
   
   #halt
-  branchCommand('B', B, 0, theFile)#288
+  branchCommand('B', B, 0, theFile)#352
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
-  '''
+  
   
   
   #ROB stalling testing and basic out of order test
@@ -247,6 +277,128 @@ def main():
   
   #open the file to append
   theFile = open('ROB_stall_test_and_basic_OOO.arm','a')
+  
+  #multiplication/divide test
+  #clear the file
+  theFile = open('multAndDiv.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('multAndDiv.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
+  immediateCommand('ADDI', ADDI, -37, 4, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, -3, 5, 31, theFile) #5
+  
+  #multiplication tests
+  mathCommand('MULT', MULT, 8, 0, 0, theFile) #0*0 = 0
+  mathCommand('MULT', MULT, 9, 1, 1, theFile) #-1*-1=1
+  mathCommand('MULT', MULT, 10, 2, 3, theFile) #23*6 = 138
+  mathCommand('MULT', MULT, 11, 3, 5, theFile) #6*-3 = 18
+  mathCommand('MULT', MULT, 12, 5, 3, theFile) #-3*6=-18
+  mathCommand('MULT', MULT, 13, 4, 5, theFile)#-37*-3 = 111
+  
+  
+  #divide tests
+  mathCommand('DIV', DIV, 14, 3, 2, theFile) #23/6 = 3
+  mathCommand('DIV', DIV, 15, 5, 2, theFile) #23/-3 = -7
+  mathCommand('DIV', DIV, 16, 3, 4, theFile) #-37/6=-6
+  mathCommand('DIV', DIV, 17, 5, 4, theFile)#-37/-3 = 12
+  
+  mathCommand('DIV', DIV, 14, 2, 3, theFile) #=0
+  mathCommand('DIV', DIV, 15, 2, 5, theFile) #=0
+  mathCommand('DIV', DIV, 16, 4, 3, theFile) #=0, instr 72
+  mathCommand('DIV', DIV, 17, 4, 3, theFile)#=0
+  
+  mathCommand('DIV', DIV, 14, 2, 2, theFile) #=1
+  mathCommand('DIV', DIV, 15, 3, 3, theFile) #=1
+  mathCommand('DIV', DIV, 16, 4, 4, theFile) #=1
+  mathCommand('DIV', DIV, 17, 4, 4, theFile)#=1
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  
+
+  #RS filling test
+  #clear the file
+  theFile = open('RS_filling.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('RS_filling.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
+  immediateCommand('ADDI', ADDI, -37, 4, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, -3, 5, 31, theFile) #5
+  
+  #divide tests
+  mathCommand('DIV', DIV, 14, 3, 2, theFile) #23/6 = 3
+  mathCommand('DIV', DIV, 15, 5, 2, theFile) #23/-3 = -7
+  mathCommand('DIV', DIV, 16, 3, 4, theFile) #-37/6=-6
+  
+  #multiplication tests
+  mathCommand('MULT', MULT, 8, 0, 0, theFile) #0*0 = 0
+  mathCommand('MULT', MULT, 9, 8, 1, theFile) 
+  mathCommand('MULT', MULT, 10, 9, 3, theFile) 
+  
+  #shift tests
+  shiftCommand('LSL', LSL, 18, 6, 10, theFile)
+  shiftCommand('LSR', LSR, 19, 9, 10, theFile)
+  
+  #additions
+  mathCommand('ADD', ADD, 13, 14, 4, theFile)
+  mathCommand('ADD', ADD, 14, 5, 14, theFile)
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  
+  #map table testing, reg renaming
+  #clear the file
+  theFile = open('MT_reg_renaming.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('MT_reg_renaming.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
+  
+  #send in a slow command
+  mathCommand('DIV', DIV, 12, 3, 2, theFile)
+  
+  #have two read after writes hazards
+  mathCommand('AND', AND, 3, 12, 1, theFile)
+  mathCommand('ADD', ADD, 4, 12, 1, theFile)
+  
+  #have a write after read hazard, fairly slow
+  mathCommand('MULT', MULT, 1, 2, 2, theFile)
+  
+  #have a RAW hazard on that
+  mathCommand('SUB', SUB, 6, 2, 1, theFile)
+  
+  #have a WAW
+  mathCommand('SUBS', SUBS, 1, 2, 3, theFile)
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   
   theFile.close()
 
@@ -382,7 +534,7 @@ def immediateCommand(name, opcode, immediate, RD, RN, theFile):
   
   #merge the string
   if immediate < 0:
-    negString = convertToNeg(addressinBinary[1:])
+    negString = convertToNeg(immediateinBinary[1:])
     immediateinBinary1 = oneString + negString
   else:
     immediateinBinary1 = zeroStringLong + immediateinBinary

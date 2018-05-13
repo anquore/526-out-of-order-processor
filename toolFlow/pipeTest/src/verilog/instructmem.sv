@@ -3,7 +3,7 @@
 // two words of the address must be 0).
 //
 // To change the file that is loaded, edit the filename here:
-`define BENCHMARK "ROB_stall_test_and_basic_OOO.arm"
+//`define BENCHMARK "MT_reg_renaming.arm"
 //`define BENCHMARK "../benchmarks/test01_AddiB.arm"
 //`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm"
@@ -13,7 +13,11 @@
 //`define BENCHMARK "../benchmarks/test10_forwarding.arm"
 //`define BENCHMARK "../benchmarks/test11_Sort.arm"
 //`define BENCHMARK "../benchmarks/test12_Fibonacci.arm"
-//`define BENCHMARK "../../src/verilog/benchmarks/testing.arm"
+`define BENCHMARK "../../src/verilog/benchmarks/testing.arm"
+//ROB_stall_test_and_basic_OOO
+//multAndDiv
+//RS_filling
+//MT_reg_renaming
 
 
 // How many bytes are in our memory?  Must be a power of two.

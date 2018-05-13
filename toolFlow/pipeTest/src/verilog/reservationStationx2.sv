@@ -87,7 +87,7 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
   //issue stage behavior
   //use a priority encoder to select which RS ready to send
   logic [1:0] readyToListenToo;
-  bsg_priority_encode_one_hot_out #(.width_p(2), .lo_to_hi_p(1)) outEncoderUnit
+  bsg_priority_encode_one_hot_out #(.width_p(2), .lo_to_hi_p(0)) outEncoderUnit
   (.i(RS_ready)
   ,.o(readyToListenToo));
   

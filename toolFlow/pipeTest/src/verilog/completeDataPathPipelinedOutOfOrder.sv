@@ -99,6 +99,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   
   //RS stalls
   logic [3:0] RSstall;
+  logic ROBdontUpdate;
   ROB #(.ROBsize(ROBsize)) theROB
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
@@ -108,7 +109,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.decodeReadData1_o(robReadData1)
   ,.decodeReadData2_o(robReadData2)
 
-  ,.updateTail_i(firstWallOut[32] & ~(RSstall[0] | RSstall[1] | RSstall[2] | RSstall[3]))
+  ,.updateTail_i(firstWallOut[32] & ~ROBdontUpdate)
   ,.decodeWriteData_i(robWriteData)
   ,.nextTail_o(robNextTail)
   ,.stall_o(robStall)
@@ -240,6 +241,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.robWriteData_o(robWriteData)
   ,.robNextTail_i(robNextTail)
   ,.robStall_i(robStall)
+  ,.robWriteEn_i(ROBWriteEn)
 
   //reservation station connections
   ,.RSROBTag1_o(RSROBTag1)
@@ -250,6 +252,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.RSROBval2_o(RSROBval2)
   ,.RSCommands_o(RSCommands)
   ,.RSstall_i(RSstall)
+  ,.ROBdontUpdate_o(ROBdontUpdate)
 
   //regfile connections
   ,.regfileReadRegister1_o(regfileReadRegister1)
@@ -298,7 +301,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
       ,.issueROBTag_i(completionRSROBTag)
       ,.issueROBval_i(completionRSROBval)
       
-      ,.stall_i(executionStall[i] & firstWallOut[32] & ~decodeStall)
+      ,.stall_i(executionStall[i])//executionStall[i] & firstWallOut[32] & ~decodeStall
       ,.reservationStationVal1_o(reservationStationVal1[i])
       ,.reservationStationVal2_o(reservationStationVal2[i])
       ,.reservationStationCommands_o(reservationStationCommands[i])
@@ -452,7 +455,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   assign thirdWallIn[72:69] = flagsToMem;
 	assign thirdWallIn[73 + (ROBsizeLog - 1):73] = tagToMem;
 	//assign thirdWallIn[138] = secondWallOut[171];
-	wallOfDFFs #(.LENGTH(74 + (ROBsizeLog - 1))) thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(validToMem), .clk);
+	wallOfDFFs #(.LENGTH(74 + (ROBsizeLog - 1))) thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
 	
   //memory stage
   logic writeEnMem;
