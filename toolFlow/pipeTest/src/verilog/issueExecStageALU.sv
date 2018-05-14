@@ -99,6 +99,7 @@ module issueExecStageALU #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   
 endmodule
 
+/**
 module issueExecStageALU_testbench();
   //Reservation station inouts
   logic clk_i, reset_i;
@@ -161,4 +162,6 @@ module issueExecStageALU_testbench();
     repeat(10) begin @(posedge clk_i); end
 
   end
-endmodule
+endmodule**/
+
+
