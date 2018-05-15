@@ -314,10 +314,10 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   
 
   //assign each of the write enables
-  assign RSWriteEn[0] = (whichMath_i == 0) & (~robStall_i);
-  assign RSWriteEn[1] = (whichMath_i == 1) & (~robStall_i);
-  assign RSWriteEn[2] = (whichMath_i == 2) & (~robStall_i);
-  assign RSWriteEn[3] = (whichMath_i == 3) & (~robStall_i);
+  assign RSWriteEn[0] = (whichMath_i == 0);// & (~robStall_i);
+  assign RSWriteEn[1] = (whichMath_i == 1);// & (~robStall_i);
+  assign RSWriteEn[2] = (whichMath_i == 2);// & (~robStall_i);
+  assign RSWriteEn[3] = (whichMath_i == 3);// & (~robStall_i);
   
   assign RSWriteEn_o[0] = RSWriteEn[0];
   assign RSWriteEn_o[1] = RSWriteEn[1];
