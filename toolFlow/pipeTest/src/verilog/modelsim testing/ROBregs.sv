@@ -52,7 +52,7 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 	//generate a collection of ROBsize different 7 bit registers each with their own enable and reset signal to hold the arch reg and what kind of command this is
 	generate
 		for(k=0; k<ROBsize; k++) begin : eachManagementReg
-			wallOfDFFs #(.LENGTH(9)) managementReg (.q(managementDataOut[k][8:0]), .d(decodeWriteData_i[8:0]), .reset(resets_i[k]), .enable(decodedManagement[k]), .clk(clk_i));
+			wallOfDFFsL9 managementReg (.q(managementDataOut[k][8:0]), .d(decodeWriteData_i[8:0]), .reset(resets_i[k]), .enable(decodedManagement[k]), .clk(clk_i));
 		end
 	endgenerate 
 	
@@ -86,7 +86,7 @@ module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
 	//generate a collection of ROBsize different 70 bit registers each with their own enable and reset signal to holds values and valids for value and flags
 	generate
 		for(l=0; l<ROBsize; l++) begin : eachCompletionReg
-			wallOfDFFs #(.LENGTH(70)) completionReg (.q(completionDataOut[l][69:0]), .d(completionWriteData_i[69:0]), .reset(resets_i[l]), .enable(decodedCompletion[l]), .clk(clk_i));
+			wallOfDFFsL70 completionReg (.q(completionDataOut[l][69:0]), .d(completionWriteData_i[69:0]), .reset(resets_i[l]), .enable(decodedCompletion[l]), .clk(clk_i));
 		end
 	endgenerate 
 	

@@ -124,7 +124,7 @@ module reservationStation #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
 	end
   
 	//the RS regs
-  wallOfDFFs #(.LENGTH(139+(3*ROBsizeLog))) RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[138] | decodeWriteEn_i), .clk(clk_i));
+  wallOfDFFsL151 RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[138] | decodeWriteEn_i), .clk(clk_i));
 	
   //assign outputs
   assign reservationStationVal2_o = reservationStationIn[63:0];
