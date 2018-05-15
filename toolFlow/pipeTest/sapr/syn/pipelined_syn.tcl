@@ -55,6 +55,7 @@ $BASE/fullAdder.sv \
 $BASE/fullAdderArray63.sv \
 $BASE/fullReg32x64.sv \
 $BASE/full_adder.sv \
+$BASE/FF_en.sv \
 $BASE/individualReg64.sv \
 $BASE/instructionFetch.sv \
 $BASE/instructmem.sv \
@@ -88,7 +89,10 @@ $BASE/signExtend12.sv \
 $BASE/signExtend19.sv \
 $BASE/signExtend26.sv \
 $BASE/signExtend9.sv \
-$BASE/wallOfDFFs.sv \
+$BASE/wallOfDFFsX32.sv \
+$BASE/wallOfDFFsX71.sv \
+$BASE/wallOfDFFsX139.sv \
+$BASE/wallOfDFFsX177.sv \
 $BASE/xnorifier.sv \
 $BASE/pipelined.sv\
 "
@@ -125,9 +129,9 @@ set_driving_cell -lib_cell INVD1 reset
 
 #Define design constraints
 set_max_transition 0.1 [get_designs $DESIGN]
-set_max_fanout 6 $DESIGN
-create_clock -name "clk" -period 2 -waveform {0 1} [get_ports clk]
-set_clock_uncertainty -setup 0.05 clk
+set_max_fanout 4 $DESIGN
+create_clock -name "clk" -period 10 -waveform {0 1} [get_ports clk]
+set_clock_uncertainty -setup 1 clk
 set_clock_uncertainty -hold 0.01 clk
 set_clock_transition 0.05 [get_clocks]
 set_input_delay 0.1 -clock clk [remove_from_collection [all_inputs] [get_ports clk]]

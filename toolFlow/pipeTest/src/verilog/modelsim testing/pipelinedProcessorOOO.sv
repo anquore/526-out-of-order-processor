@@ -1,24 +1,5 @@
-module pipelinedProcessorOOO
-(clk
-, reset
-, imem_instruction_i
-, imem_address_o
-,dmem_readData
-,dmem_WriteData
-,dmem_addressLoad
-,dmem_addressStore
-,dmem_readEn
-,dmem_writeEn);
+module pipelinedProcessorOOO(clk, reset);
 	input clk, reset;
-  
-  //instruction memory
-  input logic [31:0] imem_instruction_i;
-  output logic [63:0] imem_address_o;
-  
-  //data memory
-  input logic [63:0] dmem_readData;
-  output logic [63:0] dmem_WriteData, dmem_addressLoad, dmem_addressStore;
-  output logic dmem_readEn, dmem_writeEn;
 	
 	//the datapath
 	logic uncondBr, brTaken, memWrite, memToReg, 
@@ -33,15 +14,7 @@ module pipelinedProcessorOOO
 	completeDataPathPipelinedOutOfOrder #(.ROBsize(8)) theDataPath (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, 
-								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_i(commandType), .doingABranch_i(doingABranch)
-                ,.imem_instruction_i
-                ,.imem_address_o
-                ,.dmem_readData
-                ,.dmem_WriteData
-                ,.dmem_addressLoad
-                ,.dmem_addressStore
-                ,.dmem_readEn
-                ,.dmem_writeEn);
+								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_i(commandType), .doingABranch_i(doingABranch));
 								
 	//the control
 	controlOOO theControl (.instr, .flags, .commandZero, .uncondBr, .brTaken, .memWrite, .memToReg,
@@ -51,31 +24,8 @@ endmodule
 
 module pipelinedProcessorOOO_testbench();
 	logic clk, reset;
-  //instruction memory
-  logic [31:0] imem_instruction_i;
-  logic [63:0] imem_address_o;
-  
-  //data memory
-  logic [63:0] dmem_readData;
-  logic [63:0] dmem_WriteData, dmem_addressLoad, dmem_addressStore;
-  logic dmem_readEn, dmem_writeEn;
 
-	pipelinedProcessorOOO dut 
-  (.clk
-  ,.reset
-  ,.imem_instruction_i
-  ,.imem_address_o
-  ,.dmem_readData
-  ,.dmem_WriteData
-  ,.dmem_addressLoad
-  ,.dmem_addressStore
-  ,.dmem_readEn
-  ,.dmem_writeEn);
-  
-  instructmem instrMem(.address(imem_address_o), .instruction(imem_instruction_i), .clk);
-  
-  datamem theDataMemory (.addressLoad(dmem_addressLoad), .addressStore(dmem_addressStore), .write_enable(dmem_writeEn), .read_enable(dmem_readEn), 
-									.write_data(dmem_WriteData), .clk, .xfer_size(4'b1000), .read_data(dmem_readData));
+	pipelinedProcessorOOO dut (.clk, .reset);
 
 	// Set up the clock
 	parameter ClockDelay = 2000;

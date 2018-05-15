@@ -12,7 +12,7 @@ link:
 
 clean:
 	rm -rf simv.daidir csrc fsm.log fsm.vcd* vcdplus.vpd *.syn.v\
-		*.syn.sdf tb.v simv ucli.key
+		*.syn.sdf tb.v simv ucli.key *.log DVEfiles
 
 help:
 	@echo "add line \$$sdf_annotate(\"./fsm.syn.sdf\", fsm0); to copy of test bench"

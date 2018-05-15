@@ -1,19 +1,15 @@
-module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC, needToRestore_i, restorePoint_i
-,imem_address_o
-,imem_instruction_i);
+module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead, instruction, address, enablePC, needToRestore_i, restorePoint_i);
 	input logic clk, reset, uncondBr, brTaken, BRMI, enablePC, needToRestore_i;
 	input logic [63:0] regPC;
-	input logic [31:0] instrToRead, imem_instruction_i;
+	input logic [31:0] instrToRead;
   input logic [63:0] restorePoint_i;
 	output logic [31:0] instruction;
-	output logic [63:0] address, imem_address_o;
+	output logic [63:0] address;
 	
 	logic [63:0] newAddress, newAddress1, value19Extend, value26Extend;
 	
 	//the instruction memory
-  assign instruction = imem_instruction_i;
-  assign imem_address_o = address;
-	//instructmem instrMem(.address, .instruction, .clk);
+	instructmem instrMem(.address, .instruction, .clk);
 	
 	//PC value
 	individualReg64 PC(.q(address), .d(newAddress1), .reset, .enable(enablePC), .clk);

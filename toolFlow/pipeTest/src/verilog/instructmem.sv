@@ -3,7 +3,6 @@
 // two words of the address must be 0).
 //
 // To change the file that is loaded, edit the filename here:
-//`define BENCHMARK "MT_reg_renaming.arm"
 //`define BENCHMARK "../benchmarks/test01_AddiB.arm"
 //`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm"
@@ -12,16 +11,13 @@
 //`define BENCHMARK "../benchmarks/test06_BlBr.arm"
 //`define BENCHMARK "../benchmarks/test10_forwarding.arm"
 //`define BENCHMARK "../benchmarks/test11_Sort.arm"
-//`define BENCHMARK "../benchmarks/test12_Fibonacci.arm"
-`define BENCHMARK "../../src/verilog/benchmarks/testing.arm"
-//ROB_stall_test_and_basic_OOO
-//multAndDiv
-//RS_filling
-//MT_reg_renaming
+`define BENCHMARK "../benchmarks/test12_Fibonacci.arm"
 
+
+`timescale 1ns/10ps
 
 // How many bytes are in our memory?  Must be a power of two.
-`define INSTRUCT_MEM_SIZE		1024
+`define INSTRUCT_MEM_SIZE		256
 	
 module instructmem (
 	input		logic		[63:0]	address,
@@ -36,12 +32,12 @@ module instructmem (
 	//initial assert((`INSTRUCT_MEM_SIZE & (`INSTRUCT_MEM_SIZE-1)) == 0 && `INSTRUCT_MEM_SIZE > 4);
 	
 	// Make sure accesses are reasonable.
-	/*always_ff @(posedge clk) begin
-		if (address !== 'x) begin // address or size could be all X's at startup, so ignore this case.
-			assert(address[1:0] == 0);	// Makes sure address is aligned.
-			assert(address + 3 < `INSTRUCT_MEM_SIZE);	// Make sure address in bounds.
+	always_ff @(posedge clk) begin
+		if (address != 'x) begin // address or size could be all X's at startup, so ignore this case.
+			//assert(address[1:0] == 0);	// Makes sure address is aligned.
+			//assert(address + 3 < `INSTRUCT_MEM_SIZE);	// Make sure address in bounds.
 		end
-	end*/
+	end
 	
 	// The data storage itself.
 	logic [31:0] mem [`INSTRUCT_MEM_SIZE/4-1:0];
@@ -49,7 +45,7 @@ module instructmem (
 	// Load the program - change the filename to pick a different program.
 	initial begin
 		$readmemb(`BENCHMARK, mem);
-		$display("Running benchmark: ", `BENCHMARK);
+		//$display("Running benchmark: ", `BENCHMARK);
 	end
 	
 	// Handle the reads.

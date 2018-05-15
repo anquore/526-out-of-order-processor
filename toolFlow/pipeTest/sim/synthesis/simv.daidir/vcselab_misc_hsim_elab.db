@@ -1,9 +1,12 @@
 psSimBaseName                      	simv
-pDaiDir                            	/home/projects/ee526.2018spr/cjgooch/gitWorks/toolFlow/pipeTest/sim/synthesis/simv.daidir
+pDaiDir                            	/home/projects/ee526.2018spr/cjgooch/pipeTest/sim/synthesis/simv.daidir
 destPath                           	csrc/
-hsMainFileCount                    	0
-hsMainFileName                     	dummy
-hsAuxFileName                      	dummy
+hsMainFileCount                    	1
+hsMtmSpecArr_i                     	2
+hsMainFileSuffixArr_i              	csdf1_845.MAIN
+hsAuxFileSuffixArr_i               	csdf10.AUX
+hsOriginalSdfFileArr_i             	./pipelined.syn.sdf
+fHsMultiSdfDbg                     	0
 hsimDlpPartitionFilename           	0
 partitionName                      	6	MASTER
 hsimInitRegValue                   	3
@@ -304,7 +307,7 @@ fHsimMergeOnly                     	0
 fHsimCbkOpt                        	1
 fFrcRelCbk                         	1
 fPulserrWarn                       	1
-hsMtmSpec                          	0
+hsMtmSpec                          	2
 fprofile                           	0
 fPreserveDaidir                    	1
 fHsimLevelize                      	0
@@ -382,7 +385,7 @@ dGblPeR                            	1.000000
 fNewdaidirpath                     	0
 fHsimDelayMbmeCheck                	0
 fHsimMdbPartInputLimit             	1
-fHsimSdfData                       	0
+fHsimSdfData                       	1
 fGblMSah                           	0
 fGblMSTe                           	0
 fGblIntPe                          	0
@@ -600,7 +603,7 @@ fHsimMxConnFrc                     	0
 fHsimNewForceCbkVec                	0
 fHsimNewForceCbkVecDiag            	0
 fHsimMdbReplaceVpdHighConn         	1
-fHsimVpdHighConnReplaced           	1
+fHsimVpdHighConnReplaced           	0
 fHsimVpdOptSVTypes                 	0
 fHsimDlyInitFrc                    	0
 fHsimCompactVpdFn                  	1

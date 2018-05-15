@@ -36,7 +36,7 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
   output logic valid_o;
   
   //control logic state machine
-  typedef enum {eWaiting, eStalling, eDone} state_e;
+  typedef enum {eWaiting, eStalling} state_e;
 
   state_e state_r, state_n;
 
@@ -46,12 +46,10 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
   end
   
   //depending on the current state and control logic decide what the next state is
-  logic valid_out;
   always_comb begin
     unique case (state_r)
       eWaiting: state_n = readyRS_i ? eStalling : eWaiting;
-      eStalling: state_n = valid_out ? eDone : eStalling;
-      eDone : state_n = canGo_i ? eWaiting : eDone;
+      eStalling: state_n = valid_o & canGo_i & (~readyRS_i) ? eWaiting : eStalling;
     endcase
   end
 
@@ -61,32 +59,25 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
     unique case (state_r)
       eWaiting: begin
         stallStart = 1;
-        valid_o = 0;
       end eStalling: begin
         stallStart = 0;
-        valid_o = 0;
-      end eDone: begin
-        stallStart = 0;
-        valid_o = 1;
       end 
     endcase
   end
   
   //determine when we can bring in new data
   logic valid_in;
-  assign valid_in = stallStart & readyRS_i;
+  assign valid_in = (valid_o & readyRS_i & canGo_i) | (stallStart & readyRS_i);
   
   //the divider
   multiplier mult 
   (.out(executeVal_o)
-  ,.valid_out(valid_out)
+  ,.valid_out(valid_o)
   ,.B(reservationStationVal2_i)
   ,.A(reservationStationVal1_i)
   ,.valid_in(valid_in)
   ,.rst(reset_i)
   ,.clk(clk_i));
-  
-  //assign valid_o = valid_out & (state_r == eStalling);
   
   //save the commands and tag when valid_in is high
   wallOfDFFs #(.LENGTH(10)) commandsWall

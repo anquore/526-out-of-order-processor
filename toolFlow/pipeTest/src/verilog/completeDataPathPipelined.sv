@@ -24,7 +24,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	//first wall
 	logic [31:0] firstWallIn;
 	assign firstWallIn = instruction;
-	wallOfDFFs #(.LENGTH(32)) firstWall (.q(firstWallOut), .d(firstWallIn), .reset(reset), .enable(~theStall), .clk);
+	wallOfDFFsX32 firstWall (.q(firstWallOut), .d(firstWallIn), .reset(reset), .enable(~theStall), .clk);
 
 	//reg read/decode stage
 	//port the instructions out to the command module to produce all the commands
@@ -82,7 +82,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   assign secondWallIn[174] = leftShift;
   assign secondWallIn[175] = mult;
   assign secondWallIn[176] = div;
-	wallOfDFFs #(.LENGTH(177)) secondWall (.q(secondWallOut), .d(secondWallIn), .reset(reset), .enable(~theStall), .clk);
+	wallOfDFFsX177 secondWall (.q(secondWallOut), .d(secondWallIn), .reset(reset), .enable(~theStall), .clk);
 	
 	//ALU stage
 	//logic zero, carry_out;
@@ -117,6 +117,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
       eWaitingMult: state_nMult = secondWallOut[175] ? eStallingMult : eWaitingMult;
       eStallingMult: state_nMult = valid_outMult ?  eDoneMult : eStallingMult;
       eDoneMult: state_nMult = eWaitingMult;
+	default: state_nMult = eWaitingMult;
     endcase
   end
 
@@ -137,6 +138,11 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
         stallFullMult = 0;
         doneMult = 1;
       end
+	default: begin
+	stallStartMult = 0;
+	stallFullMult = 0;
+	doneMult = 1;
+	end
     endcase
   end
   
@@ -172,6 +178,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
       eWaitingDiv: state_nDiv = secondWallOut[176] ? eStallingDiv : eWaitingDiv;
       eStallingDiv: state_nDiv = valid_outDiv ?  eDoneDiv : eStallingDiv;
       eDoneDiv: state_nDiv = eWaitingDiv;
+	default: state_nDiv = eWaitingDiv;
     endcase
   end
 
@@ -192,6 +199,11 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
         stallFullDiv = 0;
         doneDiv = 1;
       end
+	default: begin
+	stallStartDiv = 0;
+	stallFullDiv = 0;
+	doneDiv = 1;
+	end
     endcase
   end
   
@@ -257,7 +269,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	assign thirdWallIn[136:132] = ALUreg[4:0];
 	assign thirdWallIn[137] = secondWallOut[170];
 	assign thirdWallIn[138] = secondWallOut[171];
-	wallOfDFFs #(.LENGTH(139)) thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset), .enable(~theStall), .clk);
+	wallOfDFFsX139 thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset), .enable(~theStall), .clk);
 	
 	//memory stage
 	memStage thatMem (.clk, .memWrite(thirdWallOut[0]), .read_enable(thirdWallOut[3]), .memToReg(thirdWallOut[1]),
@@ -272,7 +284,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	assign finalWallIn[64] = thirdWallOut[2];
 	assign finalWallIn[69:65] = MEMreg[4:0];
 	assign finalWallIn[70] = thirdWallOut[137];
-	wallOfDFFs #(.LENGTH(71)) finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
+	wallOfDFFsX71 finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset), .enable(1'b1), .clk);
 	
 endmodule
 

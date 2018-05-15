@@ -1,5 +1,5 @@
 design:
-	#make clean
+	make clean
 	dc_shell -f $(DESIGN)_syn.tcl
 	rm -f $(DESIGN)_design/*
 	mv netlist/$(DESIGN).v $(DESIGN)_design/$(DESIGN).syn.v
@@ -7,9 +7,9 @@ design:
 	mv reports/$(DESIGN).sdc $(DESIGN)_design/.
 	mkdir .tempDirDel
 	mv * .tempDirDel/.
+	mv .tempDirDel/Makefile .
+	mv .tempDirDel/*.tcl .
 	mv .tempDirDel/$(DESIGN)_design .
-	mv .tempDirDel/$(DESIGN)_design/Makefile .
-	mv .tempDirDel/$(DESIGN)_design/*.tcl .
 	rm -rf .tempDirDel
 
 designFull:

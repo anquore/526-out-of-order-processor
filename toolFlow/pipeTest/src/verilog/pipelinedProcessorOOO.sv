@@ -22,8 +22,7 @@ module pipelinedProcessorOOO(clk, reset);
 								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_o(commandType), .doingABranch_o(doingABranch));
 endmodule
 
-/**
-module tb();
+module pipelinedProcessorOOO_testbench();
 	logic clk, reset;
 
 	pipelinedProcessorOOO dut (.clk, .reset);
@@ -42,6 +41,4 @@ module tb();
 				
 		$stop(); // end the simulation
 	end
-endmodule**/
-
-
+endmodule
