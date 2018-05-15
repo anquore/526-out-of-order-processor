@@ -35,14 +35,19 @@ module completionStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1),
   //determine the value of valid for the flags and data
   logic ROBIsZero, dataIsValid, flagsAreValid;
   assign ROBIsZero = (ROBTagFromMem_i == 0);
-  assign dataIsValid = ~ROBIsZero;
+  assign dataIsValid = dataFromMem_i[64];//~ROBIsZero;
   assign flagsAreValid = ~ROBIsZero & save_cond_i;
   
   
   //hook the inputs directly to the outputs for the RS
   assign RSROBval_o[63:0] = dataFromMem_i;
   assign RSROBval_o[64] = dataIsValid;
-  assign RSROBTag_o = ROBTagFromMem_i;
+  always_comb begin
+    if (dataIsValid)
+      RSROBTag_o = ROBTagFromMem_i;
+    else
+      RSROBTag_o = 0;
+  end
   
   //connect the ROB outputs
   assign ROBWriteAddr_o = ROBTagFromMem_i;

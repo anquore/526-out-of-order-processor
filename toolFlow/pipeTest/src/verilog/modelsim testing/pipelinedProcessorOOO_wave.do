@@ -11,7 +11,7 @@ add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/
 add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/theDataMemory/mem
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/decodeStall
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/dut/robStall_i
-add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/dut/RSstall_i
+add wave -noupdate -expand /pipelinedProcessorOOO_testbench/dut/theDataPath/dut/RSstall_i
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/executionReady
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/theRegfile/RegWrite
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/commandsAfterALU
@@ -19,10 +19,10 @@ add wave -noupdate -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPa
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/validToMem
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/flagsToMem
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/tagToMem
-add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBTagFromMem_i
-add wave -noupdate -radix hexadecimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/dataFromMem_i
+add wave -noupdate -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBTagFromMem_i
+add wave -noupdate -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/dataFromMem_i
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/flagsFromMem_i
-add wave -noupdate -radix unsigned -childformat {{{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[31]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[30]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[29]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[28]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[27]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[26]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[25]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[24]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[23]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[22]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[21]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[20]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[19]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[18]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[17]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[16]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[15]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[14]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[13]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[12]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[11]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[10]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[9]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[8]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} -radix unsigned}} -subitemconfig {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[31]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[30]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[29]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[28]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[27]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[26]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[25]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[24]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[23]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[22]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[21]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[20]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[19]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[18]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[17]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[16]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[15]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[14]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[13]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[12]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[11]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[10]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[9]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[8]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} {-height 15 -radix unsigned}} /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
+add wave -noupdate -radix unsigned -childformat {{{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} -radix unsigned} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} -radix unsigned}} -subitemconfig {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} {-height 15 -radix unsigned} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} {-height 15 -radix unsigned}} /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOO_testbench/dut/theDataPath/theMapTable/clk
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOO_testbench/dut/theDataPath/theMapTable/commitReadAddr_i
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOO_testbench/dut/theDataPath/theMapTable/commitReadData
@@ -167,39 +167,39 @@ add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataP
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/stall_i}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/stall_o}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/writeEncoder}
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RDvalue
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBhead_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsize
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsizeLog
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RegWrite_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteData_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteRegister_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/addrSize
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/carry_out
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/clk_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/commandType
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/correctBranch
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/dataValid
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagData
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagValid
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/headMatch
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/needToRestore
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/negative
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/overflow
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitAddr_o
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitRead_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regWrite
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/reset_i
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/restorePoint
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/theData
-add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/zero
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RDvalue
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
+add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBhead_i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsize
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsizeLog
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RegWrite_o
+add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteData_o
+add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteRegister_o
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/addrSize
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/carry_out
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/clk_i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/commandType
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/correctBranch
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/dataValid
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagData
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagValid
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/headMatch
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets_o
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/needToRestore
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/negative
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/overflow
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitAddr_o
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitRead_i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regWrite
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/reset_i
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/restorePoint
+add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/theData
+add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/zero
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/a
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/addrSize
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/b
@@ -223,88 +223,225 @@ add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPa
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementMuxIns
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/resets_i
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/ReadData2
-add wave -noupdate -group MemoryStage -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressLoad
-add wave -noupdate -group MemoryStage -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressStore
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/clk
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/m
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memToReg
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memWrite
-add wave -noupdate -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/mightSendToReg
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/n
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_data
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_enable
-add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/regBackDataToMux
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/canGo_i
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/clk_i
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeCommands_o
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeFlags_o
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeTag_o
-add wave -noupdate -expand -group DividerExec -radix decimal -childformat {{{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[63]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[62]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[61]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[60]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[59]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[58]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[57]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[56]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[55]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[54]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[53]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[52]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[51]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[50]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[49]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[48]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[47]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[46]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[45]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[44]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[43]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[42]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[41]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[40]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[39]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[38]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[37]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[36]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[35]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[34]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[33]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[32]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[31]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[30]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[29]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[28]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[27]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[26]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[25]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[24]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[23]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[22]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[21]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[20]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[19]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[18]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[17]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[16]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[15]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[14]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[13]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[12]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[11]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[10]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[9]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[8]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[7]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[6]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[5]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[4]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[3]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[2]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[1]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[0]} -radix decimal}} -subitemconfig {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[63]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[62]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[61]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[60]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[59]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[58]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[57]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[56]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[55]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[54]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[53]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[52]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[51]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[50]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[49]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[48]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[47]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[46]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[45]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[44]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[43]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[42]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[41]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[40]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[39]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[38]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[37]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[36]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[35]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[34]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[33]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[32]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[31]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[30]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[29]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[28]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[27]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[26]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[25]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[24]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[23]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[22]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[21]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[20]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[19]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[18]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[17]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[16]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[15]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[14]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[13]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[12]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[11]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[10]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[9]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[8]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[7]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[6]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[5]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[4]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[3]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[2]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[1]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[0]} {-height 15 -radix decimal}} /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/readyRS_i
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationCommands_i
-add wave -noupdate -expand -group DividerExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationTag_i
-add wave -noupdate -expand -group DividerExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationVal1_i
-add wave -noupdate -expand -group DividerExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationVal2_i
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reset_i
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/stallRS_o
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/stallStart
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/state_n
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/state_r
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/valid_in
-add wave -noupdate -expand -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/valid_o
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_in0
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_in1
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_neg_last
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_out
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/adder_cin
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/adder_result_is_neg_i
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/clk
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/dividend
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/dividend_r
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divident_msb
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor_msb
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor_r
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/latch_inputs
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/neg_ld
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/next_state
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_clr_buf
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_clr_l
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_inv
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_inv_buf
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_is_neg_i
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_ld
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_mux
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_sel
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_xnor
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_clr_buf
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_clr_l
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_inv
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_inv_buf
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_ld
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_mux
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_sel
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_xnor
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_is_neg_i
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_ld
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_mux
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_sel
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/q_neg
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/quotient
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/r_neg
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/rst
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/state
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/valid_in
-add wave -noupdate -expand -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/valid_out
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/ReadData2
+add wave -noupdate -expand -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressLoad
+add wave -noupdate -expand -group MemoryStage -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressStore
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/clk
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/m
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memToReg
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memWrite
+add wave -noupdate -expand -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/mightSendToReg
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/n
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_data
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_enable
+add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/regBackDataToMux
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/canGo_i
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/clk_i
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeCommands_o
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeFlags_o
+add wave -noupdate -group DividerExec -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeTag_o
+add wave -noupdate -group DividerExec -radix decimal -childformat {{{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[63]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[62]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[61]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[60]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[59]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[58]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[57]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[56]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[55]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[54]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[53]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[52]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[51]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[50]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[49]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[48]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[47]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[46]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[45]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[44]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[43]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[42]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[41]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[40]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[39]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[38]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[37]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[36]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[35]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[34]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[33]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[32]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[31]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[30]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[29]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[28]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[27]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[26]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[25]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[24]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[23]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[22]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[21]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[20]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[19]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[18]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[17]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[16]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[15]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[14]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[13]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[12]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[11]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[10]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[9]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[8]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[7]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[6]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[5]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[4]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[3]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[2]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[1]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[0]} -radix decimal}} -subitemconfig {{/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[63]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[62]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[61]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[60]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[59]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[58]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[57]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[56]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[55]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[54]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[53]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[52]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[51]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[50]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[49]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[48]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[47]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[46]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[45]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[44]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[43]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[42]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[41]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[40]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[39]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[38]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[37]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[36]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[35]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[34]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[33]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[32]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[31]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[30]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[29]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[28]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[27]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[26]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[25]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[24]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[23]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[22]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[21]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[20]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[19]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[18]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[17]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[16]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[15]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[14]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[13]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[12]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[11]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[10]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[9]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[8]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[7]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[6]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[5]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[4]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[3]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[2]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[1]} {-height 15 -radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o[0]} {-height 15 -radix decimal}} /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeVal_o
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/readyRS_i
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationCommands_i
+add wave -noupdate -group DividerExec -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationTag_i
+add wave -noupdate -group DividerExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationVal1_i
+add wave -noupdate -group DividerExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reservationStationVal2_i
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/reset_i
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/stallRS_o
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/stallStart
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/state_n
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/state_r
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/valid_in
+add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/valid_o
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_in0
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_in1
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_neg_last
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/add_out
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/adder_cin
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/adder_result_is_neg_i
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/clk
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/dividend
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/dividend_r
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divident_msb
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor_msb
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/divisor_r
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/latch_inputs
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/neg_ld
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/next_state
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_clr_buf
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_clr_l
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_inv
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_inv_buf
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_is_neg_i
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_ld
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_mux
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_sel
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opA_xnor
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_clr_buf
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_clr_l
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_inv
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_inv_buf
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_ld
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_mux
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_sel
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opB_xnor
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_is_neg_i
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_ld
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_mux
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/opC_sel
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/q_neg
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/quotient
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/r_neg
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/rst
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/state
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/valid_in
+add wave -noupdate -group DividerUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/div/valid_out
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/canGo_i
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/clk_i
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/executeCommands_o
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/executeFlags_o
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/executeTag_o
+add wave -noupdate -group MultiplierExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/executeVal_o
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/readyRS_i
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/reservationStationCommands_i
+add wave -noupdate -group MultiplierExec -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/reservationStationTag_i
+add wave -noupdate -group MultiplierExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/reservationStationVal1_i
+add wave -noupdate -group MultiplierExec -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/reservationStationVal2_i
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/reset_i
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/stallRS_o
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/stallStart
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/state_n
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/state_r
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/valid_in
+add wave -noupdate -group MultiplierExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/valid_o
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_busy}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_commands}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_ready}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_tag}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_val1}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RS_val2}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RSstalls}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/RSwriteEns}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/busyFlipped}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/clk_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeCommands_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBTag1_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBTag2_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBTag_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBval1_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBval2_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeWriteEn_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/issueROBTag_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/issueROBval_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/readyToListenToo}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/ready_o}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reservationStationCommands_o}
+add wave -noupdate -group MultiplerRSx2 -radix unsigned {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reservationStationTag_o}
+add wave -noupdate -group MultiplerRSx2 -radix decimal {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reservationStationVal1_o}
+add wave -noupdate -group MultiplerRSx2 -radix decimal {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reservationStationVal2_o}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reset_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/stall_i}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/stall_o}
+add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/writeEncoder}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/busy_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/clk_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeCommands_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBTag1_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBTag2_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBTag_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBval1_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBval2_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeWriteEn_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodedWriteVal}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueROBTag_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueROBval_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueWriteVal}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/ready}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/ready_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationCommands_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationIn}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationTag_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationVal}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationVal1_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationVal2_o}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reset_i}
+add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/stall_i}
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/canGo_o
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/clk_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/commandsToMem_o
+add wave -noupdate -group execOut -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/dataToMem_o
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeCommands_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeFlags_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeTag_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/flagsToMem_o
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/reset_i
+add wave -noupdate -group execOut -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/tagToMem_o
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/valid_i
+add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/valid_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/canGo_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/clk_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/executeCommands_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/executeFlags_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/executeTag_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/executeVal_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/readyRS_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/reservationStationCommands_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/reservationStationTag_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/reservationStationVal1_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/reservationStationVal2_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/reset_i
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/stallRS_o
+add wave -noupdate -group ShifterExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theShifter/valid_o
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/A
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/Ar
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/B
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/Br
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/addeds
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/ands
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carbit
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carbitm
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carries
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/clk
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/inv_wstate
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxed
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxedAdd
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxedCar
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/next_state
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/out
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/regAdd
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/regCar
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/rst
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/state
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/valid_in
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/valid_out
+add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/wstate
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBIsZero
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBTagFromMem_i
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteAddr_o
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteData_o
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteEn_o
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBsize
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBsizeLog
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/RSROBTag_o
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/RSROBval_o
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/addrSize
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/clk_i
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/dataFromMem_i
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/dataIsValid
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/flagsAreValid
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/flagsFromMem_i
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/reset_i
+add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/save_cond_i
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {23434 ps} 0}
+WaveRestoreCursors {{Cursor 1} {336707 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 221
-configure wave -valuecolwidth 100
+configure wave -namecolwidth 224
+configure wave -valuecolwidth 111
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
@@ -317,4 +454,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {76650 ps}
+WaveRestoreZoom {0 ps} {1575788 ps}

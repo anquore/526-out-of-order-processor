@@ -31,7 +31,7 @@ module mapTable #(parameter ROBsize = 32, mapValueSize = $clog2(ROBsize+1))
 	//their own enable signal
 	generate
 		for(k=0; k<32; k++) begin : eachIndiReg
-			wallOfDFFs #(.LENGTH(mapValueSize)) indiReg (.q(dataOut[k][mapValueSize - 1:0]), .d(decodeWriteData[mapValueSize - 1:0]), .reset(doAReset[k]), .enable(decoded[k]), .clk);
+			wallOfDFFsL4 indiReg (.q(dataOut[k][mapValueSize - 1:0]), .d(decodeWriteData[mapValueSize - 1:0]), .reset(doAReset[k]), .enable(decoded[k]), .clk);
 		end
 	endgenerate 
 	

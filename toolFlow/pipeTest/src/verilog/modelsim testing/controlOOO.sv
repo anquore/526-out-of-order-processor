@@ -399,7 +399,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       reg2Loc = 1;
 			regWrite = 1;
 			dOrImm = 0;
-			ALUSrc = 0;
+			ALUSrc = 1;
 			ALUOp = 2;
 			memWrite = 0;
 			memToReg = 0;
@@ -422,7 +422,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       reg2Loc = 1;
 			regWrite = 1;
 			dOrImm = 0;
-			ALUSrc = 0;
+			ALUSrc = 1;
 			ALUOp = 2;
 			memWrite = 0;
 			memToReg = 0;
