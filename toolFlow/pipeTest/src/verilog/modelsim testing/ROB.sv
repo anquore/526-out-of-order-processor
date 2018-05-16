@@ -1,4 +1,4 @@
-module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
+module ROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
 
@@ -37,7 +37,7 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
   assign headNext = head + 1;
   assign tailNext = tailReset ? (tail+1) : tail;
   
-  headTailROB #(.ROBsize(ROBsize)) headTailManager
+  headTailROB headTailManager
   (.clk_i
   ,.reset_i
   ,.updateHead_i(updateHead_i)
@@ -60,7 +60,7 @@ module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize))
   logic [addrSize:0] completionWriteAddrsub1;
   assign completionWriteAddrsub1 = completionWriteAddr_i - 1;
   
-  ROBregs #(.ROBsize(ROBsize)) theRegs
+  ROBregs theRegs
   (.clk_i
   ,.resets_i(resets)
   ,.decodeReadAddr1_i(decodeReadAddr1sub1[addrSize-1:0])

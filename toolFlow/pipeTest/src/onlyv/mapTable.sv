@@ -1,4 +1,4 @@
-module mapTable #(parameter ROBsize = 32, mapValueSize = $clog2(ROBsize+1)) 
+module mapTable #(parameter ROBsize = 8, mapValueSize = $clog2(ROBsize+1)) 
 (clk
 ,reset
 ,decodeReadData1
@@ -50,11 +50,11 @@ module mapTable #(parameter ROBsize = 32, mapValueSize = $clog2(ROBsize+1))
 	end
 	
 	//the two muxes for the read outputs
-	mux32xY #(.Y(mapValueSize)) read1 (.out(decodeReadData1), .addr(decodeReadAddr1), .muxIns);
-	mux32xY #(.Y(mapValueSize)) read2 (.out(decodeReadData2), .addr(decodeReadAddr2), .muxIns);
+	mux32xY read1 (.out(decodeReadData1), .addr(decodeReadAddr1), .muxIns);
+	mux32xY read2 (.out(decodeReadData2), .addr(decodeReadAddr2), .muxIns);
   
   //commit read out
-  mux32xY #(.Y(mapValueSize)) commitRead (.out(commitReadData), .addr(commitReadAddr_i), .muxIns);
+  mux32xY commitRead (.out(commitReadData), .addr(commitReadAddr_i), .muxIns);
   
   //compare the decode write and read commit addr
   logic addrMatch;

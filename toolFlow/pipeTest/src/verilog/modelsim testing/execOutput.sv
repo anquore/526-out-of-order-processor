@@ -1,4 +1,4 @@
-module executeOutput #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module executeOutput #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -35,7 +35,7 @@ module executeOutput #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1))
   output logic valid_o;
   
   //use a priority encoder to choose between which data get sent onwards
-  bsg_priority_encode_one_hot_out #(.width_p(4), .lo_to_hi_p(0)) outEncoderUnit
+  bsg_priority_encode_one_hot_out4 outEncoderUnit
   (.i(valid_i)
   ,.o(canGo_o));
   
@@ -58,11 +58,17 @@ module executeOutput #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1))
       tagToMem_o = executeTag_i[1];
       flagsToMem_o = executeFlags_i[1];
     end
-    else begin
+    else if (canGo_o[0]) begin
       dataToMem_o = executeVal_i[0];
       commandsToMem_o = executeCommands_i[0];
       tagToMem_o = executeTag_i[0];
       flagsToMem_o = executeFlags_i[0];
+    end
+    else begin
+      dataToMem_o = 0;
+      commandsToMem_o = 0;
+      tagToMem_o = 0;
+      flagsToMem_o = 0;
     end
   end
 

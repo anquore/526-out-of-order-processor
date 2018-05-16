@@ -1,4 +1,4 @@
-module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -52,6 +52,7 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
       eWaiting: state_n = readyRS_i ? eStalling : eWaiting;
       eStalling: state_n = valid_out ? eDone : eStalling;
       eDone : state_n = canGo_i ? eWaiting : eDone;
+      default: state_n = eWaiting;
     endcase
   end
 
@@ -68,7 +69,11 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
       end eDone: begin
         stallStart = 0;
         valid_o = 1;
-      end 
+      end
+      default: begin
+	stallStart = 1;
+        valid_o = 0;
+      end
     endcase
   end
   
@@ -89,14 +94,14 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
   //assign valid_o = valid_out & (state_r == eStalling);
   
   //save the commands and tag when valid_in is high
-  wallOfDFFs #(.LENGTH(10)) commandsWall
+  wallOfDFFsL10 commandsWall
   (.q(executeCommands_o)
   ,.d(reservationStationCommands_i)
   ,.reset(reset_i)
   ,.enable(valid_in)
   ,.clk(clk_i));
   
-  wallOfDFFs #(.LENGTH(ROBsizeLog)) tagWall
+  wallOfDFFsL4 tagWall
   (.q(executeTag_o)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)

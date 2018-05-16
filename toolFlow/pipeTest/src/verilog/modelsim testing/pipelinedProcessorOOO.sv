@@ -48,7 +48,7 @@ module pipelinedProcessorOOO
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_o(commandType), .doingABranch_o(doingABranch));
 endmodule
-
+/*
 module pipelinedProcessorOOO_testbench();
 	logic clk, reset;
   //instruction memory
@@ -91,4 +91,5 @@ module pipelinedProcessorOOO_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule*/
+

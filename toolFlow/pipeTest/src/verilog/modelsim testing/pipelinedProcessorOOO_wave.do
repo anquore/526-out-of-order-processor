@@ -8,7 +8,6 @@ add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/
 add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/negative
 add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/overflow
 add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/zero
-add wave -noupdate -expand -group {Basic info} /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/theDataMemory/mem
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/decodeStall
 add wave -noupdate /pipelinedProcessorOOO_testbench/dut/theDataPath/dut/robStall_i
 add wave -noupdate -expand /pipelinedProcessorOOO_testbench/dut/theDataPath/dut/RSstall_i
@@ -155,8 +154,6 @@ add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataP
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/decodeROBval1_i}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/decodeROBval2_i}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/decodeWriteEn_i}
-add wave -noupdate -group ALURsx2 -radix unsigned {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/issueROBTag_i}
-add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/issueROBval_i}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/readyToListenToo}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/ready_o}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/reservationStationCommands_o}
@@ -167,39 +164,39 @@ add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataP
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/stall_i}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/stall_o}
 add wave -noupdate -group ALURsx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[0]/theRS/writeEncoder}
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RDvalue
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
-add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBhead_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsize
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsizeLog
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RegWrite_o
-add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteData_o
-add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteRegister_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/addrSize
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/carry_out
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/clk_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/commandType
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/correctBranch
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/dataValid
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagData
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagValid
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/headMatch
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/needToRestore
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/negative
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/overflow
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitAddr_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitRead_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regWrite
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/reset_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/restorePoint
-add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/theData
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/zero
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RDvalue
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
+add wave -noupdate -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBhead_i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsize
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBsizeLog
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/RegWrite_o
+add wave -noupdate -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteData_o
+add wave -noupdate -group Commit -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/WriteRegister_o
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/addrSize
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/carry_out
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/clk_i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/commandType
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/correctBranch
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/dataValid
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagData
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/flagValid
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/headMatch
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/mapResets_o
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/needToRestore
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/negative
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/overflow
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitAddr_o
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regCommitRead_i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/regWrite
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/reset_i
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/restorePoint
+add wave -noupdate -group Commit -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/theData
+add wave -noupdate -group Commit /pipelinedProcessorOOO_testbench/dut/theDataPath/theCommit/zero
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/a
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/addrSize
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/b
@@ -220,21 +217,21 @@ add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPa
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/decodeWriteEn_i
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/decodedCompletion
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/decodedManagement
-add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
+add wave -noupdate -group ROBregs -expand /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/managementMuxIns
 add wave -noupdate -group ROBregs /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/theRegs/resets_i
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/ReadData2
-add wave -noupdate -expand -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressLoad
-add wave -noupdate -expand -group MemoryStage -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressStore
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/clk
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/m
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memToReg
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memWrite
-add wave -noupdate -expand -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/mightSendToReg
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/n
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_data
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_enable
-add wave -noupdate -expand -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/regBackDataToMux
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/ReadData2
+add wave -noupdate -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressLoad
+add wave -noupdate -group MemoryStage -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/addressStore
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/clk
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/m
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memToReg
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/memWrite
+add wave -noupdate -group MemoryStage -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/mightSendToReg
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/n
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_data
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/read_enable
+add wave -noupdate -group MemoryStage /pipelinedProcessorOOO_testbench/dut/theDataPath/thatMem/regBackDataToMux
 add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/canGo_i
 add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/clk_i
 add wave -noupdate -group DividerExec /pipelinedProcessorOOO_testbench/dut/theDataPath/theDivider/executeCommands_o
@@ -335,8 +332,6 @@ add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/th
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBval1_i}
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeROBval2_i}
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/decodeWriteEn_i}
-add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/issueROBTag_i}
-add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/issueROBval_i}
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/readyToListenToo}
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/ready_o}
 add wave -noupdate -group MultiplerRSx2 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/reservationStationCommands_o}
@@ -357,8 +352,6 @@ add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/th
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeROBval2_i}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodeWriteEn_i}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/decodedWriteVal}
-add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueROBTag_i}
-add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueROBval_i}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/issueWriteVal}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/ready}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/ready_o}
@@ -370,14 +363,14 @@ add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/th
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reservationStationVal2_o}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/reset_i}
 add wave -noupdate -group MultiplierRS0 {/pipelinedProcessorOOO_testbench/dut/theDataPath/eachEnDff[2]/theRS/eachManagementReg[0]/aRS/stall_i}
-add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/canGo_o
+add wave -noupdate -group execOut -expand /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/canGo_o
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/clk_i
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/commandsToMem_o
 add wave -noupdate -group execOut -radix decimal /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/dataToMem_o
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeCommands_i
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeFlags_i
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeTag_i
-add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i
+add wave -noupdate -group execOut -childformat {{{/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[3]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[2]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[1]} -radix decimal} {{/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[0]} -radix decimal}} -subitemconfig {{/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[3]} {-radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[2]} {-radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[1]} {-radix decimal} {/pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i[0]} {-radix decimal}} /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/executeVal_i
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/flagsToMem_o
 add wave -noupdate -group execOut /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/reset_i
 add wave -noupdate -group execOut -radix unsigned /pipelinedProcessorOOO_testbench/dut/theDataPath/execOut/tagToMem_o
@@ -401,29 +394,17 @@ add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/th
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/Ar
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/B
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/Br
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/addeds
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/ands
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carbit
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carbitm
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/carries
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/clk
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/inv_wstate
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxed
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxedAdd
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/muxedCar
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/next_state
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/out
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/regAdd
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/regCar
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/rst
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/state
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/valid_in
 add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/valid_out
-add wave -noupdate -group MultiplierUnit /pipelinedProcessorOOO_testbench/dut/theDataPath/theMultiplier/mult/wstate
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBIsZero
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBTagFromMem_i
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteAddr_o
-add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteData_o
+add wave -noupdate -group Completion -radix hexadecimal /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteData_o
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBWriteEn_o
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBsize
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/ROBsizeLog
@@ -437,11 +418,40 @@ add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDat
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/flagsFromMem_i
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/reset_i
 add wave -noupdate -group Completion /pipelinedProcessorOOO_testbench/dut/theDataPath/theCompletion/save_cond_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/clk_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/commitReadData_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/completionWriteAddr_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/completionWriteAddrsub1
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/completionWriteData_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/completionWriteEn_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadAddr1_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadAddr1sub1
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadAddr2_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadAddr2sub1
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadData1
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadData1_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadData2
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeReadData2_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeWriteData_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/decodeWriteEn
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/head
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/headNext
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/head_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/nextTail_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/reset_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/resets
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/stall
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/stall_o
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/tail
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/tailNext
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/tailReset
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/updateHead_i
+add wave -noupdate -group theRob /pipelinedProcessorOOO_testbench/dut/theDataPath/theROB/updateTail_i
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {336707 ps} 0}
+WaveRestoreCursors {{Cursor 1} {3980576 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 224
-configure wave -valuecolwidth 111
+configure wave -valuecolwidth 122
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
 configure wave -snapdistance 10
@@ -454,4 +464,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1575788 ps}
+WaveRestoreZoom {3954392 ps} {4020296 ps}

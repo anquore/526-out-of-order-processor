@@ -119,7 +119,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   //RS stalls
   logic [3:0] RSstall;
   logic ROBdontUpdate;
-  ROB #(.ROBsize(ROBsize)) theROB
+  ROB theROB
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
 
@@ -153,7 +153,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic	[4:0] mapCommitReadAddr;
   logic [31:0] mapResets;
   
-  mapTable #(.ROBsize(ROBsize)) theMapTable 
+  mapTable theMapTable 
   (.decodeReadData1(mapReadData1), 
   .decodeReadData2(mapReadData2), 
   .decodeWriteData(mapWriteData), 
@@ -204,7 +204,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   //from the completion stage
   logic	[ROBsizeLog - 1:0] 	completionRSROBTag;
   logic [64:0] completionRSROBval;
-  decodeStage #(.ROBsize(ROBsize)) dut
+  decodeStage dut
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -301,11 +301,13 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic [3:0][ROBsizeLog-1:0] reservationStationTag;
   logic [3:0] executionReady;
   
-
+  logic [64:0] issueExecVal, issueMemVal;
+  logic [ROBsizeLog - 1:0] tagToMem, tagToCom;
+  
   genvar i;
   generate
 		for(i=0; i < 4; i++) begin : eachEnDff
-			reservationStationx2 #(.ROBsize(ROBsize)) theRS
+			reservationStationx2Forward theRS
       (.clk_i(clk)
       ,.reset_i(reset | needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[i])
@@ -317,8 +319,16 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
       ,.decodeCommands_i(RSCommands[i])
       ,.stall_o(RSstall[i])
 
-      ,.issueROBTag_i(completionRSROBTag)
-      ,.issueROBval_i(completionRSROBval)
+      ,.issueROBTagCom_i(completionRSROBTag)
+      ,.issueROBvalCom_i(completionRSROBval)
+
+      //forwarding
+      ,.issueROBTagExec_i(tagToMem)
+      ,.issueROBvalExec_i(issueExecVal)
+      ,.issueROBMemAccessExec_i(commandsAfterALU)
+
+      ,.issueROBTagMem_i(tagToCom)
+      ,.issueROBvalMem_i(issueMemVal)
       
       ,.stall_i(executionStall[i])//executionStall[i] & firstWallOut[32] & ~decodeStall
       ,.reservationStationVal1_o(reservationStationVal1[i])
@@ -340,7 +350,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   logic [3:0] valid_execute;
   logic [3:0] canGo;
   
-  issueExecStageALU #(.ROBsize(ROBsize)) theALU
+  issueExecStageALU theALU
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -361,7 +371,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.valid_o(valid_execute[0])
   );
   
-  issueExecStageShift #(.ROBsize(ROBsize)) theShifter
+  issueExecStageShift theShifter
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -382,7 +392,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.valid_o(valid_execute[1])
   );
   
-  issueExecStageMult #(.ROBsize(ROBsize)) theMultiplier
+  issueExecStageMult theMultiplier
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
 
@@ -403,7 +413,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.valid_o(valid_execute[2])
   );
   
-  issueExecStageDiv #(.ROBsize(ROBsize)) theDivider
+  issueExecStageDiv theDivider
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
 
@@ -431,11 +441,10 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   //to memory
    logic [63:0] dataToMem;
    logic [9:0] commandsToMem;
-   logic [ROBsizeLog - 1:0] tagToMem;
    logic [3:0] flagsToMem;
    logic validToMem;
   
-  executeOutput #(.ROBsize(ROBsize)) execOut
+  executeOutput execOut
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -454,6 +463,10 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   ,.flagsToMem_o(flagsToMem)
   ,.valid_o(validToMem)
   );
+  
+
+  assign issueExecVal[64] = validToMem;
+  assign issueExecVal[63:0] = dataToMem;
   
 	
 	//gather up the commands to be moved along
@@ -491,7 +504,9 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
 	//break out bits for forwarding
 	//assign MEMreg[4:0] = thirdWallOut[136:132];
 	//assign MEMforward = thirdWallOut[138];
-	
+	assign tagToCom = thirdWallOut[73 + (ROBsizeLog - 1):73];
+  assign issueMemVal[64] = thirdWallOut[68];
+  assign issueMemVal[63:0] = mightSendToReg;
 	logic [70 + (ROBsizeLog - 1):0] finalWallIn, finalWallOut;
 	assign finalWallIn[63:0] = mightSendToReg;
   assign finalWallIn[64] = thirdWallOut[68];
@@ -507,7 +522,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   
   
   //the completion stage
-  completionStage #(.ROBsize(ROBsize)) theCompletion
+  completionStage theCompletion
   (.clk_i(clk)
   ,.reset_i(reset)
 
@@ -528,7 +543,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 32, ROBsizeLog 
   );
   
   //the commit stage
-  commitStage #(.ROBsize(ROBsize)) theCommit
+  commitStage theCommit
   (.clk_i(clk)
   ,.reset_i(reset)
 

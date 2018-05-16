@@ -1,4 +1,4 @@
-module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), addrSize = $clog2(ROBsize)) 
+module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
 
@@ -214,7 +214,7 @@ module commitStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign regCommitAddr_o = RDvalue;
   
   assign restorePoint_o = restorePoint;
-  assign needToRestore_o = needToRestore;
+  assign needToRestore_o = needToRestore & dataValid;
   
   assign writeAddrMem_o = theData;
   assign writeEnMem_o = memWrite & dataValid;

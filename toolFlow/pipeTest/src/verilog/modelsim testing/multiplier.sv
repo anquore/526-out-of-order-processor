@@ -25,10 +25,10 @@ module multiplier(out, valid_out, A, B, valid_in, rst, clk);
 		endcase
 	end
 	wire [63:0] Ar, Br;
-	registerX64 regA(.outs(Ar[63:0]), .ins(A[63:0]), .en((state==waiting)|(state==done)), .rst(1'b0), .clk);
-	registerX64 regB(.outs(Br[63:0]), .ins(B[63:0]), .en((state==waiting)|(state==done)), .rst(1'b0), .clk);
+	registerX64 regA(.outs(Ar[63:0]), .ins(A[63:0]), .en(valid_in/*(state==waiting)|(state==done)*/), .rst(1'b0), .clk);
+	registerX64 regB(.outs(Br[63:0]), .ins(B[63:0]), .en(valid_in/*(state==waiting)|(state==done)*/), .rst(1'b0), .clk);
 	assign valid_out = (state==done);
-  assign out = A*B;
+  assign out = Ar*Br;
 endmodule
   /*
 	

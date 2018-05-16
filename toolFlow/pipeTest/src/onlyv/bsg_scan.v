@@ -4,10 +4,10 @@
 // so the high bit is always unchanged
 //
 
-module bsg_scan2 #(parameter width_p = 2
+module bsg_scan #(parameter width_p = -1
                   , parameter xor_p = 0
                   , parameter and_p = 0
-                  , parameter or_p = 1
+                  , parameter or_p = 0
                   , parameter lo_to_hi_p = 0
                   )
    (input    [width_p-1:0] i

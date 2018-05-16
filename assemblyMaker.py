@@ -236,11 +236,11 @@ def main():
   mathCommand('ADD', ADD, 14, 5, 12, theFile)
   
   mathCommand('ADD', ADD, 15, 2, 1, theFile)
-  mathCommand('DIV', DIV, 16, 15, 4, theFile) #340
-  mathCommand('DIV', DIV, 18, 5, 15, theFile)
+  mathCommand('DIV', DIV, 16, 15, 4, theFile) #408
+  mathCommand('DIV', DIV, 18, 5, 15, theFile)#412
   
   #halt
-  branchCommand('B', B, 0, theFile)#352
+  branchCommand('B', B, 0, theFile)#416
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
   

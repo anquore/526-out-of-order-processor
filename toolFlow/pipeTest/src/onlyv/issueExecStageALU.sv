@@ -1,4 +1,4 @@
-module issueExecStageALU #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageALU #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 

@@ -1,4 +1,4 @@
-module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), addrSize = $clog2(ROBsize)) 
+module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
 
@@ -319,10 +319,10 @@ module decodeStage #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1), add
   assign RSWriteEn[2] = (whichMath_i == 2);// & (~robStall_i);
   assign RSWriteEn[3] = (whichMath_i == 3);// & (~robStall_i);
   
-  assign RSWriteEn_o[0] = RSWriteEn[0];
-  assign RSWriteEn_o[1] = RSWriteEn[1];
-  assign RSWriteEn_o[2] = RSWriteEn[2];
-  assign RSWriteEn_o[3] = RSWriteEn[3];
+  assign RSWriteEn_o[0] = RSWriteEn[0] & (~robStall_i);
+  assign RSWriteEn_o[1] = RSWriteEn[1] & (~robStall_i);
+  assign RSWriteEn_o[2] = RSWriteEn[2] & (~robStall_i);
+  assign RSWriteEn_o[3] = RSWriteEn[3] & (~robStall_i);
 
 endmodule
 

@@ -1,4 +1,4 @@
-module ROBregs #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
+module ROBregs #(parameter ROBsize = 8, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,resets_i
 ,decodeReadAddr1_i

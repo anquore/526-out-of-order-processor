@@ -1,4 +1,4 @@
-module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageDiv #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -36,7 +36,7 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   output logic valid_o;
   
   //control logic state machine
-  typedef enum {eWaiting, eStalling, eDone} state_e;
+  typedef enum reg[1:0] {eWaiting, eStalling, eDone} state_e;
 
   state_e state_r, state_n;
 
@@ -52,6 +52,7 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
       eWaiting: state_n = readyRS_i ? eStalling : eWaiting;
       eStalling: state_n = valid_out ? eDone : eStalling;
       eDone : state_n = canGo_i ? eWaiting : eDone;
+      default: state_n = eWaiting;
     endcase
   end
 
@@ -68,7 +69,11 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
       end eDone: begin
         stallStart = 0;
         valid_o = 1;
-      end 
+      end
+      default: begin
+	stallStart = 1;
+        valid_o = 0;
+      end
     endcase
   end
   
@@ -87,25 +92,26 @@ module issueExecStageDiv #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1
   ,.clk(clk_i));
   
   //save the commands and tag when valid_in is high
-  wallOfDFFs #(.LENGTH(10)) commandsWall
+  wallOfDFFsL10 commandsWall
   (.q(executeCommands_o)
   ,.d(reservationStationCommands_i)
   ,.reset(reset_i)
   ,.enable(valid_in)
   ,.clk(clk_i));
   
-  wallOfDFFs #(.LENGTH(ROBsizeLog)) tagWall
+  wallOfDFFsL4 tagWall
   (.q(executeTag_o)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)
   ,.enable(valid_in)
   ,.clk(clk_i));
   
-  assign executeFlags_o = 0;
+  assign executeFlags_o = 4'b0000;
   assign stallRS_o = ~valid_in;
   
 endmodule
-  
+
+/*
 module issueExecStageDiv_testbench();
   //Reservation station inouts
   logic clk_i, reset_i;
@@ -168,4 +174,5 @@ module issueExecStageDiv_testbench();
     repeat(10) begin @(posedge clk_i); end
 
   end
-endmodule
+endmodule*/
+

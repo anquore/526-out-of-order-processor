@@ -1,4 +1,4 @@
-module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1)) 
+module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 ,decodeROBTag1_i
@@ -10,8 +10,16 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
 ,decodeCommands_i
 ,stall_o
 
-,issueROBTag_i
-,issueROBval_i
+,issueROBTagCom_i
+,issueROBvalCom_i
+
+//forwarding
+,issueROBTagExec_i
+,issueROBvalExec_i
+,issueROBMemAccessExec_i
+
+,issueROBTagMem_i
+,issueROBvalMem_i
 
 ,stall_i
 ,reservationStationVal1_o
@@ -21,9 +29,9 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
 ,ready_o);
 
 
-	input logic	[ROBsizeLog - 1:0] 	decodeROBTag1_i, decodeROBTag2_i, decodeROBTag_i, issueROBTag_i;
-  input logic [64:0] decodeROBval1_i, decodeROBval2_i, issueROBval_i;
-	input logic 			decodeWriteEn_i, clk_i, reset_i, stall_i;
+	input logic	[ROBsizeLog - 1:0] 	decodeROBTag1_i, decodeROBTag2_i, decodeROBTag_i, issueROBTagCom_i, issueROBTagExec_i, issueROBTagMem_i;
+  input logic [64:0] decodeROBval1_i, decodeROBval2_i, issueROBvalCom_i, issueROBvalExec_i, issueROBvalMem_i;
+	input logic 			decodeWriteEn_i, clk_i, reset_i, stall_i, issueROBMemAccessExec_i;
   input logic [9:0] decodeCommands_i;
   output logic [63:0] reservationStationVal1_o, reservationStationVal2_o;
   output logic [9:0] reservationStationCommands_o;
@@ -42,7 +50,7 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
   
 	generate
 		for(k=0; k<2; k++) begin : eachManagementReg
-			reservationStation #(.ROBsize(ROBsize)) aRS 
+			reservationStationForward aRS 
       (.clk_i
       ,.reset_i
       ,.decodeROBTag1_i
@@ -53,9 +61,16 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
       ,.decodeROBval2_i
       ,.decodeCommands_i
 
-      ,.issueROBTag_i
-      ,.issueROBval_i
+      ,.issueROBTagCom_i
+      ,.issueROBvalCom_i
       ,.stall_i(RSstalls[k])
+      
+      ,.issueROBTagExec_i
+      ,.issueROBvalExec_i
+      ,.issueROBMemAccessExec_i
+
+      ,.issueROBTagMem_i
+      ,.issueROBvalMem_i
 
       ,.reservationStationVal1_o(RS_val1[k])
       ,.reservationStationVal2_o(RS_val2[k])
@@ -76,7 +91,7 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
   assign busyFlipped[1] = ~RS_busy[1];
   assign busyFlipped[0] = ~RS_busy[0];
   
-  bsg_priority_encode_one_hot_out2 #(.width_p(2), .lo_to_hi_p(0)) writeEncoderUnit
+  bsg_priority_encode_one_hot_out2 writeEncoderUnit
   (.i(busyFlipped)
   ,.o(writeEncoder));
   
@@ -87,7 +102,7 @@ module reservationStationx2 #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsiz
   //issue stage behavior
   //use a priority encoder to select which RS ready to send
   logic [1:0] readyToListenToo;
-  bsg_priority_encode_one_hot_out2 #(.width_p(2), .lo_to_hi_p(0)) outEncoderUnit
+  bsg_priority_encode_one_hot_out2 outEncoderUnit
   (.i(RS_ready)
   ,.o(readyToListenToo));
   

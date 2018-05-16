@@ -7,8 +7,8 @@
 // to get typical priority encoder.
 //
 
-module bsg_priority_encode_one_hot_out4 #(parameter width_p      = 4
-                                         , parameter lo_to_hi_p = 1
+module bsg_priority_encode_one_hot_out #(parameter width_p      = "inv"
+                                         , parameter lo_to_hi_p = "inv"
                                          )
 
    (input    [width_p-1:0] i
@@ -17,7 +17,10 @@ module bsg_priority_encode_one_hot_out4 #(parameter width_p      = 4
 
    logic [width_p-1:0] scan_lo;
 
-   bsg_scan4  scan (.i (i)
+   bsg_scan #(.width_p(width_p)
+              ,.or_p      (1)
+              ,.lo_to_hi_p(lo_to_hi_p)
+              ) scan (.i (i)
                       ,.o(scan_lo)
                       );
 
