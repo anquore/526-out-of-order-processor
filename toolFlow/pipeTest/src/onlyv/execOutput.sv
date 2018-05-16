@@ -35,7 +35,7 @@ module executeOutput #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+1))
   output logic valid_o;
   
   //use a priority encoder to choose between which data get sent onwards
-  bsg_priority_encode_one_hot_out #(.width_p(4), .lo_to_hi_p(0)) outEncoderUnit
+  bsg_priority_encode_one_hot_out4 #(.width_p(4), .lo_to_hi_p(0)) outEncoderUnit
   (.i(valid_i)
   ,.o(canGo_o));
   

@@ -52,6 +52,7 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
       eWaiting: state_n = readyRS_i ? eStalling : eWaiting;
       eStalling: state_n = valid_out ? eDone : eStalling;
       eDone : state_n = canGo_i ? eWaiting : eDone;
+      default: state_n = eWaiting;
     endcase
   end
 
@@ -68,7 +69,11 @@ module issueExecStageMult #(parameter ROBsize = 32, ROBsizeLog = $clog2(ROBsize+
       end eDone: begin
         stallStart = 0;
         valid_o = 1;
-      end 
+      end
+      default: begin
+	stallStart = 1;
+        valid_o = 0;
+      end
     endcase
   end
   

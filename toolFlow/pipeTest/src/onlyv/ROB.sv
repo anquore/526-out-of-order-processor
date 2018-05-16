@@ -1,4 +1,4 @@
-module ROB #(parameter ROBsize = 32, addrSize = $clog2(ROBsize)) 
+module ROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
 

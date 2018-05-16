@@ -16,6 +16,12 @@ module fullReg32x64(dataOut, dataIn, reset, enable, clk);
 	
 	//the zero register
 	individualReg64 special (.q(dataOut[31][63:0]), .d(dataIn[63:0]), .reset(1'b1), .enable(enable[31]), .clk);
+	//integer j;
+	//always_comb begin
+		//for(j=0;j<64;j++) begin
+		  //dataOut[31][j] = 0;
+		//end
+	//end
 endmodule
 
 /*
