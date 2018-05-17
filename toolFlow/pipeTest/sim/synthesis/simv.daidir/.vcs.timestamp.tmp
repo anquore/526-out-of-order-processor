@@ -1,0 +1,136 @@
+1        
+0 ./pipelinedProcessorOOO.sdf_c
+33
++cli+1
++itf+/home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcsdp.tab
++lint
++memcbk
++v2k
++vcsd
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -O -I/home/lab.apps/vlsiapps/vcs/current/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=
+-Mobjects= /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl -lm
+-Mvcsaceobjs=
+-Xcbug=0x1
+-Xvcs_run_simv=1
+-debug=1
+-f pipelinedOOO.include
+-full64
+-gen_obj
+-l
+-pp_used
+-sverilog
+-timescale=1ns/10ps
+/home/lab.apps/vlsiapps/vcs/current/amd64/bin/vcs1
+pipelinedOOO.log
+84
+sysc_uni_pwd=/homes/smithd57/smithd57/526-out-of-order-processor_2/toolFlow/pipeTest/sim/synthesis
+installdir=/homes/lab.apps/vlsiapps/hspice/current/hspice
+XMODIFIERS=@im=none
+XILINXD_LICENSE_FILE=5280@payne.ee.washington.edu
+XDG_SESSION_ID=54
+XDG_RUNTIME_DIR=/run/user/665684
+XDG_MENU_PREFIX=gnome-
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=4602
+VNCDESKTOP=linux-lab-004.ee.washington.edu:500 (smithd57)
+VMR_MODE_FLAG=64
+VENDOR=unknown
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=pipelinedOOO.log
+VCS_HOME=/home/lab.apps/vlsiapps/vcs/current
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=amd64
+VCO=aoi
+USE_CALIBRE_VCO=1
+UNAME=/bin/uname
+TOOL_HOME=/home/lab.apps/vlsiapps/vcs/current/amd64
+SYNOPSYS=/homes/lab.apps/vlsiapps/design_compiler/current
+SSH_TTY=/dev/pts/0
+SSH_CONNECTION=75.172.106.148 53334 128.95.3.34 22
+SSH_CLIENT=75.172.106.148 53334 22
+SSH_AUTH_SOCK=/run/user/665684/keyring/ssh
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SSH_AGENT_PID=8258
+SPECTRE_DEFAULTS=-E
+SNPSLMD_LICENSE_FILE=27020@payne.ee.washington.edu:/home/lab.apps/vlsiapps/vcs/current/flexlm//license.dat
+SKIP_OS_CHECKS=1
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/8098,unix/unix:/tmp/.ICE-unix/8098
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+REMOTEHOST=75.172.106.148
+QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+QT_IM_MODULE=xim
+QT_GRAPHICSSYSTEM_CHECKED=1
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+PSF_WRITE_CHUNK_MODE_ON=true
+OVA_UUM=0
+OSTYPE=linux
+OA_UNSUPPORTED_PLAT=linux_rhel50_gcc44x
+MSI2LMP_LIBRARY=/usr/share/lammps/frc_files
+MODULESHOME=/usr/share/Modules
+MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles
+MGLS_LICENSE_FILE=50836@persephone.engr.washington.edu
+MGC_HOME=/homes/lab.apps/vlsiapps/calibre/current
+LOADEDMODULES=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+LAMMPS_POTENTIALS=/usr/share/lammps/potentials
+KRB5CCNAME=KEYRING:persistent:665684
+KDEDIRS=/usr
+IMSETTINGS_MODULE=none
+IMSETTINGS_INTEGRATE_DESKTOP=yes
+HSP_HOME=/homes/lab.apps/vlsiapps/hspice/current/hspice
+HOSTTYPE=x86_64-linux
+GTK_IM_MODULE=gtk-im-context-simple
+GROUP=graduate
+GNOME_SHELL_SESSION_MODE=classic
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+GJS_DEBUG_OUTPUT=stderr
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-5Py2yVKtW4,guid=09d702b71884311e1351345f5afd8d41
+CVS_RSH=ssh
+COLORTERM=truecolor
+CLS_CDSD_COMPATIBILITY_LOCKING=NO
+CDS_Netlisting_Mode=Analog
+CDS_LOG_PATH=.
+CDS_LOAD_ENV=CWDElseHome
+CDS_LIC_FILE=5280@persephone.engr.washington.edu
+CDS_INST_DIR=/homes/lab.apps/vlsiapps/virtuoso/current
+CDS_AUTO_64BIT=ALL
+CDSHOME=/homes/lab.apps/vlsiapps/virtuoso/current
+CDSDIR=/homes/lab.apps/vlsiapps/virtuoso/current/tools/dfII
+CDS=/homes/lab.apps/vlsiapps/virtuoso/current
+ASSURAHOME=/home/lab.apps/vlsiapps/assura/current
+ARCH=linux
+AGILEESOFD_LICENSE_FILE=27020@payne.ee.washington.edu
+ADS_LICENSE_FILE=27020@payne.ee.washington.edu
+0
+8
+1526527415 ./pipelinedProcessorOOO.sdf
+1526566796 ./tbOOO.sv
+1526570467 ./instructmem.sv
+1526504745 ./datamem.sv
+1526527416 ./pipelinedSynOOO.sv
+1242144499 /home/lab.apps/vlsiapps/kits/tsmc/N65RF/1.0c_cdb/digital/Front_End/verilog/tcbn65gplus_140b/tcbn65gplus.v
+1526566995 pipelinedOOO.include
+1369979133 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/vcsdp.tab
+4
+0 
+1369979665 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libvirsim.so
+1369979419 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/liberrorinf.so
+1369979224 /home/lab.apps/vlsiapps/vcs/current/amd64/lib/libsnpsmalloc.so

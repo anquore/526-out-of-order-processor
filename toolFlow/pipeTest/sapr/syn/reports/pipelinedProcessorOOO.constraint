@@ -1,0 +1,647 @@
+ 
+****************************************
+Report : constraint
+        -verbose
+Design : pipelinedProcessorOOO
+Version: H-2013.03-SP4
+Date   : Wed May 16 20:23:30 2018
+****************************************
+
+
+  Startpoint: theDataPath/theROB/headTailManager/tail_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: theDataPath/thirdWall/eachEnDff[70].enDff/theFlop/q_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  reservationStationForward_4
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+  reservationStationForward_3
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+  reservationStationForward_2
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+  reservationStationForward_1
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+  divider            ZeroWireload          tcbn65gpluswc0d72_ccs
+  fullReg32x64       ZeroWireload          tcbn65gpluswc0d72_ccs
+  ROBregs            ZeroWireload          tcbn65gpluswc0d72_ccs
+  regfileOOO         ZeroWireload          tcbn65gpluswc0d72_ccs
+  mapTable           ZeroWireload          tcbn65gpluswc0d72_ccs
+  instructionFetch   ZeroWireload          tcbn65gpluswc0d72_ccs
+  pipelinedProcessorOOO
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+  decodeStage        ZeroWireload          tcbn65gpluswc0d72_ccs
+  issueExecStageALU  ZeroWireload          tcbn65gpluswc0d72_ccs
+  issueExecStageShift
+                     ZeroWireload          tcbn65gpluswc0d72_ccs
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  theDataPath/theROB/headTailManager/tail_reg[1]/CP (DFQD4)
+                                                          0.00 #     0.00 r
+  theDataPath/theROB/headTailManager/tail_reg[1]/Q (DFQD4)
+                                                          0.22       0.22 f
+  U1117/ZN (CKND4)                                        0.03       0.25 r
+  U1110/ZN (IOA21D2)                                      0.10       0.35 r
+  U1111/ZN (CKND2D3)                                      0.05       0.40 f
+  U1010/ZN (ND2D1)                                        0.04       0.44 r
+  U1009/ZN (IOA21D1)                                      0.04       0.48 f
+  theDataPath/eachEnDff[0].theRS/U133/Z (MUX2D0)          0.16       0.63 f
+  theDataPath/U286/Z (AO22D0)                             0.18       0.81 f
+  theDataPath/U285/ZN (AOI221D0)                          0.27       1.08 r
+  U1970/Z (BUFFD2)                                        0.15       1.23 r
+  U211/ZN (INVD2)                                         0.03       1.26 f
+  theDataPath/eachEnDff[0].theRS/eachManagementReg[1].aRS/U551/ZN (NR4D0)
+                                                          0.16       1.42 r
+  U1888/ZN (NR2D1)                                        0.11       1.53 f
+  U1186/ZN (NR2XD1)                                       0.06       1.59 r
+  U1185/ZN (INR3D2)                                       0.04       1.63 f
+  U1184/ZN (CKND2)                                        0.03       1.66 r
+  U1170/ZN (ND3D2)                                        0.04       1.70 f
+  theDataPath/U290/Z (AO22D0)                             0.18       1.88 f
+  theDataPath/U289/ZN (AOI221D0)                          0.26       2.14 r
+  U77/ZN (INVD1)                                          0.14       2.29 f
+  theDataPath/eachEnDff[1].theRS/eachManagementReg[1].aRS/U531/ZN (AOI221D0)
+                                                          0.32       2.61 r
+  U124/ZN (AOI21D1)                                       0.11       2.72 f
+  U1266/ZN (NR3D1)                                        0.09       2.81 r
+  U1258/ZN (ND3D2)                                        0.06       2.87 f
+  theDataPath/U288/Z (AO22D0)                             0.17       3.04 f
+  theDataPath/U287/ZN (AOI221D0)                          0.26       3.30 r
+  U239/ZN (INVD1)                                         0.13       3.43 f
+  theDataPath/eachEnDff[0].theRS/eachManagementReg[0].aRS/U551/ZN (NR4D0)
+                                                          0.25       3.68 r
+  U2444/ZN (IND2D2)                                       0.14       3.82 r
+  U150/ZN (NR2D2)                                         0.03       3.86 f
+  theDataPath/eachEnDff[0].theRS/eachManagementReg[0].aRS/U321/ZN (AOI22D0)
+                                                          0.13       3.99 r
+  U6490/ZN (OAI21D1)                                      0.11       4.09 f
+  theDataPath/theALU/U311/Z (CKXOR2D1)                    0.16       4.25 r
+  theDataPath/theALU/theALU/U593/ZN (MAOI222D0)           0.11       4.35 f
+  theDataPath/theALU/U1082/Z (BUFFD2)                     0.11       4.47 f
+  theDataPath/theALU/U36/ZN (CKND2D3)                     0.05       4.51 r
+  theDataPath/theALU/U34/ZN (ND2D4)                       0.05       4.56 f
+  theDataPath/theALU/U13/ZN (CKND2D4)                     0.05       4.61 r
+  theDataPath/theALU/U94/ZN (IND3D4)                      0.08       4.69 f
+  theDataPath/theALU/U95/ZN (ND2D2)                       0.04       4.74 r
+  theDataPath/theALU/U1057/ZN (CKND2)                     0.03       4.77 f
+  theDataPath/theALU/U21/ZN (CKND2D4)                     0.04       4.82 r
+  theDataPath/theALU/U177/ZN (ND3D3)                      0.07       4.89 f
+  theDataPath/theALU/U1058/ZN (ND2D3)                     0.07       4.95 r
+  theDataPath/theALU/U122/ZN (IND3D4)                     0.07       5.03 f
+  theDataPath/theALU/U121/ZN (ND2D2)                      0.04       5.07 r
+  theDataPath/theALU/U139/ZN (CKND2)                      0.03       5.10 f
+  theDataPath/theALU/U50/ZN (ND2D3)                       0.03       5.13 r
+  theDataPath/theALU/U120/ZN (ND3D2)                      0.06       5.20 f
+  theDataPath/theALU/U1071/ZN (ND3D2)                     0.05       5.25 r
+  theDataPath/theALU/U522/ZN (CKND2D2)                    0.04       5.29 f
+  theDataPath/theALU/theALU/U303/ZN (CKND2D0)             0.05       5.34 r
+  theDataPath/theALU/theALU/U302/ZN (OAI211D0)            0.15       5.49 f
+  theDataPath/theALU/U264/ZN (IND2D1)                     0.09       5.58 r
+  U142/ZN (CKND2D2)                                       0.06       5.64 f
+  U144/ZN (ND2D3)                                         0.05       5.69 r
+  theDataPath/theALU/U154/ZN (INVD2)                      0.03       5.72 f
+  theDataPath/theALU/U155/ZN (ND2D2)                      0.03       5.74 r
+  theDataPath/theALU/U123/ZN (CKND2D2)                    0.03       5.77 f
+  theDataPath/theALU/theALU/U297/ZN (CKND2D0)             0.05       5.83 r
+  theDataPath/theALU/theALU/U296/ZN (OAI211D0)            0.12       5.95 f
+  theDataPath/theALU/theALU/U295/ZN (OAI211D0)            0.13       6.08 r
+  U5702/Z (OA21D1)                                        0.16       6.24 r
+  theDataPath/theALU/U529/ZN (CKND2D2)                    0.05       6.29 f
+  theDataPath/theALU/U530/ZN (ND2D2)                      0.03       6.32 r
+  theDataPath/theALU/U1064/ZN (CKND2D2)                   0.04       6.36 f
+  U988/ZN (NR2XD1)                                        0.04       6.40 r
+  U236/ZN (NR2D1)                                         0.04       6.44 f
+  theDataPath/theShifter/theShifter/U354/Z (AO221D0)      0.27       6.71 f
+  theDataPath/theShifter/theShifter/U351/Z (AO22D0)       0.18       6.89 f
+  theDataPath/theShifter/theShifter/U350/Z (AO221D0)      0.35       7.24 f
+  theDataPath/theShifter/theShifter/U178/ZN (AOI222D0)
+                                                          0.28       7.52 r
+  theDataPath/theShifter/U402/ZN (CKND2D1)                0.12       7.64 f
+  U1733/ZN (NR2XD1)                                       0.07       7.71 r
+  U1734/ZN (NR2D2)                                        0.05       7.76 f
+  theDataPath/theALU/U339/ZN (NR2XD1)                     0.04       7.80 r
+  theDataPath/theALU/U338/ZN (INVD1)                      0.03       7.84 f
+  theDataPath/theALU/U326/ZN (CKND2D2)                    0.03       7.87 r
+  theDataPath/theALU/theALU/U519/ZN (CKND2D0)             0.05       7.92 f
+  theDataPath/theALU/theALU/U518/ZN (OAI211D0)            0.10       8.02 r
+  theDataPath/theALU/U487/ZN (ND2D2)                      0.08       8.10 f
+  U1760/ZN (NR2D2)                                        0.06       8.17 r
+  U1761/ZN (NR2XD1)                                       0.05       8.22 f
+  theDataPath/theALU/U270/ZN (NR2D1)                      0.07       8.29 r
+  theDataPath/theALU/U198/ZN (NR2XD1)                     0.05       8.34 f
+  theDataPath/theALU/U197/ZN (OAI21D2)                    0.05       8.39 r
+  theDataPath/theALU/U195/ZN (NR2XD1)                     0.05       8.43 f
+  theDataPath/theALU/U161/ZN (CKND2D2)                    0.03       8.47 r
+  theDataPath/theALU/theALU/U489/ZN (CKND2D0)             0.05       8.52 f
+  theDataPath/theALU/theALU/U488/ZN (OAI211D0)            0.09       8.61 r
+  theDataPath/theALU/U110/ZN (ND2D1)                      0.11       8.72 f
+  U1567/Z (OA21D4)                                        0.15       8.88 f
+  theDataPath/theALU/U27/ZN (ND2D2)                       0.04       8.92 r
+  theDataPath/theALU/U26/ZN (ND2D2)                       0.03       8.95 f
+  theDataPath/theALU/U49/ZN (NR2XD1)                      0.04       8.99 r
+  theDataPath/theALU/U42/ZN (ND2D2)                       0.04       9.03 f
+  theDataPath/theALU/theALU/U417/ZN (CKND2D0)             0.05       9.08 r
+  theDataPath/theALU/theALU/U416/ZN (OAI211D0)            0.12       9.21 f
+  theDataPath/theALU/theALU/U415/ZN (OAI211D0)            0.14       9.34 r
+  U1650/ZN (NR2XD1)                                       0.09       9.43 f
+  U1643/ZN (NR2XD1)                                       0.06       9.49 r
+  theDataPath/theALU/U363/ZN (INVD2)                      0.04       9.53 f
+  theDataPath/theALU/U360/ZN (INVD2)                      0.04       9.58 r
+  theDataPath/theALU/U361/ZN (NR2XD1)                     0.04       9.62 f
+  theDataPath/theALU/U370/ZN (NR2D2)                      0.05       9.67 r
+  theDataPath/theALU/U14/ZN (ND2D2)                       0.05       9.72 f
+  theDataPath/theALU/U97/ZN (CKND2)                       0.03       9.76 r
+  theDataPath/theALU/U79/ZN (NR2D2)                       0.02       9.78 f
+  theDataPath/theALU/U78/ZN (ND2D2)                       0.03       9.81 r
+  theDataPath/theALU/U101/ZN (ND3D2)                      0.05       9.86 f
+  U1122/ZN (NR2XD1)                                       0.05       9.91 r
+  U1123/ZN (NR2D1)                                        0.04       9.95 f
+  theDataPath/theShifter/theShifter/U501/Z (AO221D0)      0.29      10.25 f
+  theDataPath/theShifter/theShifter/U233/Z (AO221D0)      0.30      10.54 f
+  theDataPath/theShifter/theShifter/U99/ZN (AOI22D0)      0.13      10.67 r
+  theDataPath/theShifter/theShifter/U97/ZN (ND3D0)        0.17      10.84 f
+  U1435/ZN (NR2XD1)                                       0.07      10.91 r
+  U1436/ZN (NR2D1)                                        0.05      10.97 f
+  theDataPath/theShifter/theShifter/U352/Z (AO221D0)      0.26      11.23 f
+  theDataPath/theShifter/theShifter/U193/Z (AO221D0)      0.28      11.51 f
+  theDataPath/theShifter/theShifter/U190/ZN (AOI22D0)     0.12      11.63 r
+  theDataPath/theShifter/theShifter/U189/ZN (OAI211D0)
+                                                          0.19      11.82 f
+  U1520/ZN (NR2XD1)                                       0.07      11.89 r
+  U1521/ZN (NR2D1)                                        0.05      11.94 f
+  theDataPath/theShifter/theShifter/U430/Z (AO221D0)      0.29      12.24 f
+  theDataPath/theShifter/theShifter/U422/Z (AO221D0)      0.31      12.55 f
+  theDataPath/theShifter/theShifter/U120/ZN (AOI22D0)     0.13      12.68 r
+  theDataPath/theShifter/theShifter/U118/ZN (ND3D0)       0.17      12.86 f
+  U1471/ZN (NR2XD1)                                       0.07      12.93 r
+  U1472/ZN (NR2D1)                                        0.05      12.98 f
+  theDataPath/theShifter/theShifter/U434/Z (AO221D0)      0.27      13.25 f
+  theDataPath/theShifter/theShifter/U204/ZN (AOI22D0)     0.13      13.38 r
+  theDataPath/theShifter/theShifter/U203/ZN (OAI211D0)
+                                                          0.18      13.56 f
+  theDataPath/theShifter/theShifter/U107/ZN (AOI222D0)
+                                                          0.29      13.85 r
+  theDataPath/theShifter/theShifter/U106/ZN (ND3D0)       0.20      14.05 f
+  U1460/ZN (NR2XD1)                                       0.07      14.11 r
+  U1461/ZN (NR2D1)                                        0.04      14.16 f
+  theDataPath/theShifter/theShifter/U402/Z (AO221D0)      0.27      14.43 f
+  theDataPath/theShifter/theShifter/U394/Z (AO221D0)      0.28      14.71 f
+  theDataPath/theShifter/theShifter/U116/ZN (AOI222D0)
+                                                          0.28      14.99 r
+  theDataPath/theShifter/theShifter/U115/ZN (ND3D0)       0.20      15.19 f
+  U1334/ZN (NR2XD1)                                       0.07      15.26 r
+  U1335/ZN (NR2D1)                                        0.04      15.30 f
+  theDataPath/theShifter/theShifter/U479/Z (AO221D0)      0.27      15.57 f
+  theDataPath/theShifter/theShifter/U217/ZN (AOI22D0)     0.13      15.70 r
+  theDataPath/theShifter/theShifter/U216/ZN (OAI211D0)
+                                                          0.18      15.88 f
+  theDataPath/theShifter/theShifter/U104/ZN (AOI222D0)
+                                                          0.29      16.16 r
+  theDataPath/theShifter/theShifter/U103/ZN (ND3D0)       0.21      16.38 f
+  U1608/ZN (NR2XD1)                                       0.07      16.45 r
+  U1609/ZN (NR2D1)                                        0.05      16.50 f
+  theDataPath/theShifter/theShifter/U447/Z (AO221D0)      0.27      16.77 f
+  theDataPath/theShifter/U86/ZN (CKND1)                   0.06      16.83 r
+  theDataPath/theShifter/U303/ZN (OAI21D1)                0.04      16.87 f
+  theDataPath/theShifter/theShifter/U277/Z (AO221D0)      0.38      17.25 f
+  theDataPath/theShifter/U390/ZN (CKND2)                  0.05      17.30 r
+  theDataPath/theShifter/U387/ZN (OAI21D2)                0.05      17.35 f
+  U1134/ZN (NR2XD1)                                       0.04      17.40 r
+  U1135/ZN (NR2D1)                                        0.04      17.44 f
+  theDataPath/theShifter/theShifter/U452/Z (AO221D0)      0.27      17.71 f
+  theDataPath/theShifter/theShifter/U221/Z (AO221D0)      0.28      18.00 f
+  theDataPath/theShifter/theShifter/U102/ZN (AOI22D0)     0.12      18.12 r
+  theDataPath/theShifter/theShifter/U100/ZN (ND3D0)       0.17      18.29 f
+  U1495/ZN (NR2XD1)                                       0.07      18.36 r
+  U1496/ZN (NR2D1)                                        0.05      18.42 f
+  theDataPath/theShifter/theShifter/U493/Z (AO221D0)      0.27      18.69 f
+  theDataPath/theShifter/theShifter/U485/Z (AO221D0)      0.31      19.00 f
+  theDataPath/theShifter/theShifter/U58/ZN (AOI22D0)      0.17      19.18 r
+  theDataPath/theShifter/U319/ZN (CKND2D1)                0.09      19.26 f
+  U1484/ZN (NR2XD1)                                       0.05      19.31 r
+  U188/ZN (NR2D1)                                         0.04      19.35 f
+  theDataPath/theShifter/theShifter/U491/Z (AO221D0)      0.27      19.63 f
+  theDataPath/theShifter/theShifter/U340/Z (AO221D0)      0.31      19.93 f
+  theDataPath/theShifter/U397/ZN (CKND2)                  0.05      19.99 r
+  theDataPath/theShifter/U393/ZN (OAI21D2)                0.05      20.03 f
+  U1045/ZN (NR2XD1)                                       0.04      20.08 r
+  U1046/ZN (NR2D1)                                        0.03      20.11 f
+  theDataPath/theShifter/theShifter/U356/Z (AO221D0)      0.27      20.38 f
+  theDataPath/theShifter/theShifter/U297/Z (AO221D0)      0.31      20.69 f
+  theDataPath/theShifter/U344/ZN (CKND2)                  0.05      20.74 r
+  theDataPath/theShifter/U14/ZN (OAI21D2)                 0.05      20.79 f
+  U103/ZN (NR2XD1)                                        0.05      20.83 r
+  U102/ZN (NR2D1)                                         0.04      20.87 f
+  theDataPath/theShifter/theShifter/U426/Z (AO221D0)      0.29      21.16 f
+  theDataPath/theShifter/theShifter/U259/Z (AO221D0)      0.32      21.48 f
+  theDataPath/theShifter/theShifter/U95/ZN (AOI222D0)     0.22      21.69 r
+  theDataPath/theShifter/theShifter/U94/ZN (ND3D0)        0.20      21.89 f
+  U1395/ZN (NR2XD1)                                       0.07      21.96 r
+  U1396/ZN (NR2D1)                                        0.04      22.00 f
+  theDataPath/theShifter/theShifter/U396/Z (AO221D0)      0.27      22.27 f
+  theDataPath/theShifter/theShifter/U264/Z (AO221D0)      0.36      22.63 f
+  theDataPath/theShifter/theShifter/U35/ZN (AOI22D0)      0.14      22.77 r
+  theDataPath/theShifter/U330/ZN (CKND2D1)                0.09      22.87 f
+  U1221/ZN (NR2XD1)                                       0.05      22.92 r
+  U1222/ZN (NR2D1)                                        0.04      22.96 f
+  theDataPath/theShifter/theShifter/U407/Z (AO221D0)      0.27      23.23 f
+  theDataPath/theShifter/theShifter/U208/Z (AO221D0)      0.29      23.52 f
+  theDataPath/theShifter/U353/ZN (CKND2)                  0.05      23.57 r
+  theDataPath/theShifter/U15/ZN (OAI21D2)                 0.05      23.62 f
+  U105/ZN (NR2XD1)                                        0.04      23.67 r
+  U104/ZN (NR2D1)                                         0.04      23.70 f
+  theDataPath/theShifter/theShifter/U458/Z (AO221D0)      0.29      23.99 f
+  theDataPath/theShifter/theShifter/U450/Z (AO221D0)      0.30      24.29 f
+  theDataPath/theShifter/theShifter/U113/ZN (AOI222D0)
+                                                          0.21      24.50 r
+  theDataPath/theShifter/theShifter/U112/ZN (ND3D0)       0.20      24.70 f
+  U228/ZN (NR2XD1)                                        0.07      24.76 r
+  U229/ZN (NR2D1)                                         0.05      24.81 f
+  theDataPath/theShifter/theShifter/U522/Z (AO221D0)      0.27      25.08 f
+  theDataPath/theShifter/theShifter/U521/ZN (AOI22D0)     0.15      25.24 r
+  theDataPath/theShifter/theShifter/U518/ZN (CKND2D0)     0.10      25.34 f
+  theDataPath/theShifter/theShifter/U517/ZN (AOI22D0)     0.15      25.49 r
+  theDataPath/theShifter/theShifter/U483/ZN (ND4D0)       0.16      25.65 f
+  U167/ZN (NR2XD0)                                        0.10      25.75 r
+  U220/ZN (NR2D1)                                         0.06      25.81 f
+  theDataPath/theShifter/theShifter/U505/Z (AO221D0)      0.29      26.10 f
+  theDataPath/theShifter/theShifter/U379/Z (AO221D0)      0.29      26.39 f
+  theDataPath/theShifter/theShifter/U123/ZN (AOI22D0)     0.13      26.52 r
+  theDataPath/theShifter/theShifter/U121/ZN (ND3D0)       0.16      26.68 f
+  U250/ZN (NR2XD1)                                        0.07      26.75 r
+  U251/ZN (NR2D1)                                         0.04      26.79 f
+  theDataPath/theShifter/theShifter/U389/Z (AO221D0)      0.28      27.07 f
+  theDataPath/theShifter/U263/ZN (IND2D1)                 0.05      27.12 r
+  theDataPath/theShifter/theShifter/U387/ZN (OAI211D0)
+                                                          0.16      27.28 f
+  theDataPath/theShifter/U362/ZN (AOI21D1)                0.10      27.38 r
+  theDataPath/theShifter/theShifter/U348/ZN (ND4D0)       0.19      27.57 f
+  U226/ZN (NR2XD1)                                        0.08      27.65 r
+  U225/ZN (NR2D1)                                         0.05      27.70 f
+  theDataPath/theShifter/theShifter/U367/Z (AO221D0)      0.29      27.99 f
+  theDataPath/theShifter/theShifter/U314/Z (AO221D0)      0.30      28.29 f
+  theDataPath/theShifter/theShifter/U132/ZN (AOI22D0)     0.16      28.44 r
+  theDataPath/theShifter/theShifter/U130/ZN (ND3D0)       0.17      28.61 f
+  U1544/ZN (NR2XD1)                                       0.07      28.69 r
+  U1545/ZN (NR2D1)                                        0.05      28.74 f
+  theDataPath/theShifter/theShifter/U436/ZN (AOI222D0)
+                                                          0.25      28.99 r
+  theDataPath/theShifter/U268/ZN (NR2D1)                  0.10      29.08 f
+  theDataPath/theShifter/U260/ZN (NR2XD1)                 0.05      29.14 r
+  theDataPath/theShifter/theShifter/U432/ZN (CKND2D0)     0.08      29.22 f
+  theDataPath/theShifter/U316/ZN (MAOI22D1)               0.07      29.29 r
+  theDataPath/theShifter/theShifter/U392/ZN (ND4D0)       0.18      29.47 f
+  U218/ZN (NR2XD1)                                        0.08      29.55 r
+  U219/ZN (NR2D1)                                         0.06      29.61 f
+  theDataPath/theShifter/theShifter/U411/Z (AO221D0)      0.29      29.90 f
+  theDataPath/theShifter/theShifter/U328/Z (AO221D0)      0.30      30.20 f
+  theDataPath/theShifter/theShifter/U129/ZN (AOI22D0)     0.16      30.35 r
+  theDataPath/theShifter/theShifter/U127/ZN (ND3D0)       0.16      30.51 f
+  U234/ZN (NR2XD1)                                        0.07      30.58 r
+  U235/ZN (NR2D1)                                         0.05      30.63 f
+  theDataPath/theShifter/theShifter/U482/Z (AO22D0)       0.16      30.79 f
+  theDataPath/theShifter/theShifter/U481/ZN (AOI221D0)
+                                                          0.30      31.10 r
+  theDataPath/theShifter/U333/ZN (INVD1)                  0.09      31.19 f
+  theDataPath/theShifter/U332/ZN (AOI21D1)                0.07      31.26 r
+  theDataPath/theShifter/theShifter/U477/ZN (CKND2D0)     0.09      31.35 f
+  theDataPath/theShifter/theShifter/U466/ZN (AOI22D0)     0.12      31.47 r
+  theDataPath/theShifter/theShifter/U437/ZN (ND4D0)       0.17      31.64 f
+  U168/ZN (NR2XD0)                                        0.10      31.73 r
+  U216/ZN (NR2D1)                                         0.06      31.79 f
+  theDataPath/theShifter/theShifter/U456/Z (AO221D0)      0.27      32.06 f
+  theDataPath/theShifter/theShifter/U343/Z (AO221D0)      0.31      32.37 f
+  theDataPath/theShifter/theShifter/U75/ZN (AOI22D0)      0.14      32.51 r
+  theDataPath/theShifter/U334/ZN (CKND2D1)                0.09      32.60 f
+  U1233/ZN (NR2XD1)                                       0.05      32.65 r
+  U1234/ZN (NR2D1)                                        0.04      32.69 f
+  theDataPath/theShifter/theShifter/U489/Z (AO221D0)      0.27      32.96 f
+  theDataPath/theShifter/theShifter/U288/Z (AO221D0)      0.30      33.26 f
+  theDataPath/theShifter/U321/ZN (AOI21D1)                0.08      33.34 r
+  theDataPath/theShifter/theShifter/U280/ZN (ND4D0)       0.18      33.52 f
+  U231/ZN (NR2XD1)                                        0.08      33.60 r
+  U230/ZN (NR2D1)                                         0.06      33.66 f
+  theDataPath/theShifter/theShifter/U383/Z (AO221D0)      0.27      33.93 f
+  theDataPath/theShifter/theShifter/U246/Z (AO221D0)      0.31      34.24 f
+  theDataPath/theShifter/theShifter/U245/ZN (AOI22D0)     0.16      34.41 r
+  theDataPath/theShifter/theShifter/U241/ZN (ND4D0)       0.18      34.58 f
+  U166/ZN (NR2XD0)                                        0.10      34.68 r
+  U217/ZN (NR2D1)                                         0.05      34.73 f
+  theDataPath/theShifter/theShifter/U424/Z (AO221D0)      0.29      35.02 f
+  theDataPath/theShifter/theShifter/U206/Z (AO221D0)      0.30      35.31 f
+  theDataPath/theShifter/theShifter/U50/ZN (AOI22D0)      0.14      35.45 r
+  theDataPath/theShifter/U375/ZN (CKND2D1)                0.09      35.54 f
+  U1246/ZN (NR2XD1)                                       0.05      35.59 r
+  U1247/ZN (NR2D1)                                        0.04      35.63 f
+  theDataPath/theShifter/theShifter/U413/Z (AO221D0)      0.27      35.91 f
+  theDataPath/theShifter/theShifter/U405/Z (AO221D0)      0.32      36.23 f
+  theDataPath/theShifter/U18/ZN (CKND2)                   0.04      36.27 r
+  theDataPath/theShifter/U17/ZN (OAI21D1)                 0.05      36.33 f
+  U233/ZN (NR2XD1)                                        0.05      36.38 r
+  U232/ZN (NR2D1)                                         0.04      36.42 f
+  theDataPath/theShifter/theShifter/U445/Z (AO221D0)      0.27      36.69 f
+  theDataPath/theShifter/theShifter/U325/Z (AO221D0)      0.32      37.01 f
+  theDataPath/theShifter/U258/ZN (ND2D2)                  0.06      37.07 r
+  theDataPath/theShifter/U240/ZN (CKND2D2)                0.04      37.11 f
+  U222/ZN (NR2XD1)                                        0.04      37.15 r
+  U221/ZN (NR2D1)                                         0.04      37.19 f
+  theDataPath/theShifter/theShifter/U534/Z (AO221D0)      0.27      37.46 f
+  theDataPath/theShifter/theShifter/U285/Z (AO221D0)      0.31      37.77 f
+  theDataPath/theShifter/theShifter/U89/ZN (AOI222D0)     0.22      37.99 r
+  theDataPath/theShifter/theShifter/U88/ZN (ND3D0)        0.20      38.18 f
+  U246/ZN (NR2XD1)                                        0.07      38.25 r
+  U247/ZN (NR2D1)                                         0.04      38.30 f
+  theDataPath/theShifter/theShifter/U487/Z (AO221D0)      0.27      38.57 f
+  theDataPath/theShifter/theShifter/U239/Z (AO221D0)      0.28      38.85 f
+  theDataPath/theShifter/theShifter/U235/ZN (AOI22D0)     0.12      38.97 r
+  theDataPath/theShifter/theShifter/U227/ZN (ND4D0)       0.17      39.14 f
+  U243/ZN (NR2XD0)                                        0.10      39.23 r
+  U242/ZN (NR2D1)                                         0.06      39.29 f
+  theDataPath/theShifter/theShifter/U381/Z (AO221D0)      0.27      39.56 f
+  theDataPath/theShifter/theShifter/U191/Z (AO221D0)      0.31      39.87 f
+  theDataPath/theShifter/theShifter/U188/ZN (AOI222D0)
+                                                          0.23      40.10 r
+  theDataPath/theShifter/U365/ZN (CKND2D1)                0.12      40.21 f
+  U1300/ZN (NR2XD1)                                       0.06      40.27 r
+  U1301/ZN (NR2D1)                                        0.05      40.32 f
+  theDataPath/theShifter/theShifter/U512/Z (AO22D0)       0.16      40.48 f
+  theDataPath/theShifter/theShifter/U511/ZN (AOI221D0)
+                                                          0.30      40.78 r
+  theDataPath/theShifter/U336/ZN (OAI21D1)                0.10      40.88 f
+  theDataPath/theShifter/theShifter/U126/ZN (AOI22D0)     0.13      41.01 r
+  theDataPath/theShifter/theShifter/U124/ZN (ND3D0)       0.16      41.16 f
+  U237/ZN (NR2XD1)                                        0.07      41.23 r
+  U238/ZN (NR2D1)                                         0.04      41.28 f
+  theDataPath/theShifter/theShifter/U524/ZN (AOI221D0)
+                                                          0.20      41.47 r
+  theDataPath/theShifter/theShifter/U236/ZN (OAI211D0)
+                                                          0.21      41.69 f
+  theDataPath/theShifter/U293/ZN (ND2D1)                  0.09      41.78 r
+  theDataPath/theShifter/U288/ZN (CKND2D2)                0.05      41.83 f
+  U1036/ZN (NR2XD1)                                       0.04      41.87 r
+  U227/ZN (NR2D1)                                         0.04      41.91 f
+  theDataPath/theShifter/theShifter/U507/Z (AO221D0)      0.27      42.18 f
+  theDataPath/theShifter/theShifter/U499/Z (AO221D0)      0.30      42.47 f
+  theDataPath/theShifter/U285/ZN (AOI21D1)                0.08      42.55 r
+  theDataPath/theShifter/theShifter/U109/ZN (ND3D0)       0.14      42.69 f
+  U244/ZN (NR2XD1)                                        0.07      42.76 r
+  U245/ZN (NR2D1)                                         0.04      42.80 f
+  theDataPath/theShifter/theShifter/U358/Z (AO221D0)      0.27      43.08 f
+  theDataPath/theShifter/U3/ZN (IND2D1)                   0.06      43.14 r
+  theDataPath/theShifter/U225/ZN (CKND2D2)                0.04      43.18 f
+  U224/ZN (NR2XD1)                                        0.04      43.22 r
+  U223/ZN (NR2D1)                                         0.03      43.26 f
+  theDataPath/theShifter/theShifter/U363/Z (AO221D0)      0.27      43.52 f
+  theDataPath/theShifter/theShifter/U198/Z (AO221D0)      0.30      43.82 f
+  theDataPath/theShifter/U338/ZN (AOI21D1)                0.08      43.89 r
+  theDataPath/theShifter/theShifter/U133/ZN (OAI211D0)
+                                                          0.16      44.06 f
+  U1421/ZN (NR2XD1)                                       0.07      44.13 r
+  U1422/ZN (NR2D1)                                        0.04      44.17 f
+  theDataPath/theShifter/theShifter/U377/Z (AO22D0)       0.18      44.35 f
+  theDataPath/theShifter/theShifter/U376/ZN (AOI221D0)
+                                                          0.28      44.63 r
+  theDataPath/theShifter/theShifter/U200/ZN (OAI22D0)     0.21      44.84 f
+  theDataPath/theShifter/U284/ZN (IND2D1)                 0.09      44.92 r
+  theDataPath/theShifter/U280/ZN (CKND2D2)                0.05      44.97 f
+  U1061/ZN (NR2XD1)                                       0.04      45.01 r
+  U1062/ZN (NR2D1)                                        0.04      45.06 f
+  theDataPath/theShifter/theShifter/U369/Z (AO221D0)      0.27      45.33 f
+  theDataPath/theShifter/theShifter/U361/Z (AO221D0)      0.31      45.64 f
+  theDataPath/theShifter/U116/ZN (ND2D2)                  0.05      45.69 r
+  theDataPath/theShifter/U312/ZN (CKND2D2)                0.04      45.73 f
+  U1075/ZN (NR2XD1)                                       0.04      45.77 r
+  U1076/ZN (NR2D1)                                        0.04      45.81 f
+  theDataPath/theShifter/theShifter/U400/Z (AO221D0)      0.27      46.09 f
+  theDataPath/theShifter/theShifter/U311/Z (AO221D0)      0.32      46.41 f
+  theDataPath/theShifter/U277/ZN (ND2D2)                  0.06      46.47 r
+  theDataPath/theShifter/U274/ZN (CKND2D2)                0.04      46.51 f
+  U1099/ZN (NR2XD1)                                       0.04      46.55 r
+  U1100/ZN (NR2D1)                                        0.04      46.59 f
+  theDataPath/theShifter/theShifter/U471/Z (AO221D0)      0.27      46.86 f
+  theDataPath/theShifter/theShifter/U272/Z (AO221D0)      0.31      47.17 f
+  theDataPath/theShifter/theShifter/U92/ZN (AOI222D0)     0.22      47.39 r
+  theDataPath/theShifter/theShifter/U91/ZN (ND3D0)        0.20      47.58 f
+  U1348/ZN (NR2XD1)                                       0.07      47.65 r
+  U1349/ZN (NR2D1)                                        0.04      47.70 f
+  theDataPath/theShifter/theShifter/U441/Z (AO221D0)      0.27      47.97 f
+  theDataPath/theShifter/theShifter/U224/Z (AO221D0)      0.31      48.28 f
+  theDataPath/theShifter/U327/ZN (AOI21D1)                0.08      48.36 r
+  theDataPath/theShifter/theShifter/U214/ZN (ND4D0)       0.17      48.53 f
+  U1592/ZN (NR2XD1)                                       0.08      48.61 r
+  U1593/ZN (NR2D1)                                        0.05      48.66 f
+  theDataPath/theShifter/theShifter/U540/Z (AO221D0)      0.27      48.93 f
+  theDataPath/theShifter/theShifter/U529/Z (AO221D0)      0.31      49.24 f
+  theDataPath/theShifter/theShifter/U184/ZN (AOI222D0)
+                                                          0.23      49.47 r
+  theDataPath/theShifter/U357/ZN (CKND2D1)                0.11      49.58 f
+  U209/ZN (NR2XD1)                                        0.06      49.64 r
+  U210/ZN (NR2D1)                                         0.05      49.68 f
+  theDataPath/theShifter/theShifter/U416/ZN (AOI221D0)
+                                                          0.22      49.90 r
+  theDataPath/theShifter/U196/ZN (NR2D1)                  0.09      49.99 f
+  theDataPath/theShifter/U220/ZN (NR2XD1)                 0.05      50.04 r
+  theDataPath/theShifter/theShifter/U305/ZN (ND4D0)       0.16      50.20 f
+  U240/ZN (NR2XD1)                                        0.08      50.28 r
+  U241/ZN (NR2D1)                                         0.05      50.33 f
+  theDataPath/theShifter/theShifter/U409/Z (AO221D0)      0.27      50.60 f
+  theDataPath/theShifter/theShifter/U261/Z (AO221D0)      0.29      50.89 f
+  theDataPath/theShifter/theShifter/U150/ZN (AOI222D0)
+                                                          0.22      51.12 r
+  theDataPath/theShifter/U374/ZN (CKND2D1)                0.11      51.23 f
+  U1539/ZN (NR2XD1)                                       0.06      51.29 r
+  U95/ZN (NR2D1)                                          0.04      51.32 f
+  theDataPath/theShifter/theShifter/U418/ZN (AOI222D0)
+                                                          0.28      51.61 r
+  theDataPath/theShifter/U410/Z (BUFFD2)                  0.14      51.75 r
+  theDataPath/theShifter/theShifter/U266/ZN (NR2D0)       0.06      51.81 f
+  theDataPath/theShifter/U405/ZN (AOI21D1)                0.06      51.87 r
+  theDataPath/theShifter/theShifter/U254/ZN (ND4D0)       0.15      52.02 f
+  U94/ZN (NR2XD0)                                         0.10      52.12 r
+  U1724/ZN (NR2D1)                                        0.05      52.17 f
+  theDataPath/theShifter/theShifter/U469/Z (AO221D0)      0.27      52.44 f
+  theDataPath/theShifter/theShifter/U219/Z (AO221D0)      0.29      52.73 f
+  theDataPath/theShifter/theShifter/U138/ZN (AOI222D0)
+                                                          0.22      52.96 r
+  theDataPath/theShifter/U366/ZN (CKND2D1)                0.11      53.07 f
+  U146/ZN (NR2XD1)                                        0.06      53.13 r
+  U147/ZN (NR2D1)                                         0.05      53.17 f
+  theDataPath/theShifter/theShifter/U419/ZN (AOI221D0)
+                                                          0.26      53.43 r
+  theDataPath/theShifter/theShifter/U213/ZN (OAI22D0)     0.20      53.63 f
+  theDataPath/theShifter/U354/ZN (AOI21D1)                0.09      53.72 r
+  theDataPath/theShifter/theShifter/U201/ZN (ND4D0)       0.15      53.88 f
+  U249/ZN (NR2XD0)                                        0.10      53.97 r
+  U248/ZN (NR2D1)                                         0.05      54.02 f
+  theDataPath/theShifter/theShifter/U475/Z (AO221D0)      0.27      54.29 f
+  theDataPath/theShifter/theShifter/U467/Z (AO221D0)      0.31      54.60 f
+  theDataPath/theShifter/theShifter/U181/ZN (AOI222D0)
+                                                          0.23      54.82 r
+  theDataPath/theShifter/U377/ZN (CKND2D1)                0.12      54.94 f
+  U1292/ZN (NR2XD1)                                       0.06      55.00 r
+  U1293/ZN (NR2D1)                                        0.05      55.04 f
+  theDataPath/theShifter/theShifter/U372/ZN (AOI221D0)
+                                                          0.22      55.26 r
+  theDataPath/theShifter/U384/ZN (OAI21D1)                0.10      55.36 f
+  theDataPath/theShifter/theShifter/U156/ZN (AOI222D0)
+                                                          0.22      55.58 r
+  theDataPath/theShifter/U400/ZN (CKND2D1)                0.12      55.70 f
+  U1314/ZN (NR2XD1)                                       0.06      55.76 r
+  U1315/ZN (NR2D1)                                        0.04      55.80 f
+  theDataPath/theShifter/U13/Z (CKXOR2D2)                 0.12      55.92 r
+  theDataPath/theShifter/theShifter/U542/ZN (NR2D0)       0.05      55.97 f
+  theDataPath/theShifter/theShifter/U463/ZN (AOI221D0)
+                                                          0.18      56.14 r
+  theDataPath/theShifter/U193/Z (BUFFD2)                  0.13      56.28 r
+  theDataPath/theShifter/U192/ZN (NR2D2)                  0.03      56.31 f
+  theDataPath/theShifter/U184/ZN (NR2XD1)                 0.03      56.34 r
+  theDataPath/theShifter/theShifter/U319/ZN (ND4D0)       0.13      56.47 f
+  U1939/ZN (NR2XD0)                                       0.09      56.57 r
+  U1940/ZN (NR2D1)                                        0.05      56.62 f
+  theDataPath/theShifter/theShifter/U454/Z (AO221D0)      0.27      56.89 f
+  theDataPath/theShifter/theShifter/U274/Z (AO221D0)      0.29      57.18 f
+  theDataPath/theShifter/theShifter/U153/ZN (AOI222D0)
+                                                          0.22      57.40 r
+  theDataPath/theShifter/U117/ZN (CKND2D1)                0.11      57.52 f
+  U1851/ZN (NR2XD1)                                       0.07      57.59 r
+  U1852/ZN (NR2D2)                                        0.05      57.63 f
+  theDataPath/theShifter/U8/ZN (CKND4)                    0.03      57.66 r
+  theDataPath/theShifter/U9/ZN (CKND2D4)                  0.03      57.70 f
+  theDataPath/theShifter/U87/ZN (IND3D2)                  0.03      57.73 r
+  theDataPath/theShifter/U197/ZN (CKND2D2)                0.03      57.76 f
+  theDataPath/theShifter/theShifter/U248/Z (AO221D0)      0.28      58.04 f
+  theDataPath/theShifter/theShifter/U147/ZN (AOI222D0)
+                                                          0.23      58.27 r
+  theDataPath/theShifter/U398/ZN (CKND2D1)                0.12      58.39 f
+  U1825/ZN (NR2XD1)                                       0.07      58.45 r
+  U1826/ZN (NR2D2)                                        0.04      58.50 f
+  theDataPath/theShifter/U165/ZN (ND2D2)                  0.03      58.53 r
+  theDataPath/theShifter/U162/ZN (CKND2D2)                0.03      58.56 f
+  theDataPath/theShifter/theShifter/U141/ZN (AOI222D0)
+                                                          0.20      58.76 r
+  theDataPath/theShifter/U380/ZN (CKND2D1)                0.12      58.88 f
+  U213/ZN (NR2XD1)                                        0.06      58.93 r
+  U212/ZN (NR2D1)                                         0.04      58.97 f
+  theDataPath/theShifter/theShifter/U509/ZN (NR3D0)       0.16      59.14 r
+  theDataPath/theShifter/U302/ZN (CKND2D1)                0.10      59.23 f
+  theDataPath/theShifter/U298/ZN (ND2D2)                  0.06      59.29 r
+  U1868/ZN (NR2D2)                                        0.03      59.32 f
+  U197/ZN (NR2XD2)                                        0.06      59.38 r
+  theDataPath/theShifter/U152/ZN (OAI211D2)               0.06      59.44 f
+  theDataPath/U432/Z (AO22D0)                             0.20      59.64 f
+  U2052/ZN (OAI21D1)                                      0.09      59.73 r
+  U2053/ZN (INVD2)                                        0.07      59.80 f
+  theDataPath/theALU/U297/ZN (IOA21D1)                    0.12      59.92 f
+  theDataPath/theALU/U72/ZN (AOI21D2)                     0.08      60.00 r
+  theDataPath/theALU/U76/ZN (CKND2D1)                     0.06      60.07 f
+  theDataPath/theALU/U387/ZN (NR2XD1)                     0.05      60.12 r
+  U169/ZN (CKND2D2)                                       0.04      60.15 f
+  theDataPath/thirdWall/eachEnDff[70].enDff/theFlop/q_reg/D (DFD1)
+                                                          0.00      60.15 f
+  data arrival time                                                 60.15
+
+  clock clk (rise edge)                                  20.00      20.00
+  clock network delay (ideal)                             0.00      20.00
+  clock uncertainty                                      -2.00      18.00
+  theDataPath/thirdWall/eachEnDff[70].enDff/theFlop/q_reg/CP (DFD1)
+                                                          0.00      18.00 r
+  library setup time                                      0.00      18.00
+  data required time                                                18.00
+  --------------------------------------------------------------------------
+  data required time                                                18.00
+  data arrival time                                                -60.15
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                 -42.15
+
+
+  Startpoint: theDataPath/thirdWall/eachEnDff[74].enDff/theFlop/q_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: theDataPath/finalWall/eachEnDff[71].enDff/theFlop/q_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  reservationStationForward_4
+                     ZeroWireload          tcbn65gplusbc0d88_ccs
+  reservationStationForward_3
+                     ZeroWireload          tcbn65gplusbc0d88_ccs
+  reservationStationForward_2
+                     ZeroWireload          tcbn65gplusbc0d88_ccs
+  reservationStationForward_1
+                     ZeroWireload          tcbn65gplusbc0d88_ccs
+  divider            ZeroWireload          tcbn65gplusbc0d88_ccs
+  fullReg32x64       ZeroWireload          tcbn65gplusbc0d88_ccs
+  ROBregs            ZeroWireload          tcbn65gplusbc0d88_ccs
+  regfileOOO         ZeroWireload          tcbn65gplusbc0d88_ccs
+  mapTable           ZeroWireload          tcbn65gplusbc0d88_ccs
+  instructionFetch   ZeroWireload          tcbn65gplusbc0d88_ccs
+  pipelinedProcessorOOO
+                     ZeroWireload          tcbn65gplusbc0d88_ccs
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  theDataPath/thirdWall/eachEnDff[74].enDff/theFlop/q_reg/CP (DFKCNQD4)
+                                                          0.00 #     0.00 r
+  theDataPath/thirdWall/eachEnDff[74].enDff/theFlop/q_reg/Q (DFKCNQD4)
+                                                          0.08       0.08 f
+  theDataPath/finalWall/eachEnDff[71].enDff/theFlop/q_reg/D (DFKCNQD1)
+                                                          0.00       0.08 f
+  data arrival time                                                  0.08
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.01       0.01
+  theDataPath/finalWall/eachEnDff[71].enDff/theFlop/q_reg/CP (DFKCNQD1)
+                                                          0.00       0.01 r
+  library hold time                                       0.02       0.03
+  data required time                                                 0.03
+  --------------------------------------------------------------------------
+  data required time                                                 0.03
+  data arrival time                                                 -0.08
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.05
+
+
+    Net: theDataPath/theALU/net167020
+
+    max_transition         0.50
+  - Transition Time        0.50
+  ------------------------------
+    Slack                  0.00  (MET)
+
+
+    Net: theDataPath/theShifter/net184801
+
+    max_fanout             6.00
+  - Fanout                23.00
+  ------------------------------
+    Slack                -17.00  (VIOLATED)
+
+
+    Net: theDataPath/theROB/N12
+
+    max_capacitance        0.01
+  - Capacitance            0.00
+  ------------------------------
+    Slack                  0.00  (MET)
+
+
+Min pulse width constraints
+
+                       Required      Actual
+  Pin                pulse width   pulse width   Slack           Scenario
+--------------------------------------------------------------------------------
+  theDataPath/theROB/headTailManager/tailReset_reg/CP(high)
+                      0.15         -1.00         -1.15 (VIOLATED)
+
+1

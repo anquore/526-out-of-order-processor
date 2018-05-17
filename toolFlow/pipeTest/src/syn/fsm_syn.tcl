@@ -11,8 +11,8 @@ set link_path {"*" tcbn65gpluswc0d72_ccs.db tcbn65gplusbc0d88_ccs.db tcbn65gplus
 set mw_techfile_path $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/techfiles
 set mw_tech_file $mw_techfile_path/tsmcn65_9lmT2.tf
 set mw_reference_library $TSMCPATH/Back_End/milkyway/tcbn65gplus_200a/frame_only/tcbn65gplus
-create_mw_lib -technology $mw_tech_file -mw_reference_library $mw_reference_library enableD_FF_design      
-open_mw_lib enableD_FF_design
+create_mw_lib -technology $mw_tech_file -mw_reference_library $mw_reference_library pipelinedProcessorOOO_design      
+open_mw_lib pipelinedProcessorOOO_design
 
 set_tlu_plus_files \
 -max_tluplus $mw_techfile_path/tluplus/cln65g+_1p09m+alrdl_rcbest_top2.tluplus \
@@ -20,106 +20,43 @@ set_tlu_plus_files \
 -tech2itf_map $mw_techfile_path/tluplus/star.map_9M
 
 
-#################################### pipelined #####################################
+#################################### pipelinedProcessorOOO #####################################
 # Read Design
 # read_file will analyze (read,check) and elaborate(GTech map, DW map) the design in one shot.
-#analyze -format verilog -lib WORK ../../src/verilog/pipelined.sv
-#elaborate pipelined -lib WORK -update
-analyze -format sverilog -lib WORK {../../src/verilog/D_FF.sv ../../src/verilog/mux2_1.sv ../../src/verilog/enableD_FF.sv}
-#../../src/verilog/NAND_MUX_2x1.sv \
-#../../src/verilog/ALUStage.sv \
-#../../src/verilog/D_FF.sv \
-#../../src/verilog/NAND_MUX_4x1.sv \
-#../../src/verilog/adder64.sv \
-#../../src/verilog/adderC65.sv \
-#../../src/verilog/alu.sv \
-#../../src/verilog/andifier.sv \
-#../../src/verilog/bitSlice.sv \
-#../../src/verilog/completeDataPath.sv \
-#../../src/verilog/completeDataPathPipelined.sv \
-#../../src/verilog/control.sv \
-#../../src/verilogdataMovement.sv \
-#../../src/verilog/datamem.sv \
-#../../src/verilog/decodeStage.sv \
-#../../src/verilog/decoder1x2.sv \
-#../../src/verilog/decoder2x4.sv \
-#../../src/verilog/decoder4x16.sv \
-#../../src/verilog/decoder5x32.sv \
-#../../src/verilog/divider.sv \
-#../../src/verilog/enableD_FF.sv \
-#../../src/verilog/forwardingUnit.sv \
-#../../src/verilog/fullAdder.sv \
-#../../src/verilog/fullAdderArray63.sv \
-#../../src/verilog/fullReg32x64.sv \
-#../../src/verilog/full_adder.sv \
-#../../src/verilog/individualReg64.sv \
-#../../src/verilog/instructionFetch.sv \
-#../../src/verilog/instructmem.sv \
-#../../src/verilog/mapTable.sv \
-#../../src/verilog/memStage.sv \
-#../../src/verilog/multiplier.sv \
-#../../src/verilog/mux16x1.sv \
-#../../src/verilog/mux2_1.sv \
-#../../src/verilog/mux2x5.sv \
-#../../src/verilog/mux2x64.sv \
-#../../src/verilog/mux32x1.sv \
-#../../src/verilog/mux32x64.sv \
-#../../src/verilog/mux32xY.sv \
-#../../src/verilog/mux4x1.sv \
-#../../src/verilog/mux8x1.sv \
-#../../src/verilog/mux_2x1_X64.sv \
-#../../src/verilog/mux_2x1_X65.sv \
-#../../src/verilog/mux_4x1_X64.sv \
-#../../src/verilog/mux_4x1_X65.sv \
-#../../src/verilog/norifier.sv \
-#../../src/verilog/orGate16.sv \
-#../../src/verilog/pipelinedProcessor.sv.sv \
-#../../src/verilog/regReadAndWriteStage.sv \
-#../../src/verilog/regfile.sv \
-#../../src/verilog/registerX16.sv \
-#../../src/verilog/registerX64.sv \
-#../../src/verilog/registerX65.sv \
-#../../src/verilog/shiftLeft2.sv \
-#../../src/verilog/shifter.sv \
-#../../src/verilog/signExtend12.sv \
-#../../src/verilog/signExtend19.sv \
-#../../src/verilog/signExtend26.sv \
-#../../src/verilog/signExtend9.sv \
-#../../src/verilog/wallOfDFFs.sv \
-#../../src/verilog/xnorifier.sv \
-#../../src/verilog/mux_2x1_X64.sv \
-#../../src/verilog/pipelined.sv}
-elaborate enableD_FF
-#read_file .tempConcat.sv
+#read_file "pipelined.sv NAND_MUX_2x1.sv  ALUStage.sv D_FF.sv NAND_MUX_4x1.sv adder64.sv adderC65.sv alu.sv andifier.sv bitSlice.sv completeDataPathPipelined.sv control.sv dataMovement.sv datamem.sv decodeStage.sv decoder1x2.sv decoder2x4.sv decoder4x16.sv decoder5x32.sv divider.sv enableD_FF.sv forwardingUnit.sv fullAdder.sv fullAdderArray63.sv fullReg32x64.sv full_adder.sv individualReg64.sv instructionFetch.sv instructmem.sv memStage.sv multiplier.sv mux16x1.sv mux2_1.sv mux2x5.sv mux2x64.sv mux32x1.sv mux32x64.sv mux32xY.sv mux4x1.sv mux8x1.sv mux_2x1_X64.sv mux_2x1_X65.sv mux_4x1_X65.sv norifier.sv orGate16.sv regReadAndWriteStage.sv regfile.sv registerX16.sv registerX64.sv registerX65.sv shiftLeft2.sv shifter.sv signExtend12.sv signExtend19.sv signExtend26.sv signExtend9.sv wallOfDFFs.sv xnorifier.sv FF_en.sv" 
+
+read_file {../onlyv/.} -autoread -recursive -top pipelinedProcessorOOO
+#elaborate pipelined
 
 #Define environment
 set_operating_conditions -analysis_type bc_wc  -min BC0D88COM -max WC0D72COM  -max_library tcbn65gpluswc0d72_ccs -min_library tcbn65gplusbc0d88_ccs
 set_min_library tcbn65gpluswc0d72_ccs.db -min_version tcbn65gplusbc0d88_ccs.db
 
 #Loading and drive settings. 
-set driving_cell -lib_cell INVD1 d
-set driving_cell -lib_cell INVD1 reset
-set driving_cell -lib_cell INVD1 enable
-set driving_cell -lib_cell INVD1 clk
-#set_driving_cell -lib_cell INVD1 reset
-#set_driving_cell -lib_cell INVD1 Clk 
+set_driving_cell -lib_cell INVD1 reset
+set_driving_cell -lib_cell INVD1 clk
+set_driving_cell -lib_cell INVD1 imem_instruction_i
+set_driving_cell -lib_cell INVD1 dmem_readData
+
+ 
 #set_driving_cell -lib_cell INVD1 A
 #set_driving_cell -lib_cell INVD1 B
-
 # set_load for outputs
-set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports q]
-#set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Status]
-#set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output1]
-#set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports Output2]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports imem_address_o]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports dmem_WriteData]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports dmem_addressLoad]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports dmem_addressStore]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports dmem_readEn]
+set_load [load_of tcbn65gpluswc0d72_ccs/INVD1/I] [get_ports dmem_writeEn]
 
 #connect referenced library components to the current design
 link
 
 #Define design constraints
-set_max_transition 0.1 [get_designs enableD_FF]
-set_max_fanout 6 enableD_FF
-create_clock -name "clk" -period 2 -waveform {0 1} [get_ports clk]
-set_clock_uncertainty -setup 0.05 clk
+set_max_transition 0.5 [get_designs pipelinedProcessorOOO]
+set_max_fanout 6 pipelinedProcessorOOO
+create_clock -name "clk" -period 20 -waveform {0 1} [get_ports clk]
+set_clock_uncertainty -setup 2 clk
 set_clock_uncertainty -hold 0.01 clk
 set_clock_transition 0.05 [get_clocks]
 set_input_delay 0.1 -clock clk [remove_from_collection [all_inputs] [get_ports clk]]
@@ -132,14 +69,14 @@ check_design
 
 #write out design files
 file mkdir reports
-report_power > reports/pipelined.power
-report_constraint -verbose > reports/pipelined.constraint
-report_constraint -all_violators > reports/pipelined.violation
-write_sdc  reports/pipelined.sdc
+report_power > reports/pipelinedProcessorOOO.power
+report_constraint -verbose > reports/pipelinedProcessorOOO.constraint
+report_constraint -all_violators > reports/pipelinedProcessorOOO.violation
+write_sdc  reports/pipelinedProcessorOOO.sdc
 file mkdir db
-write -h enableD_FF -output ./db/pipelined.db
-write_sdf -context verilog -version 1.0 reports/pipelined.sdf
+write -h pipelinedProcessorOOO -output ./db/pipelinedProcessorOOO.db
+write_sdf -context verilog -version 1.0 reports/pipelinedProcessorOOO.sdf
 file mkdir netlist
-write -h -f verilog enableD_FF -output netlist/pipelined.v -pg
+write -h -f verilog pipelinedProcessorOOO -output netlist/pipelinedSynOOO.sv -pg
 file mkdir ddc
 write_file -format ddc -hierarchy -output ddc/DIG_TOP.ddc
