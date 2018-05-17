@@ -1,5 +1,5 @@
 hsDirType                          	1
-fHsimDesignHasDebugNodes           	13
+fHsimDesignHasDebugNodes           	15
 fNSParam                           	1024
 fHsimDelayGateMbme                 	0
 fNoMergeDelays                     	0

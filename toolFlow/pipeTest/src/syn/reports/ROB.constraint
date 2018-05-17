@@ -1,0 +1,128 @@
+ 
+****************************************
+Report : constraint
+        -verbose
+Design : ROB
+Version: H-2013.03-SP4
+Date   : Wed May 16 16:14:20 2018
+****************************************
+
+
+  Startpoint: headTailManager/tail_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: theRegs/eachManagementReg[3].managementReg/eachEnDff[1].enDff/theFlop/q_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  headTailManager/tail_reg[1]/CP (DFQD2)                  0.00       0.00 r
+  headTailManager/tail_reg[1]/Q (DFQD2)                   0.26       0.26 f
+  U4195/ZN (ND2D1)                                        0.05 *     0.31 r
+  U4836/ZN (MUX2ND1)                                      0.19 *     0.50 f
+  U3104/ZN (AOI22D2)                                      0.07 *     0.57 r
+  U2288/ZN (OAI221D4)                                     0.24 *     0.82 f
+  U2287/ZN (AOI221D4)                                     0.32 *     1.14 r
+  U2286/ZN (NR2XD3)                                       0.05 *     1.19 f
+  U4187/ZN (CKND2)                                        0.06 *     1.25 r
+  U4831/ZN (NR2XD3)                                       0.06 *     1.32 f
+  U4828/ZN (INR2XD1)                                      0.11 *     1.43 f
+  U3098/ZN (INR2XD2)                                      0.12 *     1.55 f
+  U4874/Z (BUFFD1)                                        0.11 *     1.66 f
+  U3091/Z (AO22D0)                                        0.18 *     1.84 f
+  theRegs/eachManagementReg[3].managementReg/eachEnDff[1].enDff/theFlop/q_reg/D (DFQD1)
+                                                          0.00 *     1.84 f
+  data arrival time                                                  1.84
+
+  clock clk (rise edge)                                  20.00      20.00
+  clock network delay (ideal)                             0.00      20.00
+  clock uncertainty                                      -2.00      18.00
+  theRegs/eachManagementReg[3].managementReg/eachEnDff[1].enDff/theFlop/q_reg/CP (DFQD1)
+                                                          0.00      18.00 r
+  library setup time                                     -0.01      17.99
+  data required time                                                17.99
+  --------------------------------------------------------------------------
+  data required time                                                17.99
+  data arrival time                                                 -1.84
+  --------------------------------------------------------------------------
+  slack (MET)                                                       16.15
+
+
+  Startpoint: theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg/CP (DFQD1)
+                                                          0.00       0.00 r
+  theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg/Q (DFQD1)
+                                                          0.09       0.09 f
+  U3050/Z (AO22D0)                                        0.04 *     0.13 f
+  theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg/D (DFQD1)
+                                                          0.00 *     0.13 f
+  data arrival time                                                  0.13
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.01       0.01
+  theRegs/eachManagementReg[6].managementReg/eachEnDff[8].enDff/theFlop/q_reg/CP (DFQD1)
+                                                          0.00       0.01 r
+  library hold time                                       0.02       0.03
+  data required time                                                 0.03
+  --------------------------------------------------------------------------
+  data required time                                                 0.03
+  data arrival time                                                 -0.13
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.10
+
+
+    Net: head_o[2]
+
+    max_transition         0.10
+  - Transition Time        0.18
+  ------------------------------
+    Slack                 -0.08  (VIOLATED)
+
+    List of pins on net "head_o[2]" with transition violations :
+   -----------------------------------------------------------------
+                             Required        Actual
+                            Transition     Transition       Slack
+   -----------------------------------------------------------------
+       PIN :   U3088/I          0.10           0.18          -0.08  (VIOLATED)
+       PORT :  head_o[2]        0.10           0.18          -0.08  (VIOLATED)
+       PIN :   U4847/ZN         0.10           0.18          -0.08  (VIOLATED)
+
+    Net: n2234
+
+    max_fanout             6.00
+  - Fanout                 6.00
+  ------------------------------
+    Slack                  0.00  (MET)
+
+
+    Net: n2871
+
+    max_capacitance        0.02
+  - Capacitance            0.00
+  ------------------------------
+    Slack                  0.02  (MET)
+
+
+Min pulse width constraints
+
+                       Required      Actual
+  Pin                pulse width   pulse width   Slack           Scenario
+--------------------------------------------------------------------------------
+  theRegs/eachCompletionReg[3].completionReg/eachEnDff[46].enDff/theFlop/q_reg/CP(high)
+                      0.12         -1.00         -1.12 (VIOLATED)
+
+1
