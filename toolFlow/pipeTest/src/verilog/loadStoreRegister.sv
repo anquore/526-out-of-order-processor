@@ -8,7 +8,7 @@ module loadStoreRegister(out, newIn, enNew, addrIn, enAddr, valIn, enVal, reset,
 	input logic enAddr;
 	input logic [64:0] valIn;
 	input logic enVal;
-	input logic clk, reset;
+	input logic reset, clk;
 	
 	wallOfDFFsX71 regNew(.q(out[200:130]), .d(newIn), .enable(enNew), .reset, .clk);
 	wallOfDFFsX65 regAddr(.q(out[129:65]), .d(addrIn), .enable(enAddr), .reset, .clk);

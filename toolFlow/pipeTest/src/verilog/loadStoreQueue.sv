@@ -1,4 +1,3 @@
-//still missing some enable control, not yet fully functional
 //full means queue is full
 //flush means a load beat a store with its value, flush system
 //PCout is the PC of the head of the queue (the reversion point if flush is active)
@@ -19,7 +18,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	input logic [4:0] ROBin, addrWriteROB, valWriteROB;
 	input logic LSretire, reset, clk;
 	
-	logic [201:0] so0, so1, so2, so3, so4, so5, so6, so7, so8, so9, so10, so11, so12, so13, so14, so15;
+	logic [200:0] so0, so1, so2, so3, so4, so5, so6, so7, so8, so9, so10, so11, so12, so13, so14, so15;
 	logic LS0, LS1, LS2, LS3, LS4, LS5, LS6, LS7, LS8, LS9, LS10, LS11, LS12, LS13, LS14, LS15;
 	logic vpc0, vpc1, vpc2, vpc3, vpc4, vpc5, vpc6, vpc7, vpc8, vpc9, vpc10, vpc11, vpc12, vpc13, vpc14, vpc15;
 	logic [63:0] pc0, pc1, pc2, pc3, pc4, pc5, pc6, pc7, pc8, pc9, pc10, pc11, pc12, pc13, pc14, pc15;
@@ -58,16 +57,16 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	//retirment checker
 	logic adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
 	always_comb begin
-		adcmp1 = (~|(so0[128:65]^so1[128:56]))&so1[201]&so1[129];		adcmp2 = (~|(so0[128:65]^so2[128:56]))&so2[201]&so2[129];
-		adcmp3 = (~|(so0[128:65]^so3[128:56]))&so3[201]&so3[129];		adcmp4 = (~|(so0[128:65]^so4[128:56]))&so4[201]&so4[129];
-		adcmp5 = (~|(so0[128:65]^so5[128:56]))&so5[201]&so5[129];		adcmp6 = (~|(so0[128:65]^so6[128:56]))&so6[201]&so6[129];
-		adcmp7 = (~|(so0[128:65]^so7[128:56]))&so7[201]&so7[129];		adcmp8 = (~|(so0[128:65]^so8[128:56]))&so8[201]&so8[129];
-		adcmp9 = (~|(so0[128:65]^so9[128:56]))&so9[201]&so9[129];		adcmp10 = (~|(so0[128:65]^so10[128:56]))&so10[201]&so10[129];
-		adcmp11 = (~|(so0[128:65]^so11[128:56]))&so11[201]&so11[129];		adcmp12 = (~|(so0[128:65]^so12[128:56]))&so12[201]&so12[129];
-		adcmp13 = (~|(so0[128:65]^so13[128:56]))&so13[201]&so13[129];		adcmp14 = (~|(so0[128:65]^so14[128:56]))&so14[201]&so14[129];
-		adcmp15 = (~|(so0[128:65]^so15[128:56]))&so15[201]&so15[129];
+		adcmp1 = (~|(so0[128:65]^so1[128:65]))&so1[200]&so1[129];		adcmp2 = (~|(so0[128:65]^so2[128:65]))&so2[200]&so2[129];
+		adcmp3 = (~|(so0[128:65]^so3[128:65]))&so3[200]&so3[129];		adcmp4 = (~|(so0[128:65]^so4[128:65]))&so4[200]&so4[129];
+		adcmp5 = (~|(so0[128:65]^so5[128:65]))&so5[200]&so5[129];		adcmp6 = (~|(so0[128:65]^so6[128:65]))&so6[200]&so6[129];
+		adcmp7 = (~|(so0[128:65]^so7[128:65]))&so7[200]&so7[129];		adcmp8 = (~|(so0[128:65]^so8[128:65]))&so8[200]&so8[129];
+		adcmp9 = (~|(so0[128:65]^so9[128:65]))&so9[200]&so9[129];		adcmp10 = (~|(so0[128:65]^so10[128:65]))&so10[200]&so10[129];
+		adcmp11 = (~|(so0[128:65]^so11[128:65]))&so11[200]&so11[129];		adcmp12 = (~|(so0[128:65]^so12[128:65]))&so12[200]&so12[129];
+		adcmp13 = (~|(so0[128:65]^so13[128:65]))&so13[200]&so13[129];		adcmp14 = (~|(so0[128:65]^so14[128:65]))&so14[200]&so14[129];
+		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];
 	end
-	assign flush = (adcmp1|adcmp2|adcmp3|adcmp4|adcmp5|adcmp6|adcmp7|adcmp8|adcmp9|adcmp10|adcmp11|adcmp12|adcmp13|adcmp14|adcmp15)&~so0[201];
+	assign flush = (adcmp1|adcmp2|adcmp3|adcmp4|adcmp5|adcmp6|adcmp7|adcmp8|adcmp9|adcmp10|adcmp11|adcmp12|adcmp13|adcmp14|adcmp15)&~so0[200];
 		
 
 	always_comb begin
@@ -84,14 +83,14 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		enVal0 = LSretire|(mval0&ifValWrite);	enVal1 = LSretire|(mval1&ifValWrite);	enVal2 = LSretire|(mval2&ifValWrite);	enVal3 = LSretire|(mval3&ifValWrite);
 		enVal4 = LSretire|(mval4&ifValWrite);	enVal5 = LSretire|(mval5&ifValWrite);	enVal6 = LSretire|(mval6&ifValWrite);	enVal7 = LSretire|(mval7&ifValWrite);
 		enVal8 = LSretire|(mval8&ifValWrite);	enVal9 = LSretire|(mval9&ifValWrite);	enVal10 = LSretire|(mval10&ifValWrite);	enVal11 = LSretire|(mval11&ifValWrite);
-		enVal12 = LSretire|(mval12&ifValWrite);	enVal3 = LSretire|(mval13&ifValWrite);	enVal14 = LSretire|(mval14&ifValWrite);	enVal15 = LSretire|(mval15&ifValWrite);
+		enVal12 = LSretire|(mval12&ifValWrite);	enVal13 = LSretire|(mval13&ifValWrite);	enVal14 = LSretire|(mval14&ifValWrite);	enVal15 = LSretire|(mval15&ifValWrite);
 	end
 	
 	//shift muxes
 	assign jVal[15] = (tailAddr==4'hF);	assign jVal[14] = (tailAddr==4'hE);	assign jVal[13] = (tailAddr==4'hD);	assign jVal[12] = (tailAddr==4'hC);
 	assign jVal[11] = (tailAddr==4'hB);	assign jVal[10] = (tailAddr==4'hA);	assign jVal[9] = (tailAddr==4'h9);	assign jVal[8] = (tailAddr==4'h8);
 	assign jVal[7] = (tailAddr==4'h7);	assign jVal[6] = (tailAddr==4'h6);	assign jVal[5] = (tailAddr==4'h5);	assign jVal[4] = (tailAddr==4'h4);
-	assign jVal[3] = (tailAddr==4'h3);	assign jVal[2] = (tailAddr==4'h1);	assign jVal[1] = (tailAddr==4'h1);	assign jVal[0] = (tailAddr==4'h0);
+	assign jVal[3] = (tailAddr==4'h3);	assign jVal[2] = (tailAddr==4'h2);	assign jVal[1] = (tailAddr==4'h1);	assign jVal[0] = (tailAddr==4'h0);
 	//logic mLS0, mLS1, mLS2, mLS3, mLS4, mLS5, mLS6, mLS7, mLS8, mLS9, mLS10, mLS11, mLS12, mLS13, mLS14;
 	//logic mvaddr0, mvaddr1, mvaddr2, mvaddr3, mvaddr4, mvaddr5, mvaddr6, mvaddr7, mvaddr8, mvaddr9, mvaddr10, mvaddr11, mvaddr12, mvaddr13, mvaddr14, mvaddr15;
 	
@@ -139,22 +138,22 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	
 	//mux control search ROB tags
-	logic aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
-	logic lXor0, lXor1, lXor2, lXor3, lXor4, lXor5, lXor6, lXor7, lXor8, lXor9, lXor10, lXor11, lXor12, lXor13, lXor14, lXor15;
+	logic [15:0] aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
+	logic [15:0] lXor0, lXor1, lXor2, lXor3, lXor4, lXor5, lXor6, lXor7, lXor8, lXor9, lXor10, lXor11, lXor12, lXor13, lXor14, lXor15;
 	always_comb begin
-		aXor0 = addrWriteROB^so0[4:0];		aXor1 = addrWriteROB^so1[4:0];		aXor2 = addrWriteROB^so2[4:0];		aXor3 = addrWriteROB^so3[4:0];
-		aXor4 = addrWriteROB^so4[4:0];		aXor5 = addrWriteROB^so5[4:0];		aXor6 = addrWriteROB^so6[4:0];		aXor7 = addrWriteROB^so7[4:0];
-		aXor8 = addrWriteROB^so8[4:0];		aXor9 = addrWriteROB^so9[4:0];		aXor10 = addrWriteROB^so10[4:0];	aXor11 = addrWriteROB^so11[4:0];
-		aXor12 = addrWriteROB^so12[4:0];	aXor13 = addrWriteROB^so13[4:0];	aXor14 = addrWriteROB^so14[4:0];	aXor15 = addrWriteROB^so15[4:0];
+		aXor0 = addrWriteROB^so0[134:130];	aXor1 = addrWriteROB^so1[134:130];	aXor2 = addrWriteROB^so2[134:130];	aXor3 = addrWriteROB^so3[134:130];
+		aXor4 = addrWriteROB^so4[134:130];	aXor5 = addrWriteROB^so5[134:130];	aXor6 = addrWriteROB^so6[134:130];	aXor7 = addrWriteROB^so7[134:130];
+		aXor8 = addrWriteROB^so8[134:130];	aXor9 = addrWriteROB^so9[134:130];	aXor10 = addrWriteROB^so10[134:130];	aXor11 = addrWriteROB^so11[134:130];
+		aXor12 = addrWriteROB^so12[134:130];	aXor13 = addrWriteROB^so13[134:130];	aXor14 = addrWriteROB^so14[134:130];	aXor15 = addrWriteROB^so15[134:130];
 		maddr0 = (~|aXor0)&ifAddrWrite;		maddr1 = (~|aXor1)&ifAddrWrite;		maddr2 = (~|aXor2)&ifAddrWrite;		maddr3 = (~|aXor3)&ifAddrWrite;
 		maddr4 = (~|aXor4)&ifAddrWrite;		maddr5 = (~|aXor5)&ifAddrWrite;		maddr6 = (~|aXor6)&ifAddrWrite;		maddr7 = (~|aXor7)&ifAddrWrite;
 		maddr8 = (~|aXor8)&ifAddrWrite;		maddr9 = (~|aXor9)&ifAddrWrite;		maddr10 = (~|aXor10)&ifAddrWrite;	maddr11 = (~|aXor11)&ifAddrWrite;
 		maddr12 = (~|aXor12)&ifAddrWrite;	maddr13 = (~|aXor13)&ifAddrWrite;	maddr14 = (~|aXor14)&ifAddrWrite;	maddr15 = (~|aXor15)&ifAddrWrite;
 		
-		lXor0 = valWriteROB^so0[4:0];		lXor1 = valWriteROB^so1[4:0];		lXor2 = valWriteROB^so2[4:0];		lXor3 = valWriteROB^so3[4:0];
-		lXor4 = valWriteROB^so4[4:0];		lXor5 = valWriteROB^so5[4:0];		lXor6 = valWriteROB^so6[4:0];		lXor7 = valWriteROB^so7[4:0];
-		lXor8 = valWriteROB^so8[4:0];		lXor9 = valWriteROB^so9[4:0];		lXor10 = valWriteROB^so10[4:0];		lXor11 = valWriteROB^so11[4:0];
-		lXor12 = valWriteROB^so12[4:0];		lXor13 = valWriteROB^so13[4:0];		lXor14 = valWriteROB^so14[4:0];		lXor15 = valWriteROB^so15[4:0];
+		lXor0 = valWriteROB^so0[134:130];	lXor1 = valWriteROB^so1[134:130];	lXor2 = valWriteROB^so2[134:130];	lXor3 = valWriteROB^so3[134:130];
+		lXor4 = valWriteROB^so4[134:130];	lXor5 = valWriteROB^so5[134:130];	lXor6 = valWriteROB^so6[134:130];	lXor7 = valWriteROB^so7[134:130];
+		lXor8 = valWriteROB^so8[134:130];	lXor9 = valWriteROB^so9[134:130];	lXor10 = valWriteROB^so10[134:130];	lXor11 = valWriteROB^so11[134:130];
+		lXor12 = valWriteROB^so12[134:130];	lXor13 = valWriteROB^so13[134:130];	lXor14 = valWriteROB^so14[134:130];	lXor15 = valWriteROB^so15[134:130];
 		mval0 = (~|lXor0)&ifValWrite;		mval1 = (~|lXor1)&ifValWrite;		mval2 = (~|lXor2)&ifValWrite;		mval3 = (~|lXor3)&ifValWrite;
 		mval4 = (~|lXor4)&ifValWrite;		mval5 = (~|lXor5)&ifValWrite;		mval6 = (~|lXor6)&ifValWrite;		mval7 = (~|lXor7)&ifValWrite;
 		mval8 = (~|lXor8)&ifValWrite;		mval9 = (~|lXor9)&ifValWrite;		mval10 = (~|lXor10)&ifValWrite;		mval11 = (~|lXor11)&ifValWrite;
@@ -162,7 +161,6 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	
 	//counter for tail
-
 	always_ff @(posedge clk) begin
 		if (reset | tailAddr==4'h0)
 			tailAddr <= 4'h0;
@@ -176,6 +174,6 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 			tailAddr <= tailAddr-1;
 	end
 	assign full = &tailAddr; //full when tail above queue
-	assign PCout = so0[199:135];
+	assign PCout = so0[198:135];
 endmodule
 
