@@ -138,18 +138,23 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	
 	//mux control search ROB tags
-	logic [15:0] aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
+	logic aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
 	logic [15:0] lXor0, lXor1, lXor2, lXor3, lXor4, lXor5, lXor6, lXor7, lXor8, lXor9, lXor10, lXor11, lXor12, lXor13, lXor14, lXor15;
 	always_comb begin
-		aXor0 = addrWriteROB^so0[134:130];	aXor1 = addrWriteROB^so1[134:130];	aXor2 = addrWriteROB^so2[134:130];	aXor3 = addrWriteROB^so3[134:130];
-		aXor4 = addrWriteROB^so4[134:130];	aXor5 = addrWriteROB^so5[134:130];	aXor6 = addrWriteROB^so6[134:130];	aXor7 = addrWriteROB^so7[134:130];
-		aXor8 = addrWriteROB^so8[134:130];	aXor9 = addrWriteROB^so9[134:130];	aXor10 = addrWriteROB^so10[134:130];	aXor11 = addrWriteROB^so11[134:130];
-		aXor12 = addrWriteROB^so12[134:130];	aXor13 = addrWriteROB^so13[134:130];	aXor14 = addrWriteROB^so14[134:130];	aXor15 = addrWriteROB^so15[134:130];
-		maddr0 = (~|aXor0)&ifAddrWrite;		maddr1 = (~|aXor1)&ifAddrWrite;		maddr2 = (~|aXor2)&ifAddrWrite;		maddr3 = (~|aXor3)&ifAddrWrite;
-		maddr4 = (~|aXor4)&ifAddrWrite;		maddr5 = (~|aXor5)&ifAddrWrite;		maddr6 = (~|aXor6)&ifAddrWrite;		maddr7 = (~|aXor7)&ifAddrWrite;
-		maddr8 = (~|aXor8)&ifAddrWrite;		maddr9 = (~|aXor9)&ifAddrWrite;		maddr10 = (~|aXor10)&ifAddrWrite;	maddr11 = (~|aXor11)&ifAddrWrite;
-		maddr12 = (~|aXor12)&ifAddrWrite;	maddr13 = (~|aXor13)&ifAddrWrite;	maddr14 = (~|aXor14)&ifAddrWrite;	maddr15 = (~|aXor15)&ifAddrWrite;
-		
+		aXor0 = ~|(addrWriteROB^so0[134:130]);	aXor1 = ~|(addrWriteROB^so1[134:130]);	aXor2 = ~|(addrWriteROB^so2[134:130]);	aXor3 = ~|(addrWriteROB^so3[134:130]);
+		aXor4 = ~|(addrWriteROB^so4[134:130]);	aXor5 = ~|(addrWriteROB^so5[134:130]);	aXor6 = ~|(addrWriteROB^so6[134:130]);	aXor7 = ~|(addrWriteROB^so7[134:130]);
+		aXor8 = ~|(addrWriteROB^so8[134:130]);	aXor9 = ~|(addrWriteROB^so9[134:130]);	aXor10 = ~|(addrWriteROB^so10[134:130]);aXor11 = ~|(addrWriteROB^so11[134:130]);
+		aXor12 = ~|(addrWriteROB^so12[134:130]);aXor13 = ~|(addrWriteROB^so13[134:130]);aXor14 = ~|(addrWriteROB^so14[134:130]);aXor15 = ~|(addrWriteROB^so15[134:130]);
+		maddr0 = ((aXor0&~LSretire)|(aXor1&LSretire))&ifAddrWrite;		maddr1 = ((aXor1&~LSretire)|(aXor2&LSretire))&ifAddrWrite;
+		maddr2 = ((aXor2&~LSretire)|(aXor3&LSretire))&ifAddrWrite;		maddr3 = ((aXor3&~LSretire)|(aXor4&LSretire))&ifAddrWrite;
+		maddr4 = ((aXor4&~LSretire)|(aXor5&LSretire))&ifAddrWrite;		maddr5 = ((aXor5&~LSretire)|(aXor6&LSretire))&ifAddrWrite;
+		maddr6 = ((aXor6&~LSretire)|(aXor7&LSretire))&ifAddrWrite;		maddr7 = ((aXor7&~LSretire)|(aXor8&LSretire))&ifAddrWrite;
+		maddr8 = ((aXor8&~LSretire)|(aXor9&LSretire))&ifAddrWrite;		maddr9 = ((aXor9&~LSretire)|(aXor10&LSretire))&ifAddrWrite;
+		maddr10 = ((aXor10&~LSretire)|(aXor11&LSretire))&ifAddrWrite;		maddr11 = ((aXor11&~LSretire)|(aXor12&LSretire))&ifAddrWrite;
+		maddr12 = ((aXor12&~LSretire)|(aXor13&LSretire))&ifAddrWrite;		maddr13 = ((aXor13&~LSretire)|(aXor14&LSretire))&ifAddrWrite;
+		maddr14 = ((aXor14&~LSretire)|(aXor15&LSretire))&ifAddrWrite;		maddr15 = (aXor15&~LSretire)&ifAddrWrite;
+
+		/*
 		lXor0 = valWriteROB^so0[134:130];	lXor1 = valWriteROB^so1[134:130];	lXor2 = valWriteROB^so2[134:130];	lXor3 = valWriteROB^so3[134:130];
 		lXor4 = valWriteROB^so4[134:130];	lXor5 = valWriteROB^so5[134:130];	lXor6 = valWriteROB^so6[134:130];	lXor7 = valWriteROB^so7[134:130];
 		lXor8 = valWriteROB^so8[134:130];	lXor9 = valWriteROB^so9[134:130];	lXor10 = valWriteROB^so10[134:130];	lXor11 = valWriteROB^so11[134:130];
@@ -157,7 +162,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		mval0 = (~|lXor0)&ifValWrite;		mval1 = (~|lXor1)&ifValWrite;		mval2 = (~|lXor2)&ifValWrite;		mval3 = (~|lXor3)&ifValWrite;
 		mval4 = (~|lXor4)&ifValWrite;		mval5 = (~|lXor5)&ifValWrite;		mval6 = (~|lXor6)&ifValWrite;		mval7 = (~|lXor7)&ifValWrite;
 		mval8 = (~|lXor8)&ifValWrite;		mval9 = (~|lXor9)&ifValWrite;		mval10 = (~|lXor10)&ifValWrite;		mval11 = (~|lXor11)&ifValWrite;
-		mval12 = (~|lXor12)&ifValWrite;		mval13 = (~|lXor13)&ifValWrite;		mval14 = (~|lXor14)&ifValWrite;		mval15 = (~|lXor15)&ifValWrite;
+		mval12 = (~|lXor12)&ifValWrite;		mval13 = (~|lXor13)&ifValWrite;		mval14 = (~|lXor14)&ifValWrite;		mval15 = (~|lXor15)&ifValWrite;*/
 	end
 	
 	//counter for tail
