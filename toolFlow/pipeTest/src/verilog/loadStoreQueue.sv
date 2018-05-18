@@ -99,7 +99,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		LS0 = jVal[0]?loadOrStore:so1[200];	LS1 = jVal[1]?loadOrStore:so2[200];	LS2 = jVal[2]?loadOrStore:so3[200];	LS3 = jVal[3]?loadOrStore:so4[200];
 		LS4 = jVal[4]?loadOrStore:so5[200];	LS5 = jVal[5]?loadOrStore:so6[200];	LS6 = jVal[6]?loadOrStore:so7[200];	LS7 = jVal[7]?loadOrStore:so8[200];
 		LS8 = jVal[8]?loadOrStore:so9[200];	LS9 = jVal[9]?loadOrStore:so10[200];	LS10 = jVal[10]?loadOrStore:so11[200];	LS11 = jVal[11]?loadOrStore:so12[200];
-		LS12 = jVal[12]?loadOrStore:so13[200];	LS13 = jVal[13]?loadOrStore:so14[200];	LS14 = jVal[14]?loadOrStore:so15[200];	LS15 = loadOrStore;
+		LS12 = jVal[12]?loadOrStore:so13[200];	LS13 = jVal[13]?loadOrStore:so14[200];	LS14 = jVal[14]?loadOrStore:so15[200];	LS15 = jVal[15]&loadOrStore;
 		
 		vpc0 = so1[199]|(jVal[0]&ifNew);	vpc1 = so2[199]|(jVal[1]&ifNew);	vpc2 = so3[199]|(jVal[2]&ifNew);	vpc3 = so4[199]|(jVal[3]&ifNew);
 		vpc4 = so5[199]|(jVal[4]&ifNew);	vpc5 = so6[199]|(jVal[5]&ifNew);	vpc6 = so7[199]|(jVal[6]&ifNew);	vpc7 = so8[199]|(jVal[7]&ifNew);
@@ -109,12 +109,12 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		pc0 = jVal[0]?PCin:so1[198:135];	pc1 = jVal[1]?PCin:so2[198:135];	pc2 = jVal[2]?PCin:so3[198:135];	pc3 = jVal[3]?PCin:so4[198:135];
 		pc4 = jVal[4]?PCin:so5[198:135];	pc5 = jVal[5]?PCin:so6[198:135];	pc6 = jVal[6]?PCin:so7[198:135];	pc7 = jVal[7]?PCin:so8[198:135];
 		pc8 = jVal[8]?PCin:so9[198:135];	pc9 = jVal[9]?PCin:so10[198:135];	pc10 = jVal[10]?PCin:so11[198:135];	pc11 = jVal[11]?PCin:so12[198:135];
-		pc12 = jVal[12]?PCin:so13[198:135];	pc13 = jVal[13]?PCin:so14[198:135];	pc14 = jVal[14]?PCin:so15[198:135];	pc15 = PCin;
+		pc12 = jVal[12]?PCin:so13[198:135];	pc13 = jVal[13]?PCin:so14[198:135];	pc14 = jVal[14]?PCin:so15[198:135];	pc15 = {64{jVal[15]}}&PCin;
 		
 		rob0 = jVal[0]?ROBin:so1[134:130];	rob1 = jVal[1]?ROBin:so2[134:130];	rob2 = jVal[2]?ROBin:so3[134:130];	rob3 = jVal[3]?ROBin:so4[134:130];
 		rob4 = jVal[4]?ROBin:so5[134:130];	rob5 = jVal[5]?ROBin:so6[134:130];	rob6 = jVal[6]?ROBin:so7[134:130];	rob7 = jVal[7]?ROBin:so8[134:130];
 		rob8 = jVal[8]?ROBin:so9[134:130];	rob9 = jVal[9]?ROBin:so10[134:130];	rob10 = jVal[10]?ROBin:so11[134:130];	rob11 = jVal[11]?ROBin:so12[134:130];
-		rob12 = jVal[12]?ROBin:so13[134:130];	rob13 = jVal[13]?ROBin:so14[134:130];	rob14 = jVal[14]?ROBin:so15[134:130];	rob15 = ROBin;
+		rob12 = jVal[12]?ROBin:so13[134:130];	rob13 = jVal[13]?ROBin:so14[134:130];	rob14 = jVal[14]?ROBin:so15[134:130];	rob15 = {5{jVal[15]}}&ROBin;
 		
 		vaddr0 = so1[129]|maddr0;		vaddr1 = so2[129]|maddr1;		vaddr2 = so3[129]|maddr2;		vaddr3 = so4[129]|maddr3;
 		vaddr4 = so5[129]|maddr4;		vaddr5 = so6[129]|maddr5;		vaddr6 = so7[129]|maddr6;		vaddr7 = so8[129]|maddr7;
@@ -124,7 +124,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		addr0 = maddr0?addrWrite:so1[128:65];	addr1 = maddr1?addrWrite:so2[128:65];	addr2 = maddr2?addrWrite:so3[128:65];	addr3 = maddr3?addrWrite:so4[128:65];
 		addr4 = maddr4?addrWrite:so5[128:65];	addr5 = maddr5?addrWrite:so6[128:65];	addr6 = maddr6?addrWrite:so7[128:65];	addr7 = maddr7?addrWrite:so8[128:65];
 		addr8 = maddr8?addrWrite:so9[128:65];	addr9 = maddr9?addrWrite:so10[128:65];	addr10 = maddr10?addrWrite:so11[128:65];addr11 = maddr11?addrWrite:so12[128:65];
-		addr12 = maddr12?addrWrite:so13[128:65];addr13 = maddr13?addrWrite:so14[128:65];addr14 = maddr14?addrWrite:so15[128:65];addr15 = addrWrite;
+		addr12 = maddr12?addrWrite:so13[128:65];addr13 = maddr13?addrWrite:so14[128:65];addr14 = maddr14?addrWrite:so15[128:65];addr15 = {64{maddr15}}&addrWrite;
 		
 		vVal0 = so1[64]|mval0;			vVal1 = so2[64]|mval1;			vVal2 = so3[64]|mval2;			vVal3 = so4[64]|mval3;
 		vVal4 = so5[64]|mval4;			vVal5 = so6[64]|mval5;			vVal6 = so7[64]|mval6;			vVal7 = so8[64]|mval7;
