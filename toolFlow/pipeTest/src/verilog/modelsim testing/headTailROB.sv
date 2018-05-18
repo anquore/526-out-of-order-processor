@@ -57,18 +57,18 @@ module headTailROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
   always_ff @(posedge clk_i) begin
 		if (reset_i) begin
 			//on reset go to zero
-      head <= 0;
-      headReset <= 0;
+      head <= 3'b000;
+      headReset <= 1'b0;
     end
     else if (updateTail_i & (headReset == 1'b0)) begin
       //when the first value comes in link it to the head
-      head <= 0;
-      headReset <= 1;
+      head <= 3'b000;
+      headReset <= 1'b1;
     end
     else if (updateHead_i) begin
       //update head
       head <= headNext;
-      headReset <= 1;
+      headReset <= 1'b1;
     end
 		else begin
       //else case

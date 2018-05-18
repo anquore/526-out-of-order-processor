@@ -346,7 +346,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       leftShift = 0;//1'bx;
       mult = 1'b0;
       div = 1'b0;
-      commandType_o = 0;
+      commandType_o = 9;
       doingABranch_o = 0;
 		end
 		else if (instr[10:5] == 6'b100101) begin //BL

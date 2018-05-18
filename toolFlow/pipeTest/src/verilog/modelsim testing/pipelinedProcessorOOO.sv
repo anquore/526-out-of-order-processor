@@ -30,7 +30,7 @@ module pipelinedProcessorOOO
 	logic [3:0] flags;
   logic [3:0] commandType;
 	logic commandZero, negative, overflow, whichFlags, zero, carry_out;
-	completeDataPathPipelinedOutOfOrder #(.ROBsize(8)) theDataPath (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
+	completeDataPathPipelinedOutOfOrder theDataPath (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, 
 								.read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div, .commandType_i(commandType), .doingABranch_i(doingABranch)

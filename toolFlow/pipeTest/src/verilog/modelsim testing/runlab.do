@@ -95,6 +95,10 @@ vlog "./issueExecStageDiv.sv"
 vlog "./issueExecStageShift.sv"
 vlog "./issueExecStageMult.sv"
 vlog "./decodeStage.sv"
+vlog "./loadStoreQueue.sv"
+vlog "./loadStoreRegister.sv"
+vlog "./wallOfDFFsX71.sv"
+vlog "./wallOfDFFsX65.sv"
 
 
 # Call vsim to invoke simulator
