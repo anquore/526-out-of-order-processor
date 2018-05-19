@@ -99,7 +99,7 @@ module headTailROB_testbench();
   ,.updateTail_i
   ,.stall_o
   ,.head_o
-  ,.tail_o, .tailReset_o(1'b0)); //tailReset assigned fake value to match ports, fix later
+  ,.tail_o, .tailReset_o(1'b0)); //tailReset assigned fake value to match ports
   
   parameter ClockDelay = 5000;
   initial begin // Set up the clock

@@ -548,8 +548,8 @@ module completeDataPathPipelined_testbench();
 	completeDataPathPipelined dut (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm,
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, .read_enable,
-.needToForward(1'b1), .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath(2'h0), .leftShift(1'b0), .mult(1'b0), .div(1'b0)); //fake inputs and dead outputs to make ports match, fix later
-		wire negative, overflow, whichFlags, zero, carry_out; //dead wires, fix later
+.needToForward(1'b1), .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath(2'h0), .leftShift(1'b0), .mult(1'b0), .div(1'b0)); //fake inputs and dead outputs to make ports match
+		wire negative, overflow, whichFlags, zero, carry_out; //dead wires
 	assign regRD = instr[4:0]; 
 
 	// Set up the clock
