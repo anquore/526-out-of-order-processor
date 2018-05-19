@@ -76,6 +76,11 @@ module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
 //from the completion stage
 ,completionRSROBTag_i
 ,completionRSROBval_i
+
+//from LSQ
+,LSQstall_i
+,LSQifNew_o
+,LSQstoreOrLoad_o
 );
 
   //inputs and outputs
@@ -130,6 +135,10 @@ module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   input logic [64:0] completionRSROBval_i;
   input logic [ROBsizeLog - 1:0] completionRSROBTag_i;
   
+  //from LSQ
+  input logic LSQstall_i;
+  output logic LSQifNew_o, LSQstoreOrLoad_o;
+  
   //pick between RM and RD for the true RM value
   logic [4:0] trueRM;
 	logic [1:0][4:0] addressDataToMux;
@@ -166,8 +175,8 @@ module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   //determine if a stall in needed
   logic needAStall, ROBdontUpdate;
   logic [3:0] RSWriteEn;
-  assign ROBdontUpdate = (RSstall_i[0] & RSWriteEn[0]) | (RSstall_i[1] & RSWriteEn[1]) | (RSstall_i[2] & RSWriteEn[2]) | (RSstall_i[3] & RSWriteEn[3]);
-  assign needAStall = robStall_i | ROBdontUpdate;
+  assign ROBdontUpdate = (RSstall_i[0] & RSWriteEn[0]) | (RSstall_i[1] & RSWriteEn[1]) | (RSstall_i[2] & RSWriteEn[2]) | (RSstall_i[3] & RSWriteEn[3]) | LSQstall_i;
+  assign needAStall = robStall_i | ROBdontUpdate | LSQstall_i;
   assign decodeStall_o = needAStall;
   assign ROBdontUpdate_o = ROBdontUpdate;
   
@@ -319,10 +328,14 @@ module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   assign RSWriteEn[2] = (whichMath_i == 2);// & (~robStall_i);
   assign RSWriteEn[3] = (whichMath_i == 3);// & (~robStall_i);
   
-  assign RSWriteEn_o[0] = RSWriteEn[0] & (~robStall_i);
-  assign RSWriteEn_o[1] = RSWriteEn[1] & (~robStall_i);
-  assign RSWriteEn_o[2] = RSWriteEn[2] & (~robStall_i);
-  assign RSWriteEn_o[3] = RSWriteEn[3] & (~robStall_i);
+  assign RSWriteEn_o[0] = RSWriteEn[0] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[1] = RSWriteEn[1] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[2] = RSWriteEn[2] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[3] = RSWriteEn[3] & (~(robStall_i | LSQstall_i));
+  
+  //LSQ
+  assign LSQifNew_o = (~decodeStall_o) & (commandType_i == 9 | commandType_i == 1);
+  assign LSQstoreOrLoad_o = commandType_i == 9;
 
 endmodule
 

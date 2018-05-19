@@ -209,7 +209,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   logic LSQstall, LSQifNew, LSQstoreOrLoad;
   decodeStage dut
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   //instruction and commands
   ,.RDvalue_i(regRD)
@@ -304,14 +304,17 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   ,.flush(LSQflush)
   ,.PCout(LSQPC)
   ,.loadOrStore(LSQstoreOrLoad)
-  ,.PCin(regPC)
+  ,.PCin(address)
   ,.ROBin(LSQROBdecode)
   ,.ifNew(LSQifNew)
   ,.addrWrite(LSQmemAddr)
   ,.addrWriteROB(LSQmemTag)
   ,.ifAddrWrite(LSQaddrWrite)
   ,.LSretire(LSQretire)
-  ,.reset(reset)
+  ,.ifValWrite(0)
+  ,.valWriteROB(0)
+  ,.valWrite(0)
+  ,.reset(reset | needToRestore)
   ,.clk(clk));
   
   
@@ -535,7 +538,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   assign LSQmemAddr = thirdWallOut[67:4];
   assign LSQmemTag[ROBsizeLog - 1:0] = thirdWallOut[73 + (ROBsizeLog - 1):73];
   assign LSQmemTag[4] = 0;
-  assign LSQaddrWrite = thirdWallOut[0] | thirdWallOut[1];
+  assign LSQaddrWrite = thirdWallOut[2] | thirdWallOut[3];
 							
 	//break out bits for forwarding
 	//assign MEMreg[4:0] = thirdWallOut[136:132];

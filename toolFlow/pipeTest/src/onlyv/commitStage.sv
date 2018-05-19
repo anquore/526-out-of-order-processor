@@ -27,6 +27,11 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
 ,writeAddrMem_o
 ,writeDataMem_o
 ,writeEnMem_o
+
+//to LSQ
+,LSQflush_i
+,LSQPC_i
+,LSQretire_o
 );
 
   //ins and outs
@@ -55,6 +60,11 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   //memory ports
   output logic writeEnMem_o;
   output logic [63:0] writeAddrMem_o, writeDataMem_o;
+  
+  //LSQ
+  output logic LSQretire_o;
+  input logic LSQflush_i;
+  input logic [63:0] LSQPC_i;
 
   
   //break up the ROB data
@@ -134,20 +144,22 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   logic [63:0] restorePoint;
   always_comb begin
 		if(commandType == 0) begin
-      //this is a load, math, or branch command don't need to restore
+      //this is a math command don't need to restore
       needToRestore = 0;
       restorePoint = 0;
       //we are writing to the reg
       regWrite = 1;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 1) begin
       //this is a store command, will be updated at a later point
-      needToRestore = 0;
-      restorePoint = 0;
+      needToRestore = LSQflush_i;
+      restorePoint = LSQPC_i;
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 1;
+      LSQretire_o = 1;
     end
     else if (commandType == 2 | commandType == 3) begin
       //this is either a B.COND
@@ -157,6 +169,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 4) begin
       //this is a CBZ we didn't take
@@ -165,6 +178,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 5) begin
       //this is a CBZ we take
@@ -173,6 +187,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 6) begin
       //a BR
@@ -181,6 +196,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 7) begin
       //a BL
@@ -189,6 +205,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are writing to the reg
       regWrite = 1;
       memWrite = 0;
+      LSQretire_o = 0;
     end
     else if(commandType == 8) begin
       //a branch 
@@ -197,6 +214,16 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
+    end
+    else if(commandType == 9) begin
+      //this is a load don't need to restore
+      needToRestore = 0;
+      restorePoint = 0;
+      //we are writing to the reg
+      regWrite = 1;
+      memWrite = 0;
+      LSQretire_o = 1;
     end
     else begin
       needToRestore = 0;
@@ -204,6 +231,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 0;
+      LSQretire_o = 0;
     end
 	end
   

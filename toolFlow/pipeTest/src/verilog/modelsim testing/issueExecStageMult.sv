@@ -36,22 +36,46 @@ module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1
   output logic valid_o;
   
   //control logic state machine
-  typedef enum {eWaiting, eStalling, eDone} state_e;
+  //typedef enum {eWaiting, eStalling, eDone} state_e;
+  localparam [1:0] eWaiting = 2'b00, eStalling = 2'b01, eDone = 2'b10;
+  logic [1:0] state_r, state_n;
 
-  state_e state_r, state_n;
+  //state_e state_r, state_n;
 
   //update the state on the clock edge
+  //always_ff @(posedge clk_i) begin
+    //state_r <= reset_i ? eWaiting : state_n;
+  //end
   always_ff @(posedge clk_i) begin
-    state_r <= reset_i ? eWaiting : state_n;
+    if(reset_i)
+      state_r <= eWaiting;
+    else
+      state_r <= state_n;   
   end
   
   //depending on the current state and control logic decide what the next state is
   logic valid_out;
   always_comb begin
-    unique case (state_r)
-      eWaiting: state_n = readyRS_i ? eStalling : eWaiting;
-      eStalling: state_n = valid_out ? eDone : eStalling;
-      eDone : state_n = canGo_i ? eWaiting : eDone;
+    //removed unique
+    case (state_r)
+      eWaiting: begin
+        if(readyRS_i)
+          state_n = eStalling;
+        else
+          state_n = eWaiting;
+      end
+      eStalling: begin
+        if(valid_out)
+          state_n = eDone;
+        else
+          state_n = eStalling;
+      end
+      eDone: begin
+        if(canGo_i)
+          state_n = eWaiting;
+        else
+          state_n = eDone;
+      end
       default: state_n = eWaiting;
     endcase
   end
@@ -59,7 +83,8 @@ module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1
   logic stallStart;
   //based on the current state set the control logic
   always_comb begin
-    unique case (state_r)
+    //removed unique
+    case (state_r)
       eWaiting: begin
         stallStart = 1;
         valid_o = 0;
@@ -71,7 +96,7 @@ module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1
         valid_o = 1;
       end
       default: begin
-	stallStart = 1;
+        stallStart = 1;
         valid_o = 0;
       end
     endcase

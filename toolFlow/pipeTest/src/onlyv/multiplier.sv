@@ -5,10 +5,16 @@ module multiplier(out, valid_out, A, B, valid_in, rst, clk);
 	input valid_in, rst, clk;
 	
 	//timing module and register, 5 cycle process
-	typedef enum logic[2:0] {waiting, s0, s1, s2, s3, done} cntrl_state;
-	cntrl_state state, next_state;
-	always_ff @(posedge clk)
-		state = rst?waiting:next_state;
+	//typedef enum logic[2:0] {waiting, s0, s1, s2, s3, done} cntrl_state;
+	//cntrl_state state, next_state;
+  localparam [2:0] waiting = 3'b000, s0 = 3'b001, s1 = 3'b010, s2 = 3'b011, s3 = 3'b100, done = 3'b101;
+  logic [2:0] state, next_state;
+	always_ff @(posedge clk) begin
+		if(rst)
+      state = waiting;
+    else
+      state = next_state;
+  end
 	always @(*) begin
 		next_state=state;
 		case(state)

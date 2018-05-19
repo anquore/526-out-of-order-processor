@@ -328,14 +328,14 @@ module decodeStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   assign RSWriteEn[2] = (whichMath_i == 2);// & (~robStall_i);
   assign RSWriteEn[3] = (whichMath_i == 3);// & (~robStall_i);
   
-  assign RSWriteEn_o[0] = RSWriteEn[0] & (~robStall_i);
-  assign RSWriteEn_o[1] = RSWriteEn[1] & (~robStall_i);
-  assign RSWriteEn_o[2] = RSWriteEn[2] & (~robStall_i);
-  assign RSWriteEn_o[3] = RSWriteEn[3] & (~robStall_i);
+  assign RSWriteEn_o[0] = RSWriteEn[0] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[1] = RSWriteEn[1] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[2] = RSWriteEn[2] & (~(robStall_i | LSQstall_i));
+  assign RSWriteEn_o[3] = RSWriteEn[3] & (~(robStall_i | LSQstall_i));
   
   //LSQ
   assign LSQifNew_o = (~decodeStall_o) & (commandType_i == 9 | commandType_i == 1);
-  assign LSQstoreOrLoad_o = commandType_i == 1;
+  assign LSQstoreOrLoad_o = commandType_i == 9;
 
 endmodule
 
