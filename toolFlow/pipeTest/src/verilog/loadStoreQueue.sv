@@ -167,7 +167,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	
 	//counter for tail
 	always_ff @(posedge clk) begin
-		if (reset | tailAddr==4'h0)
+		if (reset)
 			tailAddr <= 4'h0;
 		else if (tailAddr==4'hF)
 			tailAddr <= 4'hF;
