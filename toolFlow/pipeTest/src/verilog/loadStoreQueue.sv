@@ -169,14 +169,16 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	always_ff @(posedge clk) begin
 		if (reset)
 			tailAddr <= 4'h0;
-		else if (tailAddr==4'hF)
-			tailAddr <= 4'hF;
 		else if (ifNew & LSretire)
 			tailAddr <= tailAddr;
-		else if (ifNew)
-			tailAddr <= tailAddr+1;
 		else if (LSretire)
 			tailAddr <= tailAddr-1;
+		else if (tailAddr==4'hF)
+			tailAddr <= 4'hF;
+		else if (ifNew)
+			tailAddr <= tailAddr+1;
+		else
+			tailAddr <= tailAddr;
 	end
 	assign full = &tailAddr; //full when tail above queue
 	assign PCout = so0[198:135];
