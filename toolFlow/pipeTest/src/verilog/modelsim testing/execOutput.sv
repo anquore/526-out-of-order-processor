@@ -35,9 +35,21 @@ module executeOutput #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1))
   output logic valid_o;
   
   //use a priority encoder to choose between which data get sent onwards
-  bsg_priority_encode_one_hot_out4 outEncoderUnit
-  (.i(valid_i)
-  ,.o(canGo_o));
+  //bsg_priority_encode_one_hot_out4 outEncoderUnit
+  //(.i(valid_i)
+  //,.o(canGo_o));
+  always_comb begin
+    if(valid_i[3])
+      canGo_o = 4'b1000;
+    else if(valid_i[2])
+      canGo_o = 4'b0100;
+    else if(valid_i[1])
+      canGo_o = 4'b0010;
+    else if(valid_i[0])
+      canGo_o = 4'b0001;
+    else
+      canGo_o = 4'b0000;
+  end
   
   always_comb begin
     if(canGo_o[3]) begin

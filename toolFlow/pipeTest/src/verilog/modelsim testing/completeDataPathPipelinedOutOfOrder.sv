@@ -298,7 +298,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   assign LSQROBdecode[ROBsizeLog - 1:0] = RSROBTag;
   assign LSQROBdecode[4] = 0;
   
-  
+  logic [3:0] commandsAfterALU;
   loadStoreQueue theLSQ
   (.full(LSQstall)
   ,.flush(LSQflush)
@@ -311,9 +311,9 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   ,.addrWriteROB(LSQmemTag)
   ,.ifAddrWrite(LSQaddrWrite)
   ,.LSretire(LSQretire)
-  ,.ifValWrite(0)
-  ,.valWriteROB(0)
-  ,.valWrite(0)
+  ,.ifValWrite(1'b0)
+  ,.valWriteROB(5'b0)
+  ,.valWrite(64'b0)
   ,.reset(reset | needToRestore)
   ,.clk(clk));
   
@@ -359,7 +359,7 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
       //forwarding
       ,.issueROBTagExec_i(tagToMem)
       ,.issueROBvalExec_i(issueExecVal)
-      ,.issueROBMemAccessExec_i(commandsAfterALU)
+      ,.issueROBMemAccessExec_i(commandsAfterALU[1])
 
       ,.issueROBTagMem_i(tagToCom)
       ,.issueROBvalMem_i(issueMemVal)
@@ -504,7 +504,6 @@ module completeDataPathPipelinedOutOfOrder #(parameter ROBsize = 8, ROBsizeLog =
   
 	
 	//gather up the commands to be moved along
-	logic [3:0] commandsAfterALU;
 	assign commandsAfterALU[0] = commandsToMem[8];
 	assign commandsAfterALU[1] = commandsToMem[1];
 	assign commandsAfterALU[2] = commandsToMem[0];

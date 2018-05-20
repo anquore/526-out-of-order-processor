@@ -46,12 +46,16 @@ vlog "./wallOfDFFsL70.sv"
 vlog "./wallOfDFFsL74.sv"
 vlog "./wallOfDFFsL77.sv"
 vlog "./wallOfDFFsL151.sv"
+vlog "./wallOfDFFsL219.sv"
+vlog "./wallOfDFFsL64.sv"
 vlog "./completeDataPathPipelinedOutOfOrder.sv"
+vlog "./completeDataPathPipelinedOutOfOrderExtra.sv"
 vlog "./forwardingUnit.sv"
 vlog "./regReadAndWriteStage.sv"
 vlog "./ALUstage.sv"
 vlog "./memStage.sv"
 vlog "./pipelinedProcessorOOO.sv"
+vlog "./pipelinedProcessorOOOExtra.sv"
 vlog "./shifter.sv"
 vlog "./NAND_MUX_4x1.sv"
 vlog "./NAND_MUX_2x1.sv"
@@ -88,6 +92,8 @@ vlog "./reservationStation.sv"
 vlog "./reservationStationx2.sv"
 vlog "./reservationStationForward.sv"
 vlog "./reservationStationx2Forward.sv"
+vlog "./reservationStationForwardExtra.sv"
+vlog "./reservationStationx2ForwardExtra.sv"
 vlog "./ROB.sv"
 vlog "./ROBregs.sv"
 vlog "./issueExecStageALU.sv"
@@ -95,21 +101,23 @@ vlog "./issueExecStageDiv.sv"
 vlog "./issueExecStageShift.sv"
 vlog "./issueExecStageMult.sv"
 vlog "./decodeStage.sv"
+vlog "./decodeStageExtra.sv"
 vlog "./loadStoreQueue.sv"
 vlog "./loadStoreRegister.sv"
 vlog "./wallOfDFFsX71.sv"
 vlog "./wallOfDFFsX65.sv"
 
 
+
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work pipelinedProcessorOOO_testbench
+vsim -voptargs="+acc" -t 1ps -lib work pipelinedProcessorOOOExtra_testbench
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do pipelinedProcessorOOO_wave.do
+do pipelinedProcessorOOOExtra_wave.do
 
 # Set the window types
 view wave

@@ -16,7 +16,8 @@ module regfileOOO
 	output logic [63:0]	ReadData1, ReadData2, regCommitReadData_o;
 	
 	logic [31:0] decoded;
-	logic reset = 1'b0;
+	logic reset;
+  assign reset = 1'b0;
 	logic [31:0][63:0] dataOut;
 	logic [63:0][31:0] muxIns;
 	//the decoder

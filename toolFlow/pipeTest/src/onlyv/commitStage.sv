@@ -159,7 +159,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are not writing to the reg
       regWrite = 0;
       memWrite = 1;
-      LSQretire_o = 1;
+      LSQretire_o = dataValid;
     end
     else if (commandType == 2 | commandType == 3) begin
       //this is either a B.COND
@@ -223,7 +223,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       //we are writing to the reg
       regWrite = 1;
       memWrite = 0;
-      LSQretire_o = 1;
+      LSQretire_o = dataValid;
     end
     else begin
       needToRestore = 0;

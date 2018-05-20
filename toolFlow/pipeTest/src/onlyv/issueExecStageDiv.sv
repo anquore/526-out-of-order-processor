@@ -82,7 +82,7 @@ module issueExecStageDiv #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
   logic stallStart;
   //based on the current state set the control logic
   always_comb begin
-    unique case (state_r)
+    case (state_r)
       eWaiting: begin
         stallStart = 1;
         valid_o = 0;
