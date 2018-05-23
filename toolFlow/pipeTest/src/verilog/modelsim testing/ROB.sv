@@ -16,6 +16,9 @@ module ROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
 ,completionWriteEn_i
 ,completionWriteData_i
 
+,completionWriteDataExtra_i
+,completionWriteDataExtra_o
+
 ,updateHead_i
 ,head_o
 ,commitReadData_o);
@@ -28,6 +31,9 @@ module ROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
   output logic [78:0] commitReadData_o;
   output logic [addrSize:0] nextTail_o, head_o;
   output logic stall_o;
+  
+  input logic [63:0] completionWriteDataExtra_i;
+  output logic [63:0] completionWriteDataExtra_o;
   
   //set up some logic
   logic [addrSize-1:0]	head, tail, headNext, tailNext;
@@ -75,6 +81,8 @@ module ROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
   ,.completionWriteEn_i(completionWriteEn_i)
   ,.completionWriteData_i(completionWriteData_i)
 
+  ,.completionWriteDataExtra_i
+  ,.completionWriteDataExtra_o
 
   ,.commitReadAddr_i(head)
   ,.commitReadData_o(commitReadData_o));

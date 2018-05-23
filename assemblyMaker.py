@@ -244,7 +244,8 @@ def main():
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
   
-  
+  '''
+  '''
   #ROB stalling testing and basic out of order test
   #clear the file
   theFile = open('ROB_stall_test_and_basic_OOO.arm','w')
@@ -271,12 +272,140 @@ def main():
   mathCommand('OR', OR, 10, 2, 1, theFile)
   mathCommand('XOR', XOR, 11, 2, 1, theFile)
   
+  #test some stores/loads
+  mathCommand('MULT', MULT, 15, 1, 0, theFile)
+  memoryCommand('STUR', STUR, 0, 10, 31, theFile)
+  memoryCommand('STUR', STUR, 8, 11, 31, theFile)
+  memoryCommand('LDUR', LDUR, 0, 12, 31, theFile)
+  memoryCommand('LDUR', LDUR, 8, 13, 31, theFile)
+  
+  #test branching
+  immediateCommand('ADDI', ADDI, 1000, 1, 31, theFile)
+  immediateCommand('ADDI', ADDI, 3, 0, 31, theFile)
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  #R1 > R0, success
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('GT', BCOND, 4, GT, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile) #17 * 4 = 68
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #72
+  
+  #R0 > R1 fail
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 1, 0, theFile) #76
+  condBranchCommand('GT', BCOND, -3, GT, theFile) #80
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #84
+  
+  
+  #R0 < R1, success
+  mathCommand('SUBS', SUBS, 31, 1, 0, theFile)
+  condBranchCommand('LT', BCOND, 4, LT, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R1 < R0 fail
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('LT', BCOND, -3, LT, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  
+  #R1 >= R0, success
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('GE', BCOND, 4, GE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R6 >= R7 success
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
+  condBranchCommand('GE', BCOND, 4, GE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R0 >= R1 fail
+  mathCommand('SUBS', SUBS, 31, 1, 0, theFile)
+  condBranchCommand('GT', BCOND, -3, GE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R0 <= R1, success
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 1, 0, theFile)
+  condBranchCommand('LE', BCOND, 4, LE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile) #184/188
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R6 >= R7 success
+  mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
+  condBranchCommand('LE', BCOND, 4, LE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R1 <= R0 fail
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('LE', BCOND, -3, LE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R6 == R7 success
+  mathCommand('SUBS', SUBS, 31, 6, 7, theFile)
+  condBranchCommand('EQ', BCOND, 4, EQ, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R1 == R0 fail
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('EQ', BCOND, -3, EQ, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R1 != R0 success
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  condBranchCommand('NE', BCOND, 4, NE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #fail branch
+  branchCommand('B', B, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #R6 == R7 fail
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  mathCommand('SUBS', SUBS, 31, 7, 6, theFile)
+  condBranchCommand('NE', BCOND, -3, NE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #BL and BR test
+  branchCommand('BL', BL, 2, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('ADDI', ADD, 16, 30, 30, theFile)
+  mathCommand('BR', BR, 30, 0, 0, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
-  
-  #open the file to append
-  theFile = open('ROB_stall_test_and_basic_OOO.arm','a')
+  '''
+  '''
   
   #multiplication/divide test
   #clear the file
@@ -364,7 +493,7 @@ def main():
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  
+  '''
   #map table testing, reg renaming
   #clear the file
   theFile = open('MT_reg_renaming.arm','w')
@@ -395,6 +524,68 @@ def main():
   
   #have a WAW
   mathCommand('SUBS', SUBS, 1, 2, 3, theFile)
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #shift testing
+  #clear the file
+  theFile = open('shifting.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('shifting.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
+  
+  #shift some stuff left
+  shiftCommand('LSL', LSL, 4, 3, 2, theFile)
+  shiftCommand('LSL', LSL, 5, 10, 1, theFile)
+  shiftCommand('LSL', LSL, 7, 15, 0, theFile)
+  shiftCommand('LSL', LSL, 8, 63, 1, theFile)
+  
+  #shift some stuff right
+  shiftCommand('LSR', LSR, 9, 3, 2, theFile)
+  shiftCommand('LSR', LSR, 10, 10, 1, theFile)
+  shiftCommand('LSR', LSR, 11, 15, 2, theFile)
+  shiftCommand('LSR', LSR, 12, 63, 8, theFile)
+  
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  #shift testing
+  #clear the file
+  theFile = open('branchTest.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('branchTest.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
+  
+  #shift some stuff left
+  #R2 <= R1 fail
+  mathCommand('SUBS', SUBS, 31, 1, 2, theFile)
+  condBranchCommand('LE', BCOND, -5, LE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  mathCommand('SUBS', SUBS, 31, 2, 1, theFile)
+  condBranchCommand('LE', BCOND, -8, LE, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
   
   #halt
   branchCommand('B', B, 0, theFile)#288

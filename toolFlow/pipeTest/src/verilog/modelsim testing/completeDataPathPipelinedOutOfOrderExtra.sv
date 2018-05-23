@@ -1,7 +1,7 @@
 module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1))
 (clk
 , uncondBr
-, brTaken
+//, brTaken
 , memWrite
 , memToReg
 , reset
@@ -38,7 +38,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 ,dmem_addressStore
 ,dmem_readEn
 ,dmem_writeEn);
-	input logic clk, uncondBr, brTaken, memWrite, memToReg, reset, 
+	input logic clk, uncondBr, /*brTaken,*/ memWrite, memToReg, reset, 
 					ALUSrc, regWrite, reg2Loc, valueToStore, dOrImm, BRMI, saveCond, read_enable, needToForward, leftShift, mult, div, doingABranch_i;
   input logic [1:0] whichMath;
 	input logic [2:0] ALUOp;
@@ -63,11 +63,12 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   logic decodeStall;
   
 	//instruction fetch stage
-	logic [63:0] regPC, address;
+	logic [63:0] regPC, address, couldBeNewAddress;
 	logic [31:0] instruction;
   logic [32:0] firstWallIn, firstWallOut;
   logic needToRestore;
   logic [63:0] restorePoint;
+  logic brTaken;
 	instructionFetch instructionGetter 
   (.clk
   , .reset
@@ -83,6 +84,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.restorePoint_i(restorePoint)
   ,.imem_instruction_i
   ,.imem_address_o
+  ,.couldBeNewAddress_o(couldBeNewAddress)
   );
 													
 	//first wall
@@ -92,6 +94,38 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 	wallOfDFFsL33 firstWall (.q(firstWallOut), .d(firstWallIn), .reset(reset | needToRestore), .enable(~decodeStall), .clk);
 
 	//reg read/decode stage
+  //predict some branches
+  logic commitBranchTaken, commitingBranch, brTakenGuess;
+  logic [63:0] currentAddress, addressCommit;
+  assign currentAddress = address - 4;
+  branchPrediction branchPredictor
+  (.clk_i(clk)
+  ,.reset_i(reset)
+  ,.brTaken_i(commitBranchTaken)
+  ,.branchAddrWrite_i(addressCommit[4:0])
+  ,.branchAddrRead_i(currentAddress[4:0])
+  ,.anUpdate_i(commitingBranch)
+  ,.whatToDoBranch_o(brTakenGuess)
+  );
+  
+  //decide which address to send
+  logic [63:0] decodeAddress;
+  always_comb begin
+    if(brTakenGuess)
+      decodeAddress = address;
+    else
+      decodeAddress = couldBeNewAddress;
+  end
+  
+  always_comb begin
+    if(commandType_i==6 | commandType_i==7 | commandType_i==8)
+      brTaken = 1;
+    else if (commandType_i==0 | commandType_i==1 | commandType_i==9)
+      brTaken = 0;
+    else 
+      brTaken = brTakenGuess;
+  end
+  
 	//port the instructions out to the command module to produce all the commands
 	assign instr[10:0] = firstWallOut[31:21];
 	assign instr[11] = firstWallOut[22];
@@ -119,6 +153,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   //RS stalls
   logic [3:0] RSstall;
   logic ROBdontUpdate;
+  logic [63:0] storeValueFinalOut, completionWriteDataExtra;
   ROB theROB
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
@@ -136,6 +171,9 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.completionWriteAddr_i(ROBWriteAddr)
   ,.completionWriteEn_i(ROBWriteEn)
   ,.completionWriteData_i(ROBWriteData)
+  
+  ,.completionWriteDataExtra_i(storeValueFinalOut)
+  ,.completionWriteDataExtra_o(addressCommit)
 
   ,.updateHead_i(ROBupdateHead)
   ,.head_o(ROBhead)
@@ -207,6 +245,17 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   
   //LSQ
   logic LSQstall, LSQifNew, LSQstoreOrLoad;
+  logic [3:0]commandType;
+  always_comb begin
+    if (commandType_i == 2 | commandType_i ==4) begin
+      commandType[0] = brTaken;
+      commandType[3:1] = commandType_i[3:1];
+    end
+    else begin
+      commandType = commandType_i;
+    end
+  end
+    
   decodeStageExtra dut
   (.clk_i(clk)
   ,.reset_i(reset | needToRestore)
@@ -218,8 +267,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.dAddr9_i(firstWallOut[20:12])
   ,.imm12_i(firstWallOut[21:10])
 
-  ,.commandType_i(commandType_i)
-  ,.PCaddress_i(address)
+  ,.commandType_i(commandType)
+  ,.PCaddress_i(decodeAddress)
 
   //,valueToStore_i
   ,.reg2Loc_i(reg2Loc)
@@ -342,6 +391,16 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   logic [ROBsizeLog - 1:0] tagToMem, tagToCom;
   logic [3:0] commandsAfterALU;
   
+  //choose what to write to the third RS spot
+  logic [64:0] thirdRSSpot;
+  always_comb begin
+    if(doingABranch_i)
+      thirdRSSpot[63:0] = currentAddress;
+    else
+      thirdRSSpot[63:0] = RSROBval3[63:0];
+  end
+  assign thirdRSSpot[64] = RSROBval3[64];
+  
   reservationStationx2ForwardExtra theRSALU
       (.clk_i(clk)
       ,.reset_i(reset | needToRestore)
@@ -352,7 +411,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
       ,.decodeWriteEn_i(firstWallOut[32] & RSWriteEn[0])
       ,.decodeROBval1_i(RSROBval1[0])
       ,.decodeROBval2_i(RSROBval2[0])
-      ,.decodeROBval3_i(RSROBval3[0])
+      ,.decodeROBval3_i(thirdRSSpot)
       ,.decodeCommands_i(RSCommands[0])
       ,.stall_o(RSstall[0])
 
@@ -592,6 +651,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 	assign finalWallIn[69:66] = thirdWallOut[72:69];
 	assign finalWallIn[70 + (ROBsizeLog - 1):70] = thirdWallOut[73 + (ROBsizeLog - 1):73];
 	wallOfDFFsL74 finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
+  wallOfDFFsL64 storeStorageFinal (.q(storeValueFinalOut), .d(storeValueOut), .reset(reset | needToRestore), .enable(1'b1), .clk);
   
   //single delay stage
   //logic [70 + (ROBsizeLog - 1):0] finalWallIn1, finalWallOut1;
@@ -655,6 +715,9 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.LSQflush_i(LSQflush)
   ,.LSQPC_i(LSQPC)
   ,.LSQretire_o(LSQretire)
+  
+  ,.correctBranch_o(commitBranchTaken)
+  ,.updateBranch_o(commitingBranch)
   );
   
 

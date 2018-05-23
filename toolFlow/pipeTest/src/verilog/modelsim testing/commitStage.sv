@@ -32,6 +32,10 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
 ,LSQflush_i
 ,LSQPC_i
 ,LSQretire_o
+
+//to branch predictor
+,correctBranch_o
+,updateBranch_o
 );
 
   //ins and outs
@@ -65,6 +69,9 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   output logic LSQretire_o;
   input logic LSQflush_i;
   input logic [63:0] LSQPC_i;
+  
+  //to branch predictor
+  output logic correctBranch_o, updateBranch_o;
 
   
   //break up the ROB data
@@ -140,7 +147,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   
   //restore functionality
   //determine if a mistake was made, if it was get back to the correct point
-  logic needToRestore, memWrite;
+  logic needToRestore, memWrite, updateBranch;
   logic [63:0] restorePoint;
   always_comb begin
 		if(commandType == 0) begin
@@ -151,6 +158,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 1;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 0;
     end
     else if(commandType == 1) begin
       //this is a store command, will be updated at a later point
@@ -160,6 +168,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 1;
       LSQretire_o = dataValid;
+      updateBranch = 0;
     end
     else if (commandType == 2 | commandType == 3) begin
       //this is either a B.COND
@@ -170,6 +179,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 1;
     end
     else if(commandType == 4) begin
       //this is a CBZ we didn't take
@@ -179,6 +189,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 1;
     end
     else if(commandType == 5) begin
       //this is a CBZ we take
@@ -188,6 +199,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 1;
     end
     else if(commandType == 6) begin
       //a BR
@@ -197,6 +209,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 0;
     end
     else if(commandType == 7) begin
       //a BL
@@ -206,6 +219,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 1;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 0;
     end
     else if(commandType == 8) begin
       //a branch 
@@ -215,6 +229,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 0;
     end
     else if(commandType == 9) begin
       //this is a load don't need to restore
@@ -224,6 +239,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 1;
       memWrite = 0;
       LSQretire_o = dataValid;
+      updateBranch = 0;
     end
     else begin
       needToRestore = 0;
@@ -232,6 +248,7 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
       regWrite = 0;
       memWrite = 0;
       LSQretire_o = 0;
+      updateBranch = 0;
     end
 	end
   
@@ -247,6 +264,9 @@ module commitStage #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1), addr
   assign writeAddrMem_o = theData;
   assign writeEnMem_o = memWrite & dataValid;
   assign writeDataMem_o = regCommitRead_i;
+  
+  assign updateBranch_o = updateBranch & dataValid;
+  assign correctBranch_o = correctBranch;
   
 endmodule
 

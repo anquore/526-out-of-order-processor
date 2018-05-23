@@ -106,7 +106,8 @@ vlog "./loadStoreQueue.sv"
 vlog "./loadStoreRegister.sv"
 vlog "./wallOfDFFsX71.sv"
 vlog "./wallOfDFFsX65.sv"
-
+vlog "./branchPrediction.sv"
+vlog "./branchPredictionSM.sv"
 
 
 # Call vsim to invoke simulator

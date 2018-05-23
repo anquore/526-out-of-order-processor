@@ -240,7 +240,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       leftShift = 0;//1'bx;
       mult = 1'b0;
       div = 1'b0;
-      commandType_o = 5;
+      commandType_o = 4;
       doingABranch_o = 1;
 		end
 		else if (instr[10:3] == 8'b01010100) begin //B.COND
@@ -300,7 +300,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       leftShift = 0;//1'bx;
       mult = 1'b0;
       div = 1'b0;
-      commandType_o = 3;
+      commandType_o = 2;
       doingABranch_o = 1;
 		end
 		else if (instr[10:0] == 11'b11111000000) begin //STUR
