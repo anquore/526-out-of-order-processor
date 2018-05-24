@@ -69,14 +69,14 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	//forwarding unit
 	logic adValcmp0, adValcmp1, adValcmp2, adValcmp3, adValcmp4, adValcmp5, adValcmp6, adValcmp7, adValcmp8, adValcmp9, adValcmp10, adValcmp11, adValcmp12, adValcmp13, adValcmp14;
 	always_comb begin
-		adcmp0 = ~(|(addrWrite^so1[128:65])|so1[200])&so0[129];			adcmp1 = ~(|(addrWrite^so2[128:65])|so2[200])&so1[129];
-		adcmp2 = ~(|(addrWrite^so3[128:65])|so3[200])&so2[129];			adcmp3 = ~(|(addrWrite^so4[128:65])|so4[200])&so3[129];
-		adcmp4 = ~(|(addrWrite^so5[128:65])|so5[200])&so4[129];			adcmp5 = ~(|(addrWrite^so6[128:65])|so6[200])&so5[129];
-		adcmp6 = ~(|(addrWrite^so7[128:65])|so7[200])&so6[129];			adcmp7 = ~(|(addrWrite^so8[128:65])|so8[200])&so7[129];
-		adcmp8 = ~(|(addrWrite^so9[128:65])|so9[200])&so8[129];			adcmp9 = ~(|(addrWrite^so10[128:65])|so10[200])&so9[129];
-		adcmp10 = ~(|(addrWrite^so11[128:65])|so11[200])&so10[129];		adcmp11 = ~(|(addrWrite^so12[128:65])|so12[200])&so11[129];
-		adcmp12 = ~(|(addrWrite^so13[128:65])|so13[200])&so12[129];		adcmp13 = ~(|(addrWrite^so14[128:65])|so14[200])&so13[129];
-		adcmp14 = ~(|(addrWrite^so15[128:65])|so15[200])&so14[129];
+		adValcmp0 = ~(|(addrWrite^so1[128:65])|so1[200])&so0[129];			adValcmp1 = ~(|(addrWrite^so2[128:65])|so2[200])&so1[129];
+		adValcmp2 = ~(|(addrWrite^so3[128:65])|so3[200])&so2[129];			adValcmp3 = ~(|(addrWrite^so4[128:65])|so4[200])&so3[129];
+		adValcmp4 = ~(|(addrWrite^so5[128:65])|so5[200])&so4[129];			adValcmp5 = ~(|(addrWrite^so6[128:65])|so6[200])&so5[129];
+		adValcmp6 = ~(|(addrWrite^so7[128:65])|so7[200])&so6[129];			adValcmp7 = ~(|(addrWrite^so8[128:65])|so8[200])&so7[129];
+		adValcmp8 = ~(|(addrWrite^so9[128:65])|so9[200])&so8[129];			adValcmp9 = ~(|(addrWrite^so10[128:65])|so10[200])&so9[129];
+		adValcmp10 = ~(|(addrWrite^so11[128:65])|so11[200])&so10[129];		adValcmp11 = ~(|(addrWrite^so12[128:65])|so12[200])&so11[129];
+		adValcmp12 = ~(|(addrWrite^so13[128:65])|so13[200])&so12[129];		adValcmp13 = ~(|(addrWrite^so14[128:65])|so14[200])&so13[129];
+		adValcmp14 = ~(|(addrWrite^so15[128:65])|so15[200])&so14[129];
 	end
 	assign forwards = ifAddrWrite&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
 		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14)&loadOrStore;
@@ -144,7 +144,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		vVal12 = 0;				vVal13 = 0;				vVal14 = 0;				vVal15 = 0;
 		
 		val0 = maddr0?valWrite:so1[63:0];	val1 = maddr1?valWrite:so2[63:0];	val2 = maddr2?valWrite:so3[63:0];	val3 = maddr3?valWrite:so4[63:0];
-		val4 = maddr4?valWrite:so5[63:0];	val5 = mvaddr5?valWrite:so6[63:0];	val6 = maddr6?valWrite:so7[63:0];	val7 = maddr7?valWrite:so8[63:0];
+		val4 = maddr4?valWrite:so5[63:0];	val5 = maddr5?valWrite:so6[63:0];	val6 = maddr6?valWrite:so7[63:0];	val7 = maddr7?valWrite:so8[63:0];
 		val8 = maddr8?valWrite:so9[63:0];	val9 = maddr9?valWrite:so10[63:0];	val10 = maddr10?valWrite:so11[63:0];	val11 = maddr11?valWrite:so12[63:0];
 		val12 = maddr12?valWrite:so13[63:0];	val13 = maddr13?valWrite:so14[63:0];	val14 = maddr14?valWrite:so15[63:0];	val15 = addrWrite;
 	end

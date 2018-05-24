@@ -350,6 +350,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   assign LSQROBdecode[ROBsizeLog - 1:0] = RSROBTag;
   assign LSQROBdecode[4] = 0;
   
+  logic [63:0] LSQvalOut, LSQvalWrite;
+  logic LSQforwards;
   
   loadStoreQueue theLSQ
   (.full(LSQstall)
@@ -363,9 +365,9 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.addrWriteROB(LSQmemTag)
   ,.ifAddrWrite(LSQaddrWrite)
   ,.LSretire(LSQretire)
-  ,.ifValWrite(1'b0)
-  ,.valWriteROB(5'b0)
-  ,.valWrite(64'b0)
+  ,.forwards(LSQforwards)
+  ,.valOut(LSQvalOut)
+  ,.valWrite(LSQvalWrite)
   ,.reset(reset | needToRestore)
   ,.clk(clk));
   
@@ -395,12 +397,15 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   //choose what to write to the third RS spot
   logic [64:0] thirdRSSpot;
   always_comb begin
-    if(doingABranch_i)
+    if(doingABranch_i) begin
       thirdRSSpot[63:0] = currentAddress;
-    else
-      thirdRSSpot[63:0] = RSROBval3[63:0];
+      thirdRSSpot[64] = RSROBval3[64];
+    end
+    else begin
+      thirdRSSpot = RSROBval3;
+    end
   end
-  assign thirdRSSpot[64] = RSROBval3[64];
+  //assign thirdRSSpot[64] = RSROBval3[64];
   
   reservationStationx2ForwardExtra theRSALU
       (.clk_i(clk)
@@ -638,15 +643,27 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   assign LSQmemTag[ROBsizeLog - 1:0] = thirdWallOut[73 + (ROBsizeLog - 1):73];
   assign LSQmemTag[4] = 0;
   assign LSQaddrWrite = thirdWallOut[2] | thirdWallOut[3];
+  
+  //forwarding with LSQ
+  logic [63:0] LSQorMem; 
+  assign LSQvalWrite = storeValueOut;
+  
+  always_comb begin
+    if (LSQforwards)
+      LSQorMem = LSQvalOut;
+    else
+      LSQorMem = mightSendToReg;
+  end
+  
 							
 	//break out bits for forwarding
 	//assign MEMreg[4:0] = thirdWallOut[136:132];
 	//assign MEMforward = thirdWallOut[138];
 	assign tagToCom = thirdWallOut[73 + (ROBsizeLog - 1):73];
   assign issueMemVal[64] = thirdWallOut[68];
-  assign issueMemVal[63:0] = mightSendToReg;
+  assign issueMemVal[63:0] = LSQorMem;
 	logic [70 + (ROBsizeLog - 1):0] finalWallIn, finalWallOut;
-	assign finalWallIn[63:0] = mightSendToReg;
+	assign finalWallIn[63:0] = LSQorMem;
   assign finalWallIn[64] = thirdWallOut[68];
 	assign finalWallIn[65] = thirdWallOut[0];
 	assign finalWallIn[69:66] = thirdWallOut[72:69];
