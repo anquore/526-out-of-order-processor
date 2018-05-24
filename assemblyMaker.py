@@ -561,6 +561,7 @@ def main():
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
+  '''
   #shift testing
   #clear the file
   theFile = open('branchTest.arm','w')
@@ -586,7 +587,41 @@ def main():
   condBranchCommand('LE', BCOND, -8, LE, theFile)
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
+  '''
+  #clear the file
+  theFile = open('factorizer.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
   
+  #open the file to append
+  theFile = open('factorizer.arm','a')
+  
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 45, 1, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, 0, 10, 31, theFile) #8
+  
+  #eachLoop
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #0
+  
+  #eachLoopFound
+  mathCommand('DIV', DIV, 29, 0, 1, theFile)#12
+  mathCommand('MULT', MULT, 30, 29, 0, theFile)#16
+  #immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #20
+  mathCommand('SUBS', SUBS, 31, 1, 30, theFile)#24
+  
+  #branch to each loop
+  condBranchCommand('LT', BCOND, -4, LT, theFile)#28
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#32
+  
+  memoryCommand('STUR', STUR, 0, 0, 10, theFile)#36
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #40
+  immediateCommand('ADDI', ADDI, 0, 1, 29, theFile) #44
+  immediateCommand('ADDI', ADDI, 1, 29, 31, theFile) #48
+  mathCommand('SUBS', SUBS, 31, 1, 29, theFile)#52
+
+  #branch to each loop
+  condBranchCommand('LT', BCOND, -10, LT, theFile)#56
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
@@ -821,11 +856,13 @@ def condBranchCommand(name, opcode, address, RT, theFile):
 def convertToNeg(input):
   #invert the string
   newString = []
+  
   for i in range(0, len(input)):
-    if(input[i] == '0'):
+    if(input[(len(input) - 1) - i] == '0'):
       newString.append('1')
     else:
       newString.append('0')
+
       
   #add the 1
   carryin = 1
@@ -842,6 +879,7 @@ def convertToNeg(input):
     else:
       newString[i] = '0'
       carryin = 1
+      
       
   returnString = ""
   for i in range(0, len(input)):

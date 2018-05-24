@@ -96,8 +96,9 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 	//reg read/decode stage
   //predict some branches
   logic commitBranchTaken, commitingBranch, brTakenGuess;
-  logic [63:0] currentAddress, addressCommit;
-  assign currentAddress = address - 4;
+  logic [63:0] currentAddress, addressCommit, currentAddress1;
+  assign currentAddress1 = address - 4;
+  assign currentAddress = currentAddress1 >> 2;
   branchPrediction branchPredictor
   (.clk_i(clk)
   ,.reset_i(reset)

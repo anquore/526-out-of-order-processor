@@ -3,7 +3,7 @@
 // two words of the address must be 0).
 //
 // To change the file that is loaded, edit the filename here:
-`define BENCHMARK "branchTest.arm"
+`define BENCHMARK "factorizer.arm"
 //`define BENCHMARK "../benchmarks/test01_AddiB.arm"
 //`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm"
@@ -18,6 +18,9 @@
 //multAndDiv
 //RS_filling
 //MT_reg_renaming
+//shifting
+//branchTest
+//factorizer
 
 
 // How many bytes are in our memory?  Must be a power of two.

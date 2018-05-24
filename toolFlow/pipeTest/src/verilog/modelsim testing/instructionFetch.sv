@@ -17,7 +17,7 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 	//instructmem instrMem(.address, .instruction, .clk);
 	
 	//PC value
-	individualReg64 PC(.q(address), .d(newAddress1), .reset, .enable(enablePC), .clk);
+	individualReg64 PC(.q(address), .d(newAddress1), .reset, .enable(enablePC | needToRestore_i), .clk);
 	
 	//sign extenders
 	signExtend19 extend19(.valueIn(instrToRead[23:5]), .extendedOut(value19Extend));
@@ -68,7 +68,7 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 		end
 	end
 	mux2x64 adderBranchesMux (.out(couldBeNewAddress), .addr(brTaken), .muxIns(newAddressToDo));
-  assign couldBeNewAddress_o = couldBeNewAddress;
+  assign couldBeNewAddress_o = branchAddress;
 	
 	//decide if one of the calculated values should be used or a reg value
 	logic [63:0][1:0] finalNewAddressToDo; 
