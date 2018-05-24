@@ -68,6 +68,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	
 	//forwarding unit
 	logic adValcmp0, adValcmp1, adValcmp2, adValcmp3, adValcmp4, adValcmp5, adValcmp6, adValcmp7, adValcmp8, adValcmp9, adValcmp10, adValcmp11, adValcmp12, adValcmp13, adValcmp14;
+	logic fm0, fm1, fm2, fm3, fm4, fm5, fm6, fm7, fm8, fm9, fm10, fm11, fm12, fm13, fm14, fm15;
 	always_comb begin
 		adValcmp0 = ~(|(addrWrite^so1[128:65])|so1[200])&so0[129];			adValcmp1 = ~(|(addrWrite^so2[128:65])|so2[200])&so1[129];
 		adValcmp2 = ~(|(addrWrite^so3[128:65])|so3[200])&so2[129];			adValcmp3 = ~(|(addrWrite^so4[128:65])|so4[200])&so3[129];
@@ -77,9 +78,19 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adValcmp10 = ~(|(addrWrite^so11[128:65])|so11[200])&so10[129];		adValcmp11 = ~(|(addrWrite^so12[128:65])|so12[200])&so11[129];
 		adValcmp12 = ~(|(addrWrite^so13[128:65])|so13[200])&so12[129];		adValcmp13 = ~(|(addrWrite^so14[128:65])|so14[200])&so13[129];
 		adValcmp14 = ~(|(addrWrite^so15[128:65])|so15[200])&so14[129];
+		
+		fm0 = (~|(addrWrite^so0[128:65]))&so0[129];	fm1 = (~|(addrWrite^so1[128:65]))&so1[129];	fm2 = (~|(addrWrite^so2[128:65]))&so2[129];	fm3 = (~|(addrWrite^so3[128:65]))&so3[129];
+		fm4 = (~|(addrWrite^so4[128:65]))&so4[129];	fm5 = (~|(addrWrite^so5[128:65]))&so5[129];	fm6 = (~|(addrWrite^so6[128:65]))&so6[129];	fm7 = (~|(addrWrite^so7[128:65]))&so7[129];
+		fm8 = (~|(addrWrite^so8[128:65]))&so8[129];	fm9 = (~|(addrWrite^so9[128:65]))&so9[129];	fm10 = (~|(addrWrite^so10[128:65]))&so10[129];	fm11 = (~|(addrWrite^so11[128:65]))&so11[129];
+		fm12 = (~|(addrWrite^so12[128:65]))&so12[129];	fm13 = (~|(addrWrite^so13[128:65]))&so13[129];	fm14 = (~|(addrWrite^so14[128:65]))&so14[129];	fm15 = (~|(addrWrite^so15[128:65]))&so15[129];
 	end
 	assign forwards = ifAddrWrite&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
 		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14)&loadOrStore;
+	logic [3:0] forwardAddr;
+	assign forwardAddr[0]=(fm1|fm3|fm5|fm7|fm9|fm11|fm13|fm15);	assign forwardAddr[1]=(fm2|fm3|fm6|fm7|fm10|fm11|fm14|fm15);
+	assign forwardAddr[2]=(fm4|fm5|fm6|fm7|fm12|fm13|fm14|fm15);	assign forwardAddr[3]=(fm8|fm9|fm10|fm11|fm12|fm13|fm14|fm15);
+	mux16x1X64 forwardingMux(.outs(valOut[63:0]), .addr(forwardAddr), .muxIns({so15[63:0], so14[63:0], so13[63:0], so12[63:0], so11[63:0], so10[63:0], so9[63:0], so8[63:0],
+		so7[63:0], so6[63:0], so5[63:0], so4[63:0], so3[63:0], so2[63:0], so1[63:0], so0[63:0]}));
 
 	always_comb begin
 		enNew0 = LSretire|(jVal[0]&ifNew);	enNew1 = LSretire|(jVal[1]&ifNew);	enNew2 = LSretire|(jVal[2]&ifNew);	enNew3 = LSretire|(jVal[3]&ifNew);
