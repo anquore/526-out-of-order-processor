@@ -427,7 +427,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
       //forwarding
       ,.issueROBTagExec_i(tagToMem)
       ,.issueROBvalExec_i(issueExecVal)
-      ,.issueROBMemAccessExec_i(commandsAfterALU[1] | ~executionStall[0])
+      ,.issueROBMemAccessExec_i(commandsAfterALU[1])// | ~executionStall[0])
 
       ,.issueROBTagMem_i(tagToCom)
       ,.issueROBvalMem_i(issueMemVal)
@@ -442,10 +442,10 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   
   
   genvar i;
-  logic [3:0] comingFromMem;
-  assign comingFromMem[1] = commandsAfterALU[1] | ~(executionStall[1]);
-  assign comingFromMem[2] = commandsAfterALU[1];
-  assign comingFromMem[3] = commandsAfterALU[1];
+  //logic [3:0] comingFromMem;
+  //assign comingFromMem[1] = commandsAfterALU[1] | ~(executionStall[1]);
+  //assign comingFromMem[2] = commandsAfterALU[1];
+  //assign comingFromMem[3] = commandsAfterALU[1];
   generate
 		for(i=1; i < 4; i++) begin : eachEnDff
 			reservationStationx2Forward theRS
@@ -466,7 +466,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
       //forwarding
       ,.issueROBTagExec_i(tagToMem)
       ,.issueROBvalExec_i(issueExecVal)
-      ,.issueROBMemAccessExec_i(comingFromMem[i])
+      ,.issueROBMemAccessExec_i(commandsAfterALU[1])
 
       ,.issueROBTagMem_i(tagToCom)
       ,.issueROBvalMem_i(issueMemVal)
@@ -490,10 +490,10 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   logic [3:0][3:0] executeFlags;
   logic [3:0] valid_execute;
   logic [3:0] canGo;
-  
+  logic [63:0] storeValue1;
   issueExecStageALU theALU
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[0])
@@ -502,6 +502,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.reservationStationCommands_i(reservationStationCommands[0])
   ,.reservationStationTag_i(reservationStationTag[0])
   ,.readyRS_i(executionReady[0])
+  ,.RSVal3_i(storeValue)
 
   //inouts to continue through execute stage
   ,.canGo_i(canGo[0])
@@ -510,11 +511,12 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.executeVal_o(executeVal[0])
   ,.executeFlags_o(executeFlags[0])
   ,.valid_o(valid_execute[0])
+  ,.RSVal3_o(storeValue1)
   );
   
   issueExecStageShift theShifter
   (.clk_i(clk)
-  ,.reset_i(reset)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[1])
@@ -629,7 +631,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 	assign thirdWallIn[73 + (ROBsizeLog - 1):73] = tagToMem;
 	//assign thirdWallIn[138] = secondWallOut[171];
 	wallOfDFFsL77 thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
-  wallOfDFFsL64 storeStorage (.q(storeValueOut), .d(storeValue), .reset(reset | needToRestore), .enable(1'b1), .clk);
+  wallOfDFFsL64 storeStorage (.q(storeValueOut), .d(storeValue1), .reset(reset | needToRestore), .enable(1'b1), .clk);
 	
   //memory stage
   logic writeEnMem;

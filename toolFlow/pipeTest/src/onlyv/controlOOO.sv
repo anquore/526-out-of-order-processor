@@ -150,6 +150,7 @@ module controlOOO(instr, flags, commandZero, uncondBr, brTaken, memWrite, memToR
       mult = 1'b0;
       div = 1'b0;
       commandType_o = 0;
+      doingABranch_o = 0;
 		end
     else if (instr[10:0] == 11'b10101010000) begin //orr
 			reg2Loc = 1;

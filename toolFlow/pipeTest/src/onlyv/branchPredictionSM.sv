@@ -34,14 +34,16 @@ module branchPredictionSM
         else if(brTaken_i & update_i)
           state_n = alwaysTaken;
       end
-      mostlyNotTaken:
+      mostlyNotTaken: begin
         if(~brTaken_i & update_i)
           state_n = alwaysNotTaken;
         else if(brTaken_i & update_i)
           state_n = mostlyTaken;
-      alwaysNotTaken:
+      end
+      alwaysNotTaken: begin
         if(brTaken_i & update_i)
           state_n = mostlyNotTaken;
+      end
 		endcase
 	end
   
