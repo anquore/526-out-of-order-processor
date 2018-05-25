@@ -21,6 +21,9 @@
 //shifting
 //branchTest
 //factorizer
+//memIter
+//memThrash
+//ALUloop
 
 
 // How many bytes are in our memory?  Must be a power of two.

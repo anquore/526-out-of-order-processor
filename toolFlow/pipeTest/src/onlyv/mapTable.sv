@@ -58,7 +58,7 @@ module mapTable #(parameter ROBsize = 8, mapValueSize = $clog2(ROBsize+1))
   
   //compare the decode write and read commit addr
   logic addrMatch;
-  assign addrMatch = (decodeWriteAddr == commitReadAddr_i);
+  assign addrMatch = (decodeWriteAddr == commitReadAddr_i) & decodeRegWrite;
   
   //assign reset behavior
   integer l;

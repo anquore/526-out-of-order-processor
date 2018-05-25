@@ -245,7 +245,7 @@ def main():
   
   
   '''
-  '''
+  
   #ROB stalling testing and basic out of order test
   #clear the file
   theFile = open('ROB_stall_test_and_basic_OOO.arm','w')
@@ -256,35 +256,35 @@ def main():
   theFile = open('ROB_stall_test_and_basic_OOO.arm','a')
   
   #setup some starting variables
-  immediateCommand('ADDI', ADDI, 1000, 0, 31, theFile)
-  immediateCommand('ADDI', ADDI, 3, 1, 31, theFile)
-  immediateCommand('ADDI', ADDI, 8, 2, 31, theFile)
-  
+  immediateCommand('ADDI', ADDI, 1000, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 3, 1, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, 8, 2, 31, theFile)#8
+   
   #do the following math
-  mathCommand('DIV', DIV, 12, 1, 0, theFile)
-  mathCommand('AND', AND, 3, 2, 1, theFile)
-  mathCommand('ADD', ADD, 4, 2, 1, theFile)
-  mathCommand('ADDS', ADDS, 5, 2, 1, theFile)
-  mathCommand('SUB', SUB, 6, 2, 1, theFile)
-  mathCommand('SUBS', SUBS, 7, 2, 1, theFile)
-  mathCommand('OR', OR, 8, 2, 1, theFile)
-  mathCommand('XOR', XOR, 9, 2, 1, theFile)#should stall about here
-  mathCommand('OR', OR, 10, 2, 1, theFile)
-  mathCommand('XOR', XOR, 11, 2, 1, theFile)
+  mathCommand('DIV', DIV, 12, 1, 0, theFile)#12
+  mathCommand('AND', AND, 3, 2, 1, theFile)#16
+  mathCommand('ADD', ADD, 4, 2, 1, theFile)#20
+  mathCommand('ADDS', ADDS, 5, 2, 1, theFile)#24
+  mathCommand('SUB', SUB, 6, 2, 1, theFile)#28
+  mathCommand('SUBS', SUBS, 7, 2, 1, theFile)#32
+  mathCommand('OR', OR, 8, 2, 1, theFile)#36
+  mathCommand('XOR', XOR, 9, 2, 1, theFile)#40
+  mathCommand('OR', OR, 10, 2, 1, theFile)#44
+  mathCommand('XOR', XOR, 11, 2, 1, theFile)#48
   
   #test some stores/loads
-  mathCommand('MULT', MULT, 15, 1, 0, theFile)
-  memoryCommand('STUR', STUR, 0, 10, 31, theFile)
-  memoryCommand('STUR', STUR, 8, 11, 31, theFile)
-  memoryCommand('LDUR', LDUR, 0, 12, 31, theFile)
-  memoryCommand('LDUR', LDUR, 8, 13, 31, theFile)
+  mathCommand('MULT', MULT, 15, 1, 0, theFile)#52
+  memoryCommand('STUR', STUR, 0, 10, 3, theFile)#56
+  memoryCommand('STUR', STUR, 0, 11, 2, theFile)#60
+  memoryCommand('LDUR', LDUR, 0, 12, 3, theFile)#64
+  memoryCommand('LDUR', LDUR, 0, 13, 2, theFile)#68
   
   #test branching
-  immediateCommand('ADDI', ADDI, 1000, 1, 31, theFile)
-  immediateCommand('ADDI', ADDI, 3, 0, 31, theFile)
-  mathCommand('DIV', DIV, 16, 1, 0, theFile)
+  immediateCommand('ADDI', ADDI, 1000, 1, 31, theFile)#72
+  immediateCommand('ADDI', ADDI, 3, 0, 31, theFile)#76
+  mathCommand('DIV', DIV, 16, 1, 0, theFile)#80
   #R1 > R0, success
-  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)
+  mathCommand('SUBS', SUBS, 31, 0, 1, theFile)#84
   condBranchCommand('GT', BCOND, 4, GT, theFile)
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
@@ -404,7 +404,7 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
-  '''
+  
   '''
   
   #multiplication/divide test
@@ -588,6 +588,7 @@ def main():
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   
   '''
+  '''
   #clear the file
   theFile = open('factorizer.arm','w')
   theFile.write("//Starting assembly\n")
@@ -625,7 +626,178 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #clear the file
+  theFile = open('memIter.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
   
+  #open the file to append
+  theFile = open('memIter.arm','a')
+  
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 256, 1, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, 16, 25, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+  
+  #setLoop:
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#36
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
+  immediateCommand('ADDI', ADDI, 2, 1, 1, theFile) #8
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #8
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+  
+  #incrLoop:
+  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#36
+  immediateCommand('ADDI', ADDI, 16, 1, 1, theFile) #4
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#36
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+
+  #incrShift:
+  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#36
+  memoryCommand('STUR', STUR, -8, 1, 10, theFile)#36
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #8
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+
+  #halt
+  branchCommand('B', B, 0, theFile)#288
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #clear the file
+  theFile = open('memThrash.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('memThrash.arm','a')
+  
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 256, 1, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, 528, 25, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 64, 26, 31, theFile) #12
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #16
+  
+  #setLoop:
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#20
+  immediateCommand('ADDI', ADDI, 2, 1, 1, theFile) #24
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #28
+  mathCommand('SUBS', SUBS, 31, 25, 10, theFile)#32
+  condBranchCommand('LT', BCOND, -4, LT, theFile)#36
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#40
+  
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #44
+
+  #incrNextNumb:
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #48
+
+  #incrPartNumb:
+  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#52
+  immediateCommand('ADDI', ADDI, -1, 1, 1, theFile) #56
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#60
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #64
+  mathCommand('SUBS', SUBS, 31, 26, 0, theFile)#68
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#72
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#76
+
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #80
+  mathCommand('SUBS', SUBS, 31, 25, 10, theFile)#84
+  condBranchCommand('LT', BCOND, -10, LT, theFile)#88
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#92
+
+  #halt
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #clear the file
+  theFile = open('ALUloop.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('ALUloop.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 1000, 1, 31, theFile)
+  immediateCommand('ADDI', ADDI, 3, 2, 31, theFile)
+  
+  #do the following math
+  mathCommand('DIV', DIV, 12, 2, 1, theFile)
+  mathCommand('ADD', ADD, 31, 31, 31, theFile)
+  mathCommand('ADD', ADD, 3, 12, 31, theFile)
+  mathCommand('ADD', ADD, 4, 3, 31, theFile)
+  
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #clear the file
+  theFile = open('moreOOO.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('moreOOO.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 34, 0, 31, theFile)
+  immediateCommand('ADDI', ADDI, 3556, 1, 31, theFile)
+  immediateCommand('ADDI', ADDI, 142, 2, 31, theFile)
+  
+  #do the following math
+  mathCommand('MULT', MULT, 12, 1, 0, theFile)
+  mathCommand('AND', AND, 3, 2, 12, theFile)
+  mathCommand('ADD', ADD, 4, 2, 1, theFile)
+  shiftCommand('LSL', LSL, 5, 6, 2, theFile)
+  mathCommand('SUB', SUB, 6, 2, 5, theFile)
+  
+  mathCommand('DIV', DIV, 13, 1, 12, theFile)
+  mathCommand('SUBS', SUBS, 7, 2, 1, theFile)
+  mathCommand('OR', OR, 8, 2, 4, theFile)
+  memoryCommand('STUR', STUR, 0, 0, 13, theFile)
+  memoryCommand('STUR', STUR, 8, 4, 0, theFile)
+  mmediateCommand('ADDI', ADDI, 34, 10, 31, theFile)
+  memoryCommand('LDUR', LDUR, 8, 10, 0, theFile)
+  memoryCommand('LDUR', LDUR, 0, 20, 13, theFile)
+  mathCommand('OR', OR, 10, 2, 1, theFile)
+  mathCommand('XOR', XOR, 11, 2, 1, theFile)
+  
+  #test some stores/loads
+  memoryCommand(name, opcode, address, RD, RN, theFile)
+  mathCommand('MULT', MULT, 15, 8, 0, theFile)
+  mathCommand('XOR', XOR, 3, 15, 12, theFile)
+  mathCommand('ADD', ADD, 23, 2, 1, theFile)
+  shiftCommand('LSR', LSR, 21, 3, 3, theFile)
+  mathCommand('SUB', SUB, 6, 2, 15, theFile)
+  mathCommand('SUB', SUB, 24, 2, 1, theFile)
+  
+  mathCommand('DIV', DIV, 24, 4, 5, theFile)
+  shiftCommand('LSR', LSR, 26, 3, 24, theFile)
+  shiftCommand('LSR', LSR, 27, 4, 24, theFile)
+  mmediateCommand('ADDI', ADDI, 34, 30, 31, theFile)
+  mathCommand('OR', OR, 12, 2, 1, theFile)
+  mathCommand('XOR', XOR, 13, 2, 1, theFile)
+  shiftCommand('LSL', LSR, 27, 4, 24, theFile)
+  
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):

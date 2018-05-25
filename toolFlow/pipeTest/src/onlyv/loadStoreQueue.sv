@@ -7,15 +7,15 @@
 //addrWrite is the 64 bit address of a load/store
 //addrWriteROB is the 5 bit rob tag of the load/store to have addressed added
 //ifAddrWrite is high when add address
-//ignore valWrite, valWriteROB, and ifValWrite for now
+//valWrite is the load/store value, written at some time as addr
 //LSretire is when to retire the head of the list, check for conflicts, and shift list up one
 
-module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrWrite, addrWriteROB, ifAddrWrite, valWrite, valWriteROB, ifValWrite, LSretire, reset, clk);
-	output logic full, flush;
-	output logic [63:0] PCout;
-	input logic loadOrStore, ifNew, ifAddrWrite, ifValWrite;
+module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrWrite, addrWriteROB, ifAddrWrite, valWrite, LSretire, forwards, valOut, reset, clk);
+	output logic full, flush, forwards;
+	output logic [63:0] PCout, valOut;
+	input logic loadOrStore, ifNew, ifAddrWrite;
 	input logic [63:0] PCin, addrWrite, valWrite;
-	input logic [4:0] ROBin, addrWriteROB, valWriteROB;
+	input logic [4:0] ROBin, addrWriteROB;
 	input logic LSretire, reset, clk;
 	
 	logic [200:0] so0, so1, so2, so3, so4, so5, so6, so7, so8, so9, so10, so11, so12, so13, so14, so15;
@@ -27,15 +27,13 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	logic vVal0, vVal1, vVal2, vVal3, vVal4, vVal5, vVal6, vVal7, vVal8, vVal9, vVal10, vVal11, vVal12, vVal13, vVal14, vVal15;
 	logic [63:0] val0, val1, val2, val3, val4, val5, val6, val7, val8, val9, val10, val11, val12, val13, val14, val15;
 	logic [4:0] rob0, rob1, rob2, rob3, rob4, rob5, rob6, rob7, rob8, rob9, rob10, rob11, rob12, rob13, rob14, rob15;
- //enable control
+	//enable control
 	logic enNew0, enNew1, enNew2, enNew3, enNew4, enNew5, enNew6, enNew7, enNew8, enNew9, enNew10, enNew11, enNew12, enNew13, enNew14, enNew15;
 	logic enAddr0, enAddr1, enAddr2, enAddr3, enAddr4, enAddr5, enAddr6, enAddr7, enAddr8, enAddr9, enAddr10, enAddr11, enAddr12, enAddr13, enAddr14, enAddr15;
 	logic enVal0, enVal1, enVal2, enVal3, enVal4, enVal5, enVal6, enVal7, enVal8, enVal9, enVal10, enVal11, enVal12, enVal13, enVal14, enVal15;
-  logic [15:0] jVal;
-  logic maddr0, maddr1, maddr2, maddr3, maddr4, maddr5, maddr6, maddr7, maddr8, maddr9, maddr10, maddr11, maddr12, maddr13, maddr14, maddr15;
-	//logic mvVal0, mvVal1, mvVal2, mvVal3, mvVal4, mvVal5, mvVal6, mvVal7, mvVal8, mvVal9, mvVal10, mvVal11, mvVal12, mvVal13, mvVal14, mvVal15;
-	logic mval0, mval1, mval2, mval3, mval4, mval5, mval6, mval7, mval8, mval9, mval10, mval11, mval12, mval13, mval14, mval15;
-  logic [3:0] tailAddr;
+  	logic [15:0] jVal;
+  	logic maddr0, maddr1, maddr2, maddr3, maddr4, maddr5, maddr6, maddr7, maddr8, maddr9, maddr10, maddr11, maddr12, maddr13, maddr14, maddr15;
+  	logic [3:0] tailAddr;
 	//reg structure: LoadStore (load 1, store 0)[200], valid_PC[199], PC (64 bit)[198:135], ROBid (5 bit) [134:130], valid_addr[129], addr (64 bit)[128:65], valid_val[64], val (64 bit)[63:0]
 	loadStoreRegister reg0(.out(so0), .newIn({LS0, vpc0, pc0, rob0}), .enNew(enNew0), .addrIn({vaddr0, addr0}), .enAddr(enAddr0), .valIn({vVal0, val0}), .enVal(enVal0), .reset, .clk);
 	loadStoreRegister reg1(.out(so1), .newIn({LS1, vpc1, pc1, rob1}), .enNew(enNew1), .addrIn({vaddr1, addr1}), .enAddr(enAddr1), .valIn({vVal1, val1}), .enVal(enVal1), .reset, .clk);
@@ -67,7 +65,32 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];
 	end
 	assign flush = (adcmp1|adcmp2|adcmp3|adcmp4|adcmp5|adcmp6|adcmp7|adcmp8|adcmp9|adcmp10|adcmp11|adcmp12|adcmp13|adcmp14|adcmp15)&~so0[200];
+	
+	//forwarding unit
+	logic adValcmp0, adValcmp1, adValcmp2, adValcmp3, adValcmp4, adValcmp5, adValcmp6, adValcmp7, adValcmp8, adValcmp9, adValcmp10, adValcmp11, adValcmp12, adValcmp13, adValcmp14;
+	logic fm0, fm1, fm2, fm3, fm4, fm5, fm6, fm7, fm8, fm9, fm10, fm11, fm12, fm13, fm14, fm15;
+	always_comb begin
+		adValcmp0 = ~(|(addrWrite^so1[128:65])|so1[200])&so0[129];			adValcmp1 = ~(|(addrWrite^so2[128:65])|so2[200])&so1[129];
+		adValcmp2 = ~(|(addrWrite^so3[128:65])|so3[200])&so2[129];			adValcmp3 = ~(|(addrWrite^so4[128:65])|so4[200])&so3[129];
+		adValcmp4 = ~(|(addrWrite^so5[128:65])|so5[200])&so4[129];			adValcmp5 = ~(|(addrWrite^so6[128:65])|so6[200])&so5[129];
+		adValcmp6 = ~(|(addrWrite^so7[128:65])|so7[200])&so6[129];			adValcmp7 = ~(|(addrWrite^so8[128:65])|so8[200])&so7[129];
+		adValcmp8 = ~(|(addrWrite^so9[128:65])|so9[200])&so8[129];			adValcmp9 = ~(|(addrWrite^so10[128:65])|so10[200])&so9[129];
+		adValcmp10 = ~(|(addrWrite^so11[128:65])|so11[200])&so10[129];		adValcmp11 = ~(|(addrWrite^so12[128:65])|so12[200])&so11[129];
+		adValcmp12 = ~(|(addrWrite^so13[128:65])|so13[200])&so12[129];		adValcmp13 = ~(|(addrWrite^so14[128:65])|so14[200])&so13[129];
+		adValcmp14 = ~(|(addrWrite^so15[128:65])|so15[200])&so14[129];
 		
+		fm0 = (~|(addrWrite^so0[128:65]))&so0[129];	fm1 = (~|(addrWrite^so1[128:65]))&so1[129];	fm2 = (~|(addrWrite^so2[128:65]))&so2[129];	fm3 = (~|(addrWrite^so3[128:65]))&so3[129];
+		fm4 = (~|(addrWrite^so4[128:65]))&so4[129];	fm5 = (~|(addrWrite^so5[128:65]))&so5[129];	fm6 = (~|(addrWrite^so6[128:65]))&so6[129];	fm7 = (~|(addrWrite^so7[128:65]))&so7[129];
+		fm8 = (~|(addrWrite^so8[128:65]))&so8[129];	fm9 = (~|(addrWrite^so9[128:65]))&so9[129];	fm10 = (~|(addrWrite^so10[128:65]))&so10[129];	fm11 = (~|(addrWrite^so11[128:65]))&so11[129];
+		fm12 = (~|(addrWrite^so12[128:65]))&so12[129];	fm13 = (~|(addrWrite^so13[128:65]))&so13[129];	fm14 = (~|(addrWrite^so14[128:65]))&so14[129];	fm15 = (~|(addrWrite^so15[128:65]))&so15[129];
+	end
+	assign forwards = ifAddrWrite&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
+		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14)&loadOrStore;
+	logic [3:0] forwardAddr;
+	assign forwardAddr[0]=(fm1|fm3|fm5|fm7|fm9|fm11|fm13|fm15);	assign forwardAddr[1]=(fm2|fm3|fm6|fm7|fm10|fm11|fm14|fm15);
+	assign forwardAddr[2]=(fm4|fm5|fm6|fm7|fm12|fm13|fm14|fm15);	assign forwardAddr[3]=(fm8|fm9|fm10|fm11|fm12|fm13|fm14|fm15);
+	mux16x1X64 forwardingMux(.outs(valOut[63:0]), .addr(forwardAddr), .muxIns({so15[63:0], so14[63:0], so13[63:0], so12[63:0], so11[63:0], so10[63:0], so9[63:0], so8[63:0],
+		so7[63:0], so6[63:0], so5[63:0], so4[63:0], so3[63:0], so2[63:0], so1[63:0], so0[63:0]}));
 
 	always_comb begin
 		enNew0 = LSretire|(jVal[0]&ifNew);	enNew1 = LSretire|(jVal[1]&ifNew);	enNew2 = LSretire|(jVal[2]&ifNew);	enNew3 = LSretire|(jVal[3]&ifNew);
@@ -80,10 +103,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		enAddr8 = LSretire|(maddr8&ifAddrWrite);	enAddr9 = LSretire|(maddr9&ifAddrWrite);	enAddr10 = LSretire|(maddr10&ifAddrWrite);	enAddr11 = LSretire|(maddr11&ifAddrWrite);
 		enAddr12 = LSretire|(maddr12&ifAddrWrite);	enAddr13 = LSretire|(maddr13&ifAddrWrite);	enAddr14 = LSretire|(maddr14&ifAddrWrite);	enAddr15 = LSretire|(maddr15&ifAddrWrite);
 		
-		enVal0 = LSretire|(mval0&ifValWrite);	enVal1 = LSretire|(mval1&ifValWrite);	enVal2 = LSretire|(mval2&ifValWrite);	enVal3 = LSretire|(mval3&ifValWrite);
-		enVal4 = LSretire|(mval4&ifValWrite);	enVal5 = LSretire|(mval5&ifValWrite);	enVal6 = LSretire|(mval6&ifValWrite);	enVal7 = LSretire|(mval7&ifValWrite);
-		enVal8 = LSretire|(mval8&ifValWrite);	enVal9 = LSretire|(mval9&ifValWrite);	enVal10 = LSretire|(mval10&ifValWrite);	enVal11 = LSretire|(mval11&ifValWrite);
-		enVal12 = LSretire|(mval12&ifValWrite);	enVal13 = LSretire|(mval13&ifValWrite);	enVal14 = LSretire|(mval14&ifValWrite);	enVal15 = LSretire|(mval15&ifValWrite);
+		enVal0 = enAddr0;			enVal1 = enAddr1;			enVal2 = enAddr2;			enVal3 = enAddr3;
+		enVal4 = enAddr4;			enVal5 = enAddr5;			enVal6 = enAddr6;			enVal7 = enAddr7;
+		enVal8 = enAddr8;			enVal9 = enAddr9;			enVal10 = enAddr10;			enVal11 = enAddr11;
+		enVal12 = enAddr12;			enVal13 = enAddr13;			enVal14 = enAddr14;			enVal15 = enAddr15;
 	end
 	
 	//shift muxes
@@ -126,15 +149,15 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		addr8 = maddr8?addrWrite:so9[128:65];	addr9 = maddr9?addrWrite:so10[128:65];	addr10 = maddr10?addrWrite:so11[128:65];addr11 = maddr11?addrWrite:so12[128:65];
 		addr12 = maddr12?addrWrite:so13[128:65];addr13 = maddr13?addrWrite:so14[128:65];addr14 = maddr14?addrWrite:so15[128:65];addr15 = {64{maddr15}}&addrWrite;
 		
-		vVal0 = so1[64]|mval0;			vVal1 = so2[64]|mval1;			vVal2 = so3[64]|mval2;			vVal3 = so4[64]|mval3;
-		vVal4 = so5[64]|mval4;			vVal5 = so6[64]|mval5;			vVal6 = so7[64]|mval6;			vVal7 = so8[64]|mval7;
-		vVal8 = so9[64]|mval8;			vVal9 = so10[64]|mval9;			vVal10 = so11[64]|mval10;		vVal11 = so12[64]|mval11;
-		vVal12 = so13[64]|mval12;		vVal13 = so14[64]|mval13;		vVal14 = so15[64]|mval14;		vVal15 = mval15;
+		vVal0 = 0;				vVal1 = 0;				vVal2 = 0;				vVal3 = 0;
+		vVal4 = 0;				vVal5 = 0;				vVal6 = 0;				vVal7 = 0;
+		vVal8 = 0;				vVal9 = 0;				vVal10 = 0;				vVal11 = 0;
+		vVal12 = 0;				vVal13 = 0;				vVal14 = 0;				vVal15 = 0;
 		
-		val0 = mval0?valWrite:so1[63:0];	val1 = mval1?valWrite:so2[63:0];	val2 = mval2?valWrite:so3[63:0];	val3 = mval3?valWrite:so4[63:0];
-		val4 = mval4?valWrite:so5[63:0];	val5 = mval5?valWrite:so6[63:0];	val6 = mval6?valWrite:so7[63:0];	val7 = mval7?valWrite:so8[63:0];
-		val8 = mval8?valWrite:so9[63:0];	val9 = mval9?valWrite:so10[63:0];	val10 = mval10?valWrite:so11[63:0];	val11 = mval11?valWrite:so12[63:0];
-		val12 = mval12?valWrite:so13[63:0];	val13 = mval13?valWrite:so14[63:0];	val14 = mval14?valWrite:so15[63:0];	val15 = valWrite;
+		val0 = maddr0?valWrite:so1[63:0];	val1 = maddr1?valWrite:so2[63:0];	val2 = maddr2?valWrite:so3[63:0];	val3 = maddr3?valWrite:so4[63:0];
+		val4 = maddr4?valWrite:so5[63:0];	val5 = maddr5?valWrite:so6[63:0];	val6 = maddr6?valWrite:so7[63:0];	val7 = maddr7?valWrite:so8[63:0];
+		val8 = maddr8?valWrite:so9[63:0];	val9 = maddr9?valWrite:so10[63:0];	val10 = maddr10?valWrite:so11[63:0];	val11 = maddr11?valWrite:so12[63:0];
+		val12 = maddr12?valWrite:so13[63:0];	val13 = maddr13?valWrite:so14[63:0];	val14 = maddr14?valWrite:so15[63:0];	val15 = addrWrite;
 	end
 	
 	//mux control search ROB tags

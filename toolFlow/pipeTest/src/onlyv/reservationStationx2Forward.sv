@@ -91,9 +91,17 @@ module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(
   assign busyFlipped[1] = ~RS_busy[1];
   assign busyFlipped[0] = ~RS_busy[0];
   
-  bsg_priority_encode_one_hot_out2 writeEncoderUnit
-  (.i(busyFlipped)
-  ,.o(writeEncoder));
+  //bsg_priority_encode_one_hot_out2 writeEncoderUnit
+  //(.i(busyFlipped)
+  //,.o(writeEncoder));
+  always_comb begin
+    if(busyFlipped[0])
+      writeEncoder = 2'b01;
+    else if(busyFlipped[1])
+      writeEncoder = 2'b10;
+    else
+      writeEncoder = 2'b00;
+  end
   
   //combine the input write enable with the priority ones
   assign RSwriteEns[1] = writeEncoder[1] & decodeWriteEn_i;
@@ -102,9 +110,17 @@ module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(
   //issue stage behavior
   //use a priority encoder to select which RS ready to send
   logic [1:0] readyToListenToo;
-  bsg_priority_encode_one_hot_out2 outEncoderUnit
-  (.i(RS_ready)
-  ,.o(readyToListenToo));
+  //bsg_priority_encode_one_hot_out2 outEncoderUnit
+  //(.i(RS_ready)
+  //,.o(readyToListenToo));
+  always_comb begin
+    if(RS_ready[0])
+      readyToListenToo = 2'b01;
+    else if(RS_ready[1])
+      readyToListenToo = 2'b10;
+    else
+      readyToListenToo = 2'b00;
+  end
   
   //combine the stall and the ready signal
   assign RSstalls[1] = (~readyToListenToo[1]) | stall_i;

@@ -427,7 +427,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
       //forwarding
       ,.issueROBTagExec_i(tagToMem)
       ,.issueROBvalExec_i(issueExecVal)
-      ,.issueROBMemAccessExec_i(commandsAfterALU[1])
+      ,.issueROBMemAccessExec_i(commandsAfterALU[1] | ~executionStall[0])
 
       ,.issueROBTagMem_i(tagToCom)
       ,.issueROBvalMem_i(issueMemVal)
@@ -442,6 +442,10 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   
   
   genvar i;
+  logic [3:0] comingFromMem;
+  assign comingFromMem[1] = commandsAfterALU[1] | ~(executionStall[1]);
+  assign comingFromMem[2] = commandsAfterALU[1];
+  assign comingFromMem[3] = commandsAfterALU[1];
   generate
 		for(i=1; i < 4; i++) begin : eachEnDff
 			reservationStationx2Forward theRS
@@ -462,7 +466,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
       //forwarding
       ,.issueROBTagExec_i(tagToMem)
       ,.issueROBvalExec_i(issueExecVal)
-      ,.issueROBMemAccessExec_i(commandsAfterALU[1])
+      ,.issueROBMemAccessExec_i(comingFromMem[i])
 
       ,.issueROBTagMem_i(tagToCom)
       ,.issueROBvalMem_i(issueMemVal)
@@ -643,8 +647,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   assign LSQmemTag[ROBsizeLog - 1:0] = thirdWallOut[73 + (ROBsizeLog - 1):73];
   assign LSQmemTag[4] = 0;
   assign LSQaddrWrite = thirdWallOut[2] | thirdWallOut[3];
-  
-  //forwarding with LSQ
+							
+	//forwarding with LSQ
   logic [63:0] LSQorMem; 
   assign LSQvalWrite = storeValueOut;
   
@@ -751,14 +755,12 @@ module completeDataPathPipelined_testbench();
 	logic [11:0] instr;
 	logic [3:0] flags;
 	logic commandZero;
-
 	completeDataPathPipelined dut (.clk, .uncondBr, .brTaken, .memWrite, .memToReg, .reset, 
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm,
 								.BRMI, .saveCond, .regRD, .instr, .flags, .commandZero, .read_enable,
 .needToForward(1'b1), .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath(2'h0), .leftShift(1'b0), .mult(1'b0), .div(1'b0)); //fake inputs and dead outputs to make ports match, fix later
 		wire negative, overflow, whichFlags, zero, carry_out; //dead wires, fix later
 	assign regRD = instr[4:0]; 
-
 	// Set up the clock
 	parameter ClockDelay = 1000;
 	initial begin ;
@@ -782,4 +784,3 @@ module completeDataPathPipelined_testbench();
 		$stop(); // end the simulation
 	end
 endmodule*/
-

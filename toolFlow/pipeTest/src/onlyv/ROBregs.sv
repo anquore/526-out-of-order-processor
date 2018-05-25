@@ -13,6 +13,8 @@ module ROBregs #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
 ,completionWriteEn_i
 ,completionWriteData_i
 
+,completionWriteDataExtra_i
+,completionWriteDataExtra_o
 
 ,commitReadAddr_i
 ,commitReadData_o);
@@ -22,6 +24,8 @@ module ROBregs #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
   input logic [ROBsize - 1:0] resets_i;
 	input logic [8:0]	decodeWriteData_i;
   input logic [69:0] completionWriteData_i;
+  input logic [63:0] completionWriteDataExtra_i;
+  output logic [63:0] completionWriteDataExtra_o;
 	input logic 			decodeWriteEn_i, clk_i, completionWriteEn_i;
 	output logic [69:0]	decodeReadData1_o, decodeReadData2_o;
   output logic [78:0] commitReadData_o;
@@ -58,6 +62,7 @@ module ROBregs #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
 	
   
   logic [ROBsize - 1:0][69:0] completionDataOut;
+  logic [ROBsize - 1:0][63:0] completionDataOutExtra;
   assign decodeReadData1_o = completionDataOut[decodeReadAddr1_i];
   assign decodeReadData2_o = completionDataOut[decodeReadAddr2_i];
   
@@ -81,16 +86,23 @@ module ROBregs #(parameter ROBsize = 8, addrSize = $clog2(ROBsize))
   
 	//decoder5x32 theCompletionDecoder (.decodedCompletion, .addr(decodeWriteAddr_i), .enable(decodeWriteEn_i));
 	
-	genvar l;
+	genvar l, q;
 	
 	//generate a collection of ROBsize different 70 bit registers each with their own enable and reset signal to holds values and valids for value and flags
 	generate
 		for(l=0; l<ROBsize; l++) begin : eachCompletionReg
 			wallOfDFFsL70 completionReg (.q(completionDataOut[l][69:0]), .d(completionWriteData_i[69:0]), .reset(resets_i[l]), .enable(decodedCompletion[l]), .clk(clk_i));
 		end
+	endgenerate
+  
+  generate
+		for(q=0; q<ROBsize; q++) begin : eachAddressReg
+			wallOfDFFsL64 addressReg (.q(completionDataOutExtra[q]), .d(completionWriteDataExtra_i), .reset(resets_i[q]), .enable(decodedCompletion[q]), .clk(clk_i));
+		end
 	endgenerate 
 	
   //commit behavior
+  assign completionWriteDataExtra_o = completionDataOutExtra[commitReadAddr_i];
   assign commitReadData_o[69:0] = completionDataOut[commitReadAddr_i];
   assign commitReadData_o[78:70] = managementDataOut[commitReadAddr_i];
 	

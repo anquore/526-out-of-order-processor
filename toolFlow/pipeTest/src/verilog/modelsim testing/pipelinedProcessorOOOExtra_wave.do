@@ -139,39 +139,39 @@ add wave -noupdate -group ALUExec -radix decimal /pipelinedProcessorOOOExtra_tes
 add wave -noupdate -group ALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reset_i
 add wave -noupdate -group ALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/stallRS_o
 add wave -noupdate -group ALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/valid_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/RDvalue
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
-add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBhead_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBsize
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBsizeLog
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/RegWrite_o
-add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/WriteData_o
-add wave -noupdate -expand -group Commit -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/WriteRegister_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/addrSize
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/carry_out
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/clk_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/commandType
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/correctBranch
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/dataValid
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/flagData
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/flagValid
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/headMatch
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapResets
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapResets_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/needToRestore
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/negative
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/overflow
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regCommitAddr_o
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regCommitRead_i
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regWrite
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/reset_i
-add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/restorePoint
-add wave -noupdate -expand -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/theData
-add wave -noupdate -expand -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/zero
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/RDvalue
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBcommitReadData_i
+add wave -noupdate -group Commit -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBhead_i
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBsize
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBsizeLog
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/ROBupdateHead_o
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/RegWrite_o
+add wave -noupdate -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/WriteData_o
+add wave -noupdate -group Commit -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/WriteRegister_o
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/addrSize
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/carry_out
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/clk_i
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/commandType
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/correctBranch
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/dataValid
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/flagData
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/flagValid
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/headMatch
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/i
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapCommitReadAddr_o
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapCommitReadData_i
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapResets
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/mapResets_o
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/needToRestore
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/negative
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/overflow
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regCommitAddr_o
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regCommitRead_i
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/regWrite
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/reset_i
+add wave -noupdate -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/restorePoint
+add wave -noupdate -group Commit -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/theData
+add wave -noupdate -group Commit /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCommit/zero
 add wave -noupdate -group ROBregs /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/a
 add wave -noupdate -group ROBregs /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/addrSize
 add wave -noupdate -group ROBregs /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/b
@@ -428,13 +428,11 @@ add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbe
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/loadOrStore
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/ifNew
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/ifAddrWrite
-add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/ifValWrite
 add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/PCin
 add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/addrWrite
 add wave -noupdate -group LSQ -radix unsigned -childformat {{{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[63]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[62]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[61]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[60]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[59]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[58]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[57]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[56]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[55]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[54]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[53]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[52]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[51]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[50]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[49]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[48]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[47]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[46]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[45]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[44]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[43]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[42]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[41]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[40]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[39]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[38]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[37]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[36]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[35]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[34]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[33]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[32]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[31]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[30]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[29]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[28]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[27]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[26]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[25]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[24]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[23]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[22]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[21]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[20]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[19]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[18]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[17]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[16]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[15]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[14]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[13]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[12]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[11]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[10]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[9]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[8]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[7]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[6]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[5]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[4]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[3]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[2]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[1]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[0]} -radix unsigned}} -subitemconfig {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[63]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[62]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[61]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[60]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[59]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[58]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[57]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[56]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[55]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[54]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[53]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[52]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[51]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[50]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[49]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[48]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[47]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[46]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[45]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[44]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[43]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[42]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[41]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[40]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[39]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[38]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[37]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[36]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[35]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[34]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[33]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[32]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[31]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[30]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[29]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[28]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[27]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[26]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[25]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[24]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[23]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[22]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[21]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[20]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[19]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[18]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[17]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[16]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[15]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[14]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[13]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[12]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[11]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[10]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[9]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[8]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[7]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[6]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[5]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[4]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[3]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[2]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[1]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite[0]} {-height 15 -radix unsigned}} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWrite
 add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/ROBin
 add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/addrWriteROB
-add wave -noupdate -group LSQ -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valWriteROB
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/LSretire
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/reset
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/clk
@@ -470,6 +468,8 @@ add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataP
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/so14
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/so15
 add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/tailAddr
+add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/forwards
+add wave -noupdate -group LSQ /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theLSQ/valOut
 add wave -noupdate -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/storeValue
 add wave -noupdate -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/storeValueOut
 add wave -noupdate -group BranchPredictor /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/branchPredictor/anUpdate_i
@@ -485,45 +485,83 @@ add wave -noupdate -group BranchPredictor /pipelinedProcessorOOOExtra_testbench/
 add wave -noupdate /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/address
 add wave -noupdate /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/couldBeNewAddress
 add wave -noupdate /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/decodeAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/BRMI
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/address
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/basicAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/brTaken
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/branchAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/clk
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/couldBeNewAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/couldBeNewAddress_o
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/enablePC
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/extendDataToMux
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/finalNewAddressToDo
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/finalNewAddressToDo1
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/i
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/imem_address_o
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/imem_instruction_i
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/instrToRead
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/instruction
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/j
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/k
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/l
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/m
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/n
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/needToRestore_i
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddress1
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddressToDo
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/oldAddress
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/p
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/q
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/regPC
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/reset
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/restorePoint_i
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/shifted
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/toShifter
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/uncondBr
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/value19Extend
-add wave -noupdate -expand -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/value26Extend
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/BRMI
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/address
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/basicAddress
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/brTaken
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/branchAddress
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/clk
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/couldBeNewAddress
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/couldBeNewAddress_o
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/enablePC
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/extendDataToMux
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/finalNewAddressToDo
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/finalNewAddressToDo1
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/i
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/imem_address_o
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/imem_instruction_i
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/instrToRead
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/instruction
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/j
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/k
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/l
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/m
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/n
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/needToRestore_i
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddress
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddress1
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/newAddressToDo
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/oldAddress
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/p
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/q
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/regPC
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/reset
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/restorePoint_i
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/shifted
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/toShifter
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/uncondBr
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/value19Extend
+add wave -noupdate -group InstrFetch /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/instructionGetter/value26Extend
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag1_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag2_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag3_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagCom_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagExec_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagMem_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval1_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval2_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval3_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalCom_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalExec_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalMem_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeWriteEn_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/clk_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reset_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/stall_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBMemAccessExec_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeCommands_i
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal1_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal2_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal3_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationCommands_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationTag_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/ready_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/stall_o
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RSwriteEns
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RSstalls
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_busy
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_ready
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val1
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val2
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val3
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_commands
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_tag
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/busyFlipped
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/writeEncoder
+add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/readyToListenToo
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {5980368 ps} 0}
+WaveRestoreCursors {{Cursor 1} {9247 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 224
 configure wave -valuecolwidth 122
@@ -539,4 +577,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {5971324 ps} {6004668 ps}
+WaveRestoreZoom {0 ps} {27409 ps}
