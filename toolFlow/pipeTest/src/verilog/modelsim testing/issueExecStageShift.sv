@@ -35,21 +35,106 @@ module issueExecStageShift #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+
   output logic [3:0] executeFlags_o;
   output logic valid_o;
   
+  localparam eWaiting = 1'b0, eStalling = 1'b1;
+  logic state_r, state_n;
+
+  //state_e state_r, state_n;
+
+  //update the state on the clock edge
+  //always_ff @(posedge clk_i) begin
+    //state_r <= reset_i ? eWaiting : state_n;
+  //end
+  always_ff @(posedge clk_i) begin
+    if(reset_i)
+      state_r <= eWaiting;
+    else
+      state_r <= state_n;   
+  end
+  
+  //depending on the current state and control logic decide what the next state is
+  always_comb begin
+    //removed unique
+    case (state_r)
+      eWaiting: begin
+        if(readyRS_i)
+          state_n = eStalling;
+        else
+          state_n = eWaiting;
+      end
+      eStalling: begin
+        if(canGo_i & (~readyRS_i))
+          state_n = eWaiting;
+        else
+          state_n = eStalling;
+      end
+    endcase
+  end
+
+  //logic dataValid;
+  //based on the current state set the control logic
+  always_comb begin
+    //removed unique
+    case (state_r)
+      eWaiting: begin
+        valid_o = 0;
+      end eStalling: begin
+        valid_o = 1;
+      end
+    endcase
+  end
+  
+  logic enableFlops;
+  assign enableFlops = (state_r == eWaiting) | (state_r == eStalling & canGo_i & readyRS_i);
+  
+  //save the incoming data and tag when valid_in is high
+  
+  logic [9:0] executeCommands;
+  wallOfDFFsL10 commandsWall
+  (.q(executeCommands)
+  ,.d(reservationStationCommands_i)
+  ,.reset(reset_i)
+  ,.enable(enableFlops)
+  ,.clk(clk_i));
+  
+  logic [ROBsizeLog-1:0] executeTag;
+  wallOfDFFsL4 tagWall
+  (.q(executeTag)
+  ,.d(reservationStationTag_i)
+  ,.reset(reset_i)
+  ,.enable(enableFlops)
+  ,.clk(clk_i));
+  
+  logic [63:0] storedValue1;
+  wallOfDFFsL64 storedWall1
+  (.q(storedValue1)
+  ,.d(reservationStationVal1_i)
+  ,.reset(reset_i)
+  ,.enable(enableFlops)
+  ,.clk(clk_i));
+  
+  logic [63:0] storedValue2;
+  wallOfDFFsL64 storedWall2
+  (.q(storedValue2)
+  ,.d(reservationStationVal2_i)
+  ,.reset(reset_i)
+  ,.enable(enableFlops)
+  ,.clk(clk_i));
+  
   //the shifter
   shifter theShifter
   (.out(executeVal_o)
-  ,.shamt(reservationStationVal2_i[5:0])
-  ,.left(reservationStationCommands_i[7])
+  ,.shamt(storedValue2[5:0])
+  ,.left(executeCommands[7])
   ,.sign(1'b0)
-  ,.in(reservationStationVal1_i));
+  ,.in(storedValue1));
   
   assign executeFlags_o = 0;
   
   //assign outputs
-  assign executeTag_o = reservationStationTag_i;
-  assign executeCommands_o = reservationStationCommands_i;
-  assign stallRS_o = ~canGo_i;
-  assign valid_o = readyRS_i;
+  assign executeTag_o = executeTag;
+  assign executeCommands_o = executeCommands;
+  assign stallRS_o = ~enableFlops;
+  //assign valid_o = readyRS_i;
   
 endmodule
 

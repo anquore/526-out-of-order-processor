@@ -9,6 +9,7 @@ module issueExecStageALU #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
 ,reservationStationCommands_i
 ,reservationStationTag_i
 ,readyRS_i
+,RSVal3_i
 
 //inouts to continue through execute stage
 ,canGo_i
@@ -17,11 +18,12 @@ module issueExecStageALU #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
 ,executeVal_o
 ,executeFlags_o
 ,valid_o
+,RSVal3_o
 );
   input reset_i, clk_i;
   
   //Reservation station inouts
-  input logic [63:0] reservationStationVal1_i, reservationStationVal2_i;
+  input logic [63:0] reservationStationVal1_i, reservationStationVal2_i, RSVal3_i;
   input logic [9:0] reservationStationCommands_i;
   input logic [ROBsizeLog-1:0] reservationStationTag_i;
   input logic readyRS_i;
@@ -29,61 +31,111 @@ module issueExecStageALU #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
   
   //from the execution decision unit
   input logic canGo_i;
-  output logic [63:0] executeVal_o;
+  output logic [63:0] executeVal_o, RSVal3_o;
   output logic [9:0] executeCommands_o;
   output logic [ROBsizeLog-1:0] executeTag_o;
   output logic [3:0] executeFlags_o;
   output logic valid_o;
   
+  localparam eWaiting = 1'b0, eStalling = 1'b1;
+  logic state_r, state_n;
+
+  //state_e state_r, state_n;
+
+  //update the state on the clock edge
+  //always_ff @(posedge clk_i) begin
+    //state_r <= reset_i ? eWaiting : state_n;
+  //end
+  always_ff @(posedge clk_i) begin
+    if(reset_i)
+      state_r <= eWaiting;
+    else
+      state_r <= state_n;   
+  end
+  
+  //depending on the current state and control logic decide what the next state is
+  always_comb begin
+    //removed unique
+    case (state_r)
+      eWaiting: begin
+        if(readyRS_i)
+          state_n = eStalling;
+        else
+          state_n = eWaiting;
+      end
+      eStalling: begin
+        if(canGo_i & (~readyRS_i))
+          state_n = eWaiting;
+        else
+          state_n = eStalling;
+      end
+    endcase
+  end
+
+  //logic dataValid;
+  //based on the current state set the control logic
+  always_comb begin
+    //removed unique
+    case (state_r)
+      eWaiting: begin
+        valid_o = 0;
+      end eStalling: begin
+        valid_o = 1;
+      end
+    endcase
+  end
+  
+  logic enableFlops;
+  assign enableFlops = (state_r == eWaiting) | (state_r == eStalling & canGo_i & readyRS_i);
+  
   //save the incoming data and tag when valid_in is high
-  /*
+  
   logic [9:0] executeCommands;
-  wallOfDFFs #(.LENGTH(10)) commandsWall
+  wallOfDFFsL10 commandsWall
   (.q(executeCommands)
   ,.d(reservationStationCommands_i)
   ,.reset(reset_i)
-  ,.enable(~canGo_i)
+  ,.enable(enableFlops)
   ,.clk(clk_i));
   
   logic [ROBsizeLog-1:0] executeTag;
-  wallOfDFFs #(.LENGTH(ROBsizeLog)) tagWall
+  wallOfDFFsL4 tagWall
   (.q(executeTag)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)
-  ,.enable(canGo_i)
+  ,.enable(enableFlops)
   ,.clk(clk_i));
   
   logic [63:0] storedValue1;
-  wallOfDFFs #(.LENGTH(64)) storedWall1
+  wallOfDFFsL64 storedWall1
   (.q(storedValue1)
   ,.d(reservationStationVal1_i)
   ,.reset(reset_i)
-  ,.enable(canGo_i)
+  ,.enable(enableFlops)
   ,.clk(clk_i));
   
   logic [63:0] storedValue2;
-  wallOfDFFs #(.LENGTH(64)) storedWall2
+  wallOfDFFsL64 storedWall2
   (.q(storedValue2)
   ,.d(reservationStationVal2_i)
   ,.reset(reset_i)
-  ,.enable(canGo_i)
+  ,.enable(enableFlops)
   ,.clk(clk_i));
   
-  //ready signal
-  logic storedReady;
-  enableD_FF readyStorage
-  (.q(storedReady)
-  ,.d(readyRS_i)
+  
+  wallOfDFFsL64 storedWall3
+  (.q(RSVal3_o)
+  ,.d(RSVal3_i)
   ,.reset(reset_i)
-  ,.enable(canGo_i)
+  ,.enable(enableFlops)
   ,.clk(clk_i));
-  */
+
   
   //the ALU
   alu theALU 
-  (.A(reservationStationVal1_i)
-  ,.B(reservationStationVal2_i)
-  ,.cntrl(reservationStationCommands_i[4:2])
+  (.A(storedValue1)
+  ,.B(storedValue2)
+  ,.cntrl(executeCommands[4:2])
   ,.result(executeVal_o)
   ,.negative(executeFlags_o[0])
   ,.zero(executeFlags_o[1])
@@ -92,10 +144,10 @@ module issueExecStageALU #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
   
 
   //assign outputs
-  assign executeTag_o = reservationStationTag_i;
-  assign executeCommands_o = reservationStationCommands_i;
-  assign stallRS_o = ~canGo_i;
-  assign valid_o = readyRS_i;
+  assign executeTag_o = executeTag;
+  assign executeCommands_o = executeCommands;
+  assign stallRS_o = ~enableFlops;
+  //assign valid_o = readyRS_i;
   
 endmodule
 

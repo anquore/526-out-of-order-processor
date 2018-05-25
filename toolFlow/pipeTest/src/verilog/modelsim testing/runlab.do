@@ -109,6 +109,7 @@ vlog "./wallOfDFFsX65.sv"
 vlog "./branchPrediction.sv"
 vlog "./branchPredictionSM.sv"
 vlog "./mux16x1x64.sv"
+#vlog "./wallOfDFFs.sv"
 
 
 # Call vsim to invoke simulator

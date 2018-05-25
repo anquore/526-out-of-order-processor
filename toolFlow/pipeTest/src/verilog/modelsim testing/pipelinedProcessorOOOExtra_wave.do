@@ -560,8 +560,29 @@ add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/t
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/busyFlipped
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/writeEncoder
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/readyToListenToo
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reset_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/clk_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal1_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal2_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationCommands_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationTag_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/readyRS_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/stallRS_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/canGo_i
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeVal_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeFlags_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/valid_o
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_r
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_n
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/enableFlops
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue1
+add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue2
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {9247 ps} 0}
+WaveRestoreCursors {{Cursor 1} {62526 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 224
 configure wave -valuecolwidth 122
@@ -577,4 +598,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {27409 ps}
+WaveRestoreZoom {59053 ps} {81103 ps}
