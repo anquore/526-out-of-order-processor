@@ -15,34 +15,40 @@ module branchPredictionSM
   
 	always_ff @(posedge clk_i) begin
 		if(reset_i)
-      state_r = alwaysTaken;
+      state_r <= alwaysTaken;
     else
-      state_r = state_n;
+      state_r <= state_n;
   end
   
 	always_comb begin
-		state_n = state_r;
-    
 		case(state_n)
       alwaysTaken: begin
         if(~brTaken_i & update_i)
           state_n = mostlyTaken;
+        else
+          state_n = state_r;
       end
       mostlyTaken: begin
         if(~brTaken_i & update_i)
           state_n = mostlyNotTaken;
         else if(brTaken_i & update_i)
           state_n = alwaysTaken;
+        else
+          state_n = state_r;
       end
       mostlyNotTaken: begin
         if(~brTaken_i & update_i)
           state_n = alwaysNotTaken;
         else if(brTaken_i & update_i)
           state_n = mostlyTaken;
+        else
+          state_n = state_r;
       end
       alwaysNotTaken: begin
         if(brTaken_i & update_i)
           state_n = mostlyNotTaken;
+        else
+          state_n = state_r;
       end
 		endcase
 	end

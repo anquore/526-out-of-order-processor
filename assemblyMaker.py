@@ -245,7 +245,7 @@ def main():
   
   
   '''
-  
+  '''
   #ROB stalling testing and basic out of order test
   #clear the file
   theFile = open('ROB_stall_test_and_basic_OOO.arm','w')
@@ -404,7 +404,7 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
-  
+  '''
   '''
   
   #multiplication/divide test
@@ -484,6 +484,29 @@ def main():
   #shift tests
   shiftCommand('LSL', LSL, 18, 6, 10, theFile)
   shiftCommand('LSR', LSR, 19, 9, 10, theFile)
+  
+  #additions
+  mathCommand('ADD', ADD, 13, 14, 4, theFile)
+  mathCommand('ADD', ADD, 14, 5, 14, theFile)
+  
+  #do a bunch of interlinking
+  mathCommand('DIV', DIV, 10, 13, 2, theFile) #23/-3 = -7
+  mathCommand('ADD', ADD, 16, 10, 4, theFile) #-37/6=-6
+  mathCommand('MULT', MULT, 9, 10, 1, theFile)
+  shiftCommand('LSL', LSL, 18, 6, 10, theFile)
+  
+  mathCommand('MULT', MULT, 10, 9, 18, theFile)
+  mathCommand('DIV', DIV, 12, 13, 10, theFile)
+  mathCommand('ADD', ADD, 13, 14, 10, theFile)
+  
+  mathCommand('DIV', DIV, 10, 13, 2, theFile)
+  shiftCommand('LSR', LSR, 18, 6, 13, theFile)
+  mathCommand('MULT', MULT, 9, 10, 13, theFile)
+
+  mathCommand('ADD', ADD, 16, 9, 4, theFile) #-37/6=-6
+  mathCommand('DIV', DIV, 10, 9, 2, theFile) #23/-3 = -7
+  shiftCommand('LSL', LSL, 18, 6, 9, theFile)
+
   
   #additions
   mathCommand('ADD', ADD, 13, 14, 4, theFile)
@@ -746,7 +769,7 @@ def main():
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  '''
+  
   #clear the file
   theFile = open('moreOOO.arm','w')
   theFile.write("//Starting assembly\n")
@@ -797,7 +820,7 @@ def main():
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  '''
+  
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):
