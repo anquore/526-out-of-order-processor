@@ -39,6 +39,7 @@ module branchPrediction
 	
 endmodule
 
+/*
 module branchPrediction_testbench();
 	logic	[4:0] 	branchAddrRead_i, branchAddrWrite_i;
 	logic brTaken_i;
@@ -112,4 +113,4 @@ module branchPrediction_testbench();
 		$stop(); // end the simulation
 	end
 	
-endmodule
+endmodule*/

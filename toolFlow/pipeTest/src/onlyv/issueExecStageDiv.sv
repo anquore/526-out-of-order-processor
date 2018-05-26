@@ -105,7 +105,7 @@ module issueExecStageDiv #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)
   assign valid_in = stallStart & readyRS_i;
   
   //the divider
-  divider div 
+  divider1 div 
   (.quotient(executeVal_o)
   ,.valid_out(valid_out)
   ,.divisor(reservationStationVal2_i)//bottom

@@ -1,4 +1,4 @@
-module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
+module divider1(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	output [63:0] quotient;
 	output valid_out;
 	input [63:0] divisor, dividend;
@@ -16,10 +16,30 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	
 	logic opA_sel;
 	logic[1:0] opB_sel, opC_sel;
-	wire [64:0] opA_mux, opB_mux, opC_mux, add_out;
+  logic [64:0] opCnegated;
+  //assign opCnegated[63:0] = 0 - opC;
+  //assign opCnegated[64] = 0;
+	logic [64:0] opA_mux, opB_mux, opC_mux, add_out;
 	mux_2x1_X65 muxA(.outs(opA_mux), .select(opA_sel), .invSelect(~opA_sel), .ins({divisor_r[63], divisor_r[63:0], add_out}));
 	mux_4x1_X65 muxB(.outs(opB_mux), .select(opB_sel), .invSelect(~opB_sel), .ins({65'h0, opC[64:0], add_out[64:0], add_out[63:0], opC[64]}));
-	mux_4x1_X65 muxC(.outs(opC_mux), .select(opC_sel), .invSelect(~opC_sel), .ins({65'h0, dividend_r[63], dividend_r[63:0], add_out[64:0], opC[63:0], (~add_out[64])}));
+  always_comb begin
+    if(opC_sel == 3) begin
+      opC_mux = 0;
+    end
+    else if (opC_sel == 2) begin
+      opC_mux[64] = dividend_r[63];
+      opC_mux[63:0] = dividend_r;
+    end
+    else if (opC_sel == 1) begin
+      opC_mux = add_out;
+    end
+    else begin
+      opC_mux[0] = ~add_out[64];
+      opC_mux[64:1] = opC[63:0];
+    end
+  end
+      
+	//mux_4x1_X65 muxC(.outs(opC_mux), .select(opC_sel), .invSelect(~opC_sel), .ins({65'h0, dividend_r[63], dividend_r[63:0], add_out[64:0], opC[63:0], (~add_out[64])}));
 	
 	logic opA_ld, opB_ld, opC_ld;
 	registerX65 regA(.outs(opA), .ins(opA_mux), .en(opA_ld), .rst, .clk);
@@ -56,13 +76,7 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	logic neg_ld;
 	reg add_neg_last;
 	
-	//typedef enum reg[6:0] {WAIT, START, NEG0, NEG1, SHIFT, CALC0, CALC1, CALC2, CALC3, CALC4, CALC5, CALC6, CALC7, CALC8, CALC9, CALC10,
-		//CALC11, CALC12, CALC13, CALC14, CALC15, CALC16, CALC17, CALC18, CALC19, CALC20, CALC21, CALC22, CALC23, CALC24, CALC25, CALC26,
-		//CALC27, CALC28, CALC29, CALC30, CALC31, CALC32, CALC33, CALC34, CALC35, CALC36, CALC37, CALC38, CALC39, CALC40, CALC41, CALC42,
-		//CALC43, CALC44, CALC45, CALC46, CALC47, CALC48, CALC49, CALC50, CALC51, CALC52, CALC53, CALC54, CALC55, CALC56, CALC57, CALC58,
-		//CALC59, CALC60, CALC61, CALC62, CALC63, CALC64, REPAIR, REMAIN, QUOT, DONE} idiv_ctrl_stat;
-	//idiv_ctrl_stat state, next_state;
-  localparam [6:0] WAIT = 7'b0000000, START = 7'b0000001, NEG0 = 7'b0000010, NEG1 = 7'b0000011, SHIFT = 7'b0000100, CALC0 = 7'b0000101, CALC1 = 7'b0000110, CALC2 = 7'b0000111, CALC3 = 7'b0001000, CALC4 = 7'b0001001, CALC5 = 7'b0001010, CALC6 = 7'b0001011, CALC7 = 7'b0001100, CALC8 = 7'b0001101, CALC9 = 7'b0001110, CALC10 = 7'b0001111,
+	localparam [6:0] WAIT = 7'b0000000, START = 7'b0000001, NEG0 = 7'b0000010, NEG1 = 7'b0000011, SHIFT = 7'b0000100, CALC0 = 7'b0000101, CALC1 = 7'b0000110, CALC2 = 7'b0000111, CALC3 = 7'b0001000, CALC4 = 7'b0001001, CALC5 = 7'b0001010, CALC6 = 7'b0001011, CALC7 = 7'b0001100, CALC8 = 7'b0001101, CALC9 = 7'b0001110, CALC10 = 7'b0001111,
   CALC11 = 7'b0010000, CALC12 = 7'b0010001, CALC13 = 7'b0010010, CALC14 = 7'b0010011, CALC15 = 7'b0010100, CALC16 = 7'b0010101, CALC17 = 7'b0010110, CALC18 = 7'b0010111, CALC19 = 7'b0011000, CALC20 = 7'b0011001, CALC21 = 7'b0011010, CALC22 = 7'b0011011, CALC23 = 7'b0011100, CALC24 = 7'b0011101, CALC25 = 7'b0011110, CALC26 = 7'b0011111,
   CALC27 = 7'b0100000, CALC28 = 7'b0100001, CALC29 = 7'b0100010, CALC30 = 7'b0100011, CALC31 = 7'b0100100, CALC32 = 7'b0100101, CALC33 = 7'b0100110, CALC34 = 7'b0100111, CALC35 = 7'b0101000, CALC36 = 7'b0101001, CALC37 = 7'b0101010, CALC38 = 7'b0101011, CALC39 = 7'b0101100, CALC40 = 7'b0101101, CALC41 = 7'b0101110, CALC42 = 7'b0101111,
   CALC43 = 7'b0110000, CALC44 = 7'b0110001, CALC45 = 7'b0110010, CALC46 = 7'b0110011, CALC47 = 7'b0110100, CALC48 = 7'b0110101, CALC49 = 7'b0110110, CALC50 = 7'b0110111, CALC51 = 7'b0111000, CALC52 = 7'b0111001, CALC53 = 7'b0111010, CALC54 = 7'b0111011, CALC55 = 7'b0111100, CALC56 = 7'b0111101, CALC57 = 7'b0111110, CALC58 = 7'b0111111,
@@ -87,7 +101,7 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
       state <= next_state;
   end
 	
-	always @(*) begin
+	always_comb begin
 		//default control signal values
 		opA_sel = 1'b0;
 		opA_ld = 1'b0;
@@ -250,19 +264,19 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 endmodule
 
 /*
-module divider_testbench();
+module divider1_testbench();
 	wire [63:0] quotient;
 	wire valid_out;
 	reg [63:0] dividend, divisor;
 	reg valid_in, rst, clk;
 	
-	divider DUT(.quotient, .valid_out, .dividend, .divisor, .valid_in, .rst, .clk);
+	divider1 DUT(.quotient, .valid_out, .dividend, .divisor, .valid_in, .rst, .clk);
 	reg [31:0] i; //counter
 	
 	initial begin
 		rst=1'b1;
-		dividend=64'h12;
-		divisor=64'h3;
+		dividend=-18360;
+		divisor=-540;
 		valid_in=1'b1;
 		clk=0;
 		#10;

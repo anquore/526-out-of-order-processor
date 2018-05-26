@@ -21,7 +21,7 @@ module branchPredictionSM
   end
   
 	always_comb begin
-		case(state_n)
+		case(state_r)
       alwaysTaken: begin
         if(~brTaken_i & update_i)
           state_n = mostlyTaken;

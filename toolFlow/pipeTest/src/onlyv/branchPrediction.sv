@@ -38,6 +38,7 @@ module branchPrediction
 	mux32x1 read1 (.out(whatToDoBranch_o), .addr(branchAddrRead_i), .muxIns(dataOut));
 	
 endmodule
+
 /*
 module branchPrediction_testbench();
 	logic	[4:0] 	branchAddrRead_i, branchAddrWrite_i;
