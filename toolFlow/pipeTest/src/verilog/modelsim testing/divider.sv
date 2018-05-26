@@ -69,7 +69,7 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
   CALC59 = 7'b1000000, CALC60 = 7'b1000001, CALC61 = 7'b1000010, CALC62 = 7'b1000011, CALC63 = 7'b1000100, CALC64 = 7'b1000101, REPAIR = 7'b1000110, REMAIN = 7'b1000111, QUOT = 7'b1001000, DONE = 7'b1001001;
   logic [6:0] state, next_state;
 	
-	always @(posedge clk) begin
+	always_ff @(posedge clk) begin
 		add_neg_last <= adder_result_is_neg_i;
 	if (neg_ld) begin
 			q_neg <= opA_is_neg_i ^ opC_is_neg_i; //the quotient is negated if the signs of the operands differ
@@ -82,9 +82,9 @@ module divider(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	//end
   always_ff @(posedge clk) begin
 		if(rst)
-      state = WAIT;
+      state <= WAIT;
     else
-      state = next_state;
+      state <= next_state;
   end
 	
 	always @(*) begin

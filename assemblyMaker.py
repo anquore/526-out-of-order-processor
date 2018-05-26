@@ -452,7 +452,7 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  
+  '''
 
   #RS filling test
   #clear the file
@@ -486,36 +486,36 @@ def main():
   shiftCommand('LSR', LSR, 19, 9, 10, theFile)
   
   #additions
-  mathCommand('ADD', ADD, 13, 14, 4, theFile)
-  mathCommand('ADD', ADD, 14, 5, 14, theFile)
+  mathCommand('ADD', ADD, 13, 14, 4, theFile)#-34
+  mathCommand('ADD', ADD, 14, 5, 14, theFile)#0
   
   #do a bunch of interlinking
-  mathCommand('DIV', DIV, 10, 13, 2, theFile) #23/-3 = -7
-  mathCommand('ADD', ADD, 16, 10, 4, theFile) #-37/6=-6
-  mathCommand('MULT', MULT, 9, 10, 1, theFile)
-  shiftCommand('LSL', LSL, 18, 6, 10, theFile)
+  mathCommand('DIV', DIV, 10, 13, 2, theFile) #23/-34 = 0
+  mathCommand('ADD', ADD, 16, 10, 4, theFile) #-37
+  mathCommand('MULT', MULT, 9, 10, 1, theFile)#0
+  shiftCommand('LSL', LSL, 18, 6, 10, theFile)#0
   
-  mathCommand('MULT', MULT, 10, 9, 18, theFile)
-  mathCommand('DIV', DIV, 12, 13, 10, theFile)
-  mathCommand('ADD', ADD, 13, 14, 10, theFile)
+  mathCommand('MULT', MULT, 10, 9, 18, theFile)#0
+  mathCommand('DIV', DIV, 12, 13, 10, theFile)#0
+  mathCommand('ADD', ADD, 13, 14, 10, theFile)#0
   
-  mathCommand('DIV', DIV, 10, 13, 2, theFile)
-  shiftCommand('LSR', LSR, 18, 6, 13, theFile)
-  mathCommand('MULT', MULT, 9, 10, 13, theFile)
+  mathCommand('DIV', DIV, 10, 13, 2, theFile)#-1 divided by 0
+  shiftCommand('LSR', LSR, 18, 6, 13, theFile)#0
+  mathCommand('MULT', MULT, 9, 10, 13, theFile)#0
 
-  mathCommand('ADD', ADD, 16, 9, 4, theFile) #-37/6=-6
-  mathCommand('DIV', DIV, 10, 9, 2, theFile) #23/-3 = -7
-  shiftCommand('LSL', LSL, 18, 6, 9, theFile)
+  mathCommand('ADD', ADD, 16, 9, 4, theFile) #-37
+  mathCommand('DIV', DIV, 10, 9, 2, theFile) #-1
+  shiftCommand('LSL', LSL, 18, 6, 9, theFile)#0
 
   
   #additions
-  mathCommand('ADD', ADD, 13, 14, 4, theFile)
-  mathCommand('ADD', ADD, 14, 5, 14, theFile)
+  mathCommand('ADD', ADD, 13, 14, 4, theFile)#-37
+  mathCommand('ADD', ADD, 14, 5, 14, theFile)#-3
   
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  '''
+  
   '''
   #map table testing, reg renaming
   #clear the file
@@ -662,28 +662,28 @@ def main():
   immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
   immediateCommand('ADDI', ADDI, 256, 1, 31, theFile) #4
   immediateCommand('ADDI', ADDI, 16, 25, 31, theFile) #8
-  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #12
   
   #setLoop:
-  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#36
-  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
-  immediateCommand('ADDI', ADDI, 2, 1, 1, theFile) #8
-  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #8
-  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
-  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
-  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#16
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #20
+  immediateCommand('ADDI', ADDI, 2, 1, 1, theFile) #24
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #28
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#32
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#36
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#40
 
-  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
-  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #44
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #48
   
   #incrLoop:
-  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#36
-  immediateCommand('ADDI', ADDI, 16, 1, 1, theFile) #4
-  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#36
-  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
-  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
-  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
-  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#52
+  immediateCommand('ADDI', ADDI, 16, 1, 1, theFile) #56
+  memoryCommand('STUR', STUR, 0, 1, 10, theFile)#60
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #64
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#68
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#72
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#76
 
   immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
   immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
@@ -769,7 +769,7 @@ def main():
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  
+  '''
   #clear the file
   theFile = open('moreOOO.arm','w')
   theFile.write("//Starting assembly\n")
@@ -784,43 +784,43 @@ def main():
   immediateCommand('ADDI', ADDI, 142, 2, 31, theFile)
   
   #do the following math
-  mathCommand('MULT', MULT, 12, 1, 0, theFile)
-  mathCommand('AND', AND, 3, 2, 12, theFile)
-  mathCommand('ADD', ADD, 4, 2, 1, theFile)
-  shiftCommand('LSL', LSL, 5, 6, 2, theFile)
-  mathCommand('SUB', SUB, 6, 2, 5, theFile)
+  mathCommand('MULT', MULT, 12, 1, 0, theFile) #18360
+  mathCommand('AND', AND, 3, 2, 12, theFile) #8
+  mathCommand('ADD', ADD, 4, 2, 1, theFile) #-398
+  shiftCommand('LSL', LSL, 5, 6, 2, theFile) #9088
+  mathCommand('SUB', SUB, 6, 2, 5, theFile) #8946
   
-  mathCommand('DIV', DIV, 13, 1, 12, theFile)
-  mathCommand('SUBS', SUBS, 7, 2, 1, theFile)
+  #memoryCommand(name, opcode, address, RD, RN, theFile)
+  mathCommand('DIV', DIV, 13, 1, 12, theFile) #34
+  mathCommand('SUBS', SUBS, 7, 2, 1, theFile) #-682
   mathCommand('OR', OR, 8, 2, 4, theFile)
-  memoryCommand('STUR', STUR, 0, 0, 13, theFile)
+  memoryCommand('STUR', STUR, 0, 0, 13, theFile)             #44
   memoryCommand('STUR', STUR, 8, 4, 0, theFile)
-  mmediateCommand('ADDI', ADDI, 34, 10, 31, theFile)
-  memoryCommand('LDUR', LDUR, 8, 10, 0, theFile)
-  memoryCommand('LDUR', LDUR, 0, 20, 13, theFile)
+  immediateCommand('ADDI', ADDI, 34, 10, 31, theFile)
+  memoryCommand('LDUR', LDUR, 8, 10, 0, theFile) #-398
+  memoryCommand('LDUR', LDUR, 0, 20, 13, theFile) #34
   mathCommand('OR', OR, 10, 2, 1, theFile)
   mathCommand('XOR', XOR, 11, 2, 1, theFile)
   
   #test some stores/loads
-  memoryCommand(name, opcode, address, RD, RN, theFile)
-  mathCommand('MULT', MULT, 15, 8, 0, theFile)
-  mathCommand('XOR', XOR, 3, 15, 12, theFile)
-  mathCommand('ADD', ADD, 23, 2, 1, theFile)
-  shiftCommand('LSR', LSR, 21, 3, 3, theFile)
-  mathCommand('SUB', SUB, 6, 2, 15, theFile)
-  mathCommand('SUB', SUB, 24, 2, 1, theFile)
+  mathCommand('MULT', MULT, 15, 8, 0, theFile) #-8772
+  mathCommand('XOR', XOR, 3, 15, 12, theFile) #
+  mathCommand('ADD', ADD, 23, 2, 1, theFile) #-398
+  shiftCommand('LSR', LSR, 21, 3, 3, theFile)#3262
+  mathCommand('SUB', SUB, 6, 2, 15, theFile)#-8914
+  mathCommand('SUB', SUB, 24, 2, 1, theFile)#-682
   
-  mathCommand('DIV', DIV, 24, 4, 5, theFile)
-  shiftCommand('LSR', LSR, 26, 3, 24, theFile)
+  mathCommand('DIV', DIV, 24, 4, 5, theFile)#-22
+  shiftCommand('LSR', LSR, 26, 3, 24, theFile) #should be large
   shiftCommand('LSR', LSR, 27, 4, 24, theFile)
-  mmediateCommand('ADDI', ADDI, 34, 30, 31, theFile)
-  mathCommand('OR', OR, 12, 2, 1, theFile)
+  immediateCommand('ADDI', ADDI, 34, 30, 31, theFile)#34
+  mathCommand('OR', OR, 12, 2, 1, theFile)#should match 10/11
   mathCommand('XOR', XOR, 13, 2, 1, theFile)
   shiftCommand('LSL', LSR, 27, 4, 24, theFile)
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  
+  '''
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):
