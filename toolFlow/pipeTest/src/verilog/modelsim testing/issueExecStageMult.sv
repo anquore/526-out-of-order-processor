@@ -1,4 +1,4 @@
-module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageMult #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -126,7 +126,7 @@ module issueExecStageMult #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1
   ,.enable(valid_in)
   ,.clk(clk_i));
   
-  wallOfDFFsL4 tagWall
+  wallOfDFFsL5 tagWall
   (.q(executeTag_o)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)

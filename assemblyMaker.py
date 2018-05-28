@@ -405,8 +405,8 @@ def main():
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile)
   '''
-  '''
   
+  '''
   #multiplication/divide test
   #clear the file
   theFile = open('multAndDiv.arm','w')
@@ -439,21 +439,34 @@ def main():
   mathCommand('DIV', DIV, 16, 3, 4, theFile) #-37/6=-6
   mathCommand('DIV', DIV, 17, 5, 4, theFile)#-37/-3 = 12
   
-  mathCommand('DIV', DIV, 14, 2, 3, theFile) #=0
-  mathCommand('DIV', DIV, 15, 2, 5, theFile) #=0
-  mathCommand('DIV', DIV, 16, 4, 3, theFile) #=0, instr 72
-  mathCommand('DIV', DIV, 17, 4, 3, theFile)#=0
+  mathCommand('DIV', DIV, 18, 2, 3, theFile) #=0
+  mathCommand('DIV', DIV, 19, 2, 5, theFile) #=0
+  mathCommand('DIV', DIV, 20, 4, 3, theFile) #=0, instr 72
+  mathCommand('DIV', DIV, 21, 4, 3, theFile)#=0
   
-  mathCommand('DIV', DIV, 14, 2, 2, theFile) #=1
-  mathCommand('DIV', DIV, 15, 3, 3, theFile) #=1
-  mathCommand('DIV', DIV, 16, 4, 4, theFile) #=1
-  mathCommand('DIV', DIV, 17, 4, 4, theFile)#=1
+  mathCommand('DIV', DIV, 22, 2, 2, theFile) #=1
+  mathCommand('DIV', DIV, 23, 3, 3, theFile) #=1
+  mathCommand('DIV', DIV, 24, 4, 4, theFile) #=1
+  mathCommand('DIV', DIV, 25, 4, 4, theFile)#=1
+  
+  
+  #a bunch of mixed up divides and multiplies
+  mathCommand('MULT', MULT, 6, 4, 5, theFile) #0*0 = 0
+  mathCommand('MULT', MULT, 7, 10, 11, theFile) #-1*-1=1
+  mathCommand('DIV', DIV, 4, 7, 9, theFile) #23/6 = 3
+  mathCommand('MULT', MULT, 1, 9, 12, theFile) #23/-3 = -7
+  mathCommand('DIV', DIV, 8, 6, 4, theFile) #-37/6=-6
+  mathCommand('MULT', MULT, 10, 5, 8, theFile)#-37/-3 = 12
+  mathCommand('DIV', DIV, 2, 3, 3, theFile) #23/6 = 3
+  mathCommand('MULT', MULT, 10, 11, 12, theFile) #23/-3 = -7
+  mathCommand('DIV', DIV, 5, 10, 4, theFile) #-37/6=-6
+  mathCommand('MULT', MULT, 6, 5, 8, theFile)#-37/-3 = 12
   
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-
+  '''
   #RS filling test
   #clear the file
   theFile = open('RS_filling.arm','w')
@@ -470,6 +483,20 @@ def main():
   immediateCommand('ADDI', ADDI, 6, 3, 31, theFile) #3
   immediateCommand('ADDI', ADDI, -37, 4, 31, theFile) #4
   immediateCommand('ADDI', ADDI, -3, 5, 31, theFile) #5
+  
+  #test the RS forwarding
+  mathCommand('ADD', ADD, 20, 0, 1, theFile)
+  mathCommand('ADD', ADD, 21, 20, 1, theFile)
+  mathCommand('ADD', ADD, 22, 20, 1, theFile)
+  mathCommand('ADD', ADD, 23, 20, 1, theFile)
+  
+  #check memory forwarding
+  memoryCommand('STUR', STUR, 0, 20, 0, theFile)#16
+  memoryCommand('LDUR', LDUR, 0, 24, 0, theFile)#16
+  mathCommand('ADD', ADD, 25, 24, 1, theFile)
+  mathCommand('ADD', ADD, 26, 24, 1, theFile)
+  mathCommand('ADD', ADD, 27, 24, 1, theFile)
+  
   
   #divide tests
   mathCommand('DIV', DIV, 14, 3, 2, theFile) #23/6 = 3
@@ -515,7 +542,7 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  
+  '''
   '''
   #map table testing, reg renaming
   #clear the file
@@ -542,11 +569,23 @@ def main():
   #have a write after read hazard, fairly slow
   mathCommand('MULT', MULT, 1, 2, 2, theFile)
   
+  mathCommand('MULT', MULT, 1, 12, 2, theFile)
+  
   #have a RAW hazard on that
   mathCommand('SUB', SUB, 6, 2, 1, theFile)
   
   #have a WAW
   mathCommand('SUBS', SUBS, 1, 2, 3, theFile)
+  
+  
+  #make sure MT reset is working
+  mathCommand('AND', AND, 15, 2, 3, theFile)#16
+  mathCommand('ADD', ADD, 16, 2, 3, theFile)#20
+  mathCommand('ADD', ADD, 16, 2, 3, theFile)#20
+  mathCommand('ADDS', ADDS, 17, 2, 3, theFile)#24
+  mathCommand('SUB', SUB, 18, 2, 3, theFile)#28
+  mathCommand('SUBS', SUBS, 15, 2, 3, theFile)#32
+  mathCommand('OR', OR, 20, 15, 3, theFile)#36
   
   #halt
   branchCommand('B', B, 0, theFile)#288
@@ -685,21 +724,21 @@ def main():
   condBranchCommand('LT', BCOND, -5, LT, theFile)#72
   mathCommand('SUB', SUB, 31, 31, 31, theFile)#76
 
-  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #0
-  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 1, 0, 31, theFile) #80
+  immediateCommand('ADDI', ADDI, 16, 10, 31, theFile) #84
 
   #incrShift:
-  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#36
-  memoryCommand('STUR', STUR, -8, 1, 10, theFile)#36
-  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #4
-  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #8
-  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#52
-  condBranchCommand('LT', BCOND, -5, LT, theFile)#56
-  mathCommand('SUB', SUB, 31, 31, 31, theFile)#60
+  memoryCommand('LDUR', LDUR, 0, 1, 10, theFile)#88
+  memoryCommand('STUR', STUR, -8, 1, 10, theFile)#92
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile) #96
+  immediateCommand('ADDI', ADDI, 8, 10, 10, theFile) #100
+  mathCommand('SUBS', SUBS, 31, 25, 0, theFile)#104
+  condBranchCommand('LT', BCOND, -5, LT, theFile)#108
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)#112
 
   #halt
-  branchCommand('B', B, 0, theFile)#288
-  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  branchCommand('B', B, 0, theFile)#116
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #120
   '''
   '''
   #clear the file
@@ -821,6 +860,85 @@ def main():
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
+  '''
+  #clear the file
+  theFile = open('LSQtesting.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('LSQtesting.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile)
+  immediateCommand('ADDI', ADDI, 1, 1, 31, theFile)
+  immediateCommand('ADDI', ADDI, 2, 2, 31, theFile)
+  immediateCommand('ADDI', ADDI, 3, 3, 31, theFile)
+  
+  #3 stores then loads, no issues
+  memoryCommand('STUR', STUR, 0, 1, 0, theFile)             
+  memoryCommand('STUR', STUR, 8, 2, 0, theFile)
+  memoryCommand('STUR', STUR, 16, 3, 0, theFile)
+  memoryCommand('LDUR', LDUR, 0, 4, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 8, 5, 0, theFile)
+  memoryCommand('LDUR', LDUR, 16, 6, 0, theFile) #36
+  
+  #2 stores then load, no forwarding triggers flush
+  memoryCommand('STUR', STUR, 0, 1, 0, theFile)       #40      
+  memoryCommand('STUR', STUR, 8, 2, 0, theFile)       #44
+  memoryCommand('LDUR', LDUR, 0, 7, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 8, 8, 0, theFile)
+  
+  #1 store then 1 load, triggers flush if no forwarding
+  memoryCommand('STUR', STUR, 0, 1, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 0, 9, 0, theFile)             
+  
+  #stalling should always flush
+  mathCommand('MULT', MULT, 10, 1, 1, theFile) #64
+  memoryCommand('STUR', STUR, 0, 10, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 0, 11, 0, theFile)
+  
+  #have activity at all 3 ports of LSQ
+  
+  
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  
+  #clear the file
+  theFile = open('RS_filling2.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('RS_filling2.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
+  immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
+  
+  #test the RS forwarding
+  mathCommand('MULT', MULT, 3, 1, 2, theFile)
+  mathCommand('ADD', ADD, 20, 3, 0, theFile)
+  mathCommand('ADD', ADD, 21, 3, 1, theFile)
+  mathCommand('ADD', ADD, 22, 3, 2, theFile)
+  mathCommand('ADD', ADD, 23, 3, 3, theFile)
+  
+  mathCommand('ADD', ADD, 25, 1, 1, theFile)
+  mathCommand('ADD', ADD, 26, 2, 2, theFile)
+  mathCommand('ADD', ADD, 27, 0, 0, theFile)
+  
+  mathCommand('MULT', MULT, 4, 20, 2, theFile)
+  mathCommand('MULT', MULT, 5, 21, 2, theFile)
+  mathCommand('MULT', MULT, 6, 22, 2, theFile)
+  
+  shiftCommand('LSR', LSR, 7, 3, 20, theFile) #should be large
+  shiftCommand('LSL', LSL, 8, 4, 21, theFile)
+  shiftCommand('LSR', LSR, 9, 3, 22, theFile)
+  
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):

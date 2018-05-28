@@ -1,4 +1,4 @@
-module headTailROB #(parameter ROBsize = 8, addrSize = $clog2(ROBsize)) 
+module headTailROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
 ,updateHead_i
