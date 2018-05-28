@@ -71,7 +71,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	wallOfDFFsX6 forReg15(.q(rso15), .d(rsi15), .reset, .enable(enAddr15), .clk);
 	
 	//retirment checker
-	logic adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
+	logic adcmpin, adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
 	logic adcmprob1, adcmprob2, adcmprob3, adcmprob4, adcmprob5, adcmprob6, adcmprob7, adcmprob8, adcmprob9, adcmprob10, adcmprob11, adcmprob12, adcmprob13, adcmprob14, adcmprob15;
 	always_comb begin
 		adcmp1 = (~|(so0[128:65]^so1[128:65]))&so1[200]&so1[129];		adcmp2 = (~|(so0[128:65]^so2[128:65]))&so2[200]&so2[129];
@@ -81,7 +81,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adcmp9 = (~|(so0[128:65]^so9[128:65]))&so9[200]&so9[129];		adcmp10 = (~|(so0[128:65]^so10[128:65]))&so10[200]&so10[129];
 		adcmp11 = (~|(so0[128:65]^so11[128:65]))&so11[200]&so11[129];		adcmp12 = (~|(so0[128:65]^so12[128:65]))&so12[200]&so12[129];
 		adcmp13 = (~|(so0[128:65]^so13[128:65]))&so13[200]&so13[129];		adcmp14 = (~|(so0[128:65]^so14[128:65]))&so14[200]&so14[129];
-		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];
+		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];		adcmpIn = (~|(so0[128:65]^addrWrite))&loadOrStore;
 		
 		adcmprob1 = (~|(so0[134:130]^rso1[4:0]))&rso1[5];			adcmprob2 = (~|(so0[134:130]^rso2[4:0]))&rso2[5];
 		adcmprob3 = (~|(so0[134:130]^rso3[4:0]))&rso3[5];			adcmprob4 = (~|(so0[134:130]^rso4[4:0]))&rso4[5];
@@ -92,7 +92,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adcmprob13 = (~|(so0[134:130]^rso13[4:0]))&rso13[5];			adcmprob14 = (~|(so0[134:130]^rso14[4:0]))&rso14[5];
 		adcmprob15 = (~|(so0[134:130]^rso15[4:0]))&rso15[5];
 	end
-	assign flush = ((adcmp1&~adcmprob1)|(adcmp2&~adcmprob2)|(adcmp3&~adcmprob3)|(adcmp4&~adcmprob4)|(adcmp5&~adcmprob5)|(adcmp6&~adcmprob6)|(adcmp7&~adcmprob7)|
+	assign flush = (adcmpIn|(adcmp1&~adcmprob1)|(adcmp2&~adcmprob2)|(adcmp3&~adcmprob3)|(adcmp4&~adcmprob4)|(adcmp5&~adcmprob5)|(adcmp6&~adcmprob6)|(adcmp7&~adcmprob7)|
 		(adcmp8&~adcmprob8)|(adcmp9&~adcmprob9)|(adcmp10&~adcmprob10)|(adcmp11&~adcmprob11)|(adcmp12&~adcmprob12)|(adcmp13&~adcmprob13)|(adcmp14&~adcmprob14)|(adcmp15&~adcmprob15))&~so0[200];
 	
 	//forwarding unit
