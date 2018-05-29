@@ -11,9 +11,9 @@ module multiplier(out, valid_out, A, B, valid_in, rst, clk);
   logic [2:0] state, next_state;
 	always_ff @(posedge clk) begin
 		if(rst)
-      state = waiting;
+      state <= waiting;
     else
-      state = next_state;
+      state <= next_state;
   end
 	always @(*) begin
 		next_state=state;

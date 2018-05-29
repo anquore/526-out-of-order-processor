@@ -20,7 +20,7 @@ module pipelinedProcessor(clk, reset);
 								.ALUOp, .ALUSrc, .regWrite, .reg2Loc, .valueToStore, .dOrImm, 
 								.BRMI, .saveCond, .regRD, .read_enable, .needToForward, .negative, .overflow, .whichFlags, .zero, .carry_out, .whichMath, .leftShift, .mult, .div);
 endmodule
-
+/*
 module pipelinedProcessor_testbench();
 	logic clk, reset;
 
@@ -40,4 +40,4 @@ module pipelinedProcessor_testbench();
 				
 		$stop(); // end the simulation
 	end
-endmodule
+endmodule*/

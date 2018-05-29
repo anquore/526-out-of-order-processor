@@ -1,4 +1,4 @@
-module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1))
+module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1))
 (clk
 , uncondBr
 //, brTaken
@@ -347,8 +347,9 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   logic [4:0] LSQROBdecode, LSQmemTag;
   logic [63:0] LSQmemAddr, LSQPC;
   logic LSQaddrWrite, LSQretire, LSQflush;
-  assign LSQROBdecode[ROBsizeLog - 1:0] = RSROBTag;
-  assign LSQROBdecode[4] = 0;
+  //assign LSQROBdecode[ROBsizeLog - 1:0] = RSROBTag;
+  //assign LSQROBdecode[4] = 0;
+  assign LSQROBdecode = RSROBTag;
   
   logic [63:0] LSQvalOut, LSQvalWrite;
   logic LSQforwards;
@@ -367,7 +368,10 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   ,.LSretire(LSQretire)
   ,.forwards(LSQforwards)
   ,.valOut(LSQvalOut)
+  //,.ifValWrite(1'b0)
+  //,.valWriteROB(5'b0)
   ,.valWrite(LSQvalWrite)
+  
   ,.reset(reset | needToRestore)
   ,.clk(clk));
   
@@ -407,7 +411,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   end
   //assign thirdRSSpot[64] = RSROBval3[64];
   
-  reservationStationx2ForwardExtra theRSALU
+  reservationStationx4ForwardExtra theRSALU
       (.clk_i(clk)
       ,.reset_i(reset | needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[0])
@@ -630,7 +634,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
   assign thirdWallIn[72:69] = flagsToMem;
 	assign thirdWallIn[73 + (ROBsizeLog - 1):73] = tagToMem;
 	//assign thirdWallIn[138] = secondWallOut[171];
-	wallOfDFFsL77 thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
+	wallOfDFFsL78 thirdWall (.q(thirdWallOut), .d(thirdWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
   wallOfDFFsL64 storeStorage (.q(storeValueOut), .d(storeValue1), .reset(reset | needToRestore), .enable(1'b1), .clk);
 	
   //memory stage
@@ -647,7 +651,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
               
   assign LSQmemAddr = thirdWallOut[67:4];
   assign LSQmemTag[ROBsizeLog - 1:0] = thirdWallOut[73 + (ROBsizeLog - 1):73];
-  assign LSQmemTag[4] = 0;
+  //assign LSQmemTag[4] = 0;
   assign LSQaddrWrite = thirdWallOut[2] | thirdWallOut[3];
 							
 	//forwarding with LSQ
@@ -660,6 +664,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
     else
       LSQorMem = mightSendToReg;
   end
+  //assign LSQorMem = mightSendToReg;
   
 							
 	//break out bits for forwarding
@@ -674,7 +679,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 8, ROBsize
 	assign finalWallIn[65] = thirdWallOut[0];
 	assign finalWallIn[69:66] = thirdWallOut[72:69];
 	assign finalWallIn[70 + (ROBsizeLog - 1):70] = thirdWallOut[73 + (ROBsizeLog - 1):73];
-	wallOfDFFsL74 finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
+	wallOfDFFsL75 finalWall (.q(finalWallOut), .d(finalWallIn), .reset(reset | needToRestore), .enable(1'b1), .clk);
   wallOfDFFsL64 storeStorageFinal (.q(storeValueFinalOut), .d(storeValueOut), .reset(reset | needToRestore), .enable(1'b1), .clk);
   
   //single delay stage

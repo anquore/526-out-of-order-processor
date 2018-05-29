@@ -1,4 +1,4 @@
-module mux32xY #(parameter Y = 4) (out, addr, muxIns);
+module mux32xY #(parameter Y = 5) (out, addr, muxIns);
 	output logic [Y-1:0] out;
 	input logic [Y-1:0][31:0] muxIns;
 	input logic [4:0] addr;

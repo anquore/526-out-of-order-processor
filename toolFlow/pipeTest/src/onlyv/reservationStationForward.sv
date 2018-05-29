@@ -1,4 +1,4 @@
-module reservationStationForward #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
+module reservationStationForward #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 ,decodeROBTag1_i
@@ -154,7 +154,7 @@ module reservationStationForward #(parameter ROBsize = 8, ROBsizeLog = $clog2(RO
 	end
   
 	//the RS regs
-  wallOfDFFsL151 RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[138] | decodeWriteEn_i), .clk(clk_i));
+  wallOfDFFsL154 RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[138] | decodeWriteEn_i), .clk(clk_i));
 	
   //assign outputs
   assign reservationStationVal2_o = reservationStationIn[63:0];

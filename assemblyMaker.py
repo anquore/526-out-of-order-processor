@@ -860,7 +860,7 @@ def main():
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  '''
+  
   #clear the file
   theFile = open('LSQtesting.arm','w')
   theFile.write("//Starting assembly\n")
@@ -884,27 +884,30 @@ def main():
   memoryCommand('LDUR', LDUR, 16, 6, 0, theFile) #36
   
   #2 stores then load, no forwarding triggers flush
-  memoryCommand('STUR', STUR, 0, 1, 0, theFile)       #40      
-  memoryCommand('STUR', STUR, 8, 2, 0, theFile)       #44
-  memoryCommand('LDUR', LDUR, 0, 7, 0, theFile)             
-  memoryCommand('LDUR', LDUR, 8, 8, 0, theFile)
+  immediateCommand('ADDI', ADDI, 4, 1, 31, theFile) #40
+  immediateCommand('ADDI', ADDI, 5, 2, 31, theFile) #44
+  memoryCommand('STUR', STUR, 0, 1, 0, theFile)       #48      
+  memoryCommand('STUR', STUR, 8, 2, 0, theFile)       #52
+  memoryCommand('LDUR', LDUR, 0, 7, 0, theFile)       #56   
+  memoryCommand('LDUR', LDUR, 8, 8, 0, theFile)  #ROB 16, #60
   
   #1 store then 1 load, triggers flush if no forwarding
-  memoryCommand('STUR', STUR, 0, 1, 0, theFile)             
-  memoryCommand('LDUR', LDUR, 0, 9, 0, theFile)             
+  immediateCommand('ADDI', ADDI, 6, 1, 31, theFile) #64
+  memoryCommand('STUR', STUR, 0, 1, 0, theFile)     #68     
+  memoryCommand('LDUR', LDUR, 0, 9, 0, theFile)     #72     
   
   #stalling should always flush
-  mathCommand('MULT', MULT, 10, 1, 1, theFile) #64
-  memoryCommand('STUR', STUR, 0, 10, 0, theFile)             
-  memoryCommand('LDUR', LDUR, 0, 11, 0, theFile)
+  mathCommand('MULT', MULT, 10, 3, 3, theFile) #76
+  memoryCommand('STUR', STUR, 0, 10, 0, theFile) #80           
+  memoryCommand('LDUR', LDUR, 0, 11, 0, theFile) #84
   
   #have activity at all 3 ports of LSQ
   
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  '''
   
+  '''
   #clear the file
   theFile = open('RS_filling2.arm','w')
   theFile.write("//Starting assembly\n")
@@ -939,6 +942,7 @@ def main():
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):

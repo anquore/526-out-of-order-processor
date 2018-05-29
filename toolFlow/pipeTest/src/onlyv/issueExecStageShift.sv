@@ -1,4 +1,4 @@
-module issueExecStageShift #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
+module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 
@@ -97,7 +97,7 @@ module issueExecStageShift #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+
   ,.clk(clk_i));
   
   logic [ROBsizeLog-1:0] executeTag;
-  wallOfDFFsL4 tagWall
+  wallOfDFFsL5 tagWall
   (.q(executeTag)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)

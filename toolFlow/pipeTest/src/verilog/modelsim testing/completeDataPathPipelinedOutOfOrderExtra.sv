@@ -368,7 +368,10 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   ,.LSretire(LSQretire)
   ,.forwards(LSQforwards)
   ,.valOut(LSQvalOut)
+  //,.ifValWrite(1'b0)
+  //,.valWriteROB(5'b0)
   ,.valWrite(LSQvalWrite)
+  
   ,.reset(reset | needToRestore)
   ,.clk(clk));
   
@@ -661,6 +664,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
     else
       LSQorMem = mightSendToReg;
   end
+  //assign LSQorMem = mightSendToReg;
   
 							
 	//break out bits for forwarding

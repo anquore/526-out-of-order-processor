@@ -272,21 +272,182 @@ module divider1_testbench();
 	
 	divider1 DUT(.quotient, .valid_out, .dividend, .divisor, .valid_in, .rst, .clk);
 	reg [31:0] i; //counter
+  
+  parameter ClockDelay = 2000;
+	initial begin ;
+		clk <= 0;
+		forever #(ClockDelay/2) clk <= ~clk;
+	end
 	
 	initial begin
-		rst=1'b1;
-		dividend=-18360;
-		divisor=-540;
-		valid_in=1'b1;
-		clk=0;
-		#10;
-		clk=1;	#5;	rst=0;
-		for(i=0; i<80; i=i+1) begin
-			#5;
-			clk=0;
-			#5;
-			clk=1;
-		end
+				rst <= 1; valid_in <= 0; dividend <= 0; divisor <= 0;	@(posedge clk);
+				rst <= 0; 	@(posedge clk);
+        @(posedge clk);
+        @(posedge clk);
+        
+        dividend <= -18360;
+        divisor <= -540;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end
+
+dividend <= 235726;
+        divisor <= 39;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+dividend <= -29688;
+        divisor <= 3489;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+dividend <= 326767349;
+        divisor <= 243466;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+dividend <= -346346;
+        divisor <= -707;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+dividend <= -6262764;
+        divisor <= 214;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+      
+      dividend <= 2675469;
+        divisor <= -325;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -18360;
+        dividend <= -540;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end
+
+divisor <= 235726;
+        dividend <= 39;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -29688;
+        dividend <= 3489;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= 326767349;
+        dividend <= 243466;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -346346;
+        dividend <= -707;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -6262764;
+        dividend <= 214;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end
+      
+      divisor <= 2675469;
+        dividend <= -325;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+      
+      divisor <= -18360;
+        dividend <= -18360;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end
+
+divisor <= 235726;
+        dividend <= 235726;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -29688;
+        dividend <= -29688;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= 326767349;
+        dividend <= 326767349;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -346346;
+        dividend <= -346346;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+
+divisor <= -6262764;
+        dividend <= -6262764;
+        valid_in <= 1'b1; @(posedge clk);
+        @(posedge clk);
+        valid_in <= 1'b0; @(posedge clk);
+         
+			repeat(75) begin	@(posedge clk); end	
+      
+				
+		$stop(); // end the simulation
 	end
+	
 endmodule */
 
