@@ -31,9 +31,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	logic enNew0, enNew1, enNew2, enNew3, enNew4, enNew5, enNew6, enNew7, enNew8, enNew9, enNew10, enNew11, enNew12, enNew13, enNew14, enNew15;
 	logic enAddr0, enAddr1, enAddr2, enAddr3, enAddr4, enAddr5, enAddr6, enAddr7, enAddr8, enAddr9, enAddr10, enAddr11, enAddr12, enAddr13, enAddr14, enAddr15;
 	logic enVal0, enVal1, enVal2, enVal3, enVal4, enVal5, enVal6, enVal7, enVal8, enVal9, enVal10, enVal11, enVal12, enVal13, enVal14, enVal15;
-  	logic [15:0] jVal;
-  	logic maddr0, maddr1, maddr2, maddr3, maddr4, maddr5, maddr6, maddr7, maddr8, maddr9, maddr10, maddr11, maddr12, maddr13, maddr14, maddr15;
-  	logic [3:0] tailAddr;
+	logic [15:0] jVal;
+	logic naddr0, naddr1, naddr2, naddr3, naddr4, naddr5, naddr6, naddr7, naddr8, naddr9, naddr10, naddr11, naddr12, naddr13, naddr14, naddr15;
+	logic maddr0, maddr1, maddr2, maddr3, maddr4, maddr5, maddr6, maddr7, maddr8, maddr9, maddr10, maddr11, maddr12, maddr13, maddr14, maddr15;
+	logic [3:0] tailAddr;
 	//reg structure: LoadStore (load 1, store 0)[200], valid_PC[199], PC (64 bit)[198:135], ROBid (5 bit) [134:130], valid_addr[129], addr (64 bit)[128:65], valid_val[64], val (64 bit)[63:0]
 	loadStoreRegister reg0(.out(so0), .newIn({LS0, vpc0, pc0, rob0}), .enNew(enNew0), .addrIn({vaddr0, addr0}), .enAddr(enAddr0), .valIn({vVal0, val0}), .enVal(enVal0), .reset, .clk);
 	loadStoreRegister reg1(.out(so1), .newIn({LS1, vpc1, pc1, rob1}), .enNew(enNew1), .addrIn({vaddr1, addr1}), .enAddr(enAddr1), .valIn({vVal1, val1}), .enVal(enVal1), .reset, .clk);
@@ -52,7 +53,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	loadStoreRegister reg14(.out(so14), .newIn({LS14, vpc14, pc14, rob14}), .enNew(enNew14), .addrIn({vaddr14, addr14}), .enAddr(enAddr14), .valIn({vVal14, val14}), .enVal(enVal14), .reset, .clk);
 	loadStoreRegister reg15(.out(so15), .newIn({LS15, vpc15, pc15, rob15}), .enNew(enNew15), .addrIn({vaddr15, addr15}), .enAddr(enAddr15), .valIn({vVal15, val15}), .enVal(enVal15), .reset, .clk);
 	logic [5:0] rso0, rso1, rso2, rso3, rso4, rso5, rso6, rso7, rso8, rso9, rso10, rso11, rso12, rso13, rso14, rso15;
-	logic [5:0] rsi0, rsi1, rsi2, rsi3, rsi4, rsi5, rsi6, rsi7, rsi8, rsi9, rsi10, rsi11, rso12, rsi13, rsi14, rsi14;
+	logic [5:0] rsi0, rsi1, rsi2, rsi3, rsi4, rsi5, rsi6, rsi7, rsi8, rsi9, rsi10, rsi11, rsi12, rsi13, rsi14, rsi15;
 	wallOfDFFsX6 forReg0(.q(rso0), .d(rsi0), .reset, .enable(enAddr0), .clk);
 	wallOfDFFsX6 forReg1(.q(rso1), .d(rsi1), .reset, .enable(enAddr1), .clk);
 	wallOfDFFsX6 forReg2(.q(rso2), .d(rsi2), .reset, .enable(enAddr2), .clk);
@@ -71,7 +72,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	wallOfDFFsX6 forReg15(.q(rso15), .d(rsi15), .reset, .enable(enAddr15), .clk);
 	
 	//retirment checker
-	logic adcmpin, adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
+	logic adcmpIn, adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
 	logic adcmprob1, adcmprob2, adcmprob3, adcmprob4, adcmprob5, adcmprob6, adcmprob7, adcmprob8, adcmprob9, adcmprob10, adcmprob11, adcmprob12, adcmprob13, adcmprob14, adcmprob15;
 	always_comb begin
 		adcmp1 = (~|(so0[128:65]^so1[128:65]))&so1[200]&so1[129];		adcmp2 = (~|(so0[128:65]^so2[128:65]))&so2[200]&so2[129];
@@ -100,14 +101,14 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	logic fm0, fm1, fm2, fm3, fm4, fm5, fm6, fm7, fm8, fm9, fm10, fm11, fm12, fm13, fm14, fm15;
 	logic pfm0, pfm1, pfm2, pfm3, pfm4, pfm5, pfm6, pfm7, pfm8, pfm9, pfm10, pfm11, pfm12, pfm13, pfm14, pfm15;
 	always_comb begin
-		adValcmp0 = ~(|(addrWrite^so1[128:65])|so1[200])&so0[129];			adValcmp1 = ~(|(addrWrite^so2[128:65])|so2[200])&so1[129];
-		adValcmp2 = ~(|(addrWrite^so3[128:65])|so3[200])&so2[129];			adValcmp3 = ~(|(addrWrite^so4[128:65])|so4[200])&so3[129];
-		adValcmp4 = ~(|(addrWrite^so5[128:65])|so5[200])&so4[129];			adValcmp5 = ~(|(addrWrite^so6[128:65])|so6[200])&so5[129];
-		adValcmp6 = ~(|(addrWrite^so7[128:65])|so7[200])&so6[129];			adValcmp7 = ~(|(addrWrite^so8[128:65])|so8[200])&so7[129];
-		adValcmp8 = ~(|(addrWrite^so9[128:65])|so9[200])&so8[129];			adValcmp9 = ~(|(addrWrite^so10[128:65])|so10[200])&so9[129];
-		adValcmp10 = ~(|(addrWrite^so11[128:65])|so11[200])&so10[129];		adValcmp11 = ~(|(addrWrite^so12[128:65])|so12[200])&so11[129];
-		adValcmp12 = ~(|(addrWrite^so13[128:65])|so13[200])&so12[129];		adValcmp13 = ~(|(addrWrite^so14[128:65])|so14[200])&so13[129];
-		adValcmp14 = ~(|(addrWrite^so15[128:65])|so15[200])&so14[129];
+		adValcmp0 = ~(|(addrWrite^so0[128:65])|so0[200])&so0[129];			adValcmp1 = ~(|(addrWrite^so1[128:65])|so1[200])&so1[129];
+		adValcmp2 = ~(|(addrWrite^so2[128:65])|so2[200])&so2[129];			adValcmp3 = ~(|(addrWrite^so3[128:65])|so3[200])&so3[129];
+		adValcmp4 = ~(|(addrWrite^so4[128:65])|so4[200])&so4[129];			adValcmp5 = ~(|(addrWrite^so5[128:65])|so5[200])&so5[129];
+		adValcmp6 = ~(|(addrWrite^so6[128:65])|so6[200])&so6[129];			adValcmp7 = ~(|(addrWrite^so7[128:65])|so7[200])&so7[129];
+		adValcmp8 = ~(|(addrWrite^so8[128:65])|so8[200])&so8[129];			adValcmp9 = ~(|(addrWrite^so9[128:65])|so9[200])&so9[129];
+		adValcmp10 = ~(|(addrWrite^so10[128:65])|so10[200])&so10[129];		adValcmp11 = ~(|(addrWrite^so11[128:65])|so11[200])&so11[129];
+		adValcmp12 = ~(|(addrWrite^so12[128:65])|so12[200])&so12[129];		adValcmp13 = ~(|(addrWrite^so13[128:65])|so13[200])&so13[129];
+		adValcmp14 = ~(|(addrWrite^so14[128:65])|so14[200])&so14[129];
 		
 		fm0 = (~|(addrWrite^so0[128:65]))&so0[129];	fm1 = (~|(addrWrite^so1[128:65]))&so1[129];	fm2 = (~|(addrWrite^so2[128:65]))&so2[129];	fm3 = (~|(addrWrite^so3[128:65]))&so3[129];
 		fm4 = (~|(addrWrite^so4[128:65]))&so4[129];	fm5 = (~|(addrWrite^so5[128:65]))&so5[129];	fm6 = (~|(addrWrite^so6[128:65]))&so6[129];	fm7 = (~|(addrWrite^so7[128:65]))&so7[129];
@@ -115,33 +116,23 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		fm12 = (~|(addrWrite^so12[128:65]))&so12[129];	fm13 = (~|(addrWrite^so13[128:65]))&so13[129];	fm14 = (~|(addrWrite^so14[128:65]))&so14[129];	fm15 = (~|(addrWrite^so15[128:65]))&so15[129];
 		pfm15=fm15;		pfm14=fm14&~pfm15;	pfm13=fm13&~pfm14;	pfm12=fm12&~pfm13;	pfm11=fm11&~pfm12;	pfm10=fm10&~pfm11;
 		pfm9=fm9&~pfm10;	pfm8=fm8&~pfm9;		pfm7=fm7&~pfm8;		pfm6=fm6&~pfm7;		pfm5=fm5&~pfm6;		pfm4=fm4&~pfm5;
-		pfm3=fm3&~pfm4;		pfm2=fm2&~pfm3;		pfm1=fm1&~pfm2;		pfm0=fm1&pfm1;
+		pfm3=fm3&~pfm4;		pfm2=fm2&~pfm3;		pfm1=fm1&~pfm2;		pfm0=fm0&pfm1;
 	end
-	assign forwards = ifAddrWrite&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
-		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14)&loadOrStore;
+	logic isLoadToForward;
+	logic aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
+	assign isLoadToForward = (aXor14&so14[200])|(aXor13&so13[200])|(aXor12&so12[200])|(aXor11&so11[200])|(aXor10&so10[200])|(aXor9&so9[200])|(aXor8&so8[200])|
+		(aXor7&so7[200])|(aXor6&so6[200])|(aXor5&so5[200])|(aXor4&so4[200])|(aXor3&so3[200])|(aXor2&so2[200])|(aXor1&so1[200])|(aXor0&so0[200]);
+	assign forwards = ifAddrWrite&isLoadToForward&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
+		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14);
 	logic [3:0] forwardAddr;
 	assign forwardAddr[0]=(pfm1|pfm3|pfm5|pfm7|pfm9|pfm11|pfm13|pfm15);	assign forwardAddr[1]=(pfm2|pfm3|pfm6|pfm7|pfm10|pfm11|pfm14|pfm15);
 	assign forwardAddr[2]=(pfm4|pfm5|pfm6|pfm7|pfm12|pfm13|pfm14|pfm15);	assign forwardAddr[3]=(pfm8|pfm9|pfm10|pfm11|pfm12|pfm13|pfm14|pfm15);
 	mux16x1X64 forwardingMux(.outs(valOut[63:0]), .addr(forwardAddr), .muxIns({so15[63:0], so14[63:0], so13[63:0], so12[63:0], so11[63:0], so10[63:0], so9[63:0], so8[63:0],
 		so7[63:0], so6[63:0], so5[63:0], so4[63:0], so3[63:0], so2[63:0], so1[63:0], so0[63:0]}));
 	logic [4:0] robTagFor;
-	always_comb begin
-		if(pfm15) begin robTagFor=so15[134:130]; end
-		if(pfm14) begin robTagFor=so14[134:130]; end
-		if(pfm13) begin robTagFor=so13[134:130]; end
-		if(pfm12) begin robTagFor=so12[134:130]; end
-		if(pfm11) begin robTagFor=so11[134:130]; end
-		if(pfm10) begin robTagFor=so10[134:130]; end
-		if(pfm9) begin robTagFor=so9[134:130]; end
-		if(pfm8) begin robTagFor=so8[134:130]; end
-		if(pfm7) begin robTagFor=so7[134:130]; end
-		if(pfm6) begin robTagFor=so6[134:130]; end
-		if(pfm5) begin robTagFor=so5[134:130]; end
-		if(pfm4) begin robTagFor=so4[134:130]; end
-		if(pfm3) begin robTagFor=so3[134:130]; end
-		if(pfm2) begin robTagFor=so2[134:130]; end
-		if(pfm1) begin robTagFor=so1[134:130]; end
-		if(pfm0) begin robTagFor=so0[134:130]; end
+	assign robTagFor = ((pfm15&so15[134:130])|(pfm14&so14[134:130])|(pfm13&so13[134:130])|(pfm12&so12[134:130])|(pfm11&so11[134:130])|
+		(pfm10&so10[134:130])|(pfm8&so8[134:130])|(pfm7&so7[134:130])|(pfm6&so6[134:130])|(pfm5&so5[134:130])|(pfm4&so4[134:130])|
+		(pfm3&so3[134:130])|(pfm2&so2[134:130])|(pfm1&so1[134:130])|(pfm0&so0[134:130]));
 	//end of forwarding unit
 	
 	always_comb begin
@@ -172,37 +163,43 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	
 	always_comb begin
 		
-		if(jVal[0]) begin LS0=loadOrStore;	pc0=PCin;		rob0=ROBin; end else begin LS0=so1[200];		pc0=so1[198:135];	rob0=so1[134:130]; end
-		if(jVal[1]) begin LS1=loadOrStore;	pc1=PCin;		rob1=ROBin; end else begin LS1=so2[200];		pc1=so2[198:135];	rob1=so2[134:130]; end
-		if(jVal[2]) begin LS2=loadOrStore;	pc2=PCin;		rob2=ROBin; end else begin LS2=so3[200];		pc2=so3[198:135];	rob2=so3[134:130]; end
-		if(jVal[3]) begin LS3=loadOrStore;	pc3=PCin;		rob3=ROBin; end else begin LS3=so4[200];		pc3=so4[198:135];	rob3=so4[134:130]; end
-		if(jVal[4]) begin LS4=loadOrStore;	pc4=PCin;		rob4=ROBin; end else begin LS4=so5[200];		pc4=so5[198:135];	rob4=so5[134:130]; end
-		if(jVal[5]) begin LS5=loadOrStore;	pc5=PCin;		rob5=ROBin; end else begin LS5=so6[200];		pc5=so6[198:135];	rob5=so6[134:130]; end
-		if(jVal[6]) begin LS6=loadOrStore;	pc6=PCin;		rob6=ROBin; end else begin LS6=so7[200];		pc6=so7[198:135];	rob6=so7[134:130]; end
-		if(jVal[7]) begin LS7=loadOrStore;	pc7=PCin;		rob7=ROBin; end else begin LS7=so8[200];		pc7=so8[198:135];	rob7=so8[134:130]; end	
-		if(jVal[8]) begin LS8=loadOrStore;	pc8=PCin;		rob8=ROBin; end else begin LS8=so9[200];		pc8=so9[198:135];	rob8=so9[134:130]; end
-		if(jVal[9]) begin LS9=loadOrStore;	pc9=PCin;		rob9=ROBin; end else begin LS9=so10[200];		pc9=so10[198:135];	rob9=so10[134:130]; end
-		if(jVal[10]) begin LS10=loadOrStore;	pc10=PCin;		rob10=ROBin; end else begin LS10=so11[200];		pc10=so11[198:135];	rob10=so11[134:130]; end
-		if(jVal[11]) begin LS11=loadOrStore;	pc11=PCin;		rob11=ROBin; end else begin LS11=so12[200];		pc11=so12[198:135];	rob11=so12[134:130]; end
-		if(jVal[12]) begin LS12=loadOrStore;	pc12=PCin;		rob12=ROBin; end else begin LS12=so13[200];		pc12=so13[198:135];	rob12=so13[134:130]; end
-		if(jVal[13]) begin LS13=loadOrStore;	pc13=PCin;		rob13=ROBin; end else begin LS13=so14[200];		pc13=so14[198:135];	rob13=so14[134:130]; end
-		if(jVal[14]) begin LS14=loadOrStore;	pc14=PCin;		rob14=ROBin; end else begin LS14=so15[200];		pc14=so15[198:135];	rob14=so15[134:130]; end
+		naddr0=jVal[0];									naddr1=(jVal[1]&~LSretire)|(jVal[0]&LSretire);	naddr2=(jVal[2]&~LSretire)|(jVal[1]&LSretire);	naddr3=(jVal[3]&~LSretire)|(jVal[2]&LSretire);
+		naddr4=(jVal[4]&~LSretire)|(jVal[3]&LSretire);	naddr5=(jVal[5]&~LSretire)|(jVal[4]&LSretire);	naddr6=(jVal[6]&~LSretire)|(jVal[5]&LSretire);	naddr7=(jVal[7]&~LSretire)|(jVal[6]&LSretire);
+		naddr8=(jVal[8]&~LSretire)|(jVal[7]&LSretire);	naddr9=(jVal[9]&~LSretire)|(jVal[8]&LSretire);	naddr10=(jVal[10]&~LSretire)|(jVal[9]&LSretire);	naddr11=(jVal[11]&~LSretire)|(jVal[10]&LSretire);
+		naddr12=(jVal[12]&~LSretire)|(jVal[11]&LSretire);	naddr13=(jVal[13]&~LSretire)|(jVal[12]&LSretire);	naddr14=(jVal[14]&~LSretire)|(jVal[13]&LSretire);	naddr15=(jVal[15]&~LSretire)|(jVal[14]&LSretire);
 		
-		if(maddr0) begin addr0=addrWrite;	val0=valWrite; rsi0[5:0]={forwards, robTagFor};		end else begin addr0=s01[128:65];	val0=so1[63:0]; rsi0[5:0]=rso1[5:0]; end
-		if(maddr1) begin addr1=addrWrite;	val1=valWrite; rsi1[5:0]={forwards, robTagFor};		end else begin addr1=s02[128:65];	val1=so2[63:0]; rsi1[5:0]=rso2[5:0]; end
-		if(maddr2) begin addr2=addrWrite;	val2=valWrite; rsi2[5:0]={forwards, robTagFor};		end else begin addr2=s03[128:65];	val2=so3[63:0]; rsi2[5:0]=rso3[5:0]; end
-		if(maddr3) begin addr3=addrWrite;	val3=valWrite; rsi3[5:0]={forwards, robTagFor};		end else begin addr3=s04[128:65];	val3=so4[63:0]; rsi3[5:0]=rso4[5:0]; end
-		if(maddr4) begin addr4=addrWrite;	val4=valWrite; rsi4[5:0]={forwards, robTagFor};		end else begin addr4=s05[128:65];	val4=so5[63:0]; rsi4[5:0]=rso5[5:0]; end
-		if(maddr5) begin addr5=addrWrite;	val5=valWrite; rsi5[5:0]=[forwards, robTagFor};		end else begin addr5=s06[128:65];	val5=so6[63:0]; rsi5[5:0]=rso6[5:0]; end
-		if(maddr6) begin addr6=addrWrite;	val6=valWrite; rsi6[5:0]={forwards, robTagFor};		end else begin addr6=s07[128:65];	val6=so7[63:0]; rsi6[5:0]=rso7[5:0]; end
-		if(maddr7) begin addr7=addrWrite;	val7=valWrite; rsi7[5:0]={forwards, robTagFor};		end else begin addr7=s08[128:65];	val7=so8[63:0]; rsi7[5:0]=rso8[5:0]; end
-		if(maddr8) begin addr8=addrWrite;	val8=valWrite; rsi8[5:0]={forwards, robTagFor};		end else begin addr8=s09[128:65];	val8=so9[63:0]; rsi8[5:0]=rso9[5:0]; end
-		if(maddr9) begin addr9=addrWrite;	val9=valWrite; rsi9[5:0]={forwards, robTagFor};		end else begin addr9=s010[128:65];	val9=so10[63:0]; rsi9[5:0]=rso10[5:0]; end
-		if(maddr10) begin addr10=addrWrite;	val10=valWrite; rsi10[5:0]={forwards, robTagFor};	end else begin addr10=s011[128:65];	val10=so11[63:0]; rsi10[5:0]=rso11[5:0]; end
-		if(maddr11) begin addr11=addrWrite;	val11=valWrite; rsi11[5:0]={forwards, robTagFor};	end else begin addr11=s012[128:65];	val11=so12[63:0]; rsi11[5:0]=rso12[5:0]; end
-		if(maddr12) begin addr12=addrWrite;	val12=valWrite; rsi12[5:0]={forwards, robTagFor};	end else begin addr12=s013[128:65];	val12=so13[63:0]; rsi12[5:0]=rso13[5:0]; end
-		if(maddr13) begin addr13=addrWrite;	val13=valWrite; rsi13[5:0]={forwards, robTagFor};	end else begin addr13=s014[128:65];	val13=so14[63:0]; rsi13[5:0]=rso14[5:0]; end
-		if(maddr14) begin addr14=addrWrite;	val14=valWrite; rsi14[5:0]={forwards, robTagFor};	end else begin addr14=s015[128:65];	val14=so15[63:0]; rsi14[5:0]=rso15[5:0]; end
+		if(naddr0) begin LS0=loadOrStore;	pc0=PCin;		rob0=ROBin; end else begin LS0=so1[200];		pc0=so1[198:135];	rob0=so1[134:130]; end
+		if(naddr1) begin LS1=loadOrStore;	pc1=PCin;		rob1=ROBin; end else begin LS1=so2[200];		pc1=so2[198:135];	rob1=so2[134:130]; end
+		if(naddr2) begin LS2=loadOrStore;	pc2=PCin;		rob2=ROBin; end else begin LS2=so3[200];		pc2=so3[198:135];	rob2=so3[134:130]; end
+		if(naddr3) begin LS3=loadOrStore;	pc3=PCin;		rob3=ROBin; end else begin LS3=so4[200];		pc3=so4[198:135];	rob3=so4[134:130]; end
+		if(naddr4) begin LS4=loadOrStore;	pc4=PCin;		rob4=ROBin; end else begin LS4=so5[200];		pc4=so5[198:135];	rob4=so5[134:130]; end
+		if(naddr5) begin LS5=loadOrStore;	pc5=PCin;		rob5=ROBin; end else begin LS5=so6[200];		pc5=so6[198:135];	rob5=so6[134:130]; end
+		if(naddr6) begin LS6=loadOrStore;	pc6=PCin;		rob6=ROBin; end else begin LS6=so7[200];		pc6=so7[198:135];	rob6=so7[134:130]; end
+		if(naddr7) begin LS7=loadOrStore;	pc7=PCin;		rob7=ROBin; end else begin LS7=so8[200];		pc7=so8[198:135];	rob7=so8[134:130]; end	
+		if(naddr8) begin LS8=loadOrStore;	pc8=PCin;		rob8=ROBin; end else begin LS8=so9[200];		pc8=so9[198:135];	rob8=so9[134:130]; end
+		if(naddr9) begin LS9=loadOrStore;	pc9=PCin;		rob9=ROBin; end else begin LS9=so10[200];		pc9=so10[198:135];	rob9=so10[134:130]; end
+		if(naddr10) begin LS10=loadOrStore;	pc10=PCin;		rob10=ROBin; end else begin LS10=so11[200];		pc10=so11[198:135];	rob10=so11[134:130]; end
+		if(naddr11) begin LS11=loadOrStore;	pc11=PCin;		rob11=ROBin; end else begin LS11=so12[200];		pc11=so12[198:135];	rob11=so12[134:130]; end
+		if(naddr12) begin LS12=loadOrStore;	pc12=PCin;		rob12=ROBin; end else begin LS12=so13[200];		pc12=so13[198:135];	rob12=so13[134:130]; end
+		if(naddr13) begin LS13=loadOrStore;	pc13=PCin;		rob13=ROBin; end else begin LS13=so14[200];		pc13=so14[198:135];	rob13=so14[134:130]; end
+		if(naddr14) begin LS14=loadOrStore;	pc14=PCin;		rob14=ROBin; end else begin LS14=so15[200];		pc14=so15[198:135];	rob14=so15[134:130]; end
+		if(naddr15) begin LS15=loadOrStore; pc15=PCin;		rob15=ROBin; end else begin LS15=1'b0;			pc15=64'h0;			rob15=5'h0; end
+		
+		if(maddr0) begin addr0=addrWrite;	val0=valWrite; rsi0[5:0]={forwards, robTagFor};		end else begin addr0=so1[128:65];	val0=so1[63:0]; rsi0[5:0]=rso1[5:0]; end
+		if(maddr1) begin addr1=addrWrite;	val1=valWrite; rsi1[5:0]={forwards, robTagFor};		end else begin addr1=so2[128:65];	val1=so2[63:0]; rsi1[5:0]=rso2[5:0]; end
+		if(maddr2) begin addr2=addrWrite;	val2=valWrite; rsi2[5:0]={forwards, robTagFor};		end else begin addr2=so3[128:65];	val2=so3[63:0]; rsi2[5:0]=rso3[5:0]; end
+		if(maddr3) begin addr3=addrWrite;	val3=valWrite; rsi3[5:0]={forwards, robTagFor};		end else begin addr3=so4[128:65];	val3=so4[63:0]; rsi3[5:0]=rso4[5:0]; end
+		if(maddr4) begin addr4=addrWrite;	val4=valWrite; rsi4[5:0]={forwards, robTagFor};		end else begin addr4=so5[128:65];	val4=so5[63:0]; rsi4[5:0]=rso5[5:0]; end
+		if(maddr5) begin addr5=addrWrite;	val5=valWrite; rsi5[5:0]={forwards, robTagFor};		end else begin addr5=so6[128:65];	val5=so6[63:0]; rsi5[5:0]=rso6[5:0]; end
+		if(maddr6) begin addr6=addrWrite;	val6=valWrite; rsi6[5:0]={forwards, robTagFor};		end else begin addr6=so7[128:65];	val6=so7[63:0]; rsi6[5:0]=rso7[5:0]; end
+		if(maddr7) begin addr7=addrWrite;	val7=valWrite; rsi7[5:0]={forwards, robTagFor};		end else begin addr7=so8[128:65];	val7=so8[63:0]; rsi7[5:0]=rso8[5:0]; end
+		if(maddr8) begin addr8=addrWrite;	val8=valWrite; rsi8[5:0]={forwards, robTagFor};		end else begin addr8=so9[128:65];	val8=so9[63:0]; rsi8[5:0]=rso9[5:0]; end
+		if(maddr9) begin addr9=addrWrite;	val9=valWrite; rsi9[5:0]={forwards, robTagFor};		end else begin addr9=so10[128:65];	val9=so10[63:0]; rsi9[5:0]=rso10[5:0]; end
+		if(maddr10) begin addr10=addrWrite;	val10=valWrite; rsi10[5:0]={forwards, robTagFor};	end else begin addr10=so11[128:65];	val10=so11[63:0]; rsi10[5:0]=rso11[5:0]; end
+		if(maddr11) begin addr11=addrWrite;	val11=valWrite; rsi11[5:0]={forwards, robTagFor};	end else begin addr11=so12[128:65];	val11=so12[63:0]; rsi11[5:0]=rso12[5:0]; end
+		if(maddr12) begin addr12=addrWrite;	val12=valWrite; rsi12[5:0]={forwards, robTagFor};	end else begin addr12=so13[128:65];	val12=so13[63:0]; rsi12[5:0]=rso13[5:0]; end
+		if(maddr13) begin addr13=addrWrite;	val13=valWrite; rsi13[5:0]={forwards, robTagFor};	end else begin addr13=so14[128:65];	val13=so14[63:0]; rsi13[5:0]=rso14[5:0]; end
+		if(maddr14) begin addr14=addrWrite;	val14=valWrite; rsi14[5:0]={forwards, robTagFor};	end else begin addr14=so15[128:65];	val14=so15[63:0]; rsi14[5:0]=rso15[5:0]; end
 		if(maddr15) begin addr15=addrWrite;	val15=valWrite;	rsi15[5:0]={forwards, robTagFor};	end else begin addr15=64'h0;		val15=64'h0;	rsi15[5:0]=6'h0; end
 		
 		LS15 = jVal[15]&loadOrStore;
@@ -232,7 +229,6 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	
 	//mux control search ROB tags
-	logic aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
 	logic [15:0] lXor0, lXor1, lXor2, lXor3, lXor4, lXor5, lXor6, lXor7, lXor8, lXor9, lXor10, lXor11, lXor12, lXor13, lXor14, lXor15;
 	always_comb begin
 		aXor0 = ~|(addrWriteROB^so0[134:130]);	aXor1 = ~|(addrWriteROB^so1[134:130]);	aXor2 = ~|(addrWriteROB^so2[134:130]);	aXor3 = ~|(addrWriteROB^so3[134:130]);
@@ -266,5 +262,84 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	assign full = &tailAddr; //full when tail above queue
 	assign PCout = so0[198:135];
+endmodule
+
+
+
+
+
+module loadStoreQueue_testbench();
+	wire full, flush, forwards;
+	wire [63:0] PCout, valOut;
+	reg loadOrStore, ifNew, ifAddrWrite, ifValWrite, LSretire, reset, clk;
+	reg [63:0] PCin, addrWrite, valWrite;
+	reg [4:0] ROBin, addrWriteROB, valWriteROB;
+	loadStoreQueue DUT(.full, .flush, .PCout, .loadOrStore, .PCin, .ROBin, .ifNew, .addrWrite, .addrWriteROB, .ifAddrWrite, .valWrite, .LSretire, .forwards, .valOut, .reset, .clk);
+	
+	initial begin
+		reset=1;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	valWrite=64'hFA;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;	reset=0;
+		loadOrStore=0;	ifNew=1;	PCin=64'h100;	ROBin=4'h6;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	valWrite=64'hFA;	LSretire=0; //start with stores
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=0;	ifNew=1;	PCin=64'h104;	ROBin=4'h7;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	valWrite=64'hFA;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=0;	ifNew=1;	PCin=64'h108;	ROBin=4'h8;	ifAddrWrite=1;	addrWrite=64'h0;	addrWriteROB=4'h6;	valWrite=64'hFA;	LSretire=0; //first address write
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h10C;	ROBin=4'h1;	ifAddrWrite=1;	addrWrite=64'h8;	addrWriteROB=4'h7;	valWrite=64'hFA;	LSretire=0; //first load
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h110;	ROBin=4'h2;	ifAddrWrite=1;	addrWrite=64'h10;	addrWriteROB=4'h8;	valWrite=64'hFA;	LSretire=1;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h114;	ROBin=4'h3;	ifAddrWrite=1;	addrWrite=64'h10;	addrWriteROB=4'h1;	valWrite=64'hFA;	LSretire=1;
+		#5;	clk=1;	#5;	clk=0;
+		
+		
+		loadOrStore=1;	ifNew=0;	PCin=64'h118;	ROBin=4'hA;	ifAddrWrite=1;	addrWrite=64'h0;	addrWriteROB=4'h2;	valWrite=64'hFA;	LSretire=1;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h11C;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h8;	addrWriteROB=4'h3;	valWrite=64'hFA;	LSretire=1;
+		#5;	clk=1;	#5;	clk=0;
+		
+		LSretire=1;
+		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;
+		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;
+	end
+	/*
+	initial begin
+		ifValWrite=0;	valWrite=64'h0;	valWriteROB=0; //never change, dead val ports for now
+		reset=1;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;	reset=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h104;	ROBin=4'h2;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h108;	ROBin=4'h4;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=0;	ifNew=1;	PCin=64'h10C;	ROBin=4'h6;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h110;	ROBin=4'h8;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h114;	ROBin=4'hA;	ifAddrWrite=0;	addrWrite=64'h10;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h10;	addrWriteROB=4'h6;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h11;	addrWriteROB=4'h2;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h13;	addrWriteROB=4'h8;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h15;	addrWriteROB=4'hA;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h19;	addrWriteROB=4'h4;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=1;	PCin=64'h118;	ROBin=4'hD;	ifAddrWrite=1;	addrWrite=64'h1C;	addrWriteROB=4'h0;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		loadOrStore=1;	ifNew=0;	PCin=64'h100;	ROBin=4'h0;	ifAddrWrite=1;	addrWrite=64'h10;	addrWriteROB=4'hD;	LSretire=0;
+		#5;	clk=1;	#5;	clk=0;
+		LSretire=1;
+		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;
+		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;		#5;	clk=1;	#5;	clk=0;
+	end*/
 endmodule
 
