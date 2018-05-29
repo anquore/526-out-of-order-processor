@@ -1,4 +1,4 @@
-module reservationStationx2ForwardExtra #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
+module reservationStationx2ForwardExtra #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 ,decodeROBTag1_i

@@ -1,4 +1,4 @@
-module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(ROBsize+1)) 
+module reservationStationx2Forward #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
 ,decodeROBTag1_i
@@ -107,6 +107,17 @@ module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(
   assign RSwriteEns[1] = writeEncoder[1] & decodeWriteEn_i;
   assign RSwriteEns[0] = writeEncoder[0] & decodeWriteEn_i;
   
+  logic RS1first;
+  
+  always_ff @(posedge clk_i) begin
+    if(RS_ready[1] & ~RS_ready[0])
+      RS1first <= 1;
+    else if(~RS_ready[1])
+      RS1first <= 0;
+    else
+      RS1first <= RS1first;
+  end
+  
   //issue stage behavior
   //use a priority encoder to select which RS ready to send
   logic [1:0] readyToListenToo;
@@ -114,7 +125,7 @@ module reservationStationx2Forward #(parameter ROBsize = 8, ROBsizeLog = $clog2(
   //(.i(RS_ready)
   //,.o(readyToListenToo));
   always_comb begin
-    if(RS_ready[0])
+    if(RS_ready[0] & ~(RS1first & RS_ready[1]))
       readyToListenToo = 2'b01;
     else if(RS_ready[1])
       readyToListenToo = 2'b10;

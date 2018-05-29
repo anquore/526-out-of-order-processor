@@ -23,7 +23,7 @@ add wave -noupdate /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/tagToMe
 add wave -noupdate -radix unsigned /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCompletion/ROBTagFromMem_i
 add wave -noupdate -radix decimal /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCompletion/dataFromMem_i
 add wave -noupdate /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theCompletion/flagsFromMem_i
-add wave -noupdate -radix unsigned -childformat {{{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} -radix unsigned}} -subitemconfig {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} {-height 15 -radix unsigned}} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
+add wave -noupdate -radix unsigned -childformat {{{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[15]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[14]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[13]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[12]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[11]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[10]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[9]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[8]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} -radix unsigned} {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} -radix unsigned}} -subitemconfig {{/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[15]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[14]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[13]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[12]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[11]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[10]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[9]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[8]} {-radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[7]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[6]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[5]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[4]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[3]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[2]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[1]} {-height 15 -radix unsigned} {/pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut[0]} {-height 15 -radix unsigned}} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theROB/theRegs/managementDataOut
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theMapTable/clk
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theMapTable/commitReadAddr_i
 add wave -noupdate -group {Map Table} /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theMapTable/commitReadData
@@ -560,29 +560,68 @@ add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/t
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/busyFlipped
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/writeEncoder
 add wave -noupdate -group theRSx2ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/readyToListenToo
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reset_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/clk_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal1_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal2_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationCommands_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationTag_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/readyRS_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/stallRS_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/canGo_i
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeVal_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeFlags_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/valid_o
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_r
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_n
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/enableFlops
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue1
-add wave -noupdate -expand -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue2
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reset_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/clk_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal1_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationVal2_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationCommands_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/reservationStationTag_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/readyRS_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/stallRS_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/canGo_i
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeVal_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeFlags_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/valid_o
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_r
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/state_n
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/enableFlops
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeCommands
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/executeTag
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue1
+add wave -noupdate -group newALUExec /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theALU/storedValue2
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag1_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag2_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag3_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBTag_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagCom_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagExec_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBTagMem_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval1_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval2_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeROBval3_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalCom_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalExec_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBvalMem_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/clk_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reset_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/stall_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/issueROBMemAccessExec_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeCommands_i
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal1_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal2_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationVal3_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationCommands_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/reservationStationTag_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/ready_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/stall_o
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RSwriteEns
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RSstalls
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_busy
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_ready
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val1
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val2
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_val3
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_commands
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/RS_tag
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/busyFlipped
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/decodeWriteEn_i
+add wave -noupdate -expand -group RSx4ALU -expand /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/writeEncoder
+add wave -noupdate -expand -group RSx4ALU -expand /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/readyToListenToo
+add wave -noupdate -expand -group RSx4ALU /pipelinedProcessorOOOExtra_testbench/dut/theDataPath/theRSALU/howLongReady
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {62526 ps} 0}
+WaveRestoreCursors {{Cursor 1} {7000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 224
 configure wave -valuecolwidth 122
@@ -598,4 +637,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {59053 ps} {81103 ps}
+WaveRestoreZoom {0 ps} {43444 ps}
