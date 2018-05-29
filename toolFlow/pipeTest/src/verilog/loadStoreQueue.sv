@@ -74,6 +74,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	//retirment checker
 	logic adcmpIn, adcmp1, adcmp2, adcmp3, adcmp4, adcmp5, adcmp6, adcmp7, adcmp8, adcmp9, adcmp10, adcmp11, adcmp12, adcmp13, adcmp14, adcmp15;
 	logic adcmprob1, adcmprob2, adcmprob3, adcmprob4, adcmprob5, adcmprob6, adcmprob7, adcmprob8, adcmprob9, adcmprob10, adcmprob11, adcmprob12, adcmprob13, adcmprob14, adcmprob15;
+	logic isLoadIncoming;
 	always_comb begin
 		adcmp1 = (~|(so0[128:65]^so1[128:65]))&so1[200]&so1[129];		adcmp2 = (~|(so0[128:65]^so2[128:65]))&so2[200]&so2[129];
 		adcmp3 = (~|(so0[128:65]^so3[128:65]))&so3[200]&so3[129];		adcmp4 = (~|(so0[128:65]^so4[128:65]))&so4[200]&so4[129];
@@ -82,7 +83,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adcmp9 = (~|(so0[128:65]^so9[128:65]))&so9[200]&so9[129];		adcmp10 = (~|(so0[128:65]^so10[128:65]))&so10[200]&so10[129];
 		adcmp11 = (~|(so0[128:65]^so11[128:65]))&so11[200]&so11[129];		adcmp12 = (~|(so0[128:65]^so12[128:65]))&so12[200]&so12[129];
 		adcmp13 = (~|(so0[128:65]^so13[128:65]))&so13[200]&so13[129];		adcmp14 = (~|(so0[128:65]^so14[128:65]))&so14[200]&so14[129];
-		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];		adcmpIn = (~|(so0[128:65]^addrWrite))&loadOrStore;
+		adcmp15 = (~|(so0[128:65]^so15[128:65]))&so15[200]&so15[129];		adcmpIn = (~|(so0[128:65]^addrWrite))&isLoadIncoming;
 		
 		adcmprob1 = (~|(so0[134:130]^rso1[4:0]))&rso1[5];			adcmprob2 = (~|(so0[134:130]^rso2[4:0]))&rso2[5];
 		adcmprob3 = (~|(so0[134:130]^rso3[4:0]))&rso3[5];			adcmprob4 = (~|(so0[134:130]^rso4[4:0]))&rso4[5];
@@ -93,7 +94,7 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		adcmprob13 = (~|(so0[134:130]^rso13[4:0]))&rso13[5];			adcmprob14 = (~|(so0[134:130]^rso14[4:0]))&rso14[5];
 		adcmprob15 = (~|(so0[134:130]^rso15[4:0]))&rso15[5];
 	end
-	assign flush = (adcmpIn|(adcmp1&~adcmprob1)|(adcmp2&~adcmprob2)|(adcmp3&~adcmprob3)|(adcmp4&~adcmprob4)|(adcmp5&~adcmprob5)|(adcmp6&~adcmprob6)|(adcmp7&~adcmprob7)|
+	assign flush = ((adcmpIn&~forwards)|(adcmp1&~adcmprob1)|(adcmp2&~adcmprob2)|(adcmp3&~adcmprob3)|(adcmp4&~adcmprob4)|(adcmp5&~adcmprob5)|(adcmp6&~adcmprob6)|(adcmp7&~adcmprob7)|
 		(adcmp8&~adcmprob8)|(adcmp9&~adcmprob9)|(adcmp10&~adcmprob10)|(adcmp11&~adcmprob11)|(adcmp12&~adcmprob12)|(adcmp13&~adcmprob13)|(adcmp14&~adcmprob14)|(adcmp15&~adcmprob15))&~so0[200];
 	
 	//forwarding unit
@@ -118,11 +119,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		pfm9=fm9&~pfm10;	pfm8=fm8&~pfm9;		pfm7=fm7&~pfm8;		pfm6=fm6&~pfm7;		pfm5=fm5&~pfm6;		pfm4=fm4&~pfm5;
 		pfm3=fm3&~pfm4;		pfm2=fm2&~pfm3;		pfm1=fm1&~pfm2;		pfm0=fm0&pfm1;
 	end
-	logic isLoadToForward;
 	logic aXor0, aXor1, aXor2, aXor3, aXor4, aXor5, aXor6, aXor7, aXor8, aXor9, aXor10, aXor11, aXor12, aXor13, aXor14, aXor15;
-	assign isLoadToForward = (aXor14&so14[200])|(aXor13&so13[200])|(aXor12&so12[200])|(aXor11&so11[200])|(aXor10&so10[200])|(aXor9&so9[200])|(aXor8&so8[200])|
+	assign isLoadIncoming = (aXor14&so14[200])|(aXor13&so13[200])|(aXor12&so12[200])|(aXor11&so11[200])|(aXor10&so10[200])|(aXor9&so9[200])|(aXor8&so8[200])|
 		(aXor7&so7[200])|(aXor6&so6[200])|(aXor5&so5[200])|(aXor4&so4[200])|(aXor3&so3[200])|(aXor2&so2[200])|(aXor1&so1[200])|(aXor0&so0[200]);
-	assign forwards = ifAddrWrite&isLoadToForward&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
+	assign forwards = ifAddrWrite&isLoadIncoming&(adValcmp0|adValcmp1|adValcmp2|adValcmp3|adValcmp4|adValcmp5|adValcmp6|adValcmp7
 		|adValcmp8|adValcmp9|adValcmp10|adValcmp11|adValcmp12|adValcmp13|adValcmp14);
 	logic [3:0] forwardAddr;
 	assign forwardAddr[0]=(pfm1|pfm3|pfm5|pfm7|pfm9|pfm11|pfm13|pfm15);	assign forwardAddr[1]=(pfm2|pfm3|pfm6|pfm7|pfm10|pfm11|pfm14|pfm15);
@@ -130,9 +130,9 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	mux16x1X64 forwardingMux(.outs(valOut[63:0]), .addr(forwardAddr), .muxIns({so15[63:0], so14[63:0], so13[63:0], so12[63:0], so11[63:0], so10[63:0], so9[63:0], so8[63:0],
 		so7[63:0], so6[63:0], so5[63:0], so4[63:0], so3[63:0], so2[63:0], so1[63:0], so0[63:0]}));
 	logic [4:0] robTagFor;
-	assign robTagFor = ((pfm15&so15[134:130])|(pfm14&so14[134:130])|(pfm13&so13[134:130])|(pfm12&so12[134:130])|(pfm11&so11[134:130])|
-		(pfm10&so10[134:130])|(pfm8&so8[134:130])|(pfm7&so7[134:130])|(pfm6&so6[134:130])|(pfm5&so5[134:130])|(pfm4&so4[134:130])|
-		(pfm3&so3[134:130])|(pfm2&so2[134:130])|(pfm1&so1[134:130])|(pfm0&so0[134:130]));
+	assign robTagFor = (({5{pfm15}}&so15[134:130])|({5{pfm14}}&so14[134:130])|({5{pfm13}}&so13[134:130])|({5{pfm12}}&so12[134:130])|({5{pfm11}}&so11[134:130])|
+		({5{pfm10}}&so10[134:130])|({5{pfm8}}&so8[134:130])|({5{pfm7}}&so7[134:130])|({5{pfm6}}&so6[134:130])|({5{pfm5}}&so5[134:130])|({5{pfm4}}&so4[134:130])|
+		({5{pfm3}}&so3[134:130])|({5{pfm2}}&so2[134:130])|({5{pfm1}}&so1[134:130])|({5{pfm0}}&so0[134:130]));
 	//end of forwarding unit
 	
 	always_comb begin
@@ -163,10 +163,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	
 	always_comb begin
 		
-		naddr0=jVal[0];									naddr1=(jVal[1]&~LSretire)|(jVal[0]&LSretire);	naddr2=(jVal[2]&~LSretire)|(jVal[1]&LSretire);	naddr3=(jVal[3]&~LSretire)|(jVal[2]&LSretire);
-		naddr4=(jVal[4]&~LSretire)|(jVal[3]&LSretire);	naddr5=(jVal[5]&~LSretire)|(jVal[4]&LSretire);	naddr6=(jVal[6]&~LSretire)|(jVal[5]&LSretire);	naddr7=(jVal[7]&~LSretire)|(jVal[6]&LSretire);
-		naddr8=(jVal[8]&~LSretire)|(jVal[7]&LSretire);	naddr9=(jVal[9]&~LSretire)|(jVal[8]&LSretire);	naddr10=(jVal[10]&~LSretire)|(jVal[9]&LSretire);	naddr11=(jVal[11]&~LSretire)|(jVal[10]&LSretire);
-		naddr12=(jVal[12]&~LSretire)|(jVal[11]&LSretire);	naddr13=(jVal[13]&~LSretire)|(jVal[12]&LSretire);	naddr14=(jVal[14]&~LSretire)|(jVal[13]&LSretire);	naddr15=(jVal[15]&~LSretire)|(jVal[14]&LSretire);
+		naddr0=ifNew&((jVal[0]&~LSretire)|(jVal[1]&LSretire));	naddr1=ifNew&((jVal[1]&~LSretire)|(jVal[2]&LSretire));	naddr2=ifNew&((jVal[2]&~LSretire)|(jVal[3]&LSretire));	naddr3=ifNew&((jVal[3]&~LSretire)|(jVal[4]&LSretire));
+		naddr4=ifNew&((jVal[4]&~LSretire)|(jVal[5]&LSretire));	naddr5=ifNew&((jVal[5]&~LSretire)|(jVal[6]&LSretire));	naddr6=ifNew&((jVal[6]&~LSretire)|(jVal[7]&LSretire));	naddr7=ifNew&((jVal[7]&~LSretire)|(jVal[8]&LSretire));
+		naddr8=ifNew&((jVal[8]&~LSretire)|(jVal[9]&LSretire));	naddr9=ifNew&((jVal[9]&~LSretire)|(jVal[10]&LSretire));	naddr10=ifNew&((jVal[10]&~LSretire)|(jVal[11]&LSretire));	naddr11=ifNew&((jVal[11]&~LSretire)|(jVal[12]&LSretire));
+		naddr12=ifNew&((jVal[12]&~LSretire)|(jVal[13]&LSretire));	naddr13=ifNew&((jVal[13]&~LSretire)|(jVal[14]&LSretire));	naddr14=ifNew&((jVal[14]&~LSretire)|(jVal[15]&LSretire));	naddr15=ifNew&(jVal[15]&~LSretire);
 		
 		if(naddr0) begin LS0=loadOrStore;	pc0=PCin;		rob0=ROBin; end else begin LS0=so1[200];		pc0=so1[198:135];	rob0=so1[134:130]; end
 		if(naddr1) begin LS1=loadOrStore;	pc1=PCin;		rob1=ROBin; end else begin LS1=so2[200];		pc1=so2[198:135];	rob1=so2[134:130]; end
@@ -204,14 +204,14 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 		
 		LS15 = jVal[15]&loadOrStore;
 		
-		vpc0 = so1[199]|(jVal[0]&ifNew);	vpc1 = so2[199]|(jVal[1]&ifNew);	vpc2 = so3[199]|(jVal[2]&ifNew);	vpc3 = so4[199]|(jVal[3]&ifNew);
-		vpc4 = so5[199]|(jVal[4]&ifNew);	vpc5 = so6[199]|(jVal[5]&ifNew);	vpc6 = so7[199]|(jVal[6]&ifNew);	vpc7 = so8[199]|(jVal[7]&ifNew);
-		vpc8 = so9[199]|(jVal[8]&ifNew);	vpc9 = so10[199]|(jVal[9]&ifNew);	vpc10 = so11[199]|(jVal[10]&ifNew);	vpc11 = so12[199]|(jVal[11]&ifNew);
-		vpc12 = so13[199]|(jVal[12]&ifNew);	vpc13 = so14[199]|(jVal[13]&ifNew);	vpc14 = so15[199]|(jVal[14]&ifNew);	vpc15 = jVal[15]&ifNew;
+		vpc0 = so1[199]|(naddr0&ifNew);	vpc1 = so2[199]|(naddr1&ifNew);	vpc2 = so3[199]|(naddr2&ifNew);	vpc3 = so4[199]|(naddr3&ifNew);
+		vpc4 = so5[199]|(naddr4&ifNew);	vpc5 = so6[199]|(naddr5&ifNew);	vpc6 = so7[199]|(naddr6&ifNew);	vpc7 = so8[199]|(naddr7&ifNew);
+		vpc8 = so9[199]|(naddr8&ifNew);	vpc9 = so10[199]|(naddr9&ifNew);	vpc10 = so11[199]|(naddr10&ifNew);	vpc11 = so12[199]|(naddr11&ifNew);
+		vpc12 = so13[199]|(naddr12&ifNew);	vpc13 = so14[199]|(naddr13&ifNew);	vpc14 = so15[199]|(naddr14&ifNew);	vpc15 = naddr15&ifNew;
 		
-		pc15 = {64{jVal[15]}}&PCin;
+		pc15 = {64{naddr15}}&PCin;
 		
-		rob15 = {5{jVal[15]}}&ROBin;
+		rob15 = {5{naddr15}}&ROBin;
 		
 		vaddr0 = so1[129]|maddr0;		vaddr1 = so2[129]|maddr1;		vaddr2 = so3[129]|maddr2;		vaddr3 = so4[129]|maddr3;
 		vaddr4 = so5[129]|maddr4;		vaddr5 = so6[129]|maddr5;		vaddr6 = so7[129]|maddr6;		vaddr7 = so8[129]|maddr7;
@@ -249,12 +249,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	always_ff @(posedge clk) begin
 		if (reset)
 			tailAddr <= 4'h0;
-		else if (ifNew & LSretire)
+		else if ((ifNew&LSretire)|(~LSretire&tailAddr==4'hF)|(~ifNew&tailAddr==4'h0))
 			tailAddr <= tailAddr;
 		else if (LSretire)
 			tailAddr <= tailAddr-1;
-		else if (tailAddr==4'hF)
-			tailAddr <= 4'hF;
 		else if (ifNew)
 			tailAddr <= tailAddr+1;
 		else
