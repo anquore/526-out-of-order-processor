@@ -202,7 +202,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   .decodeWriteAddr(mapWriteAddr),
   .decodeRegWrite(mapRegWrite), 
   .clk(clk), 
-  .reset(reset | needToRestore)
+  .reset(reset)
+  .needToRestore_i(needToRestore)
   
   ,.resets_i(mapResets)
   ,.commitReadAddr_i(mapCommitReadAddr)
@@ -414,7 +415,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   reservationStationx4ForwardExtra theRSALU
       (.clk_i(clk)
-      ,.reset_i(reset | needToRestore)
+      ,.reset_i(reset)
+      ,.needToRestore_i(needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[0])
       ,.decodeROBTag2_i(RSROBTag2[0])
       ,.decodeROBTag3_i(RSROBTag3[0])
@@ -455,7 +457,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
 		for(i=1; i < 4; i++) begin : eachEnDff
 			reservationStationx2Forward theRS
       (.clk_i(clk)
-      ,.reset_i(reset | needToRestore)
+      ,.reset_i(reset)
+      ,.needToRestore_i(needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[i])
       ,.decodeROBTag2_i(RSROBTag2[i])
       ,.decodeROBTag_i(RSROBTag[i])
@@ -498,7 +501,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   logic [63:0] storeValue1;
   issueExecStageALU theALU
   (.clk_i(clk)
-  ,.reset_i(reset | needToRestore)
+  ,.reset_i(reset)
+  ,.needToRestore_i(needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[0])
@@ -521,7 +525,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageShift theShifter
   (.clk_i(clk)
-  ,.reset_i(reset | needToRestore)
+  ,.reset_i(reset)
+  ,.needToRestore_i(needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[1])
@@ -542,7 +547,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageMult theMultiplier
   (.clk_i(clk)
-  ,.reset_i(reset | needToRestore)
+  ,.reset_i(reset)
+  ,.needToRestore_i(needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[2])
@@ -563,7 +569,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageDiv theDivider
   (.clk_i(clk)
-  ,.reset_i(reset | needToRestore)
+  ,.reset_i(reset)
+  ,.needToRestore_i(needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[3])
