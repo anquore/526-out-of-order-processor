@@ -1,6 +1,7 @@
 module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
+,needToRestore_i
 
 ,decodeReadAddr1_i
 ,decodeReadAddr2_i
@@ -26,7 +27,7 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   input logic	[addrSize:0] 	decodeReadAddr1_i, decodeReadAddr2_i, completionWriteAddr_i;
 	input logic [8:0]	decodeWriteData_i;
   input logic [69:0] completionWriteData_i;
-	input logic 			reset_i, clk_i, completionWriteEn_i, updateHead_i, updateTail_i;
+	input logic 			reset_i, clk_i, completionWriteEn_i, updateHead_i, updateTail_i, needToRestore_i;
 	output logic [64:0]	decodeReadData1_o, decodeReadData2_o;
   output logic [78:0] commitReadData_o;
   output logic [addrSize:0] nextTail_o, head_o;
@@ -41,11 +42,20 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   
   //add 2 to the head and the tail
   assign headNext = head + 1;
-  assign tailNext = tailReset ? (tail+1) : tail;
+  always_comb begin
+    if(tailReset) begin
+      tailNext = tail + 1;
+    end
+    else begin
+      tailNext = tail;
+    end 
+  end
+  //assign tailNext = tailReset ? (tail+1) : tail;
   
   headTailROB headTailManager
   (.clk_i
   ,.reset_i
+  ,.needToRestore_i
   ,.updateHead_i(updateHead_i)
   ,.updateTail_i(updateTail_i)
   ,.stall_o(stall)
@@ -57,7 +67,7 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   assign decodeWriteEn = ~stall & updateTail_i;
   
   //set up some logic
-  logic [addrSize - 1:0] 	decodeReadAddr1sub1, decodeReadAddr2sub1;
+  logic [addrSize:0] 	decodeReadAddr1sub1, decodeReadAddr2sub1;
   assign decodeReadAddr1sub1 = decodeReadAddr1_i - 1;
   assign decodeReadAddr2sub1 = decodeReadAddr2_i - 1;
   
@@ -91,7 +101,7 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   integer a;
   always_comb begin
 		for(a=0; a<ROBsize; a++) begin
-      if((head == a & updateHead_i) | reset_i) begin
+      if((head == a & updateHead_i) | reset_i | needToRestore_i) begin
         resets[a] = 1'b1;
       end
       else begin
@@ -100,11 +110,18 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
 		end
 	end
   
+  //extend head/tail
+  logic [addrSize:0] headUpsize, tailNextUpSize;
+  assign headUpsize[addrSize] = 0;
+  assign headUpsize[addrSize-1:0] = head;
+  assign tailNextUpSize[addrSize] = 0;
+  assign tailNextUpSize[addrSize-1:0] = tailNext;
+
   //assign outputs
   assign decodeReadData1_o = decodeReadData1[64:0];
   assign decodeReadData2_o = decodeReadData2[64:0];
-  assign nextTail_o = tailNext + 1;
-  assign head_o = head + 1;
+  assign nextTail_o = tailNextUpSize + 1;
+  assign head_o = headUpsize + 1;
   assign stall_o = stall;
 endmodule
 

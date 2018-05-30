@@ -1,6 +1,7 @@
 module headTailROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,reset_i
+,needToRestore_i
 ,updateHead_i
 ,updateTail_i
 
@@ -9,7 +10,7 @@ module headTailROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
 ,tail_o
 ,tailReset_o);
   //ins and outs
-	input logic reset_i, clk_i, updateHead_i, updateTail_i;
+	input logic reset_i, clk_i, updateHead_i, updateTail_i, needToRestore_i;
 	output logic [addrSize-1:0]	head_o, tail_o;
   output logic stall_o, tailReset_o;
   
@@ -22,9 +23,13 @@ module headTailROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   assign tailNext = tail + 1;
   
   //tail logic
-  always_ff @(posedge clk_i) begin
+  always_ff @(posedge clk_i or posedge reset_i) begin
 		if (reset_i) begin
 			//on reset go to zero
+      tail <= 0;
+      tailReset <= 0;
+    end
+    else if (needToRestore_i) begin
       tail <= 0;
       tailReset <= 0;
     end
@@ -54,21 +59,25 @@ module headTailROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   assign stall = updateTail_i & (tailNext == head);
   
   //head logic
-  always_ff @(posedge clk_i) begin
+  always_ff @(posedge clk_i or posedge reset_i) begin
 		if (reset_i) begin
 			//on reset go to zero
-      head <= 3'b000;
-      headReset <= 1'b0;
+      head <= 0;
+      headReset <= 0;
+    end
+   else if (needToRestore_i) begin
+      head <= 0;
+      headReset <= 0;
     end
     else if (updateTail_i & (headReset == 1'b0)) begin
       //when the first value comes in link it to the head
-      head <= 3'b000;
-      headReset <= 1'b1;
+      head <= 0;
+      headReset <= 1;
     end
     else if (updateHead_i) begin
       //update head
       head <= headNext;
-      headReset <= 1'b1;
+      headReset <= 1;
     end
 		else begin
       //else case

@@ -53,6 +53,6 @@ module branchPredictionSM
 		endcase
 	end
   
-  assign branchPred_o = (state_r==mostlyTaken | state_r==alwaysTaken);
+  assign branchPred_o = (state_r==mostlyTaken) | (state_r==alwaysTaken);
 	
 endmodule

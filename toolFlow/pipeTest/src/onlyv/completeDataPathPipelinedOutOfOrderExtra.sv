@@ -157,7 +157,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   logic [63:0] storeValueFinalOut, completionWriteDataExtra;
   ROB theROB
   (.clk_i(clk)
-  ,.reset_i(reset | needToRestore)
+  ,.reset_i(reset)
+  ,.needToRestore_i(needToRestore)
 
   ,.decodeReadAddr1_i(robReadAddr1)
   ,.decodeReadAddr2_i(robReadAddr2)
@@ -371,8 +372,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   //,.ifValWrite(1'b0)
   //,.valWriteROB(5'b0)
   ,.valWrite(LSQvalWrite)
-  
-  ,.reset(reset | needToRestore)
+  ,.needToRestore_i(needToRestore)
+  ,.reset(reset)
   ,.clk(clk));
   
   

@@ -10,13 +10,13 @@
 //valWrite is the load/store value, written at some time as addr
 //LSretire is when to retire the head of the list, check for conflicts, and shift list up one
 
-module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrWrite, addrWriteROB, ifAddrWrite, valWrite, LSretire, forwards, valOut, reset, clk);
+module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrWrite, addrWriteROB, ifAddrWrite, valWrite, LSretire, forwards, valOut, reset, needToRestore_i, clk);
 	output logic full, flush, forwards;
 	output logic [63:0] PCout, valOut;
 	input logic loadOrStore, ifNew, ifAddrWrite;
 	input logic [63:0] PCin, addrWrite, valWrite;
 	input logic [4:0] ROBin, addrWriteROB;
-	input logic LSretire, reset, clk;
+	input logic LSretire, reset, needToRestore_i, clk;
 	
 	logic [200:0] so0, so1, so2, so3, so4, so5, so6, so7, so8, so9, so10, so11, so12, so13, so14, so15;
 	logic LS0, LS1, LS2, LS3, LS4, LS5, LS6, LS7, LS8, LS9, LS10, LS11, LS12, LS13, LS14, LS15;
@@ -246,8 +246,10 @@ module loadStoreQueue(full, flush, PCout, loadOrStore, PCin, ROBin, ifNew, addrW
 	end
 	
 	//counter for tail
-	always_ff @(posedge clk) begin
+	always_ff @(posedge clk or posedge reset) begin
 		if (reset)
+			tailAddr <= 4'h0;
+		else if(needToRestore_i)
 			tailAddr <= 4'h0;
 		else if ((ifNew&LSretire)|(~LSretire&tailAddr==4'hF)|(~ifNew&tailAddr==4'h0))
 			tailAddr <= tailAddr;
