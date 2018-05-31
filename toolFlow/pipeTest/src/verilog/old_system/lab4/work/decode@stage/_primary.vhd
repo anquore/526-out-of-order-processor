@@ -1,0 +1,64 @@
+library verilog;
+use verilog.vl_types.all;
+entity decodeStage is
+    generic(
+        ROBsize         : integer := 32;
+        ROBsizeLog      : vl_notype;
+        addrSize        : vl_notype
+    );
+    port(
+        clk_i           : in     vl_logic;
+        reset_i         : in     vl_logic;
+        RDvalue_i       : in     vl_logic_vector(4 downto 0);
+        RMvalue_i       : in     vl_logic_vector(4 downto 0);
+        RNvalue_i       : in     vl_logic_vector(4 downto 0);
+        dAddr9_i        : in     vl_logic_vector(8 downto 0);
+        imm12_i         : in     vl_logic_vector(11 downto 0);
+        commandType_i   : in     vl_logic_vector(2 downto 0);
+        PCaddress_i     : in     vl_logic_vector(63 downto 0);
+        reg2Loc_i       : in     vl_logic;
+        memWrite_i      : in     vl_logic;
+        memToReg_i      : in     vl_logic;
+        ALUOp_i         : in     vl_logic;
+        ALUSrc_i        : in     vl_logic;
+        dOrImm_i        : in     vl_logic;
+        saveCond_i      : in     vl_logic;
+        read_enable_i   : in     vl_logic;
+        whichMath_i     : in     vl_logic;
+        regWrite_i      : in     vl_logic;
+        needToForward_i : in     vl_logic;
+        leftShift_i     : in     vl_logic;
+        decodeStall_o   : out    vl_logic;
+        mapReadData1_i  : in     vl_logic_vector;
+        mapReadData2_i  : in     vl_logic_vector;
+        mapWriteData_o  : out    vl_logic_vector;
+        mapReadAddr1_o  : out    vl_logic_vector(4 downto 0);
+        mapReadAddr2_o  : out    vl_logic_vector(4 downto 0);
+        mapWriteAddr_o  : out    vl_logic_vector(4 downto 0);
+        mapRegWrite_o   : out    vl_logic;
+        robReadAddr1_o  : out    vl_logic_vector;
+        robReadAddr2_o  : out    vl_logic_vector;
+        robReadData1_i  : in     vl_logic_vector(64 downto 0);
+        robReadData2_i  : in     vl_logic_vector(64 downto 0);
+        robUpdateTail_o : out    vl_logic;
+        robWriteData_o  : out    vl_logic_vector(7 downto 0);
+        robNextTail_i   : in     vl_logic_vector;
+        robStall_i      : in     vl_logic;
+        RSROBTag1_o     : out    vl_logic_vector(3 downto 0);
+        RSROBTag2_o     : out    vl_logic_vector(3 downto 0);
+        RSROBTag_o      : out    vl_logic_vector(3 downto 0);
+        RSWriteEn_o     : out    vl_logic_vector(3 downto 0);
+        RSROBval1_o     : out    vl_logic_vector(3 downto 0);
+        RSROBval2_o     : out    vl_logic_vector(3 downto 0);
+        RSCommands_o    : out    vl_logic_vector(3 downto 0);
+        RSstall_i       : in     vl_logic_vector(3 downto 0);
+        regfileReadRegister1_o: out    vl_logic_vector(4 downto 0);
+        regfileReadRegister2_o: out    vl_logic_vector(4 downto 0);
+        regfileReadData1_i: in     vl_logic_vector(63 downto 0);
+        regfileReadData2_i: in     vl_logic_vector(63 downto 0)
+    );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of ROBsize : constant is 1;
+    attribute mti_svvh_generic_type of ROBsizeLog : constant is 3;
+    attribute mti_svvh_generic_type of addrSize : constant is 3;
+end decodeStage;

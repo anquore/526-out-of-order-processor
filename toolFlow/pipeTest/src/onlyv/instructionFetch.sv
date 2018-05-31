@@ -17,7 +17,7 @@ module instructionFetch(clk, reset, uncondBr, brTaken, BRMI, regPC, instrToRead,
 	//instructmem instrMem(.address, .instruction, .clk);
 	
 	//PC value
-	individualReg64 PC(.q(address), .d(newAddress1), .reset, .softReset(1'b0), .enable(enablePC | needToRestore_i), .clk);
+	individualReg64 PC(.q(address), .d(newAddress1), .reset, .enable(enablePC | needToRestore_i), .clk);
 	
 	//sign extenders
 	signExtend19 extend19(.valueIn(instrToRead[23:5]), .extendedOut(value19Extend));

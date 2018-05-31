@@ -1,7 +1,6 @@
 module ROBregs #(parameter ROBsize = 16, addrSize = $clog2(ROBsize)) 
 (clk_i
 ,resets_i
-,needToRestore_i
 ,decodeReadAddr1_i
 ,decodeReadAddr2_i
 ,decodeWriteAddr_i
@@ -57,7 +56,7 @@ module ROBregs #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
 	//generate a collection of ROBsize different 7 bit registers each with their own enable and reset signal to hold the arch reg and what kind of command this is
 	generate
 		for(k=0; k<ROBsize; k++) begin : eachManagementReg
-			wallOfDFFsL9 managementReg (.q(managementDataOut[k][8:0]), .d(decodeWriteData_i[8:0]), .reset(resets_i[k]), .softReset(needToRestore_i), .enable(decodedManagement[k]), .clk(clk_i));
+			wallOfDFFsL9 managementReg (.q(managementDataOut[k][8:0]), .d(decodeWriteData_i[8:0]), .reset(resets_i[k]), .enable(decodedManagement[k]), .clk(clk_i));
 		end
 	endgenerate 
 	
@@ -92,13 +91,13 @@ module ROBregs #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
 	//generate a collection of ROBsize different 70 bit registers each with their own enable and reset signal to holds values and valids for value and flags
 	generate
 		for(l=0; l<ROBsize; l++) begin : eachCompletionReg
-			wallOfDFFsL70 completionReg (.q(completionDataOut[l][69:0]), .d(completionWriteData_i[69:0]), .reset(resets_i[l]), .softReset(needToRestore_i), .enable(decodedCompletion[l]), .clk(clk_i));
+			wallOfDFFsL70 completionReg (.q(completionDataOut[l][69:0]), .d(completionWriteData_i[69:0]), .reset(resets_i[l]), .enable(decodedCompletion[l]), .clk(clk_i));
 		end
 	endgenerate
   
   generate
 		for(q=0; q<ROBsize; q++) begin : eachAddressReg
-			wallOfDFFsL64 addressReg (.q(completionDataOutExtra[q]), .d(completionWriteDataExtra_i), .reset(resets_i[q]), .softReset(needToRestore_i), .enable(decodedCompletion[q]), .clk(clk_i));
+			wallOfDFFsL64 addressReg (.q(completionDataOutExtra[q]), .d(completionWriteDataExtra_i), .reset(resets_i[q]), .enable(decodedCompletion[q]), .clk(clk_i));
 		end
 	endgenerate 
 	

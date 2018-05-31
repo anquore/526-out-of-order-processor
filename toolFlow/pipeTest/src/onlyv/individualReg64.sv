@@ -1,14 +1,14 @@
-module individualReg64(q, d, reset, softReset, enable, clk);
+module individualReg64(q, d, reset, enable, clk);
 	output logic [63:0] q;
 	input logic [63:0] d;
-	input logic reset, enable, softReset, clk;
+	input logic reset, enable, clk;
 	
 	genvar i;
 	
 	//generate 64 enable DFFs all linked to one enable signal
 	generate
 		for(i=0; i<64; i++) begin : eachEnDff
-			enableD_FF enDff (.q(q[i]), .d(d[i]), .reset, .softReset, .enable, .clk);
+			enableD_FF enDff (.q(q[i]), .d(d[i]), .reset, .enable, .clk);
 		end
 	endgenerate 
 endmodule

@@ -1,12 +1,10 @@
-module D_FF (q, d, reset, softReset, clk);
+module D_FF (q, d, reset, clk);
 	output logic q;
-	input logic d, reset, clk, softReset;
+	input logic d, reset, clk;
 	
-	always_ff @(posedge clk or posedge reset)
+	always_ff @(posedge clk)
 		if (reset)
 			q <= 0; // On reset, set to 0
-    else if(softReset)
-      q <= 0;
 		else
 			q <= d; // Otherwise out = d
 endmodule

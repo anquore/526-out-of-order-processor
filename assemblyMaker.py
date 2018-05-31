@@ -515,6 +515,8 @@ def main():
   #additions
   mathCommand('ADD', ADD, 13, 14, 4, theFile)#-34
   mathCommand('ADD', ADD, 14, 5, 14, theFile)#0
+  mathCommand('ADD', ADD, 31, 14, 4, theFile)#-34
+  mathCommand('ADD', ADD, 31, 5, 14, theFile)#0
   
   #do a bunch of interlinking
   mathCommand('DIV', DIV, 10, 13, 2, theFile) #23/-34 = 0
@@ -543,7 +545,7 @@ def main():
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  '''
+  
   #map table testing, reg renaming
   #clear the file
   theFile = open('MT_reg_renaming.arm','w')
@@ -584,13 +586,21 @@ def main():
   mathCommand('ADD', ADD, 16, 2, 3, theFile)#20
   mathCommand('ADDS', ADDS, 17, 2, 3, theFile)#24
   mathCommand('SUB', SUB, 18, 2, 3, theFile)#28
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
   mathCommand('SUBS', SUBS, 15, 2, 3, theFile)#32
   mathCommand('OR', OR, 20, 15, 3, theFile)#36
   
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  '''
+  
   '''
   #shift testing
   #clear the file
@@ -901,6 +911,50 @@ def main():
   memoryCommand('STUR', STUR, 0, 10, 0, theFile) #80           
   memoryCommand('LDUR', LDUR, 0, 11, 0, theFile) #84
   
+  #setup up a very slow command
+  mathCommand('DIV', DIV, 25, 3, 3, theFile)
+  #do a bunch of stores
+  memoryCommand('STUR', STUR, 24, 1, 0, theFile)             
+  memoryCommand('STUR', STUR, 32, 2, 0, theFile)
+  memoryCommand('STUR', STUR, 40, 3, 0, theFile)
+  memoryCommand('STUR', STUR, 48, 4, 0, theFile)             
+  memoryCommand('STUR', STUR, 56, 5, 0, theFile)
+  memoryCommand('STUR', STUR, 64, 6, 0, theFile)
+  memoryCommand('STUR', STUR, 72, 7, 0, theFile)             
+  memoryCommand('STUR', STUR, 80, 8, 0, theFile)
+  
+  #do a bunch of loads
+  memoryCommand('LDUR', LDUR, 24, 11, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 32, 12, 0, theFile)
+  memoryCommand('LDUR', LDUR, 40, 13, 0, theFile)
+  memoryCommand('LDUR', LDUR, 48, 14, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 56, 15, 0, theFile)
+  memoryCommand('LDUR', LDUR, 64, 16, 0, theFile)
+  memoryCommand('LDUR', LDUR, 72, 17, 0, theFile)             
+  memoryCommand('LDUR', LDUR, 80, 18, 0, theFile)
+  
+  #clear out the queue
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  
+  #do a load
+  memoryCommand('LDUR', LDUR, 0, 20, 0, theFile) 
+  
+  
   #have activity at all 3 ports of LSQ
   
   
@@ -921,7 +975,7 @@ def main():
   immediateCommand('ADDI', ADDI, -1, 1, 31, theFile) #1
   immediateCommand('ADDI', ADDI, 23, 2, 31, theFile) #2
   
-  #test the RS forwarding
+  #check the RS sends values out in the correct order
   mathCommand('MULT', MULT, 3, 1, 2, theFile)
   mathCommand('ADD', ADD, 20, 3, 0, theFile)
   mathCommand('ADD', ADD, 21, 3, 1, theFile)
@@ -936,12 +990,53 @@ def main():
   mathCommand('MULT', MULT, 5, 21, 2, theFile)
   mathCommand('MULT', MULT, 6, 22, 2, theFile)
   
+  mathCommand('ADD', ADD, 31, 31, 31, theFile)
+  mathCommand('ADD', ADD, 31, 31, 31, theFile)
   shiftCommand('LSR', LSR, 7, 3, 20, theFile) #should be large
   shiftCommand('LSL', LSL, 8, 4, 21, theFile)
   shiftCommand('LSR', LSR, 9, 3, 22, theFile)
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  '''
+  '''
+  #clear the file
+  theFile = open('branchDelaySlotTest.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('branchDelaySlotTest.arm','a')
+  
+  #setup some starting variables
+  immediateCommand('ADDI', ADDI, 0, 0, 31, theFile) #0
+  immediateCommand('ADDI', ADDI, 10, 1, 31, theFile) #4
+  immediateCommand('ADDI', ADDI, 9, 2, 31, theFile) #8
+  immediateCommand('ADDI', ADDI, 20, 3, 31, theFile) #12
+  immediateCommand('ADDI', ADDI, 10, 4, 31, theFile) #16
+  
+  
+  #failure tester
+  mathCommand('SUBS', SUBS, 31, 1, 0, theFile)#20
+  condBranchCommand('BCOND', BCOND, 5, GE, theFile)#24
+  immediateCommand('ADDI', ADDI, 1, 0, 0, theFile)#28
+  
+  mathCommand('SUBS', SUBS, 31, 0, 4, theFile)
+  condBranchCommand('BCOND', BCOND, -4, GT, theFile)
+  mathCommand('ADD', ADD, 31, 31, 31, theFile)
+  
+  immediateCommand('ADDI', ADDI, 1, 2, 2, theFile)
+  mathCommand('SUBS', SUBS, 31, 3, 2, theFile)
+  condBranchCommand('BCOND', BCOND, -8, LT, theFile)
+  mathCommand('ADD', ADD, 31, 31, 31, theFile)
+  
+  branchCommand('B', B, 0, theFile)#96
+  mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
+  #zero should be 20
+  #one is 10
+  #2 is 20
+  #3 is 20
+  #4 is 10
   '''
   theFile.close()
 

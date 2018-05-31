@@ -1,8 +1,8 @@
-module divider1(quotient, valid_out, divisor, dividend, valid_in, needToRestore_i, rst, clk);
+module divider1(quotient, valid_out, divisor, dividend, valid_in, rst, clk);
 	output [63:0] quotient;
 	output valid_out;
 	input [63:0] divisor, dividend;
-	input valid_in, rst, needToRestore_i, clk;
+	input valid_in, rst, clk;
 	
 	wire [64:0] opA, opB, opC;
 	//assign remainder=opA[63:0];
@@ -11,20 +11,8 @@ module divider1(quotient, valid_out, divisor, dividend, valid_in, needToRestore_
 	logic latch_inputs;
 	wire [63:0] dividend_r, divisor_r;
 	
-  wallOfDFFsL64 dividendReg
-  (.q(dividend_r)
-  ,.d(dividend)
-  ,.reset(rst)
-  ,.softReset(needToRestore_i)
-  ,.enable(latch_inputs)
-  ,.clk(clk));
-  wallOfDFFsL64 divisorReg
-  (.q(divisor_r)
-  ,.d(divisor)
-  ,.reset(rst)
-  ,.softReset(needToRestore_i)
-  ,.enable(latch_inputs)
-  ,.clk(clk));
+	registerX64 dividendReg(.outs(dividend_r[63:0]), .ins(dividend[63:0]), .en(latch_inputs), .rst, .clk);
+	registerX64 divisorReg(.outs(divisor_r[63:0]), .ins(divisor[63:0]), .en(latch_inputs), .rst, .clk);
 	
 	logic opA_sel;
 	logic[1:0] opB_sel, opC_sel;
@@ -54,31 +42,9 @@ module divider1(quotient, valid_out, divisor, dividend, valid_in, needToRestore_
 	//mux_4x1_X65 muxC(.outs(opC_mux), .select(opC_sel), .invSelect(~opC_sel), .ins({65'h0, dividend_r[63], dividend_r[63:0], add_out[64:0], opC[63:0], (~add_out[64])}));
 	
 	logic opA_ld, opB_ld, opC_ld;
-	//registerX65 regA(.outs(opA), .ins(opA_mux), .en(opA_ld), .rst, .clk);
-	///registerX65 regB(.outs(opB), .ins(opB_mux), .en(opB_ld), .rst, .clk);
-	///registerX65 regC(.outs(opC), .ins(opC_mux), .en(opC_ld), .rst, .clk);
-  wallOfDFFsX65 regA
-  (.q(opA)
-  ,.d(opA_mux)
-  ,.reset(rst)
-  ,.softReset(needToRestore_i)
-  ,.enable(opA_ld)
-  ,.clk(clk));
-  wallOfDFFsX65 regB
-  (.q(opB)
-  ,.d(opB_mux)
-  ,.reset(rst)
-  ,.softReset(needToRestore_i)
-  ,.enable(opB_ld)
-  ,.clk(clk));
-  wallOfDFFsX65 regC
-  (.q(opC)
-  ,.d(opC_mux)
-  ,.reset(rst)
-  ,.softReset(needToRestore_i)
-  ,.enable(opC_ld)
-  ,.clk(clk));
-
+	registerX65 regA(.outs(opA), .ins(opA_mux), .en(opA_ld), .rst, .clk);
+	registerX65 regB(.outs(opB), .ins(opB_mux), .en(opB_ld), .rst, .clk);
+	registerX65 regC(.outs(opC), .ins(opC_mux), .en(opC_ld), .rst, .clk);
 	
 	logic opA_inv, opB_inv;
 	wire [64:0] opA_inv_buf, opB_inv_buf;
@@ -128,10 +94,8 @@ module divider1(quotient, valid_out, divisor, dividend, valid_in, needToRestore_
 	//always @(posedge clk) begin
 		//state <= rst?WAIT:next_state;
 	//end
-  always_ff @(posedge clk or posedge rst) begin
+  always_ff @(posedge clk) begin
 		if(rst)
-      state <= WAIT;
-    else if(needToRestore_i)
       state <= WAIT;
     else
       state <= next_state;

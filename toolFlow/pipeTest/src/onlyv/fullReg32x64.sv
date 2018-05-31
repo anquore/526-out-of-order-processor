@@ -1,8 +1,8 @@
-module fullReg32x64(dataOut, dataIn, reset, softReset, enable, clk);
+module fullReg32x64(dataOut, dataIn, reset, enable, clk);
 	output logic [31:0][63:0] dataOut;
 	input logic [63:0] dataIn;
 	input logic [31:0] enable;
-	input logic reset, clk, softReset;
+	input logic reset, clk;
 	
 	genvar i;
 	
@@ -10,12 +10,12 @@ module fullReg32x64(dataOut, dataIn, reset, softReset, enable, clk);
 	//their own enable signal
 	generate
 		for(i=0; i<31; i++) begin : eachIndiReg
-			individualReg64 indiReg (.q(dataOut[i][63:0]), .d(dataIn[63:0]), .reset, .softReset, .enable(enable[i]), .clk);
+			individualReg64 indiReg (.q(dataOut[i][63:0]), .d(dataIn[63:0]), .reset, .enable(enable[i]), .clk);
 		end
 	endgenerate 
 	
 	//the zero register
-	individualReg64 special (.q(dataOut[31][63:0]), .d(dataIn[63:0]), .reset(1'b1), .softReset, .enable(enable[31]), .clk);
+	individualReg64 special (.q(dataOut[31][63:0]), .d(dataIn[63:0]), .reset(1'b1), .enable(enable[31]), .clk);
 	//integer j;
 	//always_comb begin
 		//for(j=0;j<64;j++) begin

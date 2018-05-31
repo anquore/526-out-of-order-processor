@@ -13,7 +13,7 @@ module branchPredictionSM
 	localparam [1:0] alwaysTaken = 2'b00, mostlyTaken = 2'b01, mostlyNotTaken = 2'b10, alwaysNotTaken = 2'b11;
   logic [1:0] state_n, state_r;
   
-	always_ff @(posedge clk_i or posedge reset_i) begin
+	always_ff @(posedge clk_i) begin
 		if(reset_i)
       state_r <= alwaysTaken;
     else

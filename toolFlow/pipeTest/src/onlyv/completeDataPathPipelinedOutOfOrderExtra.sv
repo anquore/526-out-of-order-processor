@@ -69,6 +69,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   logic needToRestore;
   logic [63:0] restorePoint;
   logic brTaken;
+  logic instrRestore;
+  logic [63:0] restoreAddressInstr;
 	instructionFetch instructionGetter 
   (.clk
   , .reset
@@ -80,8 +82,8 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   , .instruction
   , .address
   , .enablePC(~decodeStall)
-  ,.needToRestore_i(needToRestore)
-  ,.restorePoint_i(restorePoint)
+  ,.needToRestore_i(instrRestore)
+  ,.restorePoint_i(restoreAddressInstr)
   ,.imem_instruction_i
   ,.imem_address_o
   ,.couldBeNewAddress_o(couldBeNewAddress)
@@ -108,6 +110,40 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   ,.anUpdate_i(commitingBranch)
   ,.whatToDoBranch_o(brTakenGuess)
   );
+  
+  
+  //ensure delay slot is executed
+  logic [63:0] addressBackup;
+  wallOfDFFsL64 backupOfWhereToBranch (.q(addressBackup), .d(restorePoint), .reset(reset), .enable(1'b1), .clk);
+  
+  //logic to choose address to restore too
+  logic whichAddress;
+  logic wrongDelaySlot 
+  assign wrongDelaySlot = needToRestore & commitingBranch & commitBranchTaken;
+  always_ff @(posedge clk) begin
+    if(reset)
+      whichAddress <= 0;
+    else if(wrongDelaySlot)
+      whichAddress <= 1;
+    else if(whichAddress == 1)
+      whichAddress <= 0;
+    else
+      whichAddress <= whichAddress;
+  end
+  
+
+  assign instrRestore = needToRestore | whichAddress;
+  always_comb begin
+    if(wrongDelaySlot)
+      restoreAddressInstr = addressCommit + 4;
+    else if(whichAddress)
+      restoreAddressInstr = addressBackup;
+    else
+      restoreAddressInstr = restorePoint;
+  end
+      
+    
+    
   
   //decide which address to send
   logic [63:0] decodeAddress;
@@ -202,8 +238,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   .decodeWriteAddr(mapWriteAddr),
   .decodeRegWrite(mapRegWrite), 
   .clk(clk), 
-  .reset(reset)
-  .needToRestore_i(needToRestore)
+  .reset(reset | needToRestore)
   
   ,.resets_i(mapResets)
   ,.commitReadAddr_i(mapCommitReadAddr)
@@ -415,8 +450,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   reservationStationx4ForwardExtra theRSALU
       (.clk_i(clk)
-      ,.reset_i(reset)
-      ,.needToRestore_i(needToRestore)
+      ,.reset_i(reset | needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[0])
       ,.decodeROBTag2_i(RSROBTag2[0])
       ,.decodeROBTag3_i(RSROBTag3[0])
@@ -457,8 +491,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
 		for(i=1; i < 4; i++) begin : eachEnDff
 			reservationStationx2Forward theRS
       (.clk_i(clk)
-      ,.reset_i(reset)
-      ,.needToRestore_i(needToRestore)
+      ,.reset_i(reset | needToRestore)
       ,.decodeROBTag1_i(RSROBTag1[i])
       ,.decodeROBTag2_i(RSROBTag2[i])
       ,.decodeROBTag_i(RSROBTag[i])
@@ -501,8 +534,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   logic [63:0] storeValue1;
   issueExecStageALU theALU
   (.clk_i(clk)
-  ,.reset_i(reset)
-  ,.needToRestore_i(needToRestore)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[0])
@@ -525,8 +557,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageShift theShifter
   (.clk_i(clk)
-  ,.reset_i(reset)
-  ,.needToRestore_i(needToRestore)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[1])
@@ -547,8 +578,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageMult theMultiplier
   (.clk_i(clk)
-  ,.reset_i(reset)
-  ,.needToRestore_i(needToRestore)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[2])
@@ -569,8 +599,7 @@ module completeDataPathPipelinedOutOfOrderExtra #(parameter ROBsize = 16, ROBsiz
   
   issueExecStageDiv theDivider
   (.clk_i(clk)
-  ,.reset_i(reset)
-  ,.needToRestore_i(needToRestore)
+  ,.reset_i(reset | needToRestore)
 
   //RS inouts
   ,.stallRS_o(executionStall[3])

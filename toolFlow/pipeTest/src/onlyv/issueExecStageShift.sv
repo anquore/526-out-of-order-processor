@@ -1,7 +1,6 @@
 module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
-,needToRestore_i
 
 //RS inouts
 ,stallRS_o
@@ -19,7 +18,7 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
 ,executeFlags_o
 ,valid_o
 );
-  input reset_i, clk_i, needToRestore_i;
+  input reset_i, clk_i;
   
   //Reservation station inouts
   input logic [63:0] reservationStationVal1_i, reservationStationVal2_i;
@@ -45,10 +44,8 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
   //always_ff @(posedge clk_i) begin
     //state_r <= reset_i ? eWaiting : state_n;
   //end
-  always_ff @(posedge clk_i or posedge reset_i) begin
+  always_ff @(posedge clk_i) begin
     if(reset_i)
-      state_r <= eWaiting;
-    else if(needToRestore_i)
       state_r <= eWaiting;
     else
       state_r <= state_n;   
@@ -96,7 +93,6 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
   (.q(executeCommands)
   ,.d(reservationStationCommands_i)
   ,.reset(reset_i)
-  ,.softReset(needToRestore_i)
   ,.enable(enableFlops)
   ,.clk(clk_i));
   
@@ -105,7 +101,6 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
   (.q(executeTag)
   ,.d(reservationStationTag_i)
   ,.reset(reset_i)
-  ,.softReset(needToRestore_i)
   ,.enable(enableFlops)
   ,.clk(clk_i));
   
@@ -114,7 +109,6 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
   (.q(storedValue1)
   ,.d(reservationStationVal1_i)
   ,.reset(reset_i)
-  ,.softReset(needToRestore_i)
   ,.enable(enableFlops)
   ,.clk(clk_i));
   
@@ -123,7 +117,6 @@ module issueExecStageShift #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize
   (.q(storedValue2)
   ,.d(reservationStationVal2_i)
   ,.reset(reset_i)
-  ,.softReset(needToRestore_i)
   ,.enable(enableFlops)
   ,.clk(clk_i));
   

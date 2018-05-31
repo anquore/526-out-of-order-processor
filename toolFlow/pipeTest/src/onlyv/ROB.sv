@@ -79,7 +79,6 @@ module ROB #(parameter ROBsize = 16, addrSize = $clog2(ROBsize))
   ROBregs theRegs
   (.clk_i
   ,.resets_i(resets)
-  ,.needToRestore_i
   ,.decodeReadAddr1_i(decodeReadAddr1sub1[addrSize-1:0])
   ,.decodeReadAddr2_i(decodeReadAddr2sub1[addrSize-1:0])
   ,.decodeWriteAddr_i(tailNext)

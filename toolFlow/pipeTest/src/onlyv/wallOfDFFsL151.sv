@@ -1,14 +1,14 @@
-module wallOfDFFsL151 #(parameter LENGTH = 151) (q, d, reset, softReset, enable, clk);
+module wallOfDFFsL151 #(parameter LENGTH = 151) (q, d, reset, enable, clk);
 	output logic [LENGTH-1:0] q;
 	input logic [LENGTH-1:0] d;
-	input logic reset, enable, softReset, clk;
+	input logic reset, enable, clk;
 	
 	genvar i;
 	
 	//generate 64 enable DFFs all linked to one enable signal
 	generate
 		for(i=0; i < LENGTH; i++) begin : eachEnDff
-			enableD_FF enDff (.q(q[i]), .d(d[i]), .reset, .softReset, .enable, .clk);
+			enableD_FF enDff (.q(q[i]), .d(d[i]), .reset, .enable, .clk);
 		end
 	endgenerate 
 endmodule

@@ -24,7 +24,7 @@ module regfileOOO
 	decoder5x32 theDecoder (.decoded, .addr(WriteRegister), .enable(RegWrite));
 	
 	//the bank of DFFs
-	fullReg32x64 bankODFFs (.dataOut, .dataIn(WriteData), .reset, .softReset(1'b0), .enable(decoded), .clk);
+	fullReg32x64 bankODFFs (.dataOut, .dataIn(WriteData), .reset, .enable(decoded), .clk);
 	
 	//flip dataOut around to send it to the muxes
 	integer i,j;

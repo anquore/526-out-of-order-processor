@@ -1,6 +1,6 @@
-module enableD_FF (q, d, reset, softReset, enable, clk);
+module enableD_FF (q, d, reset, enable, clk);
 	output logic q;
-	input logic d, reset, softReset, enable, clk;
+	input logic d, reset, enable, clk;
 	
 	logic valueToDFF;
 	
@@ -8,7 +8,7 @@ module enableD_FF (q, d, reset, softReset, enable, clk);
 	mux2_1 controlMux (.out(valueToDFF), .i0(q), .i1(d), .sel(enable));
 	
 	//the DFF
-	D_FF theFlop (.q, .d(valueToDFF), .reset, .softReset, .clk);
+	D_FF theFlop (.q, .d(valueToDFF), .reset, .clk);
 endmodule
 
 /*

@@ -1,7 +1,6 @@
 module reservationStationForwardExtra #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1)) 
 (clk_i
 ,reset_i
-,needToRestore_i
 ,decodeROBTag1_i
 ,decodeROBTag2_i
 ,decodeROBTag3_i
@@ -35,7 +34,7 @@ module reservationStationForwardExtra #(parameter ROBsize = 16, ROBsizeLog = $cl
 
 	input logic	[ROBsizeLog - 1:0] 	decodeROBTag1_i, decodeROBTag2_i, decodeROBTag3_i/**/, decodeROBTag_i, issueROBTagCom_i, issueROBTagExec_i, issueROBTagMem_i;
   input logic [64:0] decodeROBval1_i, decodeROBval2_i, decodeROBval3_i/**/, issueROBvalCom_i, issueROBvalExec_i, issueROBvalMem_i;
-	input logic 			decodeWriteEn_i, clk_i, reset_i, stall_i, issueROBMemAccessExec_i, needToRestore_i;
+	input logic 			decodeWriteEn_i, clk_i, reset_i, stall_i, issueROBMemAccessExec_i;
   input logic [9:0] decodeCommands_i;
   output logic [63:0] reservationStationVal1_o, reservationStationVal2_o, /**/reservationStationVal3_o;
   output logic [9:0] reservationStationCommands_o;
@@ -188,7 +187,7 @@ module reservationStationForwardExtra #(parameter ROBsize = 16, ROBsizeLog = $cl
 	end
   
 	//the RS regs
-  wallOfDFFsL223 RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[202] | decodeWriteEn_i), .softReset(needToRestore_i), .clk(clk_i));
+  wallOfDFFsL223 RSregs (.q(reservationStationVal), .d(reservationStationIn), .reset(reset_i), .enable(reservationStationVal[202] | decodeWriteEn_i), .clk(clk_i));
 	
   //assign outputs
   assign reservationStationVal3_o = reservationStationIn[191:128];

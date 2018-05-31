@@ -1,7 +1,6 @@
 module mapTable #(parameter ROBsize = 16, mapValueSize = $clog2(ROBsize+1)) 
 (clk
 ,reset
-,needToRestore_i
 ,decodeReadData1
 ,decodeReadData2
 ,decodeWriteData
@@ -16,7 +15,7 @@ module mapTable #(parameter ROBsize = 16, mapValueSize = $clog2(ROBsize+1))
 );
 	input logic	[4:0] 	decodeReadAddr1, decodeReadAddr2, decodeWriteAddr, commitReadAddr_i;
 	input logic [mapValueSize - 1:0]	decodeWriteData;
-	input logic 			decodeRegWrite, clk, reset, needToRestore_i;
+	input logic 			decodeRegWrite, clk, reset;
   input logic [31:0] resets_i;
 	output logic [mapValueSize - 1:0]	decodeReadData1, decodeReadData2, commitReadData;
 	
@@ -32,7 +31,7 @@ module mapTable #(parameter ROBsize = 16, mapValueSize = $clog2(ROBsize+1))
 	//their own enable signal
 	generate
 		for(k=0; k<32; k++) begin : eachIndiReg
-			wallOfDFFsL5 indiReg (.q(dataOut[k][mapValueSize - 1:0]), .d(decodeWriteData[mapValueSize - 1:0]), .reset(reset), .softReset(doAReset[k]), .enable(decoded[k]), .clk);
+			wallOfDFFsL5 indiReg (.q(dataOut[k][mapValueSize - 1:0]), .d(decodeWriteData[mapValueSize - 1:0]), .reset(doAReset[k]), .enable(decoded[k]), .clk);
 		end
 	endgenerate 
 	
@@ -65,7 +64,7 @@ module mapTable #(parameter ROBsize = 16, mapValueSize = $clog2(ROBsize+1))
   integer l;
 	always_comb begin
 		for(l=0; l<32; l++) begin
-      if(needToRestore_i | (resets_i[l] & (~addrMatch)))
+      if(reset | (resets_i[l] & (~addrMatch)))
         doAReset[l] = 1;
       else
         doAReset[l] = 0;

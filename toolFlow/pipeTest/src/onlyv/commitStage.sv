@@ -116,10 +116,10 @@ module commitStage #(parameter ROBsize = 16, ROBsizeLog = $clog2(ROBsize+1), add
   
   //the flags
   logic negative, zero, overflow, carry_out;
-  enableD_FF nDFF (.d(flagData[0]), .q(negative), .reset(reset_i), .softReset(1'b0), .enable(flagValid), .clk(clk_i));
-	enableD_FF zDFF (.d(flagData[1]), .q(zero), .reset(reset_i), .softReset(1'b0), .enable(flagValid), .clk(clk_i));
-	enableD_FF oDFF (.d(flagData[2]), .q(overflow), .reset(reset_i), .softReset(1'b0), .enable(flagValid), .clk(clk_i));
-	enableD_FF cDFF (.d(flagData[3]), .q(carry_out), .reset(reset_i), .softReset(1'b0), .enable(flagValid), .clk(clk_i));
+  enableD_FF nDFF (.d(flagData[0]), .q(negative), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF zDFF (.d(flagData[1]), .q(zero), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF oDFF (.d(flagData[2]), .q(overflow), .reset(reset_i), .enable(flagValid), .clk(clk_i));
+	enableD_FF cDFF (.d(flagData[3]), .q(carry_out), .reset(reset_i), .enable(flagValid), .clk(clk_i));
   
   //determine what branch should have done
   logic correctBranch;
