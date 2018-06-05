@@ -53,6 +53,15 @@ vlog "./full_adder.sv"
 vlog "./fullAdderArray63.sv"
 vlog "./registerX64.sv"
 vlog "./divider.sv"
+vlog "./divider1.sv"
+vlog "./FF_en.sv"
+vlog "./mux_2x1_X65.sv"
+vlog "./mux_4x1_X65.sv"
+vlog "./registerX65.sv"
+vlog "./xnorifier.sv"
+vlog "./norifier.sv"
+vlog "./adderC65.sv"
+
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the

@@ -116,7 +116,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   always_comb begin
     unique case (state_rMult)
       eWaitingMult: state_nMult = secondWallOut[175] ? eStallingMult : eWaitingMult;
-      eStallingMult: state_nMult = valid_outMult ? eStallingMult : eDoneMult;
+      eStallingMult: state_nMult = valid_outMult ? eDoneMult : eStallingMult;
       eDoneMult: state_nMult = eWaitingMult;
     endcase
   end
@@ -171,7 +171,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   always_comb begin
     unique case (state_rDiv)
       eWaitingDiv: state_nDiv = secondWallOut[176] ? eStallingDiv : eWaitingDiv;
-      eStallingDiv: state_nDiv = valid_outDiv ? eStallingDiv : eDoneDiv;
+      eStallingDiv: state_nDiv = valid_outDiv ? eDoneDiv : eStallingDiv;
       eDoneDiv: state_nDiv = eWaitingDiv;
     endcase
   end
@@ -204,13 +204,21 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
   
   //the divider module
   logic [63:0] divResult;
-  divider theDivider 
+  /*divider theDivider 
   (.out(divResult)
   ,.valid_out(valid_outDiv)
   ,.rst(reset)
   ,.A(secondWallOut[73:10])
   ,.B(secondWallOut[137:74])
   ,.valid_in(valid_inDiv)
+  ,.clk);*/
+  divider1 theDivider
+  (.quotient(divResult)
+  ,.valid_out(valid_outDiv)
+  ,.divisor(secondWallOut[137:74])
+  ,.dividend(secondWallOut[73:10])
+  ,.valid_in(valid_inDiv)
+  ,.rst(reset)
   ,.clk);
   
   //determine if the result is from the ALU or the shifter
@@ -262,7 +270,7 @@ module completeDataPathPipelined(clk, uncondBr, brTaken, memWrite, memToReg, res
 	
 	//memory stage
 	memStage thatMem (.clk, .memWrite(thirdWallOut[0]), .read_enable(thirdWallOut[3]), .memToReg(thirdWallOut[1]),
-							.ReadData2(thirdWallOut[131:68]), .address(thirdWallOut[67:4]), .mightSendToReg);
+							.ReadData2(thirdWallOut[131:68]), .address(thirdWallOut[67:4]), .mightSendToReg, .reset);
 							
 	//break out bits for forwarding
 	assign MEMreg[4:0] = thirdWallOut[136:132];

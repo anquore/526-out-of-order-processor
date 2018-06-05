@@ -1,5 +1,5 @@
-module memStage (clk, memWrite, read_enable, memToReg, ReadData2, address, mightSendToReg);
-	input logic clk, memWrite, read_enable, memToReg;
+module memStage (clk, memWrite, read_enable, memToReg, ReadData2, address, mightSendToReg, reset);
+	input logic clk, memWrite, read_enable, memToReg, reset;
 	input logic [63:0] ReadData2, address;
 	output logic [63:0] mightSendToReg;
 	
@@ -7,7 +7,7 @@ module memStage (clk, memWrite, read_enable, memToReg, ReadData2, address, might
 	logic [63:0] read_data;
 	logic [63:0][1:0] regBackDataToMux;
 	datamem theDataMemory (.address, .write_enable(memWrite), .read_enable, 
-									.write_data(ReadData2), .clk, .xfer_size(4'b1000), .read_data);
+									.write_data(ReadData2), .clk, .xfer_size(4'b1000), .read_data, .reset);
 									
 	//decides who gets sent to the reg
 	integer m, n;

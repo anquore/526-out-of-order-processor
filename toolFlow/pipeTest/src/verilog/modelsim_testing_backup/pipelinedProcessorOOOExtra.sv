@@ -75,7 +75,7 @@ module pipelinedProcessorOOOExtra_testbench();
   instructmem instrMem(.address(imem_address_o), .instruction(imem_instruction_i), .clk);
   
   datamem theDataMemory (.addressLoad(dmem_addressLoad), .addressStore(dmem_addressStore), .write_enable(dmem_writeEn), .read_enable(dmem_readEn), 
-									.write_data(dmem_WriteData), .clk, .xfer_size(4'b1000), .read_data(dmem_readData));
+									.write_data(dmem_WriteData), .clk, .xfer_size(4'b1000), .read_data(dmem_readData), .reset);
 
 	// Set up the clock
 	parameter ClockDelay = 2000;

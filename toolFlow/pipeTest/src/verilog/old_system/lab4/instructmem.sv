@@ -12,7 +12,7 @@
 //`define BENCHMARK "../benchmarks/test10_forwarding.arm"
 //`define BENCHMARK "../benchmarks/test11_Sort.arm"
 //`define BENCHMARK "../benchmarks/test12_Fibonacci.arm"
-`define BENCHMARK "testing.arm"
+`define BENCHMARK "factorizer.arm"
 
 
 `timescale 1ns/10ps

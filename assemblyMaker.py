@@ -545,7 +545,7 @@ def main():
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  
+  '''
   #map table testing, reg renaming
   #clear the file
   theFile = open('MT_reg_renaming.arm','w')
@@ -600,7 +600,7 @@ def main():
   #halt
   branchCommand('B', B, 0, theFile)#288
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  
+  '''
   '''
   #shift testing
   #clear the file
@@ -870,7 +870,7 @@ def main():
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
   '''
-  
+  '''
   #clear the file
   theFile = open('LSQtesting.arm','w')
   theFile.write("//Starting assembly\n")
@@ -960,7 +960,7 @@ def main():
   
   branchCommand('B', B, 0, theFile)#96
   mathCommand('SUB', SUB, 31, 31, 31, theFile) #100
-  
+  '''
   '''
   #clear the file
   theFile = open('RS_filling2.arm','w')
@@ -1038,6 +1038,53 @@ def main():
   #3 is 20
   #4 is 10
   '''
+  '''
+  #multiply twice, shift right once
+  #clear the file
+  theFile = open('multshift.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('multshift.arm','a')
+  
+  immediateCommand('ADDI', ADDI, 2, 0, 31, theFile) #ADDI X0, X31, #2
+  mathCommand('ADD', ADD, 1, 0, 31, theFile) #ADD X1, X0, X31
+  #loop:
+  mathCommand('MULT', MULT, 0, 1, 0, theFile) #MULT X0, X1, X0
+  shiftCommand('LSR', LSL, 0, 1, 0, theFile) #LSR X0, X1, X0
+  mathCommand('MULT', MULT, 0, 1, 0, theFile) #MULT X0, X1, X0
+  mathCommand('SUBS', SUBS, 31, 0, 31, theFile)
+  branchCommand('BL', BL, -4, theFile) #CBZ X0 loop #CBZ X0 loop
+  mathCommand('SUBS', SUBS, 31, 31, 31, theFile)
+  #end:
+  branchCommand('B', B, 0, theFile) #B. end
+  mathCommand('SUB', SUB, 31, 31, 31, theFile)
+  #register X0 should left shift by one each loop until falloff and end at 0
+  '''
+  #my program
+  #shift left twice, divide once
+  #clear the file
+  theFile = open('divshift.arm','w')
+  theFile.write("//Starting assembly\n")
+  theFile.close()
+  
+  #open the file to append
+  theFile = open('divshift.arm','a')
+  
+  immediateCommand('ADDI', ADDI, 2, 0, 31, theFile) #ADDI X0, X31, #2
+  mathCommand('ADD', ADD, 1, 0, 31, theFile) #ADD X1, X0, X31
+  #loop:
+  shiftCommand('LSL', LSL, 0, 1, 0, theFile) #LSL X0, X1, X0
+  mathCommand('DIV', DIV, 0, 1, 0, theFile) #DIV X0, X1, X0
+  shiftCommand('LSL', LSL, 0, 1, 0, theFile) #LSL X0, X1, X0
+  mathCommand('SUBS', SUBS, 31, 0, 31, theFile)
+  branchCommand('BL', BL, -4, theFile) #CBZ X0 loop
+  mathCommand('SUBS', SUBS, 31, 31, 31, theFile)
+  #end:
+  branchCommand('B', B, 0, theFile) #B. end
+  mathCommand('SUBS', SUBS, 31, 31, 31, theFile)
+  
   theFile.close()
 
 def mathCommand(name, opcode, RD, RM, RN, theFile):

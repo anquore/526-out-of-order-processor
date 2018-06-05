@@ -14,7 +14,7 @@ module datamem (
 	input logic					write_enable,
 	input logic					read_enable, //linked to 1
 	input logic		[63:0]	write_data,
-	input logic					clk,
+	input logic					clk, reset,
 	input logic		[3:0]		xfer_size, //unhooked
 	output logic	[63:0]	read_data
 	);
@@ -59,9 +59,20 @@ module datamem (
 	end
 	
 	// Handle the writes.
+  logic [7:0] zeroes [1023:0];
+  integer k;
+  always_comb begin
+    for (k = 0; k < 1024; k++) begin
+      zeroes[k] = 0;
+    end
+  end
+  
+  
 	integer j;
 	always_ff @(posedge clk) begin
-		if (write_enable)
+    if(reset)
+      mem <= zeroes;
+		else if (write_enable)
 			for(j=0; j<xfer_size; j++)
 				mem[aligned_address + j] <= write_data[8*j+7 -: 8]; 
 	end

@@ -54,16 +54,19 @@ add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/mult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/whichMath
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/stallMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/theStall
-add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/state_r
-add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/state_n
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/valid_outMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/stallStartMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/stallFullMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/doneMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/valid_inMult
 add wave -noupdate /pipelinedProcessor_testbench/dut/theDataPath/multiResult
+add wave -noupdate -expand -group Divider /pipelinedProcessor_testbench/dut/theDataPath/theDivider/valid_out
+add wave -noupdate -expand -group Divider /pipelinedProcessor_testbench/dut/theDataPath/theDivider/valid_in
+add wave -noupdate -expand -group Divider /pipelinedProcessor_testbench/dut/theDataPath/theDivider/quotient
+add wave -noupdate -expand -group Divider /pipelinedProcessor_testbench/dut/theDataPath/theDivider/divisor
+add wave -noupdate -expand -group Divider /pipelinedProcessor_testbench/dut/theDataPath/theDivider/dividend
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {124028325 ps} 0}
+WaveRestoreCursors {{Cursor 1} {95000000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 250
 configure wave -valuecolwidth 100
@@ -79,4 +82,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {115884832 ps} {132751770 ps}
+WaveRestoreZoom {0 ps} {715071 ns}

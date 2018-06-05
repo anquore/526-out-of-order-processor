@@ -3,7 +3,7 @@
 // two words of the address must be 0).
 //
 // To change the file that is loaded, edit the filename here:
-`define BENCHMARK "branchDelaySlotTest.arm"
+`define BENCHMARK "LSQtesting.arm"
 //`define BENCHMARK "../benchmarks/test01_AddiB.arm"
 //`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm"
@@ -27,6 +27,7 @@
 //moreOOO
 //branchDelaySlotTest
 //LSQtesting
+//randomTest
 
 
 // How many bytes are in our memory?  Must be a power of two.
